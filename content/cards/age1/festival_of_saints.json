@@ -1,0 +1,10 @@
+{
+	"id": "festival_of_saints",
+	"name": "Festival of Saints",
+	"category": "action",
+	"cost": 1,
+	"effects": [
+		{"type": "resource_delta", "resource": "approval", "amount": 4}
+	],
+	"flavor": "Processions, bells, and a day free of work; for one bright day the city is pleased with itself."
+}

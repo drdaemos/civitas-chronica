@@ -1,0 +1,12 @@
+{
+	"id": "tax_levy",
+	"name": "Tax Levy",
+	"description": "A standing levy on households and trades fills the treasury, and empties a little goodwill each year.",
+	"unlock": {"type": "always"},
+	"swap_cost_budget": 2,
+	"swap_cost_approval": 3,
+	"effects": [
+		{"type": "income", "amount": 2},
+		{"type": "approval_per_turn", "amount": -1}
+	]
+}

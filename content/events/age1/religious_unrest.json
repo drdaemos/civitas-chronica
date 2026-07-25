@@ -1,0 +1,22 @@
+{
+	"id": "religious_unrest",
+	"title": "Religious Unrest",
+	"text": "Processions of the old faith and the new cross paths in the narrow streets; there have been broken windows, and worse is promised from both pulpits.",
+	"trigger": {"type": "always"},
+	"options": [
+		{"text": "Hear the grievances of both sides", "cost": 4,
+			"effects": [
+				{"type": "resource_delta", "resource": "approval", "amount": 3},
+				{"type": "remove_events", "events": ["religious_unrest"]}
+			]},
+		{"text": "Police the processions", "cost": 2,
+			"effects": [
+				{"type": "resource_delta", "resource": "approval", "amount": -3}
+			]},
+		{"text": "Let it burn itself out", "cost": 0,
+			"effects": [
+				{"type": "resource_delta", "resource": "approval", "amount": -9},
+				{"type": "inject_events", "events": ["religious_unrest"]}
+			]}
+	]
+}

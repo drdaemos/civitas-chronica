@@ -1,0 +1,10 @@
+{
+	"id": "learned_city",
+	"name": "Learned City",
+	"description": "Science developments cost -1 (minimum 1). Scholars petition the council to charter a collegium.",
+	"threshold": {"type": "tag_count", "tag": "science", "op": ">=", "value": 6},
+	"effects": [
+		{"type": "cost_modifier", "tag": "science", "amount": -1, "min_cost": 1},
+		{"type": "inject_main", "cards": ["collegium"]}
+	]
+}

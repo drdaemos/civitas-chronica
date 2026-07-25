@@ -1,0 +1,12 @@
+{
+	"id": "merchants_exchange",
+	"name": "Merchants Exchange",
+	"category": "development",
+	"cost": 5,
+	"tags": ["trade"],
+	"effects": [
+		{"type": "income", "amount": 1}
+	],
+	"inject_main": ["stock_exchange"],
+	"flavor": "Under the colonnade, cargoes change hands that no one present has seen; paper begins to stand for ships, and the ships for paper."
+}

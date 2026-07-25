@@ -1,0 +1,23 @@
+{
+	"id": "revolution_fervor",
+	"title": "Revolutionary Fervor",
+	"text": "News from abroad: a king humbled, a constitution proclaimed. The clubs toast liberty by name, the propertied bar their shutters, and both look to the council to declare what this city is.",
+	"trigger": {"type": "always"},
+	"options": [
+		{"text": "Mobilize the militia against the clubs", "cost": 5,
+			"effects": [
+				{"type": "resource_delta", "resource": "approval", "amount": -8},
+				{"type": "remove_events", "events": ["coffee_house_sedition", "pamphlet_war"]}
+			]},
+		{"text": "Grant a citizens charter", "cost": 4,
+			"effects": [
+				{"type": "resource_delta", "resource": "approval", "amount": 6},
+				{"type": "resource_delta", "resource": "migration_appeal", "amount": 1}
+			]},
+		{"text": "Ignore the clubs and hope", "cost": 0,
+			"effects": [
+				{"type": "resource_delta", "resource": "approval", "amount": -6},
+				{"type": "inject_events", "events": ["pamphlet_war"]}
+			]}
+	]
+}

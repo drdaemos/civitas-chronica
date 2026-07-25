@@ -1,0 +1,10 @@
+{
+	"id": "census",
+	"name": "Census",
+	"category": "action",
+	"cost": 1,
+	"effects": [
+		{"type": "resource_delta", "resource": "migration_appeal", "amount": 1}
+	],
+	"flavor": "Clerks count hearths and trades street by street; a city that knows itself is easier to govern, and easier to recommend."
+}

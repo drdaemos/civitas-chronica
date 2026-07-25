@@ -1,0 +1,21 @@
+{
+	"id": "colonial_windfall",
+	"title": "Colonial Windfall",
+	"text": "Three ships in convoy make port together and the wharf cannot warehouse the half of it; the profits are immense, and the abolitionist preachers know exactly where they came from.",
+	"trigger": {"type": "has_development", "id": "colonial_wharf"},
+	"options": [
+		{"text": "Refuse the tainted cargoes", "cost": 3,
+			"effects": [
+				{"type": "resource_delta", "resource": "approval", "amount": 3}
+			]},
+		{"text": "Fund public works with the proceeds", "cost": 0,
+			"effects": [
+				{"type": "resource_delta", "resource": "approval", "amount": 4}
+			]},
+		{"text": "Let the merchants keep their profits", "cost": 0,
+			"effects": [
+				{"type": "resource_delta", "resource": "approval", "amount": -2},
+				{"type": "resource_delta", "resource": "migration_appeal", "amount": 2}
+			]}
+	]
+}

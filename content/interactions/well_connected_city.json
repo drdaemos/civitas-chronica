@@ -1,0 +1,10 @@
+{
+	"id": "well_connected_city",
+	"name": "Well-Connected City",
+	"description": "All developments cost -1 (minimum 1). Population growth +10% per turn.",
+	"threshold": {"type": "tag_count", "tag": "infrastructure", "op": ">=", "value": 10},
+	"effects": [
+		{"type": "cost_modifier", "amount": -1, "min_cost": 1},
+		{"type": "pop_growth_mult", "amount": 0.1}
+	]
+}

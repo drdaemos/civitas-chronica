@@ -1,0 +1,22 @@
+{
+	"id": "gin_craze",
+	"title": "Gin Craze",
+	"text": "Drunk for a penny, dead drunk for twopence, straw to lie on thrown in; the magistrates count one dram shop for every forty souls and rising.",
+	"trigger": {"type": "resource", "resource": "population", "op": ">=", "value": 1400},
+	"options": [
+		{"text": "License and inspect the shops", "cost": 3,
+			"effects": [
+				{"type": "resource_delta", "resource": "approval", "amount": 2}
+			]},
+		{"text": "Prohibit cheap spirits outright", "cost": 2,
+			"effects": [
+				{"type": "resource_delta", "resource": "approval", "amount": -6},
+				{"type": "remove_events", "events": ["gin_craze"]}
+			]},
+		{"text": "Let them drink", "cost": 0,
+			"effects": [
+				{"type": "resource_delta", "resource": "approval", "amount": -6},
+				{"type": "resource_delta", "resource": "population", "amount": -50}
+			]}
+	]
+}

@@ -1,0 +1,11 @@
+{
+	"id": "militia_barracks",
+	"name": "Militia Barracks",
+	"category": "development",
+	"cost": 4,
+	"tags": ["military"],
+	"effects": [
+		{"type": "income", "amount": 1}
+	],
+	"flavor": "Drill on Sundays, muskets in the armory, and billeting money paid promptly; respectable men in uniform, mostly pointed away from the city."
+}

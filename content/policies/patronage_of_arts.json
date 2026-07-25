@@ -1,0 +1,12 @@
+{
+	"id": "patronage_of_arts",
+	"name": "Patronage of the Arts",
+	"description": "The council commissions painters, masons, and musicians; cultural works come cheaper and the citizens take pride in them.",
+	"unlock": {"type": "always"},
+	"swap_cost_budget": 2,
+	"swap_cost_approval": 4,
+	"effects": [
+		{"type": "approval_per_turn", "amount": 1},
+		{"type": "cost_modifier", "tag": "cultural", "amount": -1, "min_cost": 1}
+	]
+}

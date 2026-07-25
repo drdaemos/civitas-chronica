@@ -1,0 +1,47 @@
+{
+	"id": "age2",
+	"name": "Age of Enlightenment",
+	"year_start": 1700,
+	"year_end": 1800,
+	"years_per_turn": 5,
+	"base_draw": 3,
+	"base_budget": 11,
+	"policy_slots": 2,
+	"next_age": "",
+	"start": {"population": 500, "approval": 70, "migration_appeal": 4},
+	"base_deck": [
+		"coffee_house",
+		"weaving_manufactory",
+		"canal_company",
+		"turnpike_trust",
+		"academy_of_sciences",
+		"city_newspaper",
+		"naval_dockyard",
+		"merchants_exchange",
+		"botanical_garden",
+		"general_hospital",
+		"assembly_rooms",
+		"grand_theatre",
+		"customs_house",
+		"militia_barracks",
+		"water_works",
+		"colonial_wharf",
+		"coaching_inn",
+		"pleasure_gardens",
+		"inoculation_campaign",
+		"street_lighting",
+		"state_lottery",
+		"poor_relief"
+	],
+	"base_events": [
+		"enclosure_riots",
+		"smallpox_outbreak",
+		"gin_craze",
+		"grand_tour_visitors",
+		"bread_riots"
+	],
+	"forced_events": [
+		{"event": "industrial_revolution", "turn": 4},
+		{"event": "revolution_fervor", "turn": 16}
+	]
+}

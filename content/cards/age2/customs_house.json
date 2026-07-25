@@ -1,0 +1,11 @@
+{
+	"id": "customs_house",
+	"name": "Customs House",
+	"category": "development",
+	"cost": 5,
+	"tags": ["infrastructure"],
+	"effects": [
+		{"type": "income", "amount": 1}
+	],
+	"flavor": "Weighers, gaugers, and searchers in a fine stone building on the quay; the Crown takes its share, and the city takes its cut of the Crown."
+}

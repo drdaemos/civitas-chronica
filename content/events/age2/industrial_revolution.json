@@ -1,0 +1,26 @@
+{
+	"id": "industrial_revolution",
+	"title": "The Machine Age Arrives",
+	"text": "Engineers wait in the anteroom with drawings of engines and mills; the guilds wait behind them with a petition. Whatever the council decides, the smoke on the horizon is already moving closer.",
+	"trigger": {"type": "always"},
+	"options": [
+		{"text": "Charter the new manufactories", "cost": 4,
+			"effects": [
+				{"type": "resource_delta", "resource": "approval", "amount": -3},
+				{"type": "resource_delta", "resource": "migration_appeal", "amount": 1},
+				{"type": "inject_main", "cards": ["steam_engine"]}
+			]},
+		{"text": "Restrain the mills by ordinance", "cost": 2,
+			"effects": [
+				{"type": "resource_delta", "resource": "approval", "amount": 4},
+				{"type": "resource_delta", "resource": "migration_appeal", "amount": -1},
+				{"type": "remove_events", "events": ["labor_unrest"]}
+			]},
+		{"text": "Let it run unchecked", "cost": 0,
+			"effects": [
+				{"type": "resource_delta", "resource": "approval", "amount": -6},
+				{"type": "resource_delta", "resource": "migration_appeal", "amount": 1},
+				{"type": "inject_events", "events": ["labor_unrest", "soot_and_smoke"]}
+			]}
+	]
+}

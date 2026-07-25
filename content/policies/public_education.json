@@ -1,0 +1,13 @@
+{
+	"id": "public_education",
+	"name": "Public Education",
+	"description": "The council funds schooling for every child who can be spared from work; it costs the treasury, and it draws families from three counties.",
+	"unlock": {"type": "interaction_active", "id": "learned_city"},
+	"swap_cost_budget": 3,
+	"swap_cost_approval": 4,
+	"effects": [
+		{"type": "income", "amount": -1},
+		{"type": "migration_per_turn", "amount": 1},
+		{"type": "cost_modifier", "tag": "science", "amount": -1, "min_cost": 1}
+	]
+}

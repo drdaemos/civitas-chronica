@@ -1,0 +1,12 @@
+{
+	"id": "academy_of_sciences",
+	"name": "Academy of Sciences",
+	"category": "development",
+	"cost": 5,
+	"tags": ["science"],
+	"effects": [
+		{"type": "migration_per_turn", "amount": 1}
+	],
+	"inject_main": ["observatory"],
+	"flavor": "Corresponding members, a cabinet of curiosities, and lectures open to any who can pay a shilling; the age has found its church."
+}

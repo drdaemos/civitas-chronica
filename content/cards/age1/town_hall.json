@@ -1,0 +1,18 @@
+{
+	"id": "town_hall",
+	"name": "Town Hall",
+	"category": "development",
+	"cost": 6,
+	"tags": ["cultural", "infrastructure"],
+	"effects": [
+		{"type": "income", "amount": 1},
+		{"type": "approval_per_turn", "amount": 1}
+	],
+	"flavor": "A council chamber, a clock tower, and an archive with a lock; the city now has a place where its word is kept.",
+	"age_variants": {
+		"age2": {
+			"adapted": {"cost": 4, "tags": ["cultural", "infrastructure"], "effects": [{"type": "income", "amount": 2}, {"type": "approval_per_turn", "amount": 1}]},
+			"demolish_approval": -8
+		}
+	}
+}

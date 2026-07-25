@@ -1,0 +1,11 @@
+{
+	"id": "state_lottery",
+	"name": "State Lottery",
+	"category": "action",
+	"cost": 1,
+	"effects": [
+		{"type": "resource_delta", "resource": "budget", "amount": 4},
+		{"type": "resource_delta", "resource": "approval", "amount": -4}
+	],
+	"flavor": "Tickets sold in shares and quarters against a prize the council will mostly keep; arithmetic in the service of the treasury."
+}

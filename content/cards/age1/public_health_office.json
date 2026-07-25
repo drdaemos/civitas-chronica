@@ -1,0 +1,18 @@
+{
+	"id": "public_health_office",
+	"name": "Public Health Office",
+	"category": "development",
+	"cost": 4,
+	"tags": ["science"],
+	"effects": [
+		{"type": "resource_delta", "resource": "approval", "amount": 2},
+		{"type": "pop_growth_mult", "amount": 0.05}
+	],
+	"flavor": "Physicians keep registers of the sick and inspect wells and ships; the city learns to see illness coming.",
+	"age_variants": {
+		"age2": {
+			"adapted": {"cost": 3, "tags": ["science", "infrastructure"], "effects": [{"type": "pop_growth_mult", "amount": 0.05}, {"type": "approval_per_turn", "amount": 1}]},
+			"demolish_approval": -3
+		}
+	}
+}

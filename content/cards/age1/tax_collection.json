@@ -1,0 +1,11 @@
+{
+	"id": "tax_collection",
+	"name": "Extraordinary Tax",
+	"category": "action",
+	"cost": 1,
+	"effects": [
+		{"type": "resource_delta", "resource": "budget", "amount": 4},
+		{"type": "resource_delta", "resource": "approval", "amount": -5}
+	],
+	"flavor": "Collectors go door to door with the council seal; the treasury swells, and every doorstep remembers it."
+}

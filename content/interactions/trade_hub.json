@@ -1,0 +1,11 @@
+{
+	"id": "trade_hub",
+	"name": "Trade Hub",
+	"description": "+2 budget per turn. Industrial developments cost +1. Smuggling finds the busy quays.",
+	"threshold": {"type": "tag_count", "tag": "trade", "op": ">=", "value": 9},
+	"effects": [
+		{"type": "income", "amount": 2},
+		{"type": "cost_modifier", "tag": "industrial", "amount": 1},
+		{"type": "inject_events", "events": ["smuggling_ring"]}
+	]
+}

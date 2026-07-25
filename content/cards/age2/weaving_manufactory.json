@@ -1,0 +1,13 @@
+{
+	"id": "weaving_manufactory",
+	"name": "Weaving Manufactory",
+	"category": "development",
+	"cost": 4,
+	"tags": ["industrial"],
+	"effects": [
+		{"type": "income", "amount": 1}
+	],
+	"inject_main": ["dye_works"],
+	"inject_events": ["labor_unrest"],
+	"flavor": "Forty looms under one roof and a bell that starts the day; the weavers no longer own their work, only their hours."
+}

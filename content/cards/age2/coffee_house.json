@@ -1,0 +1,13 @@
+{
+	"id": "coffee_house",
+	"name": "Coffee House",
+	"category": "development",
+	"cost": 4,
+	"tags": ["cultural"],
+	"effects": [
+		{"type": "income", "amount": 1}
+	],
+	"inject_main": ["debating_society"],
+	"inject_events": ["coffee_house_sedition"],
+	"flavor": "A penny for the coffee, the news thrown in; merchants, scribblers, and idlers argue at the long tables until the candles are spent."
+}

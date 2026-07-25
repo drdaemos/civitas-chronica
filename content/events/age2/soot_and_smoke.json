@@ -1,0 +1,23 @@
+{
+	"id": "soot_and_smoke",
+	"title": "Soot and Smoke",
+	"text": "The washing on the lines is grey by noon and the physicians report a cough that does not leave; the works that pay the city wages are the same works darkening its sky.",
+	"trigger": {"type": "tag_count", "tag": "industrial", "op": ">=", "value": 3},
+	"options": [
+		{"text": "Tall chimneys and smoke inspectors", "cost": 5,
+			"effects": [
+				{"type": "resource_delta", "resource": "approval", "amount": 3},
+				{"type": "remove_events", "events": ["soot_and_smoke"]}
+			]},
+		{"text": "Move the works downwind of the fine streets", "cost": 3,
+			"effects": [
+				{"type": "resource_delta", "resource": "approval", "amount": 1},
+				{"type": "resource_delta", "resource": "migration_appeal", "amount": -1}
+			]},
+		{"text": "It is the smell of money", "cost": 0,
+			"effects": [
+				{"type": "resource_delta", "resource": "approval", "amount": -8},
+				{"type": "inject_events", "events": ["soot_and_smoke"]}
+			]}
+	]
+}

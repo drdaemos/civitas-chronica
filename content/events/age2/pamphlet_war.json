@@ -1,0 +1,22 @@
+{
+	"id": "pamphlet_war",
+	"title": "Pamphlet War",
+	"text": "Two anonymous pamphleteers have divided the city into readers of one and burners of the other; the printers, at least, are paid by both sides.",
+	"trigger": {"type": "tag_count", "tag": "cultural", "op": ">=", "value": 3},
+	"options": [
+		{"text": "Sponsor the moderate printers", "cost": 3,
+			"effects": [
+				{"type": "resource_delta", "resource": "approval", "amount": 3}
+			]},
+		{"text": "Prosecute the printers for libel", "cost": 2,
+			"effects": [
+				{"type": "resource_delta", "resource": "approval", "amount": -5},
+				{"type": "remove_events", "events": ["pamphlet_war"]}
+			]},
+		{"text": "Read them with amusement", "cost": 0,
+			"effects": [
+				{"type": "resource_delta", "resource": "approval", "amount": -3},
+				{"type": "resource_delta", "resource": "migration_appeal", "amount": 1}
+			]}
+	]
+}

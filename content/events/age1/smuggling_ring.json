@@ -1,0 +1,22 @@
+{
+	"id": "smuggling_ring",
+	"title": "Smuggling Ring",
+	"text": "Customs officers uncover a well-run trade in untaxed cloth and spirits moving through the quays, with names on the manifest the council knows.",
+	"trigger": {"type": "interaction_active", "id": "trade_hub"},
+	"options": [
+		{"text": "Break the ring and make examples", "cost": 4,
+			"effects": [
+				{"type": "resource_delta", "resource": "approval", "amount": 3},
+				{"type": "remove_events", "events": ["smuggling_ring"]}
+			]},
+		{"text": "Fine the merchants and move on", "cost": 0,
+			"effects": [
+				{"type": "resource_delta", "resource": "approval", "amount": -3}
+			]},
+		{"text": "Look the other way", "cost": 0,
+			"effects": [
+				{"type": "resource_delta", "resource": "approval", "amount": -2},
+				{"type": "inject_events", "events": ["smuggling_ring"]}
+			]}
+	]
+}

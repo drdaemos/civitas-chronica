@@ -1,0 +1,11 @@
+{
+	"id": "steam_engine",
+	"name": "Steam Engine",
+	"category": "development",
+	"cost": 6,
+	"tags": ["industrial"],
+	"effects": [
+		{"type": "income", "amount": 2}
+	],
+	"flavor": "A beam engine drains the pits and turns the new mills; gentlemen come from abroad to sketch it, and colliers come to curse it."
+}

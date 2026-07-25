@@ -1,0 +1,10 @@
+{
+	"id": "pleasure_gardens",
+	"name": "Pleasure Gardens",
+	"category": "action",
+	"cost": 2,
+	"effects": [
+		{"type": "resource_delta", "resource": "approval", "amount": 5}
+	],
+	"flavor": "Lanterns in the elms, an orchestra pavilion, and supper boxes; for a shilling at the gate, every clerk is a gentleman until midnight."
+}

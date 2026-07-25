@@ -1,0 +1,11 @@
+{
+	"id": "city_newspaper",
+	"name": "City Newspaper",
+	"category": "development",
+	"cost": 4,
+	"tags": ["cultural"],
+	"effects": [
+		{"type": "approval_per_turn", "amount": 1}
+	],
+	"flavor": "Twice weekly, on poor paper: shipping lists, council notices, and letters signed with Roman pseudonyms. The city reads about itself at breakfast."
+}

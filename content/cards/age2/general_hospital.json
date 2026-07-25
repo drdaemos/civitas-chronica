@@ -1,0 +1,12 @@
+{
+	"id": "general_hospital",
+	"name": "General Hospital",
+	"category": "development",
+	"cost": 6,
+	"tags": ["science"],
+	"effects": [
+		{"type": "resource_delta", "resource": "approval", "amount": 3},
+		{"type": "pop_growth_mult", "amount": 0.05}
+	],
+	"flavor": "Founded by subscription, staffed by surgeons who publish; the poor are treated, observed, and counted, in roughly that order."
+}

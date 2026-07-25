@@ -1,0 +1,23 @@
+{
+	"id": "plague_ship",
+	"title": "Plague Ship",
+	"text": "A merchantman anchors in the roadstead flying no colors; word comes ashore that half her crew are fevered and the rest are hiding it.",
+	"trigger": {"type": "has_development", "id": "harbor_expansion"},
+	"options": [
+		{"text": "Quarantine the ship and her crew", "cost": 4,
+			"effects": [
+				{"type": "resource_delta", "resource": "approval", "amount": 2},
+				{"type": "inject_main", "cards": ["public_health_office"]}
+			]},
+		{"text": "Turn the ship away", "cost": 0,
+			"effects": [
+				{"type": "resource_delta", "resource": "approval", "amount": -3},
+				{"type": "resource_delta", "resource": "migration_appeal", "amount": -2}
+			]},
+		{"text": "Let her dock and unload", "cost": 0,
+			"effects": [
+				{"type": "resource_delta", "resource": "population", "amount": -120},
+				{"type": "resource_delta", "resource": "approval", "amount": -10}
+			]}
+	]
+}

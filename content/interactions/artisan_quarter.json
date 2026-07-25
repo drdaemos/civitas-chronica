@@ -1,0 +1,13 @@
+{
+	"id": "artisan_quarter",
+	"name": "Artisan Quarter",
+	"description": "+1 budget per turn and +1 migration appeal at once; craftsmen and traders share the same streets, and word of good work travels.",
+	"threshold": {"type": "all_of", "conditions": [
+		{"type": "tag_count", "tag": "trade", "op": ">=", "value": 8},
+		{"type": "tag_count", "tag": "cultural", "op": ">=", "value": 9}
+	]},
+	"effects": [
+		{"type": "income", "amount": 1},
+		{"type": "resource_delta", "resource": "migration_appeal", "amount": 1}
+	]
+}

@@ -1,0 +1,20 @@
+{
+	"id": "canal_mania",
+	"title": "Canal Mania",
+	"text": "Every valley within forty miles now has a canal scheme, a prospectus, and a subscription book; the shares double before a single spade turns, which the older merchants say is not a good sign.",
+	"trigger": {"type": "tag_count", "tag": "trade", "op": ">=", "value": 3},
+	"options": [
+		{"text": "Invest the city funds in every scheme", "cost": 6,
+			"effects": [
+				{"type": "resource_delta", "resource": "approval", "amount": -4}
+			]},
+		{"text": "Charter only the sound companies", "cost": 3,
+			"effects": [
+				{"type": "resource_delta", "resource": "approval", "amount": 2}
+			]},
+		{"text": "Stand aside from the speculation", "cost": 0,
+			"effects": [
+				{"type": "resource_delta", "resource": "migration_appeal", "amount": -1}
+			]}
+	]
+}

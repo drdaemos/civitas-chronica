@@ -1,0 +1,18 @@
+{
+	"id": "town_market",
+	"name": "Town Market",
+	"category": "development",
+	"cost": 3,
+	"tags": ["trade"],
+	"effects": [
+		{"type": "income", "amount": 1}
+	],
+	"inject_main": ["merchant_guild"],
+	"flavor": "Stalls rise in the square each market day, and the town learns the rhythm of buying and selling.",
+	"age_variants": {
+		"age2": {
+			"adapted": {"cost": 3, "tags": ["trade"], "effects": [{"type": "income", "amount": 2}]},
+			"demolish_approval": -3
+		}
+	}
+}

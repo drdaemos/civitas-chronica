@@ -1,0 +1,19 @@
+{
+	"id": "monastery",
+	"name": "Monastery",
+	"category": "development",
+	"cost": 4,
+	"tags": ["religious"],
+	"effects": [
+		{"type": "income", "amount": 1}
+	],
+	"inject_events": ["heresy_trial"],
+	"flavor": "The brothers keep orchards, a brewery, and the strictest accounts in the city; their scrutiny extends beyond ledgers.",
+	"age_variants": {
+		"age2": {
+			"preserved": {"tags": ["religious"], "effects": [{"type": "income", "amount": 1}]},
+			"adapted": {"cost": 4, "tags": ["religious", "science"], "effects": [{"type": "income", "amount": 1}, {"type": "approval_per_turn", "amount": 1}]},
+			"demolish_approval": -8
+		}
+	}
+}

@@ -1,0 +1,22 @@
+{
+	"id": "grand_tour_visitors",
+	"title": "Grand Tour Visitors",
+	"text": "A party of young noblemen and their tutors arrive with letters of introduction, sketchbooks, and more money than sense; where they winter, fashion follows.",
+	"trigger": {"type": "resource", "resource": "approval", "op": ">=", "value": 60},
+	"options": [
+		{"text": "Fete the distinguished guests", "cost": 2,
+			"effects": [
+				{"type": "resource_delta", "resource": "approval", "amount": 3},
+				{"type": "resource_delta", "resource": "migration_appeal", "amount": 1}
+			]},
+		{"text": "Receive them politely", "cost": 0,
+			"effects": [
+				{"type": "resource_delta", "resource": "approval", "amount": 1}
+			]},
+		{"text": "The city has no time for idlers", "cost": 0,
+			"effects": [
+				{"type": "resource_delta", "resource": "approval", "amount": -3},
+				{"type": "resource_delta", "resource": "migration_appeal", "amount": -1}
+			]}
+	]
+}

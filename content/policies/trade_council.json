@@ -1,0 +1,12 @@
+{
+	"id": "trade_council",
+	"name": "Trade Council",
+	"description": "A standing council of merchants and magistrates settles disputes before they fester; commerce steadies and tempers cool.",
+	"unlock": {"type": "interaction_active", "id": "trade_hub"},
+	"swap_cost_budget": 2,
+	"swap_cost_approval": 3,
+	"effects": [
+		{"type": "income", "amount": 1},
+		{"type": "approval_per_turn", "amount": 1}
+	]
+}

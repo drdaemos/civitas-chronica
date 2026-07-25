@@ -1,0 +1,17 @@
+{
+	"id": "artisan_guild",
+	"name": "Artisan Guild",
+	"category": "development",
+	"cost": 3,
+	"tags": ["trade", "cultural"],
+	"effects": [
+		{"type": "income", "amount": 1}
+	],
+	"flavor": "Weavers, coopers, and silversmiths organize under one hall; the mark of the guild begins to mean something in distant markets.",
+	"age_variants": {
+		"age2": {
+			"adapted": {"cost": 3, "tags": ["trade", "industrial"], "effects": [{"type": "income", "amount": 2}]},
+			"demolish_approval": -3
+		}
+	}
+}

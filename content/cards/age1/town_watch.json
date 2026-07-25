@@ -1,0 +1,18 @@
+{
+	"id": "town_watch",
+	"name": "Town Watch",
+	"category": "development",
+	"cost": 3,
+	"tags": ["military"],
+	"effects": [
+		{"type": "resource_delta", "resource": "approval", "amount": 2}
+	],
+	"inject_main": ["arsenal"],
+	"flavor": "Watchmen with lanterns and halberds walk the streets after curfew; petty crime learns to keep its head down.",
+	"age_variants": {
+		"age2": {
+			"adapted": {"cost": 3, "tags": ["military"], "effects": [{"type": "approval_per_turn", "amount": 1}]},
+			"demolish_approval": -2
+		}
+	}
+}

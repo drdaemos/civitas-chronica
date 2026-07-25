@@ -1,0 +1,14 @@
+{
+	"id": "export_economy",
+	"name": "Export Economy",
+	"description": "+3 budget per turn from the export trade. Approval -1 per turn; the works run hot and the workers know who profits. Smoke settles over the city.",
+	"threshold": {"type": "all_of", "conditions": [
+		{"type": "tag_count", "tag": "industrial", "op": ">=", "value": 7},
+		{"type": "tag_count", "tag": "trade", "op": ">=", "value": 1}
+	]},
+	"effects": [
+		{"type": "income", "amount": 3},
+		{"type": "approval_per_turn", "amount": -1},
+		{"type": "inject_events", "events": ["soot_and_smoke"]}
+	]
+}

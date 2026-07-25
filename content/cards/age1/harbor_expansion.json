@@ -1,0 +1,20 @@
+{
+	"id": "harbor_expansion",
+	"name": "Harbor Expansion",
+	"category": "development",
+	"cost": 6,
+	"tags": ["trade", "infrastructure"],
+	"prerequisites": ["river_docks"],
+	"effects": [
+		{"type": "income", "amount": 2},
+		{"type": "resource_delta", "resource": "migration_appeal", "amount": 2}
+	],
+	"inject_events": ["plague_ship"],
+	"flavor": "Stone quays and a deeper channel; the city turns its face to the water, and the water answers.",
+	"age_variants": {
+		"age2": {
+			"adapted": {"cost": 4, "tags": ["trade", "infrastructure"], "effects": [{"type": "income", "amount": 2}, {"type": "migration_per_turn", "amount": 1}]},
+			"demolish_approval": -3
+		}
+	}
+}

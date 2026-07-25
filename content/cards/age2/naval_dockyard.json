@@ -1,0 +1,12 @@
+{
+	"id": "naval_dockyard",
+	"name": "Naval Dockyard",
+	"category": "development",
+	"cost": 7,
+	"tags": ["military", "industrial"],
+	"effects": [
+		{"type": "income", "amount": 2}
+	],
+	"inject_events": ["press_gang"],
+	"flavor": "Slipways, rope walks, and Admiralty contracts; a first-rate on the stocks feeds two thousand families and empties the taverns of able men."
+}

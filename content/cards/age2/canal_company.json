@@ -1,0 +1,13 @@
+{
+	"id": "canal_company",
+	"name": "Canal Company",
+	"category": "development",
+	"cost": 5,
+	"tags": ["trade", "infrastructure"],
+	"effects": [
+		{"type": "income", "amount": 1}
+	],
+	"inject_main": ["canal_basin"],
+	"inject_events": ["canal_mania"],
+	"flavor": "Surveyors walk the valley with chains and levels; where the water goes, coal will follow at a tenth the cost of the road."
+}

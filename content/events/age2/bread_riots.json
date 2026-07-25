@@ -1,0 +1,22 @@
+{
+	"id": "bread_riots",
+	"title": "Bread Riots",
+	"text": "The quartern loaf is past a day of wages and the market crowd has stopped haggling and started shouting; a baker has been carried through the streets, not in triumph.",
+	"trigger": {"type": "resource", "resource": "approval", "op": "<", "value": 35},
+	"options": [
+		{"text": "Deploy the militia", "cost": 5,
+			"effects": [
+				{"type": "resource_delta", "resource": "approval", "amount": -6},
+				{"type": "inject_events", "events": ["bread_riots"]}
+			]},
+		{"text": "Subsidize the bakers", "cost": 4,
+			"effects": [
+				{"type": "resource_delta", "resource": "approval", "amount": 5}
+			]},
+		{"text": "Wait for tempers to cool", "cost": 0,
+			"effects": [
+				{"type": "resource_delta", "resource": "approval", "amount": -8},
+				{"type": "inject_events", "events": ["bread_riots"]}
+			]}
+	]
+}

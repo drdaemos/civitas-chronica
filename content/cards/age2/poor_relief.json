@@ -1,0 +1,10 @@
+{
+	"id": "poor_relief",
+	"name": "Poor Relief Subscription",
+	"category": "action",
+	"cost": 2,
+	"effects": [
+		{"type": "resource_delta", "resource": "approval", "amount": 4}
+	],
+	"flavor": "The names of the charitable are printed in the newspaper in order of the sum given; the poor are fed, and vanity foots the bill."
+}

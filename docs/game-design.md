@@ -1,0 +1,708 @@
+# Civitas Chronica — Game Design Document
+
+> **Status:** Draft. Demand system and phased turn structure (§3, §4.0) added 2026-07-25/26, replacing Citizen Approval and Migration Appeal.
+
+---
+
+## 1. High Concept
+
+A **card-based city-builder with rogue-lite elements**. The player acts as an ephemeral mayor guiding a single city across centuries, making decisions by playing cards drawn from a deck shaped by their choices. The city develops indirectly — the player enacts policies and invests in developments, but never directly plans streets or places buildings. Surviving to the final age with a thriving city is the win condition; city character and specialization contribute to the final score.
+
+**Genre:** Card-based strategy / city-builder hybrid with rogue-lite elements
+
+**Inspirations:** Slay the Spire (rogue-lite structure, meta-progression), Terraforming Mars (engine building, card tableau, project cards with tags), 7 Wonders (age-scoped card pools, card chaining), Through the Ages (civilization card game, card row, age transitions, obsolescence), SimCity / Caesar (city-builder fantasy), Urban Empire (indirect mayoral control, era progression — cautionary reference for clarity of cause-and-effect)
+
+**Board game inspirations:** Terraforming Mars, 7 Wonders
+
+**Platform:** PC
+
+**Save length:** ~3–5 hours per full save (~30–60 min per age × 3–5 ages). Saves are persistent and played across multiple sittings.
+
+### Unique Selling Points
+
+- **Indirect city control** — the player enacts policies and plays development cards but never directly plans streets or places buildings. The city's character emerges from the aggregate of decisions, not from any single choice.
+- **City persistence and reinterpretation** — structures built in early ages change meaning in later ones. A medieval city wall becomes a heritage tourist attraction; a 19th-century factory becomes a pollution crisis. Past decisions pay out — or punish — in unexpected ways centuries later.
+- **Meta-progression via unlocks across saves** — system interactions and thresholds are discovered through play and can be used strategically in future saves.
+
+---
+
+## 2. Design Pillars
+
+Guiding principles every mechanic should serve.
+
+- **No direct planning of city.** Player has indirect control through development cards, policies, and event choices. The city's layout, character, and growth emerge from the interaction of these decisions, not from placement or spatial planning. There must always be a system between "player plays card" and "city changes."
+- **Decisions are (mostly) permanent.** Past decisions are generally irreversible. Tools to "fix the mess" exist but always at a cost — reversibility is a limited, expensive affordance, not the default. Developments accumulate; tags compound; interaction thresholds, once crossed, reshape the city's trajectory.
+- **You can't do everything.** Player activity is limited; no save is intended to see all content. Branching, specialization, and opportunity cost are core to the experience. Budget limits card plays per turn; policy slots force trade-offs; card paths gate content behind prior choices.
+- **The player sets the pace.** Time advances only when the player acts. Between actions, the player is free to observe the city, read stats, and plan. There is no real-time pressure.
+- **Emergent stories are the end goal of experience.** Adaptability is key, failing to execute precisely as planned is a norm, there is no clear-cut "right" way to play, readiness to explore is rewarded. System interactions, event consequences, and age transitions create narratives unique to each save.
+- **Cards are fleeting opportunities, not something you strategize hard about.** Drawing gives you choices up until the end of an age; injected paths widen the possibility space rather than promise specific payoffs. This justifies draw-don't-draft, hand retention (opportunities accumulate but expire with the age), and accepting draw variance without mulligans or markets.
+- **Score is the contest; losing is pressure, not the challenge.** This is a city-builder first: winning a save is expected, and the interesting game is the score — the character, specialization, and unique circumstances of the city you built. Lose conditions exist to force choices and prevent passive accumulation, not to gate content. Hard rule: no lose condition may ever resolve in a single turn — everything telegraphs and gives the player turns to react.
+
+---
+
+## 3. Core Loop
+
+At its core the game is an engine builder. The player accumulates developments that generate resources and reshape the city's character. Choices are influenced by available card paths, current city state, active policies, and event pressure.
+
+### Turn Structure
+
+The turn resolves in three phases, in this order. The player only acts in phases 2 and 3; phase 1 runs to completion on its own. The UI does not have to present them as labelled phases, but the simulation resolves them in exactly this order.
+
+**Phase 1 — Upkeep.** The city acts before the player does.
+
+1. Budget refreshes fully; any pending event bill from last turn is deducted.
+2. Population count grows by this turn's delta (§4.0). If it crosses a level boundary, population level changes.
+3. Every active demand takes its growth step (§4.0).
+4. Every demand at or above its threshold shuffles an emergency card into the event deck; every demand at catastrophe level shuffles a catastrophe card as well.
+5. Time advances by a fixed amount.
+
+**Phase 2 — Events.** Draw from the event deck until a card is found whose trigger conditions match the current city state (max 5 draws; if no match, no event this turn). Resolve it: the player chooses between options, which may move demands one-off, change population, and inject further cards into either deck.
+
+**Phase 3 — Play.**
+
+1. **Draw** — draw N cards from the age deck into hand (base: 3, can be increased by developments).
+2. **Play** — play cards from hand, spending budget. Development cards enter the city permanently. Action cards resolve immediately and are discarded. Unplayed cards remain in hand until end of age.
+3. **Interaction check** — the system checks development tag thresholds. If a threshold is crossed, the city's character shifts: new interaction effects activate, new policies unlock, card costs may adjust.
+4. **Deck injection** (invisible) — played development cards inject new cards into both the main deck and the event deck. The player knows a card "opens a path" but doesn't see exactly which cards were added or when they'll appear.
+
+**Why this order.** The player sees the city's condition and the crisis it produced *before* deciding what to build, and then responds to both in the same turn. Growth and demand pressure are never a consequence the player discovers after committing their budget.
+
+**Event billing:** budget costs from event choices are deducted at the start of the *next* turn, from the fresh budget. The player keeps full freedom to spend this turn, but the city hands them a bill that constrains the next one. Event costs can push budget negative — overcommitting to expensive event choices is the on-ramp to the debt-spiral lose condition.
+
+### Resources
+
+The game tracks two resources and one meter per active demand. Nothing else.
+
+- **Population** — city size and a major score contributor. Not spent. Tracked as a **level** (small integer, the only value rules read) over a **count** (the actual number of people, which moves every turn and drives nothing directly). Level feeds the demand growth step and may unlock card paths and trigger forced events. See §4.0.
+- **Budget** — the only spendable currency. Allocated per turn, representing both money and administrative capacity. Card plays cost budget. Capacity is modified by developments, policies, and interaction effects. Refreshes fully each turn; unspent budget does not carry over.
+- **Demand meters** — one integer per active demand (§4.0). Start at 0, never negative, one new demand activates each age.
+
+> **Removed 2026-07:** *Citizen Approval* and *Migration Appeal* were previously separate resources. Approval is now covered by the Fairness/Legitimacy demand from Age 3 onward — before that age the city is not accountable to its citizens in that way, which matches the period and keeps the early game small. Migration Appeal was a growth dial; population growth is now driven by demand balance (§4.0).
+
+### One Age (target time: 30–60 min)
+
+An age contains many turns and events. The age ends when in-game time reaches the age boundary.
+
+**Turn count per age is derived from content, not chosen abstractly.** The floor is implied by the age's own design: the deepest prerequisite chain (e.g., Town Market → Merchant Guild → Trade Company needs 3+ turns minimum), plus injection lag (a path opened mid-age needs several turns to plausibly surface in draws), plus interaction threshold counts. Write the age's content first, then set the turn count so the deepest intended arc is completable with room to spare. A slightly dynamic turn count per age is acceptable.
+
+Card decks, most developments, and policies are age-specific. Developments continue to impact subsequent ages but may change their effect (see §4.6 City Persistence & Era Reinterpretation). At age end, unplayed cards are discarded — unless the player has used a rare preservation mechanic (e.g., Legacy Archive) to carry specific cards forward.
+
+### Full Save (~3–5 hours, across multiple sittings)
+
+A save spans 5 ages, each activating one new demand (§4.0):
+
+| Age | Years | Setting | Demand activated | Positive character | Negative character |
+|---|---|---|---|---|---|
+| 1 | –1600 | Early modern town | **Provision** | growth | scarcity |
+| 2 | 1600–1750 | Scientific revolution / baroque | **Security** | learning | war and sickness |
+| 3 | 1750–1850 | Agrarian | **Fairness / Legitimacy** | production | upheaval |
+| 4 | 1850–1950 | Urbanization | **Health** | invention | overcrowding |
+| 5 | 1950–present | Contemporary | **Appeal** | connection | migration and competition |
+
+The positive and negative characters set the tone and content of each age — which cards, events, and situations belong to it. They are authoring guidance, not separate mechanics.
+
+The city is a common European town founded around 1500. It is never a capital and never intended to become one; its scale stays provincial throughout.
+
+The city persists across ages — it's one continuous city, growing and changing. Each age has a distinct card pool reflecting era-appropriate developments. At age transitions, development tags carry forward and may trigger new interaction effects under the new age's rules.
+
+Saves are persistent. The player can close the game mid-age and return later. The whole state before the start of the turn is persistent.
+
+**Win condition:** reach the end of the final age without triggering a lose condition.
+
+**Lose conditions:** *(open — see §4.0)*
+
+The demand system does not kill the player directly; it loads the event deck. Loss therefore has to arrive through an event. The leading candidate is the **catastrophe card** (§4.0): drawing one for a demand that is still far above its threshold ends the save. Reaching that state requires having been deep in the red long enough for catastrophe cards to have entered the deck at all, and pulling the meter back down at any point removes the danger.
+
+Retained from the earlier draft:
+
+- Debt spiral — budget capacity below 0 for multiple consecutive turns.
+- City destruction — specific unmitigated event chains.
+
+**Design intent:** all lose conditions are slow and grace-period-based — *consecutive* debt turns, *unmitigated* event chains, demands left in the red for many turns. Nothing kills the city suddenly; every path to loss telegraphs and leaves turns to react. Losing exists to create pressure to choose and accept consequences, not to be the contest. When a save is lost mid-way, the city is done, but account-level discoveries persist — the player walks away with more options for the next run. Survival as a genuine threat is reserved for harder starts (a New Game+ concern, not an MVP one).
+
+**Score:** see §4.7 Scoring.
+
+### Account-Level Meta-Progression
+
+> **Deprioritized for now.** Will be designed after in-save mechanics are solid.
+
+Achievements and milestones across saves unlock new cards (and possibly advisors, starting bonuses, etc.) for future saves. Purely account-wide; does not affect any active save.
+
+Critically, interaction thresholds discovered during play are remembered at the account level. On a first save, the player discovers that 3 Trade developments trigger Trade Hub status. On subsequent saves, the player can see and plan toward this threshold from the start.
+
+---
+
+## 4. Mechanics
+
+### 4.0 Demands
+
+Demands are the counterweight to the card engine. Drawing cards, building developments, and growing the city all push demands up. Bringing them back down costs budget and card plays the player would rather spend on specialization. This is the system that forces the player to build specific things and that punishes leaning too hard in any one direction.
+
+**One demand activates per age and never deactivates.** By the final age all five are live simultaneously, which is where the game's complexity comes from — not from any demand becoming individually harder.
+
+#### The meter
+
+Each active demand is a single integer. It starts at 0 and never goes below 0.
+
+- **0** = the demand is satisfied.
+- **Any positive value** = unmet need. Small values are tolerable; large ones generate crises.
+
+There is no surplus, no buffer, and no reward for a demand being at 0 beyond it not causing problems. Overshooting is wasted effort by design — the player is not meant to bank safety against future ages.
+
+#### Growth step
+
+Every turn, during the upkeep phase (§3), each active demand increases by its **growth step**:
+
+```
+population level + aggravators − mitigators        (minimum 0)
+```
+
+- **Population level** — a small integer, currently 1 for a town up to 3–4 at maximum size (see Population below).
+- **Aggravators / mitigators** — the sum of printed demand values on the developments standing in the city (see below).
+
+Every term is a count of something visible on the table. The whole calculation is small-integer addition and is intended to be doable by hand.
+
+**A well-managed demand sits at a growth step of 0 and does not move.** That is the equilibrium the player is aiming for, and reaching it means nothing happens on that row for many turns at a stretch. The system is quiet by default.
+
+**A population level-up is what breaks equilibrium.** Gaining a level adds 1 to every active demand's growth step at once. A city that was holding five demands at 0 is suddenly creeping upward on all five, every turn, until it rebuilds mitigation. This produces the intended rhythm: long calm stretches punctuated by a level-up that forces a scramble.
+
+**Demand growth is fully predictable.** The step is computed from things the player can count, and the result is shown on every demand row. The only unpredictable movement comes from events.
+
+#### Population
+
+Population is tracked as two numbers with different jobs.
+
+- **Population level (X)** — a small integer. This is the only population number any rule reads: it feeds the demand growth step, gates card paths, and contributes to the score.
+- **Population count (Y)** — the actual number of people. It moves every turn and exists to make the city feel alive. **No rule calculates against Y directly.**
+
+Y grows each turn during the upkeep phase and is collapsed into X by a fixed table of level boundaries, spaced on a rising curve so that each level takes longer to reach than the last. When Y crosses a boundary, X changes and the engine feels it.
+
+**Growth rate is governed by demand balance**, counted off the demand rows rather than summed:
+
+| Active demands at or above threshold | Growth |
+|---|---|
+| none | full rate for the age |
+| one | reduced |
+| two | stalled |
+| three or more | decline |
+| any demand at catastrophe level | decline regardless |
+
+*(Exact multipliers are balancing placeholders. The per-age base rate is set by the age definition.)*
+
+The per-turn delta carries a small random variation of roughly ±15% so the numbers look alive; it is drawn from the named `population` RNG stream and never large enough to make level timing unpredictable in practice. The player is shown the delta as part of the upkeep phase, at the same moment the demand growth steps resolve.
+
+**Levels can be lost.** If Y falls below a level boundary — through Age 5 decline, or through an event such as a plague or a levy — X drops, and with it every demand's growth step. A disaster that costs the city a level genuinely relieves demand pressure. This is not exploitable, because population is a major score contributor. A hysteresis margin prevents X from flipping back and forth while Y sits on a boundary.
+
+**Growth is a cost that cannot be switched off, only slowed.** Neglecting demands does not protect the player: it stalls growth, which means fewer level-ups but also a smaller city, a worse score, and a steadily more crowded event deck. Managing demands well is rewarded with growth, and growth is what makes the next stretch harder.
+
+Some events change Y directly as a one-off, in either direction.
+
+#### How cards move demands
+
+Development cards print a value for each demand they touch — for example *Tannery: Provision −1, Health +1*; *Aqueduct: Health −2*; *Foundry: Health +2, Provision −1*.
+
+A printed value does two things at once, and they are always the same number:
+
+1. **On play**, the demand's current value changes by that amount immediately (clamped at 0).
+2. **Permanently**, the value is added to that demand's growth step for as long as the development stands in the city.
+
+The immediate half being clamped at 0 is what prevents buffering. Playing an Aqueduct while Health is at 0 wastes the immediate reduction; the player still gets the permanent growth reduction, so it is not a dead play, but it is an inefficient one. This pushes the player to address problems that exist rather than pre-build against problems that do not.
+
+Because aggravators enter the growth step rather than costing a flat amount once, the cost of specializing compounds every turn. Six factories at population level 2 grow Health by 8 per turn, and holding it at 0 needs roughly six health developments — budget and card plays the player wanted elsewhere. No special rule is needed for this; it falls out of the counting.
+
+**Events move demands one-time only.** An event may bump a demand's current value up or down, but never changes its growth step. Events exist to force movement when the player's standing system is not good enough, not to permanently rewrite it.
+
+#### Consequences
+
+A single tolerance threshold, the same for every demand and every age (starting value: **3**).
+
+- **Below the threshold** — nothing happens at all. No penalty, no bleed, no cost.
+- **At or above the threshold** — one **emergency event card** for that demand is shuffled into the event deck each turn. Duplicates are allowed and expected.
+- **Far above the threshold** (starting value: **8**) — a **catastrophe card** for that demand also enters the deck each turn.
+
+Two severity levels total. No third tier.
+
+Bringing a demand back below the threshold stops new cards entering the deck but does not remove cards already added. A demand ignored for ten turns has stuffed ten emergency cards into the deck, and they will surface at a time the player does not control. This is the entire punishment mechanism — demands never apply direct damage, ongoing bleed, or hidden penalties. All consequences arrive through the event system, which already presents choices and already telegraphs.
+
+#### Age activation
+
+When an age activates a demand, the meter does not start at 0 unless the city happens to be clean. The printed values of all standing developments for that demand are counted and applied, exactly as if the cards had just been played.
+
+A city that spent two hundred years building tanneries, a foundry, and dense housing starts Health well above the threshold in 1850, with emergency cards entering the deck from the first turn of the age. The city is measured against a standard that did not exist when it was built. This is the primary mechanical expression of the "past decisions pay out or punish centuries later" premise.
+
+Per-age card variants (§4.6) handle obsolescence: a granary may print Provision −2 in Age 1, −1 in Age 3, and 0 in Age 5, recalculated once at each age boundary.
+
+#### Visibility
+
+**Demands are never hidden.** Interaction thresholds, event triggers, and deck injections are discovery-based; the demand system is fully transparent at all times. The player can always see every meter, its current value, and its growth step. The hidden systems provide surprise; the demand system provides the pressure that gives those surprises weight. Hiding both would make cause and effect unreadable.
+
+#### Presentation
+
+One row per active demand. Each row shows the current value, its growth step, and the threshold. A row at or above the threshold is clearly marked as generating emergency cards. Population level and count sit alongside, with the count's per-turn delta shown at upkeep.
+
+Hovering a card previews its effect on every demand row, including the demands it worsens. Cross-demand costs must be visible before the card is played, not discovered afterward.
+
+Rows carry a short status line in period voice derived from the value band — "bread prices are climbing", "the lower ward is sick". On the mayor's desk (§6) demands live on a petitions board; each age transition physically adds a sheet.
+
+#### Open questions
+
+- **The growth rate function.** The table above is the shape, not the numbers. Not a sum of demand values — a step function on how many demands are over threshold.
+- **Level boundary spacing.** How many levels exist across a full save, and how steeply the boundaries rise. Roughly one level per age is the current assumption.
+- Whether the threshold should stay uniform across demands and ages permanently, or diverge once content exists to justify it. Uniform for now.
+- Whether the catastrophe card is the loss condition, or merely the thing that makes a save unrecoverable. Undecided — see Lose conditions in §3.
+
+### 4.1 Cards
+
+Cards are the primary means of city development. Most cards are played once and persist as permanent additions to the city (developments) or resolve immediately (action cards). There is no rolling discard pile or deck cycling.
+
+**Card uniqueness (Terraforming Mars rule, added 2026-07 after first playtest):** every card exists at most once per save, across deck, hand, city, and consumed actions. A development can never be built twice; a played action card never returns. Injections silently skip cards that already exist anywhere in the save. Events are deliberately NOT unique — a recurring flood is a consequence, not a bug.
+
+**Card categories:**
+
+#### Development Cards
+
+Permanent city additions. The core of the engine. Once played, a development stays in the city for the rest of the save (though its meaning may change across ages — see §4.6).
+
+Each development has three layers of effect:
+
+- **Demand values** (visible on card): printed values for the demands the development touches, e.g. *Health +2, Provision −1*. Each applies immediately on play and permanently to that demand's growth step (§4.0). Most developments touch one or two demands; some touch none.
+- **Primary effect** (visible on card): the immediate, predictable outcome beyond demands. Examples: "+1 Budget/turn," "reduces disease event severity," "+1 draw."
+- **Interaction tags** (visible on card): categories that define the development's domain. Tags include `[Trade]`, `[Military]`, `[Religious]`, `[Industrial]`, `[Cultural]`, `[Science]`, `[Infrastructure]`, etc. Tags don't do anything individually — they matter when developments combine (see §4.2 Interaction System).
+- **Deck injection** (hidden on first encounter): playing the card adds specific new cards into the age deck and/or the event deck. The first time a card is played in any save, the player only knows "this opens a path" — they don't see exactly which cards were added or when they'll appear in the draw. After that first play, the injection contents are remembered at the account level and shown on the card in future saves — the same learning contract as interaction thresholds and event triggers (see §4.2). This is the primary mechanism for path-dependent content gating — playing a River Docks development injects maritime card paths into the main deck and flood/trade events into the event deck.
+
+Developments accumulate without limit. This accumulation is the goal, but it also compounds the city's character, triggers new interaction effects, and increases the city's exposure to related events.
+
+Some developments require prerequisites: prior developments of the same path must have been played. The prerequisite chain is visible on the card. Example: "Requires: Town Market" → unlocks Merchant Guild → unlocks Trade Company. This creates branching specialization within an age.
+
+#### Action Cards
+
+Immediate, tactical plays. They don't permanently alter the city's engine but let the player respond to situations, convert between resources, or perform one-time adjustments.
+
+Examples: grain purchase (one-time Provision reduction), emergency repairs (mitigate event damage), militia muster (one-time Security reduction), eminent domain (remove a development — expensive, and removes its mitigation as well as its aggravation).
+
+Action cards move demand meters **one time only** — they never change a demand's growth step. They are how the player buys time against a backlog their standing system cannot handle, which makes them the natural answer to a demand that has spiked from an event.
+
+Action cards are the primary means of handling event consequences. This creates a hand management tension: spending all budget on developments leaves the player vulnerable to events with no action cards to respond.
+
+Action cards are discarded after play.
+
+**Card attributes:**
+
+- Budget cost
+- Age availability (which ages it can appear in)
+- Card category (Development / Action)
+- Demand values (Development cards: permanent; Action cards: one-time only)
+- Interaction tags (Development cards only)
+- Prerequisites (some Development cards)
+- Primary effect description
+- Path hint: "Opens new paths" indicator (Development cards that inject into the deck)
+
+**Deck construction:**
+
+- **Deck is age-scoped.** Each age, the player plays with a deck specific to that era. Cards from previous ages do not carry forward (with rare exceptions via preservation mechanics).
+- **Deck is generated, not manually drafted.** At the start of each age, the deck is composed automatically based on: (a) current city state (developments in play, active tags, population level, demand meters, economy), (b) accumulated decisions across prior ages (which paths were opened, which events were resolved and how), and (c) the age-appropriate base card pool.
+- **Deck grows during play.** As the player plays development cards, new cards are injected into the deck mid-age. The deck is not a fixed size — it expands based on the player's choices.
+- **Draw, don't draft.** Each turn, the player draws N cards from the top of the shuffled deck. There is no card row or market. The player's influence over what cards appear is indirect — through which developments they play (which inject new cards) and which paths they've opened.
+- **Hand retention.** Unplayed cards stay in the player's hand until end of age. At end of age, all remaining hand cards are discarded unless specifically preserved.
+
+### 4.2 The Interaction System
+
+The interaction system is the core mechanism for indirect city control. It sits between the player's individual card decisions and the city's emergent character.
+
+**Concept:** the player controls individual decisions (which cards to play). The city responds to the *aggregate* of those decisions. When the total number of developments with a given tag crosses a threshold, an interaction effect activates, changing the rules of the game.
+
+**How it works:**
+
+Each interaction effect has a tag threshold (e.g., "3+ `[Trade]` developments") and a set of consequences that activate when the threshold is reached. Consequences may include:
+
+- Passive resource changes (budget bonuses, demand growth-step modifiers)
+- Cost modifications for future card plays (cards of certain tags become cheaper or more expensive)
+- Policy unlocks (new policy options become available — see §4.3)
+- Card path unlocks or restrictions (certain card paths become available or are locked out)
+- Event deck changes (new event types enter the event pool; others are removed)
+- City view changes (visual transformation of the city to reflect its character)
+
+**Example interaction effects (illustrative, not balanced):**
+
+| Threshold | Effect Name | Consequences |
+|-----------|-------------|--------------|
+| 3+ `[Trade]` | Trade Hub | +2 Budget/turn passive. `[Industrial]` developments cost +1. Maritime events enter event deck. |
+| 3+ `[Industrial]` + 1+ `[Trade]` | Export Economy | +3 Budget/turn. Health growth +1. Pollution events enter event deck. |
+| 2+ `[Religious]` + 2+ `[Cultural]` | Religious Cultural Center | Fairness growth −1. `[Science]` card paths restricted (conservatism). |
+| 3+ `[Military]` + Fairness ≥ 5 | Martial Law Possible | Unlocks Martial Law policy. Large budget boost, Appeal growth +2. |
+| 4+ `[Science]` | Research Hub | Science-related developments cost −1. Unlocks Age 2 enlightenment paths. |
+| 3+ `[Infrastructure]` | Well-Connected City | All development costs −1 (min 1). Population growth +10% per turn. |
+
+**Multi-tag interactions** create the most interesting emergent situations: the player may not have intended to create an Export Economy, but by pursuing both trade and industrial paths for their individual benefits, they crossed the threshold and now face the consequences.
+
+**Discovery model:** interaction thresholds are NOT shown to the player before they are first activated in any save. The first time a threshold is crossed, the effect is revealed with a notification explaining what happened and why. This serves the "emergent stories" pillar — the player discovers their city's character rather than planning it from a menu.
+
+At the **account level**, discovered interactions are remembered. On subsequent saves, the player can see known thresholds and plan toward or away from them. This is the primary rogue-lite discovery mechanic and a major driver of replayability.
+
+**Unified learning contract:** all three hidden systems — interaction thresholds, event triggers, and deck injections — obey the same rule: *hidden the first time, remembered at the account level forever after.* Nothing changes between saves, so remembering is the skill. Learning how the systems respond is precisely what makes a player good at the game.
+
+**Visibility:**
+
+- Active interaction effects are displayed in the city view dashboard: "Trade Hub (active): +2 budget, +1 industrial costs."
+- On repeat saves, upcoming thresholds for known interactions are shown: "Trade Hub: 2/3 [Trade] developments."
+- Unknown interactions are never hinted at.
+
+### 4.3 Policies
+
+Policies are a separate mechanic from the card system. They represent the city's governing philosophy and modify the rules of the game.
+
+**Slots:** the player has 3 active policy slots. Early in Age 1, only 1 slot may be available, with additional slots unlocking through development thresholds or age transitions.
+
+**Unlocking:** policies are unlocked by reaching specific development tag thresholds or interaction effects. Example: reaching Trade Hub status unlocks the "Free Trade" and "Mercantile Regulation" policy options. Some policies are age-specific; others persist across ages but may evolve into new variants.
+
+**Changing:** swapping a policy costs budget and raises the Fairness demand (if active) and takes effect at the start of the next turn. The cost reflects the disruption of changing governing philosophy mid-stream. This makes policy changes meaningful rather than trivial.
+
+**Mechanical effects:** policies modify game rules rather than providing flat bonuses. Examples:
+
+- **Free Trade:** `[Trade]` developments produce +1 budget each. Trade-related events have increased severity. Provision growth −1 (imported grain), Security growth +1.
+- **Conscription:** `[Military]` developments cost 1 less budget. Fairness growth +1. Military events are less severe.
+- **Patronage of Arts:** `[Cultural]` developments inject 2 extra cards into the deck instead of 1. Budget capacity reduced by 2. Appeal growth −1.
+- **Isolationism:** Foreign trade events cannot fire. Security growth −1, Appeal growth +2. `[Trade]` developments produce −1 budget.
+- **Poor Relief:** All `[Civic]` developments count as an additional −1 mitigator for Provision. Budget −2/turn.
+
+**Age evolution:** when an age transitions, active policies present the player with evolution choices. A "Patronage of Arts" policy in Age 1 might branch into "State-Sponsored Culture" (more control, more budget cost, specific card unlocks) or "Free Artistic Expression" (less control, Fairness growth −1, different card paths). This is one of the key decision points at age transitions.
+
+### 4.4 Events
+
+Events are the city's voice — they present consequences of the player's decisions and force reactive choices.
+
+**Event Deck:** separate from the main card deck. Composed at age start from a base set of era-appropriate events, then expanded during play as development cards inject associated events.
+
+Example: playing "River Docks" injects "Plague Ship," "Spring Flood," and "Trade Dispute" events into the event deck. The player knows the docks "open paths" but doesn't see which specific events were added.
+
+**Drawing:** each turn, after card play and interaction checks, draw from the event deck. Draw until a card is found whose trigger conditions match the current city state, up to a maximum of 5 draws. If no match is found within 5 draws, no event fires this turn — the city is stable. Unmatched events return to the bottom of the deck.
+
+**Trigger conditions:** each event card has requirements tied to city state. Examples:
+
+- "Provision ≥ 3"
+- "3+ `[Industrial]` developments"
+- "Health growth step ≥ 4"
+- "Population level ≥ 2 AND no `[Infrastructure]` interaction active"
+
+**Emergency and catastrophe events** (§4.0) are ordinary events with a trigger tied to their demand being at or above the relevant threshold. They enter the deck through demand pressure rather than through card injection, but they resolve like any other event.
+
+**Discovery of triggers:** the first time an event of a given type fires, the player sees the event and its consequences but NOT what triggered it. After that first occurrence, future events of the same type display their trigger conditions on the card. This parallels the interaction discovery model — the player builds understanding of their city's vulnerabilities through experience.
+
+**Resolution:** events present a choice, preferring dilemmas (genuine trade-offs) over pure fortune/misfortune. Choices should have asymmetric timescales:
+
+- Option A: good now, bad later (e.g., "Ignore the flooding — save budget now, but flood events become more severe")
+- Option B: painful now, good later (e.g., "Build emergency levees — spend 3 budget, but remove flood events from the deck and add Flood Control development to main deck")
+- Option C (rare): lateral move with unexpected consequences (e.g., "Relocate the docks upstream — lose Trade Hub status but gain access to a new card path")
+
+**Event-to-deck feedback loop:** event choices inject new cards into either deck. This makes events part of the engine builder, not interruptions to it.
+
+- Choosing to quarantine during a plague might add "Public Health Office" to the development deck and reduce severity of future disease events.
+- Choosing to ignore the plague might add "Mass Grave" (a development with Health +1 and Fairness +1) and "Physician Shortage" events.
+- Some event choices add action cards to the deck — reactive tools the player might draw in future turns.
+
+**Event frequency:** one event per turn maximum. The 5-draw limit means that in a stable city with few matching triggers, events are infrequent. In a rapidly growing, unbalanced city, events fire almost every turn — creating the sensation of crisis management vs. stable governance.
+
+**Forced events:** some events are age-gated and fire regardless of city state (e.g., "Religious Reformation" in late Age 1, "Industrial Revolution" at Age 2 start). These serve as narrative anchors and ensure certain historical inflection points are always experienced.
+
+Forced events are also **capability checks** — the anti-turtling mechanism. Regular events key off player-generated risk, so a small, stable city rarely triggers them; forced events arrive regardless of what was built and are absorbed comfortably only by a city that developed *some* engine. History happens to you whether or not you invited it: a turtle doesn't die of the events it avoided, it struggles with the exam it didn't study for. Expect 2–4 forced events per age doing this work. Turtling doesn't need to be punished hard — it's punished softly by forced events and creeping lose conditions, and mostly it's just boring; the stronger lever is presenting options too shiny to pass up.
+
+### 4.5 The City View
+
+The player can view the city but does not directly control its construction. The city develops according to cards played and interaction effects active.
+
+**Purpose:** admire progress, read current state, monitor interaction effects, anticipate emerging problems.
+
+**Information surfaced:**
+
+- Current interaction effects and their consequences (as a readable dashboard overlay)
+- Active policies and their effects
+- Development tags composition (how many of each tag)
+- On repeat saves: known interaction thresholds and progress toward them
+- Event trigger conditions for previously-seen event types
+- Resource trends (budget trajectory, demand meters and their growth steps, turns until the next population step)
+
+**TODO:** art/representation style — map-based, isometric, abstract? The city view does not need to be spatially accurate but should convey character and change visibly when interaction effects activate or ages transition.
+
+**TODO:** accessibility — ensure info density is readable alongside the aesthetic presentation. Consider a "data view" toggle that strips the visual presentation to pure stats for players who prefer clarity over atmosphere.
+
+### 4.6 City Persistence & Era Reinterpretation
+
+The city is the single most persistent element of a save. Developments, interaction effects, population, specialization, and accumulated history all carry forward across ages.
+
+**Visual evolution.** Structures upgrade visually as the city modernizes — a wooden fire station becomes brick, then modern, then a historical marker. The underlying development persists; its presentation evolves with the era.
+
+**Functional reinterpretation.** A development can mean something different in a later age — specifically, its interaction tags may change, its primary effect may shift, and it may inject different cards into the new age's deck.
+
+Examples:
+
+- A 1500s city wall (`[Military]`): in 1800 → obsolete defense, tag shifts to `[Infrastructure]`, reduced budget contribution. In 1950 → tourist attraction, tag shifts to `[Cultural]`, contributes to heritage tourism interaction effects.
+- An 1800s factory (`[Industrial]`, `[Trade]`): in 1900 → pollution source, gains `[Environmental Liability]` tag and Health +2. In 1950 → if preserved, becomes "converted loft" (`[Cultural]`); if demolished, opens space for new development card.
+- A 1700s cathedral (`[Religious]`, `[Cultural]`): in 1900 → civic landmark, tag emphasis shifts to `[Cultural]`. In 1950 → tourism anchor, adds heritage tourism cards to deck.
+
+**Player agency in reinterpretation:** at each age transition, the player receives a set of transition cards specific to their existing developments. These cards let the player choose how to handle inherited structures:
+
+- **Preserve** — maintain the development in its current form. It keeps contributing but may become less effective or gain liability tags.
+- **Adapt** — invest budget to reinterpret the development for the new age. Changes tags, changes effects, may unlock new card paths. Costs budget but is generally the best long-term investment.
+- **Demolish** — remove the development entirely. Frees up from negative interaction effects but loses accumulated tag contributions **and its demand mitigation** — demolishing a granary removes its Provision −2 as well. May raise the Fairness demand (citizens don't like landmarks being torn down).
+
+Transition cards are a key decision point between ages. A player with many Age 1 developments faces a substantial transition decision load, which mirrors the real challenge of modernizing an old city.
+
+**Reinterpretation and deck generation:** the reinterpreted tags of inherited developments feed directly into the new age's deck generation. A city that preserved its old quarter generates heritage and tourism card paths; one that demolished and rebuilt generates modernization and industrial card paths. This is the primary connective tissue between ages.
+
+### 4.7 Scoring
+
+Scoring reflects city character, not just city size. Multiple scoring axes ensure that different city specializations are viable high-scoring strategies.
+
+> **No end-score function is designed yet.** The axes below are candidates only.
+>
+> A *Stability* axis (turns spent with all demands below threshold) was cut on 2026-07-26: population growth is already gated on demand management, so Population rewards that behaviour and a second axis would double-count it. The remaining axes should each reward something Population does not.
+
+**Scoring axes (candidates — to be balanced):**
+
+- **Population** — base score component. Larger cities score more, but this alone is not sufficient for a high score.
+- **Specialization depth** — bonus points for reaching high-tier interaction effects. A city that deeply commits to a specialization (e.g., reaching "Maritime Empire" at 6+ `[Trade]` developments) scores more than a city that spreads across many tags without crossing higher thresholds.
+- **Heritage** — bonus points for developments that have persisted across multiple ages, especially those that have been adapted rather than demolished. Rewards long-term planning and the preservation/reinterpretation mechanic.
+- **Narrative milestones** — bonus for specific event chain completions (e.g., successfully navigating a plague, resolving a reformation, managing an industrial revolution without a Health catastrophe).
+
+A small, culturally rich city and a large industrial metropolis should both be viable high-scoring outcomes, achieved through different development paths and policy choices.
+
+### 4.8 Age Transitions
+
+When in-game time reaches an age boundary, the following sequence occurs:
+
+1. **Hand discard** — all remaining cards in hand are discarded (unless preserved via a Legacy Archive or similar mechanic).
+2. **Transition cards** — the player receives transition cards for each inherited development and chooses Preserve / Adapt / Demolish for each (see §4.6).
+3. **Policy evolution** — active policies present evolution choices. Each policy branches into 2–3 age-appropriate variants (see §4.3).
+4. **Interaction recalculation** — development tags are recalculated after reinterpretation. Interaction effects are re-evaluated under the new age's interaction table. Some thresholds may change between ages (e.g., Trade Hub might require 4 `[Trade]` developments in Age 2 instead of 3).
+5. **Deck generation** — the new age's main deck and event deck are generated based on current city state, including reinterpreted developments and new policy selections.
+6. **Demand activation** — the age's new demand becomes active, and its starting value is calculated from the printed values of all standing developments (§4.0). Existing demands carry their current values forward; their growth steps are recalculated from the reinterpreted developments.
+7. **Resource adjustment** — budget capacity may shift based on age transition rules. Population carries forward directly.
+8. **New age begins** — first turn of the new age.
+
+**What carries forward:** developments (reinterpreted), population, accumulated account-level discoveries. **What resets or adjusts:** budget capacity (recalculated for new age), policy slots (new options, old policies evolved), card paths (new age pool), event deck (rebuilt).
+
+### 4.9 Advisors
+
+> **Deprioritized.** Not in minimal variant.
+
+Advisors grant passive abilities that modify card play. Examples: peek at next draw, draw extra cards, reduce cost of a card type. Advisors would be acquired at age start or as event rewards and would stack with policies to create deeper strategic customization.
+
+---
+
+## 5. Narrative & Tone
+
+Historically grounded, inspired by the real dilemmas and pitfalls of city development and management. The tone balances between the optimism of building something lasting and the pragmatic reality that every decision has consequences. Not satirical (unlike Tropico), not dry (unlike a pure simulation) — more akin to a thoughtful historical documentary narrated from the perspective of someone who cares about the city.
+
+Events should feel like plausible historical situations, not fantasy scenarios. The "emergent stories" pillar means that the narrative emerges from the interplay of systems, not from scripted storylines.
+
+---
+
+## 6. UI / UX
+
+### The Mayor's Desk
+
+The primary interaction surface is a skeuomorphic rendering of the mayor's desk. Every object on the desk maps to a core loop action — no subsidiary systems or decorative distractions.
+
+**Desk objects (mapped to core actions):**
+
+- **City mockup** — a dynamic, animated miniature of the city. Represents city state and active interaction effects in simplified visual form. Clicking opens the full city view with stat overlays and interaction dashboard.
+- **Card hand** — the drawn cards for this turn. The player drags cards to play them, spending budget. Unplayed cards remain visible in hand.
+- **Stamp / seal** — ends the turn. Triggers event draw and resource recalculation. Shows a summary of played cards before confirming.
+- **Bell / telephone / pigeon** — notification mechanism. Lights up when an event fires. Opens the event screen with choices.
+- **Calendar** — shows flow of time, age progress, and turn count. Indicates proximity to age boundary.
+
+**Design rule:** if an object on the desk doesn't correspond to a core loop action (draw, play, end turn, view city, respond to event), it should not be on the desk. The desk should feel focused, not cluttered.
+
+**Opened screens (skeuomorphic, contextual):**
+
+- **City view** (from mockup) — detailed, explorable, with stat overlays and interaction effect dashboard.
+- **Event screen** (from bell) — presents the event situation, choices, and consequences.
+- **Calendar detail** (from calendar) — age timeline, upcoming forced events (if any are known), historical record of past events and decisions.
+
+**Non-desk screens:**
+
+- Main menu / save selection
+- Save summary / end-of-save screen (with scoring breakdown)
+- Account-level meta-progression / unlocks screen (deprioritized)
+- Age transition screen (development reinterpretation and policy evolution choices)
+
+**TODO:** how does the desk evolve across ages? Candidate: the desk itself changes visually each age (quill → typewriter → computer; oil lamp → electric lamp; pigeon → telephone → smartphone). This reinforces the passage of time without adding mechanical complexity.
+
+**TODO:** accessibility — the skeuomorphic approach can hurt readability. Plan for a clear "data view" toggle and ensure all information surfaced by the city view is also accessible in text/stat form. Font sizes, contrast, and color-blind considerations need attention.
+
+---
+
+## 7. Narrative & Tone
+
+See §5 above. This section reserved for expanded narrative design if needed (event writing guidelines, tone reference material, historical research notes).
+
+---
+
+## 8. Art & Audio Direction
+
+**TODO** — visual references, palette, 2D vs 3D, illustrated cards vs icon-based, etc.
+
+**TODO** — audio style; music should shift per age to reinforce era transitions. Sound design for desk interactions (stamp sound, bell ring, card shuffle).
+
+---
+
+## 9. Technical
+
+**TODO** — engine, platforms, save/load architecture (per-save persistence for city state + account-level persistence for discovered interactions and unlocks), etc.
+
+Key technical considerations flagged by the design:
+
+- Deck injection during play requires a data structure that supports dynamic insertion and reshuffling.
+- Interaction threshold checking needs to be efficient since it runs every turn.
+- Account-level discovery persistence needs to be separate from save data.
+- Age transition involves significant state transformation (tag reinterpretation, deck regeneration) — this should not have noticeable load time.
+
+---
+
+## 10. Scope & Milestones
+
+**TODO** — MVP definition. Candidate minimum vertical slice:
+
+- 1 age fully playable (Age 1: 1500–1700)
+- ~30–40 development cards + ~10 action cards
+- 3–4 interaction tags with 5–6 interaction effects
+- The Provision demand fully wired: meter, growth step, threshold, emergency + catastrophe cards
+- 3 policy options (1 slot active)
+- ~10–15 events with dilemma choices
+- Basic city view (character shifts visible when interaction effects activate)
+- Lose condition(s) wired up (bankruptcy; Provision catastrophe)
+- Basic scoring (population + specialization depth)
+- No meta-progression, no age transitions in MVP
+
+---
+
+## Appendix A: System Interaction Summary
+
+The following diagram shows how the four core systems connect:
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                         TURN FLOW                               │
+│                                                                 │
+│  ┌──────────┐    ┌──────────┐    ┌──────────────────────────┐   │
+│  │  DRAW    │───▶│  PLAY    │───▶│  INTERACTION CHECK       │   │
+│  │  cards   │    │  cards   │    │  (tag thresholds)        │   │
+│  └──────────┘    └────┬─────┘    └────────────┬─────────────┘   │
+│                       │                       │                 │
+│                       │ inject cards          │ unlock policies │
+│                       ▼                       │ modify costs    │
+│               ┌───────────────┐               │ change city     │
+│               │  MAIN DECK   │◀──────────────-┘                 │
+│               │  (grows)     │                                  │
+│               └───────────────┘                                 │
+│                       │                                         │
+│                       │ inject events                           │
+│                       ▼                                         │
+│               ┌───────────────┐    ┌──────────────────────────┐ │
+│               │  EVENT DECK  │───▶│  EVENT RESOLUTION        │ │
+│               │  (grows)     │    │  (player choice)         │ │
+│               └───────────────┘    └────────────┬─────────────┘ │
+│                                                 │               │
+│                                    inject cards │               │
+│                                    into both    │               │
+│                                    decks        │               │
+│                                                 ▼               │
+│                                        ┌──────────────┐         │
+│                                        │  END OF TURN │         │
+│                                        │  (recalc)    │         │
+│                                        └──────────────┘         │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+**Key feedback loops:**
+
+- Developments → inject cards → more development options → more developments (growth loop)
+- Developments → interaction thresholds → policy unlocks → modified development costs (specialization loop)
+- Developments → inject events → event choices → inject more cards into both decks (consequence loop)
+- Event choices → new developments available → new interaction possibilities (adaptation loop)
+
+---
+
+## Appendix B: Example Turn Sequence (Age 1)
+
+**City state entering turn:** Population level 1 (4,180 people) | Budget 10/turn | **Provision 2** (threshold 3)
+
+**Active developments:** Town Market `[Trade]` (Provision −1), River Docks `[Trade]`, Cobblestone Roads `[Infrastructure]`, Stone Church `[Religious]` `[Cultural]`, Grain Storehouse `[Infrastructure]` (Provision −1)
+
+**Provision growth step:** 1 (level) + 0 (aggravators) − 2 (Market, Storehouse) = −1 → **0**. The demand is at equilibrium and will not move on its own.
+
+**Active interactions:** None yet (2 `[Trade]`, 2 `[Infrastructure]` — below thresholds)
+
+**Active policies:** Tax Levy (+2 Budget/turn)
+
+---
+
+### Phase 1 — Upkeep
+
+Budget refreshes to 10. No pending bill.
+
+Provision is below its threshold, so growth is at full rate for the age. Population count grows +214 (base rate with the turn's small variation) to 4,394. The level-2 boundary is at 5,000, so the level does not change.
+
+Provision takes its growth step of 0 and stays at 2. Nothing is below threshold, so no emergency cards enter the deck.
+
+### Phase 2 — Events
+
+Draw from the event deck. First card: "Trade Dispute" (trigger: 2+ `[Trade]` developments). Conditions match — event fires.
+
+*"Foreign merchants accuse local traders of unfair tariffs. Tension rises."*
+
+- Choice A: "Side with local traders" — Provision +2, "Protectionist Backlash" event added to deck.
+- Choice B: "Open the markets" — Provision −1, "Foreign Quarter" development card added to main deck.
+- Choice C: "Mediate" — costs 3 Budget, no demand change, "Trade Council" policy unlocked.
+
+Player picks C. The 3-budget cost is billed at the start of next turn (event billing — see §3).
+
+### Phase 3 — Play
+
+**Draw:** `Artisan Guild [Trade] [Cultural] (Dev, cost 3)`, `Harbor Expansion [Trade] [Infrastructure] (Dev, cost 5, Provision −1, Security +1)`, `Grain Purchase (Action, cost 1, Provision −2)`
+
+**Play:** Harbor Expansion (5) and Grain Purchase (1). Total 6/10 spent. Artisan Guild kept in hand.
+
+Harbor Expansion: Provision 2 → 1, and the growth step drops further to −2 (still floored at 0 when applied). Its **Security +1 does nothing yet** — Security is not an active demand until Age 2 — but the value is recorded and will be counted the moment the demand activates. +2 Budget/turn. Injects maritime cards into the main deck and "Plague Ship" / "Trade Dispute" into the event deck.
+
+Grain Purchase: Provision 1 → 0. One-time only, no change to the growth step. Discarded.
+
+**Interaction check:** 3 `[Trade]` (Market, Docks, Harbor) and 3 `[Infrastructure]` (Roads, Storehouse, Harbor). Two thresholds cross at once:
+
+- **Trade Hub:** +2 Budget/turn. `[Industrial]` developments cost +1. Maritime events enter the event pool.
+- **Well-Connected City:** all development costs −1 (min 1).
+
+Both are first discoveries — the player did not see them coming.
+
+---
+
+**End state:** Population level 1 (4,394) | Budget 14/turn, 11 spendable next turn after the 3-budget bill | Provision 0, growth step 0 | Two interaction effects active | New policy option available
+
+**What the player actually bought:** Provision is fully handled and generating no events, but three of the five standing developments are working on it and doing little else. Harbor Expansion has quietly recorded a Security +1 that will be counted the instant Age 2 begins. And because Provision is at 0, growth runs at full rate — which brings the level-2 boundary closer, and with it a +1 to the growth step of every demand the city has.
+
+---
+
+## Appendix C: Open Questions (Running List)
+
+- Balancing: the growth-rate function — exact multipliers per count of demands over threshold (§4.0).
+- Balancing: population level boundaries, how many levels exist across a full save, and the hysteresis margin for losing a level.
+- Balancing: end-score function — not designed yet (§4.7).
+- Balancing: demand threshold value (currently 3) and catastrophe value (currently 8).
+- Balancing: typical printed demand values on cards — is the useful range −1..−3 / +1..+3?
+- Balancing: budget growth curve across an age — diminishing returns or hard cap needed?
+- Balancing: card draw scaling — should draw bonuses be capped?
+- Balancing: interaction threshold numbers for each tag combination
+- Balancing: time-per-turn (fixed or variable?) — related decision made: turn count per age is derived from content depth (see §3 One Age), and a slightly dynamic count is acceptable
+- Design: maximum hand size? Or unlimited until end of age?
+- Design: should some interaction effects be negative-only (liabilities that activate when you over-specialize)?
+- Design: should demand meters carry across an age boundary at their current value, or be recalculated purely from standing developments? (Currently: newly activated demands are calculated from developments; existing demands carry their value.)
+- Design: how many interaction effects per age? Per full save?
+- Design: should the event deck be visible (player can see remaining events) or hidden?
+- Design: how do interaction thresholds change between ages? (e.g., Trade Hub = 3 [Trade] in Age 1, 4 [Trade] in Age 2?)
+- Content: full interaction effect table for Age 1
+- Content: full card list for Age 1 MVP
+- Content: full event list for Age 1 MVP
+- Content: policy list for Age 1 MVP
+- Production: art style decision
+- Production: engine / platform decision
+- Production: save architecture design

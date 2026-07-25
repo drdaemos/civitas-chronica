@@ -1,0 +1,21 @@
+{
+	"id": "harvest_failure",
+	"title": "Harvest Failure",
+	"text": "Cold rains rot the grain in the surrounding fields; the granaries will not carry the city through the winter.",
+	"trigger": {"type": "always"},
+	"options": [
+		{"text": "Buy grain from distant markets", "cost": 4,
+			"effects": [
+				{"type": "resource_delta", "resource": "approval", "amount": 2}
+			]},
+		{"text": "Ration bread through the winter", "cost": 0,
+			"effects": [
+				{"type": "resource_delta", "resource": "approval", "amount": -3}
+			]},
+		{"text": "Leave the parishes to cope", "cost": 0,
+			"effects": [
+				{"type": "resource_delta", "resource": "approval", "amount": -8},
+				{"type": "resource_delta", "resource": "migration_appeal", "amount": -1}
+			]}
+	]
+}

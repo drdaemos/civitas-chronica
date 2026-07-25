@@ -1,0 +1,11 @@
+{
+	"id": "turnpike_trust",
+	"name": "Turnpike Trust",
+	"category": "development",
+	"cost": 4,
+	"tags": ["infrastructure"],
+	"effects": [
+		{"type": "income", "amount": 1}
+	],
+	"flavor": "Gates, tolls, and a graded road maintained by subscription; the mail coach now keeps a schedule the whole city sets its clocks by."
+}

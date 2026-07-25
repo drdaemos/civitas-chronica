@@ -1,0 +1,18 @@
+{
+	"id": "printing_press",
+	"name": "Printing Press",
+	"category": "development",
+	"cost": 5,
+	"tags": ["science", "cultural"],
+	"prerequisites": ["parish_school"],
+	"effects": [
+		{"type": "draw_bonus", "amount": 1}
+	],
+	"flavor": "A printer sets up shop with a secondhand press; ideas now arrive in the city faster than travelers do.",
+	"age_variants": {
+		"age2": {
+			"adapted": {"cost": 3, "tags": ["science", "cultural"], "effects": [{"type": "draw_bonus", "amount": 1}, {"type": "income", "amount": 1}]},
+			"demolish_approval": -5
+		}
+	}
+}

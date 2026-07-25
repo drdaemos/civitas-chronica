@@ -1,0 +1,17 @@
+{
+	"id": "cobblestone_roads",
+	"name": "Cobblestone Roads",
+	"category": "development",
+	"cost": 3,
+	"tags": ["infrastructure"],
+	"effects": [
+		{"type": "income", "amount": 1}
+	],
+	"flavor": "Paved streets carry carts in every weather; goods and tolls move whether or not it rains.",
+	"age_variants": {
+		"age2": {
+			"adapted": {"cost": 2, "tags": ["infrastructure"], "effects": [{"type": "income", "amount": 2}]},
+			"demolish_approval": -2
+		}
+	}
+}

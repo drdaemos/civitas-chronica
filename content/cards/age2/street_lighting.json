@@ -1,0 +1,11 @@
+{
+	"id": "street_lighting",
+	"name": "Street Lighting",
+	"category": "action",
+	"cost": 2,
+	"effects": [
+		{"type": "resource_delta", "resource": "approval", "amount": 3},
+		{"type": "resource_delta", "resource": "migration_appeal", "amount": 1}
+	],
+	"flavor": "Oil lamps on posts from the exchange to the bridge; the evening streets fill with people who have nothing to hide."
+}

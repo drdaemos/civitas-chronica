@@ -1,0 +1,22 @@
+{
+	"id": "trade_dispute",
+	"title": "Trade Dispute",
+	"text": "Foreign merchants accuse local traders of rigging the tariffs against them; both sides bring their grievances to the council chamber.",
+	"trigger": {"type": "tag_count", "tag": "trade", "op": ">=", "value": 2},
+	"options": [
+		{"text": "Side with the local traders", "cost": 0,
+			"effects": [
+				{"type": "resource_delta", "resource": "approval", "amount": 4},
+				{"type": "resource_delta", "resource": "migration_appeal", "amount": -2}
+			]},
+		{"text": "Open the markets to the foreigners", "cost": 0,
+			"effects": [
+				{"type": "resource_delta", "resource": "approval", "amount": -5},
+				{"type": "resource_delta", "resource": "migration_appeal", "amount": 2}
+			]},
+		{"text": "Mediate a settlement", "cost": 3,
+			"effects": [
+				{"type": "unlock_policy", "id": "trade_council"}
+			]}
+	]
+}

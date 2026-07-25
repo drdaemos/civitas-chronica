@@ -1,0 +1,19 @@
+{
+	"id": "wandering_preacher",
+	"title": "Wandering Preacher",
+	"text": "An itinerant preacher draws crowds in the market square, praising the poor and naming the comfortable; the parish clergy demand the council act.",
+	"trigger": {"type": "always"},
+	"options": [
+		{"text": "Give him the pulpit for a season", "cost": 0,
+			"effects": [
+				{"type": "resource_delta", "resource": "approval", "amount": 3},
+				{"type": "inject_events", "events": ["heresy_trial"]}
+			]},
+		{"text": "Escort him to the gates", "cost": 0,
+			"effects": [
+				{"type": "resource_delta", "resource": "approval", "amount": -4}
+			]},
+		{"text": "Neither sanction nor silence him", "cost": 0,
+			"effects": []}
+	]
+}

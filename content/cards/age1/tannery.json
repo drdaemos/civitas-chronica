@@ -1,0 +1,18 @@
+{
+	"id": "tannery",
+	"name": "Tannery",
+	"category": "development",
+	"cost": 3,
+	"tags": ["industrial"],
+	"effects": [
+		{"type": "income", "amount": 1}
+	],
+	"flavor": "Hides, oak bark, and lime pits downstream of the bridge; the trade pays steadily, and the whole quarter smells of it.",
+	"age_variants": {
+		"age2": {
+			"preserved": {"tags": ["industrial"], "effects": [{"type": "income", "amount": 1}, {"type": "approval_per_turn", "amount": -1}]},
+			"adapted": {"cost": 3, "tags": ["industrial"], "effects": [{"type": "income", "amount": 2}]},
+			"demolish_approval": -1
+		}
+	}
+}

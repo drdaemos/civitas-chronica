@@ -1,0 +1,11 @@
+{
+	"id": "garrison_town",
+	"name": "Garrison Town",
+	"description": "+1 budget per turn from garrison contracts. Migration appeal -1 per turn; a soldiers' town draws few settlers. Raiders test the garrison.",
+	"threshold": {"type": "tag_count", "tag": "military", "op": ">=", "value": 4},
+	"effects": [
+		{"type": "income", "amount": 1},
+		{"type": "migration_per_turn", "amount": -1},
+		{"type": "inject_events", "events": ["border_raid"]}
+	]
+}

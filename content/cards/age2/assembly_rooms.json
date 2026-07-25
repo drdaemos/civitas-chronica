@@ -1,0 +1,11 @@
+{
+	"id": "assembly_rooms",
+	"name": "Assembly Rooms",
+	"category": "development",
+	"cost": 4,
+	"tags": ["cultural"],
+	"effects": [
+		{"type": "approval_per_turn", "amount": 1}
+	],
+	"flavor": "Card tables, a ballroom, and a master of ceremonies who knows every family worth knowing; the city polishes itself by candlelight."
+}

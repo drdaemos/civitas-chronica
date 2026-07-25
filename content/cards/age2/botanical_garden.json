@@ -1,0 +1,12 @@
+{
+	"id": "botanical_garden",
+	"name": "Botanical Garden",
+	"category": "development",
+	"cost": 4,
+	"tags": ["cultural"],
+	"effects": [
+		{"type": "resource_delta", "resource": "approval", "amount": 4},
+		{"type": "resource_delta", "resource": "migration_appeal", "amount": 1}
+	],
+	"flavor": "Specimens from three continents behind glass and gravel walks; the city strolls among plants that have crossed oceans to be catalogued."
+}
