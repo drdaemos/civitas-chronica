@@ -3,18 +3,18 @@
 	"title": "Spring Flood",
 	"text": "The river rises with the thaw and spills into the low quarter; cellars fill and the dockside lanes stand under water.",
 	"trigger": {"type": "has_development", "id": "river_docks"},
+	"hazard": "flood",
 	"options": [
 		{"text": "Raise levees along the bank", "cost": 5,
 			"effects": [
-				{"type": "remove_events", "events": ["spring_flood"]},
-				{"type": "resource_delta", "resource": "approval", "amount": 2}
+				{"type": "remove_events", "events": ["spring_flood"]}
 			]},
 		{"text": "Repair the damage and carry on", "cost": 2,
 			"effects": []},
 		{"text": "Let the low quarter dry out on its own", "cost": 0,
 			"effects": [
-				{"type": "resource_delta", "resource": "approval", "amount": -8},
-				{"type": "resource_delta", "resource": "migration_appeal", "amount": -1},
+				{"type": "demand_delta", "demand": "provision", "amount": 3},
+				{"type": "resource_delta", "resource": "population_count", "amount": -40},
 				{"type": "inject_events", "events": ["spring_flood"]}
 			]}
 	]

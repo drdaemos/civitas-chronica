@@ -6,17 +6,17 @@
 	"options": [
 		{"text": "Mobilize the militia against the clubs", "cost": 5,
 			"effects": [
-				{"type": "resource_delta", "resource": "approval", "amount": -8},
+				{"type": "demand_delta", "demand": "security", "amount": -2},
 				{"type": "remove_events", "events": ["coffee_house_sedition", "pamphlet_war"]}
 			]},
 		{"text": "Grant a citizens charter", "cost": 4,
 			"effects": [
-				{"type": "resource_delta", "resource": "approval", "amount": 6},
-				{"type": "resource_delta", "resource": "migration_appeal", "amount": 1}
+				{"type": "demand_delta", "demand": "security", "amount": -1},
+				{"type": "demand_delta", "demand": "provision", "amount": -1}
 			]},
 		{"text": "Ignore the clubs and hope", "cost": 0,
 			"effects": [
-				{"type": "resource_delta", "resource": "approval", "amount": -6},
+				{"type": "demand_delta", "demand": "security", "amount": 3},
 				{"type": "inject_events", "events": ["pamphlet_war"]}
 			]}
 	]

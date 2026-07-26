@@ -13,6 +13,8 @@ static func apply_instant(effects: Array[EffectDef], state: GameState, events_ou
 		match effect.type:
 			"resource_delta":
 				_apply_resource_delta(effect, state)
+			"demand_delta":
+				DemandEngine.apply_delta(state, effect.demand, effect.amount_int(), events_out)
 			"unlock_policy":
 				if effect.id not in state.unlocked_policies:
 					state.unlocked_policies.append(effect.id)
@@ -46,14 +48,13 @@ static func inject_main_filtered(card_ids: Array[String], state: GameState, even
 	events_out.append({"type": "cards_injected", "deck": "main", "count": to_inject.size()})
 
 
+## The population LEVEL is never written directly — it is derived from the
+## count, so an event that takes people away (a plague, a levy) changes the
+## count and lets PopulationEngine work out what that means.
 static func _apply_resource_delta(effect: EffectDef, state: GameState) -> void:
 	match effect.resource:
-		"population":
-			state.population += effect.amount_int()
-		"approval":
-			state.approval += effect.amount_int()
-		"migration_appeal":
-			state.migration_appeal += effect.amount_int()
+		"population_count":
+			state.population_count += effect.amount_int()
 		"budget":
 			state.current_budget += effect.amount_int()
 		_:

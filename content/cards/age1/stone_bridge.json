@@ -4,15 +4,9 @@
 	"category": "development",
 	"cost": 3,
 	"tags": ["infrastructure"],
+	"demands": {"provision": -1},
 	"effects": [
-		{"type": "income", "amount": 1},
-		{"type": "resource_delta", "resource": "migration_appeal", "amount": 1}
+		{"type": "income", "amount": 1}
 	],
-	"flavor": "The ford becomes a crossing, the crossing becomes a road, and the road brings the world past the toll house.",
-	"age_variants": {
-		"age2": {
-			"adapted": {"cost": 3, "tags": ["infrastructure"], "effects": [{"type": "income", "amount": 2}]},
-			"demolish_approval": -3
-		}
-	}
+	"flavor": "The ford becomes a crossing, the crossing becomes a road, and the road brings the world past the toll house."
 }

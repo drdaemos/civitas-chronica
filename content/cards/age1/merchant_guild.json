@@ -4,16 +4,11 @@
 	"category": "development",
 	"cost": 4,
 	"tags": ["trade", "cultural"],
+	"demands": {"provision": -1},
 	"prerequisites": ["town_market"],
 	"effects": [
 		{"type": "income", "amount": 1}
 	],
 	"inject_main": ["trade_company"],
-	"flavor": "The wealthier traders draw up articles, elect a warden, and begin to speak with one voice.",
-	"age_variants": {
-		"age2": {
-			"adapted": {"cost": 3, "tags": ["trade"], "effects": [{"type": "income", "amount": 2}]},
-			"demolish_approval": -3
-		}
-	}
+	"flavor": "The wealthier traders draw up articles, elect a warden, and begin to speak with one voice."
 }

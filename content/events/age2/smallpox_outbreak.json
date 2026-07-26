@@ -2,22 +2,22 @@
 	"id": "smallpox_outbreak",
 	"title": "Smallpox Outbreak",
 	"text": "It begins in the lodging houses by the water and climbs the streets week by week; the burial registers say what the council has not yet said aloud.",
-	"trigger": {"type": "resource", "resource": "migration_appeal", "op": ">=", "value": 7},
+	"trigger": {"type": "resource", "resource": "population_level", "op": ">=", "value": 2},
+	"hazard": "disease",
 	"options": [
 		{"text": "Fund a general inoculation", "cost": 5,
 			"effects": [
-				{"type": "resource_delta", "resource": "approval", "amount": 3},
 				{"type": "remove_events", "events": ["smallpox_outbreak"]}
 			]},
 		{"text": "Quarantine the poor quarters", "cost": 2,
 			"effects": [
-				{"type": "resource_delta", "resource": "approval", "amount": -4},
-				{"type": "resource_delta", "resource": "migration_appeal", "amount": -1}
+				{"type": "demand_delta", "demand": "provision", "amount": 1}
 			]},
 		{"text": "Trust in providence", "cost": 0,
 			"effects": [
-				{"type": "resource_delta", "resource": "population", "amount": -150},
-				{"type": "resource_delta", "resource": "approval", "amount": -10},
+				{"type": "resource_delta", "resource": "population_count", "amount": -150},
+				{"type": "demand_delta", "demand": "health", "amount": 3},
+				{"type": "demand_delta", "demand": "provision", "amount": 1},
 				{"type": "inject_events", "events": ["smallpox_outbreak"]}
 			]}
 	]

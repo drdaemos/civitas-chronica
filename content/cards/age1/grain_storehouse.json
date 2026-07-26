@@ -4,15 +4,10 @@
 	"category": "development",
 	"cost": 3,
 	"tags": ["infrastructure"],
+	"demands": {"provision": -2},
+	"cancels": ["famine"],
 	"effects": [
-		{"type": "resource_delta", "resource": "approval", "amount": 2},
 		{"type": "pop_growth_mult", "amount": 0.05}
 	],
-	"flavor": "A stone granary against the lean years; a city that can feed itself in winter grows bolder in spring.",
-	"age_variants": {
-		"age2": {
-			"adapted": {"cost": 2, "tags": ["infrastructure"], "effects": [{"type": "income", "amount": 1}, {"type": "pop_growth_mult", "amount": 0.05}]},
-			"demolish_approval": -2
-		}
-	}
+	"flavor": "A stone granary against the lean years; a city that can feed itself in winter grows bolder in spring."
 }

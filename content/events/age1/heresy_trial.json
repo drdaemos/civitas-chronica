@@ -6,13 +6,11 @@
 	"options": [
 		{"text": "Let the trial proceed", "cost": 0,
 			"effects": [
-				{"type": "resource_delta", "resource": "approval", "amount": 2},
-				{"type": "resource_delta", "resource": "migration_appeal", "amount": -2}
+				{"type": "resource_delta", "resource": "population_count", "amount": -60}
 			]},
 		{"text": "Grant clemency", "cost": 0,
 			"effects": [
-				{"type": "resource_delta", "resource": "approval", "amount": -3},
-				{"type": "resource_delta", "resource": "migration_appeal", "amount": 1}
+				{"type": "inject_events", "events": ["wandering_preacher"]}
 			]},
 		{"text": "Refer the matter to the bishop", "cost": 3,
 			"effects": []}

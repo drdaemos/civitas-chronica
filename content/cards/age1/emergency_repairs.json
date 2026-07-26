@@ -4,8 +4,8 @@
 	"category": "action",
 	"cost": 2,
 	"effects": [
-		{"type": "resource_delta", "resource": "approval", "amount": 3},
-		{"type": "resource_delta", "resource": "migration_appeal", "amount": 1}
+		{"type": "demand_delta", "demand": "provision", "amount": -2},
+		{"type": "demand_delta", "demand": "security", "amount": -2}
 	],
 	"flavor": "Carpenters and masons are hired the morning after the damage; nothing steadies a shaken street like scaffolding going up."
 }

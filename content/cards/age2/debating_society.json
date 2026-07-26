@@ -4,10 +4,9 @@
 	"category": "development",
 	"cost": 4,
 	"tags": ["science"],
+	"demands": {"fairness": -2, "security": 1},
 	"prerequisites": ["coffee_house"],
-	"effects": [
-		{"type": "approval_per_turn", "amount": 1}
-	],
+	"effects": [],
 	"inject_events": ["pamphlet_war"],
 	"flavor": "Rules of order, a question posted weekly, and any man with sixpence may speak; the city practices arguments it does not yet know it will need."
 }

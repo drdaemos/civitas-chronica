@@ -6,7 +6,7 @@ buildings. The city's character emerges from the aggregate of your decisions.
 
 Built with Godot 4.7 (typed GDScript).
 
-- [Game design](docs/game-design.md) · [Technical design](docs/technical-design.md) · [Content schema](docs/content-schema.md)
+- [Game design](docs/game-design.md) · [Content authoring](docs/content-authoring.md) · [Technical design](docs/technical-design.md) · [Content schema](docs/content-schema.md)
 - Project rules for contributors and agents: [CLAUDE.md](CLAUDE.md)
 
 ## Running

@@ -4,6 +4,7 @@
 	"category": "development",
 	"cost": 4,
 	"tags": ["cultural"],
+	"demands": {"fairness": -1, "security": 1},
 	"effects": [
 		{"type": "income", "amount": 1}
 	],

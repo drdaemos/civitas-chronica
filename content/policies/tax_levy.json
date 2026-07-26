@@ -1,12 +1,12 @@
 {
 	"id": "tax_levy",
 	"name": "Tax Levy",
-	"description": "A standing levy on households and trades fills the treasury, and empties a little goodwill each year.",
+	"description": "A standing levy on households and trades. +2 budget per turn, and Fairness grows 2 faster — the city notices who pays.",
 	"unlock": {"type": "always"},
 	"swap_cost_budget": 2,
-	"swap_cost_approval": 3,
+	"swap_cost_demands": {"fairness": 3},
 	"effects": [
 		{"type": "income", "amount": 2},
-		{"type": "approval_per_turn", "amount": -1}
+		{"type": "demand_modifier", "demand": "fairness", "amount": 2}
 	]
 }

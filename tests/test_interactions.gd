@@ -16,20 +16,21 @@ func run(t: TestContext) -> void:
 	Fixtures.force_play(engine, "river_docks")
 	t.eq(InteractionEngine.check(state, db).size(), 0, "2 trade developments: no activation")
 	Fixtures.force_play(engine, "harbor_expansion")
-	var approval_before: int = state.approval
+	state.set_demand("supply", 5)
+	var supply_before: int = state.demand_value("supply")
 	var events: Array[Dictionary] = InteractionEngine.check(state, db)
 	var activations: Array[Dictionary] = _of_type(events, "interaction_activated")
 	t.eq(activations.size(), 1, "exactly one activation on the third trade dev")
 	t.eq(activations[0].get("id"), "trade_hub", "activated interaction is trade_hub")
 	t.eq(activations[0].get("first_discovery"), true, "first_discovery on first activation")
 	t.is_true("trade_hub" in state.active_interactions, "trade_hub is active")
-	t.eq(state.approval, approval_before + 5, "trade_hub instant effect applied once")
+	t.eq(state.demand_value("supply"), supply_before - 2, "trade_hub instant effect applied once")
 
 	t.label("no re-activation, instant effects not re-applied")
-	var approval_after: int = state.approval
+	var supply_after: int = state.demand_value("supply")
 	var second: Array[Dictionary] = InteractionEngine.check(state, db)
 	t.eq(_of_type(second, "interaction_activated").size(), 0, "no re-activation while active")
-	t.eq(state.approval, approval_after, "instant effects not re-applied")
+	t.eq(state.demand_value("supply"), supply_after, "instant effects not re-applied")
 	t.eq(state.active_interactions.count("trade_hub"), 1, "trade_hub active exactly once")
 
 	t.label("pipeline counts interaction income afterwards")

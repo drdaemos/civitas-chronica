@@ -4,6 +4,7 @@
 	"category": "development",
 	"cost": 6,
 	"tags": ["trade"],
+	"demands": {"provision": -2, "security": 1},
 	"effects": [
 		{"type": "income", "amount": 2}
 	],

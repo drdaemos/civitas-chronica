@@ -3,20 +3,19 @@
 	"title": "Labor Unrest",
 	"text": "The weavers have formed a combination and posted their price list on the manufactory gates; the masters have posted the constables. Neither list is being read calmly.",
 	"trigger": {"type": "tag_count", "tag": "industrial", "op": ">=", "value": 2},
+	"hazard": "riot",
 	"options": [
 		{"text": "Fix the piece-rates by ordinance", "cost": 4,
 			"effects": [
-				{"type": "resource_delta", "resource": "approval", "amount": 4},
 				{"type": "remove_events", "events": ["labor_unrest"]}
 			]},
 		{"text": "Break the combinations", "cost": 2,
 			"effects": [
-				{"type": "resource_delta", "resource": "approval", "amount": -6},
-				{"type": "resource_delta", "resource": "migration_appeal", "amount": -1}
+				{"type": "demand_delta", "demand": "security", "amount": 2}
 			]},
 		{"text": "Hear the petition and do nothing", "cost": 0,
 			"effects": [
-				{"type": "resource_delta", "resource": "approval", "amount": -4},
+				{"type": "demand_delta", "demand": "security", "amount": 1},
 				{"type": "inject_events", "events": ["labor_unrest"]}
 			]}
 	]

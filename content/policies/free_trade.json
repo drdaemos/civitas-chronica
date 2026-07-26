@@ -1,12 +1,13 @@
 {
 	"id": "free_trade",
 	"name": "Free Trade",
-	"description": "The gates and quays stand open to foreign goods and foreign hands; commerce quickens and the world flows in.",
+	"description": "The quays stand open to foreign goods and foreign hands. +2 budget per turn and Provision grows 1 slower, but the city is easier to walk into: Security grows 1 faster.",
 	"unlock": {"type": "interaction_active", "id": "trade_hub"},
 	"swap_cost_budget": 3,
-	"swap_cost_approval": 5,
+	"swap_cost_demands": {"provision": 3},
 	"effects": [
 		{"type": "income", "amount": 2},
-		{"type": "migration_per_turn", "amount": 1}
+		{"type": "demand_modifier", "demand": "provision", "amount": -1},
+		{"type": "demand_modifier", "demand": "security", "amount": 1}
 	]
 }

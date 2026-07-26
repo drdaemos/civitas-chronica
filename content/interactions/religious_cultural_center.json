@@ -1,13 +1,10 @@
 {
 	"id": "religious_cultural_center",
 	"name": "Religious Cultural Center",
-	"description": "+10 approval at once, and +1 approval per turn while the churches and workshops flourish together.",
-	"threshold": {"type": "all_of", "conditions": [
-		{"type": "tag_count", "tag": "religious", "op": ">=", "value": 2},
-		{"type": "tag_count", "tag": "cultural", "op": ">=", "value": 2}
-	]},
+	"description": "Parish charity and processions hold the city together: Fairness and Provision each grow 1 slower per turn.",
+	"threshold": {"type": "all_of", "conditions": [{"type": "tag_count", "tag": "religious", "op": ">=", "value": 2}, {"type": "tag_count", "tag": "cultural", "op": ">=", "value": 2}]},
 	"effects": [
-		{"type": "resource_delta", "resource": "approval", "amount": 10},
-		{"type": "approval_per_turn", "amount": 1}
+		{"type": "demand_modifier", "demand": "fairness", "amount": -1},
+		{"type": "demand_modifier", "demand": "provision", "amount": -1}
 	]
 }

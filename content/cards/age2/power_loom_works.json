@@ -4,10 +4,10 @@
 	"category": "development",
 	"cost": 8,
 	"tags": ["industrial"],
+	"demands": {"health": 2, "fairness": 2, "security": 1},
 	"prerequisites": ["dye_works"],
 	"effects": [
-		{"type": "income", "amount": 2},
-		{"type": "approval_per_turn", "amount": -1}
+		{"type": "income", "amount": 2}
 	],
 	"flavor": "The frames clatter from lamplight to lamplight without tiring; a child minds four looms, and the hand-weavers stand at the gate, watching."
 }

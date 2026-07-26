@@ -2,20 +2,18 @@
 	"id": "festival_season",
 	"title": "Festival Season",
 	"text": "The feast of the city patron approaches, and the guilds ask what the council intends; the answer will be read as a judgment on the year.",
-	"trigger": {"type": "resource", "resource": "approval", "op": ">=", "value": 55},
+	"trigger": {"type": "demand", "demand": "provision", "op": "<=", "value": 2},
 	"options": [
 		{"text": "Fund a proper feast", "cost": 3,
 			"effects": [
-				{"type": "resource_delta", "resource": "approval", "amount": 6},
-				{"type": "resource_delta", "resource": "migration_appeal", "amount": 1}
+				{"type": "resource_delta", "resource": "population_count", "amount": 60},
+				{"type": "demand_delta", "demand": "provision", "amount": 1}
 			]},
 		{"text": "Keep the observance modest", "cost": 0,
-			"effects": [
-				{"type": "resource_delta", "resource": "approval", "amount": 2}
-			]},
+			"effects": []},
 		{"text": "Cancel the festivities this year", "cost": 0,
 			"effects": [
-				{"type": "resource_delta", "resource": "approval", "amount": -5}
+				{"type": "demand_delta", "demand": "provision", "amount": -1}
 			]}
 	]
 }

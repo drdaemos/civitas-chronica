@@ -1,0 +1,25 @@
+{
+	"id": "night_robberies",
+	"title": "Nothing Safe After Dark",
+	"text": "Three houses on the same street in a fortnight, and a magistrate's clerk robbed at his own door. The constables are elderly, unpaid and easily found in the tavern.",
+	"trigger": {"type": "demand", "demand": "security", "op": ">=", "value": 3},
+	"hazard": "riot",
+	"demand": "security",
+	"severity": "emergency",
+	"options": [
+		{"text": "Hire and pay a proper night patrol", "cost": 3,
+			"effects": [
+				{"type": "demand_delta", "demand": "security", "amount": -2}
+			]},
+		{"text": "Offer rewards for informers", "cost": 1,
+			"effects": [
+				{"type": "demand_delta", "demand": "security", "amount": -1},
+				{"type": "demand_delta", "demand": "fairness", "amount": 1}
+			]},
+		{"text": "Advise the respectable to stay indoors", "cost": 0,
+			"effects": [
+				{"type": "demand_delta", "demand": "security", "amount": 1},
+				{"type": "demand_delta", "demand": "appeal", "amount": 1}
+			]}
+	]
+}

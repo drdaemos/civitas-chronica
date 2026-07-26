@@ -12,11 +12,14 @@ static func new_game(db: ContentDB, age_id: String, seed_value: int = 0) -> Game
 	state.age_id = age.id
 	state.turn_number = 0
 	state.year = age.year_start
-	state.population = age.start_population
-	state.approval = age.start_approval
-	state.migration_appeal = age.start_migration
+	state.population_count = age.start_population_count
 	state.base_budget = age.base_budget
 	state.policy_slots = age.policy_slots
+	state.population_level = PopulationEngine.initial_level(state, db)
+	# A save's first age activates its demand against an empty city, so the
+	# meter starts at 0; later ages count the standing city (GDD 4.0).
+	var activation_events: Array[Dictionary] = []
+	DemandEngine.activate(state, db, age.activates_demand, activation_events)
 	var seen: Dictionary = {}
 	for card_id: String in age.base_deck:
 		if seen.has(card_id):

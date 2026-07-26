@@ -4,13 +4,15 @@ extends SceneTree
 ## bot policies over many seeded runs and prints aggregate statistics.
 ##
 ## Run: godot --headless --path . --script res://tools/simulate.gd -- --runs=50 --bot=random --seed=1000
-## Bots: random   (plays random affordable cards; random event options;
-##                 uniformly random transition choices per development),
-##       greedy   (most expensive card first; option 0; adapts where available),
-##       turtle   (plays nothing; cheapest event options; preserves everything),
-##       reckless (plays like greedy, but always picks the HIGHEST-cost event
-##                 option and demolishes everything at transitions — the
-##                 lose-scenario prober).
+## Bots: random   (plays random affordable cards; random event options),
+##       greedy   (most expensive card first; option 0),
+##       turtle   (plays nothing; cheapest event options),
+##       reckless (plays like greedy, but always picks the HIGHEST-cost
+##                 available event option — the lose-scenario prober).
+##
+## Age transitions take no player input (GDD 4.8), so no bot has a transition
+## policy any more. Every bot discards its cheapest cards when over the hand
+## limit, so overflow can never stall a run.
 
 const MAX_TURNS_SAFETY: int = 500
 
@@ -46,6 +48,9 @@ func _initialize() -> void:
 	var total_population: int = 0
 	var total_turns: int = 0
 	var total_events_seen: int = 0
+	var total_level: int = 0
+	var demand_totals: Dictionary = {}    # demand id -> summed final meter
+	var demand_over_runs: Dictionary = {} # demand id -> runs that ended over threshold
 	var interaction_hits: Dictionary = {}
 
 	for i: int in runs:
@@ -57,6 +62,13 @@ func _initialize() -> void:
 		total_population += int(result["population"])
 		total_turns += int(result["turns"])
 		total_events_seen += int(result["events_seen"])
+		total_level += int(result["level"])
+		var final_demands: Dictionary = result["demands"]
+		for demand_id: String in final_demands:
+			var value: int = int(final_demands[demand_id])
+			demand_totals[demand_id] = int(demand_totals.get(demand_id, 0)) + value
+			if value >= db.rules.threshold_for(demand_id):
+				demand_over_runs[demand_id] = int(demand_over_runs.get(demand_id, 0)) + 1
 		for interaction_id: String in result["interactions"]:
 			interaction_hits[interaction_id] = int(interaction_hits.get(interaction_id, 0)) + 1
 		for reached_id: String in result["ages_reached"]:
@@ -68,6 +80,15 @@ func _initialize() -> void:
 		float(total_score) / runs, float(total_population) / runs,
 		float(total_turns) / runs, float(total_events_seen) / runs,
 	])
+	print("avg population level: %.2f" % (float(total_level) / runs))
+	print("final demand meters (avg | runs ending over threshold):")
+	for demand: DemandDef in db.rules.demands:
+		if not demand_totals.has(demand.id):
+			continue
+		print("  %s: %.1f | %d/%d" % [
+			demand.id, float(demand_totals[demand.id]) / runs,
+			int(demand_over_runs.get(demand.id, 0)), runs,
+		])
 	print("avg turns per outcome:")
 	var outcome_keys: Array = outcomes.keys()
 	outcome_keys.sort()
@@ -103,16 +124,21 @@ func _play_one(db: ContentDB, age_id: String, seed_value: int, bot: String) -> D
 
 	while not state.game_over and safety > 0:
 		safety -= 1
+		# Phases in GDD 3 order: upkeep and the event draw, the player's answer
+		# to whatever it produced, then the play phase and the turn's close.
 		engine.start_turn()
 		if state.game_over:
 			break
 		turns_played += 1
-		_bot_play_phase(engine, state, bot, decision_rng)
-		engine.end_turn()
 		if state.pending_event != "":
 			_bot_resolve_event(engine, state, db, bot, decision_rng)
+			if state.game_over:
+				break
+		_bot_play_phase(engine, state, bot, decision_rng)
+		_bot_discard_to_limit(engine, state, db)
+		engine.end_turn()
 		if state.transition_pending:
-			_bot_transition(state, db, bot, decision_rng)
+			AgeTransition.apply(state, db)
 
 	var reached: Array[String] = state.completed_ages.duplicate()
 	if state.age_id not in reached:
@@ -121,7 +147,9 @@ func _play_one(db: ContentDB, age_id: String, seed_value: int, bot: String) -> D
 	return {
 		"outcome": state.outcome if state.outcome != "" else "timeout",
 		"score": int(score.get("total", 0)),
-		"population": state.population,
+		"population": state.population_count,
+		"level": state.population_level,
+		"demands": state.demands.duplicate(),
 		"turns": turns_played,
 		"events_seen": state.seen_events.size(),
 		"interactions": Array(state.active_interactions),
@@ -160,45 +188,45 @@ func _bot_resolve_event(engine: TurnEngine, state: GameState, db: ContentDB, bot
 	var event: EventDef = db.get_event(state.pending_event)
 	if event == null or event.options.is_empty():
 		return
-	var choice: int = 0
+	# Conditional options (GDD 4.4) only exist for cities that built the card.
+	var available: Array[int] = []
+	for i: int in event.options.size():
+		if event.options[i].is_available(state):
+			available.append(i)
+	if available.is_empty():
+		return
+	var choice: int = available[0]
 	match bot:
 		"turtle":
-			var cheapest: int = 0
-			for i: int in event.options.size():
-				if event.options[i].cost < event.options[cheapest].cost:
-					cheapest = i
-			choice = cheapest
+			for i: int in available:
+				if event.options[i].cost < event.options[choice].cost:
+					choice = i
 		"reckless":
 			# Highest-cost option, first on ties: the lose-scenario prober.
-			var priciest: int = 0
-			for i: int in event.options.size():
-				if event.options[i].cost > event.options[priciest].cost:
-					priciest = i
-			choice = priciest
+			for i: int in available:
+				if event.options[i].cost > event.options[choice].cost:
+					choice = i
 		"greedy":
-			choice = 0
+			pass  # first available option
 		_:
-			choice = rng.randi_range(0, event.options.size() - 1)
+			choice = available[rng.randi_range(0, available.size() - 1)]
 	engine.resolve_event(choice)
 
 
-## Builds transition choices from AgeTransition.decisions() and applies them.
-func _bot_transition(state: GameState, db: ContentDB, bot: String, rng: RandomNumberGenerator) -> void:
-	var decision_list: Array[Dictionary] = AgeTransition.decisions(state, db)
-	var choices: Dictionary = {}
-	for entry: Dictionary in decision_list:
-		var card_id: String = String(entry.get("card_id", ""))
-		var can_adapt: bool = entry.get("adapt") != null
-		match bot:
-			"turtle":
-				choices[card_id] = "preserve"
-			"greedy":
-				choices[card_id] = "adapt" if can_adapt else "preserve"
-			"reckless":
-				choices[card_id] = "demolish"
-			_:
-				var options: Array[String] = ["preserve", "demolish"]
-				if can_adapt:
-					options.append("adapt")
-				choices[card_id] = options[rng.randi_range(0, options.size() - 1)]
-	AgeTransition.apply(state, db, choices)
+## Discards the cheapest cards when over the hand limit (GDD 4.1). A cheap
+## uniform policy across all bots: hand management is not what these bots are
+## meant to differentiate, but the turn cannot end without it.
+func _bot_discard_to_limit(engine: TurnEngine, state: GameState, db: ContentDB) -> void:
+	var overflow: int = DeckManager.hand_overflow(state, db)
+	if overflow <= 0:
+		return
+	var candidates: Array[String] = state.hand.duplicate()
+	candidates.sort_custom(func(a: String, b: String) -> bool:
+		var card_a: CardDef = db.get_card(a)
+		var card_b: CardDef = db.get_card(b)
+		var cost_a: int = card_a.cost if card_a != null else 0
+		var cost_b: int = card_b.cost if card_b != null else 0
+		if cost_a == cost_b:
+			return a < b  # stable, id-ordered tie-break
+		return cost_a < cost_b)
+	engine.discard_cards(candidates.slice(0, overflow))

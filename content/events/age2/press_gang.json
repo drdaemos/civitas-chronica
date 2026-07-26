@@ -5,19 +5,13 @@
 	"trigger": {"type": "has_development", "id": "naval_dockyard"},
 	"options": [
 		{"text": "Contest the writ before the magistrates", "cost": 4,
-			"effects": [
-				{"type": "resource_delta", "resource": "approval", "amount": 5},
-				{"type": "resource_delta", "resource": "migration_appeal", "amount": 1}
-			]},
+			"effects": []},
 		{"text": "Pay the crimps to look elsewhere", "cost": 2,
-			"effects": [
-				{"type": "resource_delta", "resource": "approval", "amount": -1},
-				{"type": "resource_delta", "resource": "migration_appeal", "amount": -1}
-			]},
+			"effects": []},
 		{"text": "Let the press take its quota", "cost": 0,
 			"effects": [
-				{"type": "resource_delta", "resource": "approval", "amount": -6},
-				{"type": "resource_delta", "resource": "population", "amount": -60}
+				{"type": "resource_delta", "resource": "population_count", "amount": -60},
+				{"type": "demand_delta", "demand": "security", "amount": -1}
 			]}
 	]
 }

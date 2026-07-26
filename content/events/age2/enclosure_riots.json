@@ -2,21 +2,21 @@
 	"id": "enclosure_riots",
 	"title": "Enclosure Riots",
 	"text": "The commons of three villages are fenced by act and survey; the dispossessed arrive at the gates with handcarts, and the fences arrive shortly after, as firewood.",
-	"trigger": {"type": "resource", "resource": "population", "op": ">=", "value": 1500},
+	"trigger": {"type": "resource", "resource": "population_count", "op": ">=", "value": 9000},
+	"hazard": "riot",
 	"options": [
 		{"text": "Open the poor relief rolls", "cost": 5,
 			"effects": [
-				{"type": "resource_delta", "resource": "approval", "amount": 4}
+				{"type": "demand_delta", "demand": "provision", "amount": -2}
 			]},
 		{"text": "Set them to work on the roads", "cost": 3,
 			"effects": [
-				{"type": "resource_delta", "resource": "approval", "amount": 1},
-				{"type": "resource_delta", "resource": "migration_appeal", "amount": 1}
+				{"type": "demand_delta", "demand": "security", "amount": -1}
 			]},
 		{"text": "Drive them from the parish bounds", "cost": 0,
 			"effects": [
-				{"type": "resource_delta", "resource": "approval", "amount": -8},
-				{"type": "resource_delta", "resource": "migration_appeal", "amount": -2}
+				{"type": "demand_delta", "demand": "security", "amount": 2},
+				{"type": "resource_delta", "resource": "population_count", "amount": -150}
 			]}
 	]
 }

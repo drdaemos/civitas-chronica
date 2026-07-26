@@ -4,14 +4,7 @@
 	"category": "development",
 	"cost": 3,
 	"tags": ["religious", "cultural"],
-	"effects": [
-		{"type": "approval_per_turn", "amount": 1}
-	],
-	"flavor": "Twelve beds, a warm hearth, and bread on feast days, endowed by a wool merchant for the good of his soul and the city.",
-	"age_variants": {
-		"age2": {
-			"adapted": {"cost": 3, "tags": ["religious"], "effects": [{"type": "approval_per_turn", "amount": 1}, {"type": "pop_growth_mult", "amount": 0.05}]},
-			"demolish_approval": -7
-		}
-	}
+	"demands": {"provision": -1, "fairness": -1},
+	"effects": [],
+	"flavor": "Twelve beds, a warm hearth, and bread on feast days, endowed by a wool merchant for the good of his soul and the city."
 }

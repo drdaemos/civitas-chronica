@@ -4,15 +4,9 @@
 	"category": "development",
 	"cost": 5,
 	"tags": ["science", "cultural"],
+	"demands": {"fairness": -1},
 	"prerequisites": ["parish_school"],
-	"effects": [
-		{"type": "draw_bonus", "amount": 1}
-	],
-	"flavor": "A printer sets up shop with a secondhand press; ideas now arrive in the city faster than travelers do.",
-	"age_variants": {
-		"age2": {
-			"adapted": {"cost": 3, "tags": ["science", "cultural"], "effects": [{"type": "draw_bonus", "amount": 1}, {"type": "income", "amount": 1}]},
-			"demolish_approval": -5
-		}
-	}
+	"hand_limit_bonus": 1,
+	"effects": [],
+	"flavor": "A printer sets up shop with a secondhand press; ideas now arrive in the city faster than travelers do."
 }

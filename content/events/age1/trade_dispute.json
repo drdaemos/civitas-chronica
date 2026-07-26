@@ -6,17 +6,20 @@
 	"options": [
 		{"text": "Side with the local traders", "cost": 0,
 			"effects": [
-				{"type": "resource_delta", "resource": "approval", "amount": 4},
-				{"type": "resource_delta", "resource": "migration_appeal", "amount": -2}
+				{"type": "demand_delta", "demand": "provision", "amount": 1}
 			]},
 		{"text": "Open the markets to the foreigners", "cost": 0,
 			"effects": [
-				{"type": "resource_delta", "resource": "approval", "amount": -5},
-				{"type": "resource_delta", "resource": "migration_appeal", "amount": 2}
+				{"type": "demand_delta", "demand": "provision", "amount": -1}
 			]},
 		{"text": "Mediate a settlement", "cost": 3,
 			"effects": [
 				{"type": "unlock_policy", "id": "trade_council"}
+			]},
+		{"text": "Let the guild arbitrate it under its own charter", "cost": 0, "requires_development": "merchant_guild",
+			"effects": [
+				{"type": "unlock_policy", "id": "trade_council"},
+				{"type": "demand_delta", "demand": "provision", "amount": -1}
 			]}
 	]
 }

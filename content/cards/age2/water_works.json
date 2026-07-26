@@ -4,8 +4,8 @@
 	"category": "development",
 	"cost": 6,
 	"tags": ["infrastructure"],
+	"demands": {"health": -3, "provision": -1},
 	"effects": [
-		{"type": "resource_delta", "resource": "approval", "amount": 3},
 		{"type": "pop_growth_mult", "amount": 0.05}
 	],
 	"flavor": "Elm pipes under the streets and a wheel that lifts the river to a cistern; water arrives at the better houses without a bucket."

@@ -6,15 +6,13 @@
 	"options": [
 		{"text": "Invest the city funds in every scheme", "cost": 6,
 			"effects": [
-				{"type": "resource_delta", "resource": "approval", "amount": -4}
+				{"type": "demand_delta", "demand": "provision", "amount": -2}
 			]},
 		{"text": "Charter only the sound companies", "cost": 3,
 			"effects": [
-				{"type": "resource_delta", "resource": "approval", "amount": 2}
+				{"type": "demand_delta", "demand": "provision", "amount": -1}
 			]},
 		{"text": "Stand aside from the speculation", "cost": 0,
-			"effects": [
-				{"type": "resource_delta", "resource": "migration_appeal", "amount": -1}
-			]}
+			"effects": []}
 	]
 }

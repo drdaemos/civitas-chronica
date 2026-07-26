@@ -1,0 +1,10 @@
+{
+	"id": "wall_ruins",
+	"name": "Wall Ruins",
+	"category": "development",
+	"cost": 0,
+	"tags": ["cultural"],
+	"demands": {"appeal": -1},
+	"effects": [],
+	"flavor": "Artillery made the ramparts pointless a generation ago. Children play on the breach, carters take stone from it, and the council argues about the cost of pulling the rest down."
+}

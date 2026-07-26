@@ -4,6 +4,7 @@
 	"category": "development",
 	"cost": 8,
 	"tags": ["trade"],
+	"demands": {"fairness": 2},
 	"prerequisites": ["merchants_exchange"],
 	"effects": [
 		{"type": "income", "amount": 2}

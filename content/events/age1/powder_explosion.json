@@ -3,19 +3,17 @@
 	"title": "Powder Explosion",
 	"text": "A spark in the drying house; the mill is gone, three cottages with it, and the blast cracked windows a mile off. The city asks who allowed the works so near.",
 	"trigger": {"type": "has_development", "id": "gunpowder_mill"},
+	"hazard": "fire",
 	"options": [
 		{"text": "Rebuild the quarter in brick", "cost": 6,
-			"effects": [
-				{"type": "resource_delta", "resource": "approval", "amount": 4}
-			]},
+			"effects": []},
 		{"text": "Compensate the families", "cost": 3,
-			"effects": [
-				{"type": "resource_delta", "resource": "approval", "amount": 1}
-			]},
+			"effects": []},
 		{"text": "Call it an act of God", "cost": 0,
 			"effects": [
-				{"type": "resource_delta", "resource": "approval", "amount": -10},
-				{"type": "resource_delta", "resource": "migration_appeal", "amount": -1}
+				{"type": "resource_delta", "resource": "population_count", "amount": -60},
+				{"type": "demand_delta", "demand": "provision", "amount": 1},
+				{"type": "demand_delta", "demand": "security", "amount": 2}
 			]}
 	]
 }

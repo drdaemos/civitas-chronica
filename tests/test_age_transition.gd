@@ -1,9 +1,9 @@
 extends RefCounted
 
-## Age transitions (GDD 4.8): boundary suspension, decisions() shape,
-## preserve/adapt/demolish semantics, interaction recalc + instant-effect
-## gating, deck rebuild under uniqueness, win only at the final age,
-## heritage scoring, and a mid-transition save roundtrip.
+## Age transitions (GDD 4.8): boundary suspension, automatic supersession with
+## no player input, the transition report, interaction recalc + instant-effect
+## gating, deck rebuild under uniqueness (including successor injections), win
+## only at the final age, heritage scoring, and a mid-transition save roundtrip.
 
 
 func run(t: TestContext) -> void:
@@ -33,86 +33,53 @@ func run(t: TestContext) -> void:
 	t.eq(refused.get("ok"), false, "play_card refused")
 	t.is_true(String(refused.get("reason", "")).contains("transition"),
 		"refusal names the transition")
+	t.eq(engine.discard_cards(["cobblestone_roads"]).get("ok"), false, "discard_cards refused")
 	t.eq(engine.adopt_policy("civic_charter").get("ok"), false, "adopt_policy refused")
 
-	t.label("decisions() shape per development")
-	var decision_list: Array[Dictionary] = AgeTransition.decisions(state, db)
-	t.eq(decision_list.size(), 5, "one entry per development, in play order")
-	t.eq(decision_list[0].get("card_id"), "town_market", "play order preserved")
-	var market: Dictionary = _entry(decision_list, "town_market")
-	t.eq(market.get("name"), "Town Market", "display name carried")
-	t.eq(market.get("current_tags"), ["trade"], "current tags reported")
-	t.eq((market.get("preserve") as Dictionary).get("tags"), ["trade"],
-		"no preserved variant: preserve keeps current tags")
-	var market_adapt: Dictionary = market.get("adapt")
-	t.eq(market_adapt.get("cost"), 3, "adapt cost from the variant")
-	t.eq(market_adapt.get("tags"), ["trade", "cultural"], "adapt tags from the variant")
-	t.eq((market.get("demolish") as Dictionary).get("approval"), -3, "default demolish approval")
-	var harbor: Dictionary = _entry(decision_list, "harbor_expansion")
-	t.eq((harbor.get("preserve") as Dictionary).get("tags"), ["cultural"],
-		"preserved variant replaces tags")
-	t.eq(harbor.get("adapt"), null, "adapt is null when the variant defines none")
-	t.eq((harbor.get("demolish") as Dictionary).get("approval"), -5,
-		"variant demolish_approval used")
-	var foundry: Dictionary = _entry(decision_list, "iron_foundry")
-	t.eq((foundry.get("preserve") as Dictionary).get("tags"), ["industrial"],
-		"no variants at all: preserve keeps current tags")
-	t.eq(foundry.get("adapt"), null, "no variants at all: adapt null")
-	var church: Dictionary = _entry(decision_list, "stone_church")
-	t.eq((church.get("preserve") as Dictionary).get("tags"), ["religious", "cultural"],
-		"defaults-only variant: preserve keeps current tags")
-	t.eq(church.get("adapt"), null, "defaults-only variant: adapt null")
-	t.eq((church.get("demolish") as Dictionary).get("approval"), -3,
-		"defaults-only variant: default demolish approval")
-
-	t.label("apply(): preserve / adapt / demolish semantics")
+	t.label("apply(): supersession replaces developments in place")
 	state.hand.append("festival_of_saints")  # discarded to consumed with the hand
-	var approval_before: int = state.approval
-	var choices: Dictionary = {
-		"town_market": "adapt",
-		"harbor_expansion": "preserve",
-		"stone_church": "demolish",
-		"iron_foundry": "adapt",  # invalid (no variant) -> treated as preserve
-		# river_docks omitted -> preserve
-	}
-	var apply_events: Array[Dictionary] = AgeTransition.apply(state, db, choices)
+	var report: TransitionReport = AgeTransition.apply(state, db)
 	t.eq(state.hand.size(), 0, "hand discarded")
+	t.eq(report.hand_discarded, 2, "report counts the discarded hand")
 	t.is_true("cobblestone_roads" in state.consumed_cards, "hand card consumed")
 	t.is_true("festival_of_saints" in state.consumed_cards, "hand action consumed")
-	t.eq(state.developments.size(), 4, "demolished development removed")
-	t.is_true(not state.has_development("stone_church"), "stone_church gone")
-	t.is_true("stone_church" in state.consumed_cards, "demolished card consumed")
-	t.eq(state.approval, approval_before - 3, "demolish_approval applied")
-	var market_dev: DevelopmentState = _dev(state, "town_market")
-	t.eq(market_dev.tags, ["trade", "cultural"], "adapt swaps tags")
-	t.eq(market_dev.effects.size(), 1, "adapt swaps effects")
-	t.eq(market_dev.effects[0].type, "income", "adapted effect type")
-	t.eq(market_dev.effects[0].amount_int(), 2, "adapted effect amount")
-	t.eq(market_dev.adapted, true, "adapt marks the development")
-	t.eq(state.pending_bill, 3, "adapt cost billed to the new age's first turn")
-	var harbor_dev: DevelopmentState = _dev(state, "harbor_expansion")
-	t.eq(harbor_dev.tags, ["cultural"], "preserved variant swaps tags")
-	t.eq(harbor_dev.effects.size(), 1, "preserved variant swaps effects")
-	t.eq(harbor_dev.effects[0].type, "approval_per_turn", "preserved effect type")
-	t.eq(harbor_dev.adapted, false, "preserve does not mark adapted")
-	var docks_dev: DevelopmentState = _dev(state, "river_docks")
-	t.eq(docks_dev.tags, ["trade"], "no variant: preserve keeps tags")
-	t.eq(docks_dev.effects[0].type, "income", "no variant: preserve keeps effects")
-	var foundry_dev: DevelopmentState = _dev(state, "iron_foundry")
-	t.eq(foundry_dev.adapted, false, "invalid adapt fell back to preserve")
-	t.eq(foundry_dev.tags, ["industrial"], "invalid adapt kept tags")
+	t.eq(state.developments.size(), 5, "no development leaves the city")
+	t.is_true(not state.has_development("town_market"), "the old market is gone")
+	var market: DevelopmentState = _dev(state, "covered_market")
+	t.is_true(market != null, "the successor stands in its place")
+	t.eq(market.tags, ["trade"], "successor tags applied")
+	t.eq(market.effects.size(), 1, "successor effects applied")
+	t.eq(market.effects[0].amount_int(), 2, "successor income replaces the predecessor's")
+	t.eq(market.superseded_count, 1, "supersession counted")
+	t.eq(market.turn_played, 1, "the structure keeps the turn it was first built")
+	t.is_true("town_market" in state.consumed_cards, "the predecessor joins the ledger")
+	var promenade: DevelopmentState = _dev(state, "harbor_promenade")
+	t.is_true(promenade != null, "harbor superseded too")
+	t.eq(promenade.tags, ["cultural"], "harbor lost its trade tag")
+	var docks: DevelopmentState = _dev(state, "river_docks")
+	t.eq(docks.superseded_count, 0, "a card with no successor is untouched")
+	t.eq(docks.tags, ["trade"], "untouched tags")
 	for dev: DevelopmentState in state.developments:
 		t.eq(dev.ages_survived, 1, "%s survived one age" % dev.card_id)
-	t.eq(_of_type(apply_events, "development_preserved").size(), 3, "3 preserved events")
-	t.eq(_of_type(apply_events, "development_adapted").size(), 1, "1 adapted event")
-	t.eq(_of_type(apply_events, "development_demolished").size(), 1, "1 demolished event")
+	t.eq(state.pending_bill, 0, "supersession bills nothing")
+	t.eq(_of_type(report.events, "development_superseded").size(), 2, "2 supersession events")
+
+	t.label("the report is the whole player-facing output")
+	t.eq(report.from_age, "test_age_chained", "report names the old age")
+	t.eq(report.to_age, "test_age2", "report names the new age")
+	t.eq(report.supersessions.size(), 2, "both supersessions listed")
+	t.eq(report.supersessions[0].get("from"), "town_market", "listed in city play order")
+	t.eq(report.supersessions[0].get("to"), "covered_market", "successor recorded")
+	t.eq(report.interactions_lost, ["trade_hub"], "lost interaction reported")
+	t.eq(report.interactions_gained, [], "nothing gained here")
+	t.eq(report.base_budget, 14, "report carries the new capacity")
+	t.eq(report.hand_limit, DeckManager.BASE_HAND_LIMIT, "report carries the hand limit")
+	t.is_true(report.has_changes(), "the report has something to show")
 
 	t.label("interaction recalc: tag loss deactivates trade_hub")
-	var deactivated: Array[Dictionary] = _of_type(apply_events, "interaction_deactivated")
-	t.eq(deactivated.size(), 1, "one deactivation")
-	t.eq(deactivated[0].get("id"), "trade_hub", "trade_hub deactivated (2 trade tags left)")
 	t.is_true("trade_hub" not in state.active_interactions, "trade_hub no longer active")
 	t.is_true("trade_hub" in state.interactions_fired, "fired ledger survives deactivation")
+	t.eq(_of_type(report.events, "interaction_deactivated").size(), 1, "one deactivation event")
 
 	t.label("age switch state")
 	t.eq(state.age_id, "test_age2", "age id switched")
@@ -123,40 +90,43 @@ func run(t: TestContext) -> void:
 	t.eq(state.completed_ages, ["test_age_chained"], "old age recorded as completed")
 	t.eq(state.transition_pending, false, "pending flag cleared")
 	t.eq(state.pending_transition_to, "", "pending target cleared")
-	var last: Dictionary = apply_events[apply_events.size() - 1]
+	var last: Dictionary = report.events[report.events.size() - 1]
 	t.eq(last.get("type"), "age_transitioned", "age_transitioned emitted last")
 	t.eq(last.get("from"), "test_age_chained", "age_transitioned from")
 	t.eq(last.get("to"), "test_age2", "age_transitioned to")
 
-	t.label("new decks from age2 pools with the uniqueness filter")
+	t.label("new decks from age2 pools, plus successor injections")
 	var sorted_deck: Array[String] = state.main_deck.duplicate()
 	sorted_deck.sort()
-	t.eq(sorted_deck, ["printing_press", "steam_mill", "trade_exchange"],
-		"built town_market and consumed festival_of_saints filtered out")
-	t.eq(state.event_deck, ["never_event_b"], "event deck rebuilt from age2 pool")
+	t.eq(sorted_deck, ["market_hall", "printing_press", "steam_mill", "trade_exchange"],
+		"town_market and festival_of_saints filtered out; market_hall injected by the successor")
+	t.eq(state.event_deck.count("never_event_b"), 2,
+		"event deck rebuilt from the age2 pool plus the successor's injection")
 
-	t.label("adapt cost billed on the new age's first turn")
+	t.label("first turn of the new age")
 	var start_events: Array[Dictionary] = engine.start_turn()
 	t.eq(state.turn_number, 1, "new age turn 1")
-	# capacity 14 + income (market 2 + docks 1 + foundry 1) = 18, minus bill 3
-	t.eq(state.current_budget, 15, "capacity + income - adapt bill")
-	t.eq(state.pending_bill, 0, "bill cleared after charging")
+	# capacity 14 + income (covered_market 2, docks 1, foundry 1, promenade 1)
+	t.eq(state.current_budget, 19, "capacity + income, nothing billed")
 	t.eq((_first_of(start_events, "cards_drawn").get("cards") as Array).size(), 3,
-		"drew the whole 3-card age2 deck")
+		"drew the age's fixed 3 cards")
 
 	t.label("re-activation after transition does not re-fire instant effects")
 	t.eq(Fixtures.force_play(engine, "trade_exchange").get("ok"), true, "trade_exchange built")
-	var approval_pre_check: int = state.approval
+	var supply_pre_check: int = state.demand_value("supply")
 	var re_events: Array[Dictionary] = InteractionEngine.check(state, db)
 	var re_acts: Array[Dictionary] = _of_type(re_events, "interaction_activated")
 	t.eq(re_acts.size(), 1, "trade_hub re-activates at 3 trade tags")
 	t.eq(re_acts[0].get("id"), "trade_hub", "re-activated interaction is trade_hub")
 	t.eq(re_acts[0].get("first_discovery"), false, "not a first discovery")
-	t.eq(state.approval, approval_pre_check, "instant approval bonus NOT re-applied")
+	t.eq(state.demand_value("supply"), supply_pre_check, "instant demand relief NOT re-applied")
 
 	t.label("win fires only at the end of the FINAL age")
 	var safety: int = 30
 	while not state.game_over and safety > 0:
+		# Demands are held at 0 by fiat: this suite is about the transition, and
+		# an unanswered demand would end the save before the age does.
+		Fixtures.quiet_demands(state)
 		Fixtures.scripted_turn(engine)
 		safety -= 1
 	t.is_true(state.game_over, "final age eventually ends")
@@ -164,9 +134,16 @@ func run(t: TestContext) -> void:
 	t.eq(state.transition_pending, false, "no further transition pending")
 	t.eq(state.completed_ages, ["test_age_chained"], "only the first age in completed_ages")
 
-	t.label("heritage scoring counts survivors and adapted developments")
+	t.label("heritage scoring counts survivors and supersessions")
+	var expected_survived: int = 0
+	var expected_superseded: int = 0
+	for dev: DevelopmentState in state.developments:
+		expected_survived += dev.ages_survived
+		expected_superseded += dev.superseded_count
+	t.eq(expected_superseded, 2, "both supersessions still standing at the end")
 	var score: Dictionary = Scoring.score(state, db)
-	t.eq(score.get("heritage"), 5 * 4 + 10 * 1, "4 survivors, 1 adapted")
+	t.eq(score.get("heritage"), 5 * expected_survived + 10 * expected_superseded,
+		"5 per age survived + 10 per supersession")
 	t.eq(score.get("total"),
 		int(score.get("population")) + int(score.get("specialization")) + int(score.get("heritage")),
 		"total sums the three axes")
@@ -174,6 +151,7 @@ func run(t: TestContext) -> void:
 	t.label("save roundtrip mid-transition preserves behavior")
 	var state_a: GameState = _city_at_boundary(db, 77)
 	var engine_a := TurnEngine.new(db, state_a)
+	Fixtures.quiet_demands(state_a)
 	engine_a.end_turn()
 	t.eq(state_a.transition_pending, true, "transition pending before snapshot")
 	var snapshot: String = JSON.stringify(state_a.to_dict())
@@ -181,16 +159,21 @@ func run(t: TestContext) -> void:
 	t.is_true(parsed is Dictionary, "snapshot parses back")
 	var state_b: GameState = GameState.from_dict(parsed)
 	t.eq(JSON.stringify(state_b.to_dict()), snapshot, "mid-transition state re-serializes identically")
-	var same_choices: Dictionary = {"harbor_expansion": "demolish", "town_market": "adapt"}
-	AgeTransition.apply(state_a, db, same_choices)
-	AgeTransition.apply(state_b, db, same_choices)
+	AgeTransition.apply(state_a, db)
+	AgeTransition.apply(state_b, db)
 	t.eq(JSON.stringify(state_b.to_dict()), JSON.stringify(state_a.to_dict()),
-		"identical choices produce identical post-transition states")
+		"the transition is deterministic on both copies")
 	var engine_b := TurnEngine.new(db, state_b)
 	Fixtures.scripted_turn(engine_a)
 	Fixtures.scripted_turn(engine_b)
 	t.eq(JSON.stringify(state_b.to_dict()), JSON.stringify(state_a.to_dict()),
 		"both copies keep playing identically after the transition")
+
+	t.label("apply() on a state with no transition pending does nothing")
+	var idle: GameState = GameSetup.new_game(db, "test_age", 5)
+	var idle_report: TransitionReport = AgeTransition.apply(idle, db)
+	t.eq(idle_report.from_age, "", "empty report")
+	t.eq(idle_report.events.size(), 0, "no events emitted")
 
 
 # --- helpers -----------------------------------------------------------------
@@ -211,7 +194,8 @@ func _city_at_boundary(db: ContentDB, seed_value: int) -> GameState:
 	Fixtures.force_play(engine, "iron_foundry")
 	InteractionEngine.check(state, db)  # activates trade_hub
 	state.event_deck.clear()
-	state.year = 1692  # +8 on end_turn -> 1700 == year_end
+	state.year = 1700  # upkeep already carried the clock to year_end
+	state.hand.clear()  # the boundary hand is set up by each test
 	return state
 
 
@@ -228,13 +212,6 @@ func _of_type(events: Array[Dictionary], type_name: String) -> Array[Dictionary]
 		if String(event.get("type", "")) == type_name:
 			result.append(event)
 	return result
-
-
-func _entry(decision_list: Array[Dictionary], card_id: String) -> Dictionary:
-	for entry: Dictionary in decision_list:
-		if String(entry.get("card_id", "")) == card_id:
-			return entry
-	return {}
 
 
 func _dev(state: GameState, card_id: String) -> DevelopmentState:

@@ -4,8 +4,7 @@
 	"category": "action",
 	"cost": 3,
 	"effects": [
-		{"type": "resource_delta", "resource": "approval", "amount": 2},
-		{"type": "remove_events", "events": ["smallpox_outbreak"]}
+		{"type": "demand_delta", "demand": "health", "amount": -3}
 	],
 	"flavor": "Physicians go parish by parish with lancets and ledgers; the practice is foreign, the arithmetic is not, and the sextons notice the difference."
 }

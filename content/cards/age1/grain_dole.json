@@ -4,7 +4,7 @@
 	"category": "action",
 	"cost": 2,
 	"effects": [
-		{"type": "resource_delta", "resource": "approval", "amount": 4}
+		{"type": "demand_delta", "demand": "provision", "amount": -3}
 	],
 	"flavor": "Bread at the council expense for the poorest households; a full stomach forgives a great deal."
 }

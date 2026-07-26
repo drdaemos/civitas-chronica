@@ -1,73 +1,127 @@
 extends RefCounted
 
-## Approval lose condition grace period, recovery, and the design-pillar
-## property that no single turn from a healthy state can lose the game.
+## Lose conditions (GDD 3): the debt spiral's grace period, the catastrophe
+## card, and the design-pillar property that nothing kills the city suddenly —
+## every path to loss telegraphs and leaves turns to react.
 
 
 func run(t: TestContext) -> void:
 	var db: ContentDB = Fixtures.build_db()
 
-	t.label("low approval loses only after 3 consecutive turns")
+	t.label("debt loses only after 3 consecutive turns in the red")
 	var state: GameState = GameSetup.new_game(db, "test_age", 3)
 	var engine := TurnEngine.new(db, state)
-	state.approval = 10
+	state.pending_bill = 100
 	_run_turn(engine)
-	t.eq(state.low_approval_turns, 1, "one low turn counted")
-	t.is_true(not state.game_over, "one low-approval turn does not lose")
+	t.eq(state.debt_turns, 1, "one turn in the red")
+	t.is_true(not state.game_over, "one turn in the red does not lose")
+	state.pending_bill = 100
 	_run_turn(engine)
-	t.eq(state.low_approval_turns, 2, "two low turns counted")
-	t.is_true(not state.game_over, "two low-approval turns do not lose")
+	t.eq(state.debt_turns, 2, "two turns in the red")
+	t.is_true(not state.game_over, "two turns in the red do not lose")
+	state.pending_bill = 100
 	_run_turn(engine)
-	t.is_true(state.game_over, "three consecutive low-approval turns lose")
-	t.eq(state.outcome, GameState.OUTCOME_LOST_APPROVAL, "outcome is lost_approval")
+	t.is_true(state.game_over, "three consecutive turns in the red lose")
+	t.eq(state.outcome, GameState.OUTCOME_LOST_DEBT, "outcome is lost_debt")
 
-	t.label("recovery resets the approval counter")
+	t.label("a solvent turn resets the debt counter")
 	var state2: GameState = GameSetup.new_game(db, "test_age", 3)
 	var engine2 := TurnEngine.new(db, state2)
-	state2.approval = 10
+	state2.pending_bill = 100
 	_run_turn(engine2)
-	t.eq(state2.low_approval_turns, 1, "counter at 1")
-	state2.approval = 50
+	t.eq(state2.debt_turns, 1, "counter at 1")
 	_run_turn(engine2)
-	t.eq(state2.low_approval_turns, 0, "healthy turn resets the counter")
-	state2.approval = 10
+	t.eq(state2.debt_turns, 0, "solvent turn resets the counter")
+	state2.pending_bill = 100
 	_run_turn(engine2)
-	_run_turn(engine2)
-	t.eq(state2.low_approval_turns, 2, "counter rebuilt from zero")
-	t.is_true(not state2.game_over, "still alive after reset + 2 low turns")
+	t.eq(state2.debt_turns, 1, "counter rebuilt from zero")
+	t.is_true(not state2.game_over, "still alive")
 
-	t.label("healthy state cannot lose in one turn: approval shock")
+	t.label("a demand past catastrophe does not itself lose the game")
 	var state3: GameState = GameSetup.new_game(db, "test_age", 3)
 	var engine3 := TurnEngine.new(db, state3)
-	state3.approval = 20  # healthy floor
 	engine3.start_turn()
-	state3.hand.append("unpopular_decree")
-	var played: Dictionary = engine3.play_card("unpopular_decree")
-	t.eq(played.get("ok"), true, "decree playable at cost 0")
-	t.eq(state3.approval, 0, "approval floored at 0")
+	state3.hand.clear()
+	Fixtures.force_play(engine3, "unpopular_decree")  # supply +12
+	t.is_true(state3.demand_value("supply") >= 12, "the meter is far past tolerance")
+	t.is_true(not state3.game_over, "the demand system never kills directly")
 	engine3.end_turn()
-	t.is_true(not state3.game_over, "a single catastrophic turn never loses from healthy")
-	t.eq(state3.low_approval_turns, 1, "grace counter started instead")
+	t.is_true(not state3.game_over, "and the turn still ends normally")
 
-	t.label("healthy state cannot lose in one turn: combined debt + event shock")
-	var state4: GameState = GameSetup.new_game(db, "test_age", 3)
+	t.label("pressure cards accumulate while a demand stays in the red")
+	var before: int = state3.event_deck.size()
+	engine3.start_turn()
+	t.is_true(state3.event_deck.size() > before or state3.pending_event != "",
+		"upkeep shuffled emergency and catastrophe cards in")
+	var pressure: int = 0
+	for event_id: String in state3.event_deck:
+		if (db.get_event(event_id) as EventDef).severity != "":
+			pressure += 1
+	if state3.pending_event != "":
+		pressure += 1
+	t.is_true(pressure >= 2, "both severities entered the deck (found %d)" % pressure)
+
+	t.label("the catastrophe card is what ends the save, and only while in the red")
+	var state4: GameState = _city_with_doomed_supply(db, 5)
 	var engine4 := TurnEngine.new(db, state4)
-	state4.approval = 20
-	state4.pending_bill = 100
-	state4.event_deck.assign(["catastrophe"])
-	engine4.start_turn()
-	t.eq(state4.debt_turns, 1, "debt counter at 1, not game over")
-	t.is_true(not state4.game_over, "oversized bill alone does not lose")
-	engine4.end_turn()
-	t.eq(state4.pending_event, "catastrophe", "catastrophe fires")
-	engine4.resolve_event(0)  # -100 approval, cost 100
-	t.is_true(not state4.game_over, "worst-case single turn still does not lose")
-	t.eq(state4.low_approval_turns, 1, "approval grace counter at 1")
-	t.eq(state4.pending_bill, 100, "next turn's bill recorded")
+	# Option 0 pays the meter down but the card has already been drawn.
+	var events: Array[Dictionary] = engine4.resolve_event(0)
+	t.is_true(state4.game_over, "resolving a catastrophe for a doomed demand loses")
+	t.eq(state4.outcome, GameState.OUTCOME_LOST_CATASTROPHE, "outcome is lost_catastrophe")
+	t.is_true(not _first_of(events, "catastrophe_struck").is_empty(), "catastrophe_struck emitted")
+	var over: Dictionary = _first_of(events, "game_over")
+	t.eq(over.get("outcome"), GameState.OUTCOME_LOST_CATASTROPHE, "game_over carries the outcome")
+
+	t.label("pulling the meter back down before the card surfaces removes the danger")
+	var state5: GameState = _city_with_doomed_supply(db, 5)
+	var engine5 := TurnEngine.new(db, state5)
+	state5.set_demand("supply", 2)  # recovered in the meantime
+	engine5.resolve_event(0)
+	t.is_true(not state5.game_over, "the same card is survivable once the demand is answered")
+	t.eq(state5.pending_event, "", "and it resolves like any other event")
+
+	t.label("an emergency card is never fatal, however deep the demand is")
+	var state6: GameState = GameSetup.new_game(db, "test_age", 5)
+	var engine6 := TurnEngine.new(db, state6)
+	engine6.start_turn()
+	state6.hand.clear()
+	state6.set_demand("supply", 20)
+	state6.pending_event = "supply_shortage_test_age"
+	engine6.resolve_event(1)
+	t.is_true(not state6.game_over, "emergencies are pressure, not death")
 
 
+# --- helpers -----------------------------------------------------------------
+
+## A city whose supply demand is past catastrophe with the catastrophe card
+## already drawn and awaiting an answer.
+func _city_with_doomed_supply(db: ContentDB, seed_value: int) -> GameState:
+	var state: GameState = GameSetup.new_game(db, "test_age", seed_value)
+	var engine := TurnEngine.new(db, state)
+	engine.start_turn()
+	state.hand.clear()
+	state.set_demand("supply", 10)
+	state.pending_event = "supply_collapse_test_age"
+	state.current_budget = 100  # the option's cost is not what is being tested
+	return state
+
+
+## A turn where the player does nothing but keep the hand legal — without the
+## discard, the hand-limit gate would stop the turn from ending (GDD 4.1).
 func _run_turn(engine: TurnEngine) -> void:
 	engine.start_turn()
-	engine.end_turn()
+	if engine.state.game_over:
+		return
+	var overflow: int = DeckManager.hand_overflow(engine.state, engine.db)
+	if overflow > 0:
+		engine.discard_cards(engine.state.hand.slice(0, overflow))
 	if engine.state.pending_event != "":
-		engine.resolve_event(0)
+		engine.resolve_event(Fixtures.first_available_option(engine.state, engine.db))
+	engine.end_turn()
+
+
+func _first_of(events: Array[Dictionary], type_name: String) -> Dictionary:
+	for event: Dictionary in events:
+		if String(event.get("type", "")) == type_name:
+			return event
+	return {}

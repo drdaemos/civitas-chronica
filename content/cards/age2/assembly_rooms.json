@@ -4,8 +4,9 @@
 	"category": "development",
 	"cost": 4,
 	"tags": ["cultural"],
+	"demands": {"appeal": -2, "fairness": -1},
 	"effects": [
-		{"type": "approval_per_turn", "amount": 1}
+		{"type": "income", "amount": 1}
 	],
 	"flavor": "Card tables, a ballroom, and a master of ceremonies who knows every family worth knowing; the city polishes itself by candlelight."
 }

@@ -4,8 +4,7 @@
 	"category": "development",
 	"cost": 4,
 	"tags": ["military"],
-	"effects": [
-		{"type": "income", "amount": 1}
-	],
+	"demands": {"security": -3},
+	"effects": [],
 	"flavor": "Drill on Sundays, muskets in the armory, and billeting money paid promptly; respectable men in uniform, mostly pointed away from the city."
 }

@@ -4,15 +4,7 @@
 	"category": "development",
 	"cost": 4,
 	"tags": ["religious", "cultural"],
-	"effects": [
-		{"type": "resource_delta", "resource": "approval", "amount": 5}
-	],
-	"flavor": "The wooden chapel gives way to vaulted stone; the bells can now be heard two villages away.",
-	"age_variants": {
-		"age2": {
-			"preserved": {"tags": ["religious", "cultural"], "effects": [{"type": "approval_per_turn", "amount": 1}]},
-			"adapted": {"cost": 4, "tags": ["religious", "cultural"], "effects": [{"type": "approval_per_turn", "amount": 1}, {"type": "migration_per_turn", "amount": 1}]},
-			"demolish_approval": -8
-		}
-	}
+	"demands": {"fairness": -2, "appeal": -1},
+	"effects": [],
+	"flavor": "The wooden chapel gives way to vaulted stone; the bells can now be heard two villages away."
 }

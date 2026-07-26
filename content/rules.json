@@ -1,0 +1,70 @@
+{
+	"demand_threshold": 3,
+	"demand_catastrophe": 8,
+	"population_levels": [0, 5000, 14000, 32000],
+	"population_level_hysteresis": 0.05,
+	"population_variance": 0.15,
+	"growth_by_demands_over_threshold": [1.0, 0.5, 0.0, -0.5],
+	"demands": [
+		{
+			"id": "provision",
+			"name": "Provision",
+			"description": "Food, water and fuel for everyone inside the walls.",
+			"bands": [
+				{"at": 0, "text": "The markets are well supplied."},
+				{"at": 1, "text": "Bread prices are climbing."},
+				{"at": 3, "text": "There are queues at the bakers' doors."},
+				{"at": 6, "text": "The poorer wards are going hungry."},
+				{"at": 8, "text": "Famine. People are leaving or dying."}
+			]
+		},
+		{
+			"id": "security",
+			"name": "Security",
+			"description": "Defence, order and fire — everything that keeps the city standing.",
+			"bands": [
+				{"at": 0, "text": "The city sleeps soundly."},
+				{"at": 1, "text": "The watch is stretched thin."},
+				{"at": 3, "text": "Robbery and arson go unanswered."},
+				{"at": 6, "text": "Whole streets are lawless after dark."},
+				{"at": 8, "text": "The city cannot defend itself."}
+			]
+		},
+		{
+			"id": "fairness",
+			"name": "Fairness",
+			"description": "Legitimacy: who governs, who pays, and who is heard.",
+			"bands": [
+				{"at": 0, "text": "The council is trusted."},
+				{"at": 1, "text": "There is muttering about the levies."},
+				{"at": 3, "text": "Petitions arrive faster than they are read."},
+				{"at": 6, "text": "Crowds gather outside the town hall."},
+				{"at": 8, "text": "The city no longer accepts its rulers."}
+			]
+		},
+		{
+			"id": "health",
+			"name": "Health",
+			"description": "Sanitation, disease and the cost of building people close together.",
+			"bands": [
+				{"at": 0, "text": "The air and water are clean enough."},
+				{"at": 1, "text": "The lower lanes smell of the river."},
+				{"at": 3, "text": "The lower ward is sick."},
+				{"at": 6, "text": "Physicians cannot keep up with the burials."},
+				{"at": 8, "text": "Epidemic. The city is a danger to itself."}
+			]
+		},
+		{
+			"id": "appeal",
+			"name": "Appeal",
+			"description": "Why anyone would choose to stay, or to come at all.",
+			"bands": [
+				{"at": 0, "text": "People are glad to live here."},
+				{"at": 1, "text": "The young talk about the bigger towns."},
+				{"at": 3, "text": "Houses stand empty on the outer streets."},
+				{"at": 6, "text": "Anyone with a trade is leaving."},
+				{"at": 8, "text": "The city is being abandoned."}
+			]
+		}
+	]
+}

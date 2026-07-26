@@ -15,6 +15,7 @@ signal state_changed
 signal domain_events(events: Array[Dictionary])
 signal game_ended(outcome: String, score: Dictionary)
 signal age_ended(from_age: String, to_age: String)
+signal transition_completed(report: TransitionReport)
 
 const DEFAULT_AGE_ID: String = "age1"
 
@@ -24,6 +25,7 @@ var engine: TurnEngine = null
 var saves: SaveManager = null
 var profile: ProfileManager = null
 var last_score: Dictionary = {}
+var last_transition_report: TransitionReport = null
 
 var _pending_event_first_sight: bool = true
 
@@ -86,6 +88,10 @@ func continue_game() -> bool:
 	last_score = {}
 	_pending_event_first_sight = false
 	state_changed.emit()
+	if state.transition_pending:
+		# An older snapshot taken at an age boundary: settle it up rather than
+		# resuming into a screen that no longer exists.
+		apply_transition()
 	return true
 
 
@@ -109,16 +115,53 @@ func play_card(card_id: String) -> Dictionary:
 	return result
 
 
+## Closes the turn. Only a turn that actually ended rolls into the next one —
+## a hand over the limit comes back as discard_required and the player stays
+## exactly where they were (GDD 4.1).
 func end_turn() -> void:
 	if engine == null or state == null or state.game_over or state.pending_event != "":
 		return
-	_advance(engine.end_turn())
+	var events: Array[Dictionary] = engine.end_turn()
+	var ended: bool = false
+	for ev: Dictionary in events:
+		if String(ev.get("type", "")) == "turn_ended":
+			ended = true
+	_advance(events, ended)
 
 
+## Answers the pending event, which opens the play phase of the SAME turn
+## (GDD 3 phase order) — the player still has this turn's budget to spend.
 func resolve_event(option_index: int) -> void:
 	if engine == null or state == null or state.pending_event == "":
 		return
-	_advance(engine.resolve_event(option_index))
+	_advance(engine.resolve_event(option_index), false)
+
+
+## Discards down to the hand limit (GDD 4.1). The UI blocks the End Turn
+## button on this exactly as it blocks on a pending event.
+func discard_cards(card_ids: Array[String]) -> Dictionary:
+	if engine == null:
+		return _no_game()
+	var result: Dictionary = engine.discard_cards(card_ids)
+	if bool(result.get("ok", false)):
+		var events: Array[Dictionary] = []
+		events.assign(result.get("events", []) as Array)
+		domain_events.emit(events)
+		state_changed.emit()
+	return result
+
+
+## How many cards must be discarded before the turn can end; 0 = none.
+func hand_overflow() -> int:
+	if state == null or db == null:
+		return 0
+	return DeckManager.hand_overflow(state, db)
+
+
+func hand_limit() -> int:
+	if state == null or db == null:
+		return DeckManager.BASE_HAND_LIMIT
+	return DeckManager.hand_limit(state, db)
 
 
 func adopt_policy(policy_id: String) -> Dictionary:
@@ -130,30 +173,27 @@ func adopt_policy(policy_id: String) -> Dictionary:
 	return result
 
 
-## The pending age transition's per-development decision list (see
-## AgeTransition.decisions). Empty when no transition is pending.
-func transition_decisions() -> Array[Dictionary]:
-	var empty: Array[Dictionary] = []
-	if state == null or db == null or not state.transition_pending:
-		return empty
-	return AgeTransition.decisions(state, db)
-
-
-## Applies the player's Preserve/Adapt/Demolish choices (card_id -> choice),
-## starts the new age's first turn, snapshots, and re-emits everything.
-func apply_transition(choices: Dictionary) -> void:
+## Resolves the pending age transition and starts the new age's first turn.
+## The transition asks the player for nothing (GDD 4.8), so this runs itself
+## the moment the age ends; the resulting TransitionReport is emitted for the
+## report screen. Public so a save resumed mid-transition can be driven on.
+func apply_transition() -> TransitionReport:
 	if engine == null or state == null or not state.transition_pending:
-		return
-	var events: Array[Dictionary] = AgeTransition.apply(state, db, choices)
-	_process_domain_events(events)
+		return null
+	var report: TransitionReport = AgeTransition.apply(state, db)
+	last_transition_report = report
+	_process_domain_events(report.events)
+	var events: Array[Dictionary] = report.events.duplicate()
 	var next_events: Array[Dictionary] = engine.start_turn()
 	_process_domain_events(next_events)
 	events.append_array(next_events)
 	if not state.game_over:
 		saves.save(state)
 	domain_events.emit(events)
+	transition_completed.emit(report)
 	state_changed.emit()
 	_finish_if_over(events)
+	return report
 
 
 ## Effective-cost view over the current state; the UI must use this instead
@@ -175,26 +215,27 @@ func is_pending_event_first_sight() -> bool:
 ## Shared tail for end_turn/resolve_event: if the turn actually completed
 ## (no pending event, not game over) the next turn starts immediately and
 ## the once-per-turn snapshot is written.
-func _advance(events: Array[Dictionary]) -> void:
+func _advance(events: Array[Dictionary], turn_ended: bool) -> void:
 	_process_domain_events(events)
-	if not state.game_over and state.pending_event == "":
-		if state.transition_pending:
-			# The age just ended: snapshot immediately — the transition_pending
-			# state is serializable, so a player can quit mid-transition and
-			# resume straight into the transition screen.
+	var transition_due: bool = turn_ended and not state.game_over \
+			and state.pending_event == "" and state.transition_pending
+	if turn_ended and not state.game_over and state.pending_event == "" and not transition_due:
+		var next_events: Array[Dictionary] = engine.start_turn()
+		_process_domain_events(next_events)
+		events.append_array(next_events)
+		if not state.game_over:
 			saves.save(state)
-		else:
-			var next_events: Array[Dictionary] = engine.start_turn()
-			_process_domain_events(next_events)
-			events.append_array(next_events)
-			if not state.game_over:
-				saves.save(state)
 	domain_events.emit(events)
 	state_changed.emit()
 	_finish_if_over(events)
 	for ev: Dictionary in events:
 		if String(ev.get("type", "")) == "age_ended":
 			age_ended.emit(String(ev.get("from", "")), String(ev.get("to", "")))
+	if transition_due:
+		# Nothing to ask the player (GDD 4.8) — resolve it and hand the UI a
+		# report. The new age's first turn starts inside apply_transition, and
+		# the snapshot is written there at TURN_START as usual.
+		apply_transition()
 
 
 func _finish_if_over(events: Array[Dictionary]) -> void:

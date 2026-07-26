@@ -4,7 +4,8 @@
 	"category": "action",
 	"cost": 2,
 	"effects": [
-		{"type": "resource_delta", "resource": "approval", "amount": 4}
+		{"type": "demand_delta", "demand": "provision", "amount": -3},
+		{"type": "demand_delta", "demand": "fairness", "amount": -2}
 	],
 	"flavor": "The names of the charitable are printed in the newspaper in order of the sum given; the poor are fed, and vanity foots the bill."
 }

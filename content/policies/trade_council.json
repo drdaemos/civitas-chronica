@@ -1,12 +1,13 @@
 {
 	"id": "trade_council",
 	"name": "Trade Council",
-	"description": "A standing council of merchants and magistrates settles disputes before they fester; commerce steadies and tempers cool.",
+	"description": "The merchants get a seat and the grain trade gets organised. +1 budget per turn, Provision grows 1 slower, Fairness 1 faster.",
 	"unlock": {"type": "interaction_active", "id": "trade_hub"},
 	"swap_cost_budget": 2,
-	"swap_cost_approval": 3,
+	"swap_cost_demands": {"provision": 2},
 	"effects": [
 		{"type": "income", "amount": 1},
-		{"type": "approval_per_turn", "amount": 1}
+		{"type": "demand_modifier", "demand": "provision", "amount": -1},
+		{"type": "demand_modifier", "demand": "fairness", "amount": 1}
 	]
 }

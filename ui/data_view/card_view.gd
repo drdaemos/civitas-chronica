@@ -26,15 +26,19 @@ const ACTION_TINT: Color = Color(0.56, 0.5, 0.38)  # neutral parchment
 const BODY_BG: Color = Color(0.14, 0.13, 0.12)
 const BORDER_NORMAL: Color = Color(0.42, 0.4, 0.36)
 const BORDER_HOVER: Color = Color(0.85, 0.8, 0.65)
+const BORDER_MARKED: Color = Color(0.85, 0.45, 0.4)  # picked for discard
 const BADGE_NEUTRAL: Color = Color(0.24, 0.23, 0.21)
 const BADGE_CHEAPER: Color = Color(0.2, 0.42, 0.24)
 const BADGE_DEARER: Color = Color(0.5, 0.2, 0.18)
 const DISABLED_MODULATE: Color = Color(0.55, 0.55, 0.55, 0.85)
+const DEMAND_MITIGATE: Color = Color(0.62, 0.85, 0.66)  # a need this card answers
+const DEMAND_AGGRAVATE: Color = Color(0.92, 0.66, 0.55)  # a need this card worsens
 
 var card_id: String = ""
 
 var _disabled: bool = false
 var _interactive: bool = true
+var _marked: bool = false
 var _style: StyleBoxFlat = null
 var _header_style: StyleBoxFlat = null
 var _badge_style: StyleBoxFlat = null
@@ -147,18 +151,29 @@ func _init() -> void:
 ## Full card view for a card in hand / a deck listing. `effective_cost` is
 ## the ModifierPipeline cost; pass -1 to show the printed cost unmodified.
 func setup(card: CardDef, db: ContentDB, effective_cost: int = -1) -> void:
-	_populate(card, db, card.tags, card.effects, effective_cost, true)
+	_populate(card, db, card.tags, card.demands, card.effects, effective_cost, true)
 
 
 ## Compact view of a BUILT development: live DevelopmentState tags/effects
-## (which may differ from the printed card after an age transition), no cost
+## (which may differ from the printed card after a supersession), no cost
 ## badge, no flavor.
 func setup_development(card: CardDef, db: ContentDB, dev: DevelopmentState) -> void:
 	custom_minimum_size = COMPACT_SIZE
-	_populate(card, db, dev.tags, dev.effects, -1, false)
+	_populate(card, db, dev.tags, dev.demands, dev.effects, -1, false)
 	_flavor_label.visible = false
-	if dev.adapted:
-		_tooltip_lines.append("Adapted in an earlier age.")
+	if dev.superseded_count > 0:
+		_tooltip_lines.append("Took this form at an age boundary.")
+		_apply_tooltip()
+
+
+## Marks a card as picked for discard: tinted border, no grey-out (the card is
+## still perfectly playable — the player chose it).
+func set_marked(marked: bool, hint: String = "") -> void:
+	_marked = marked
+	_style.border_color = BORDER_MARKED if marked else BORDER_NORMAL
+	_style.set_border_width_all(2 if marked else 1)
+	if hint != "":
+		_tooltip_lines.append(hint)
 		_apply_tooltip()
 
 
@@ -181,7 +196,8 @@ func set_interactive(interactive: bool) -> void:
 # --- private ----------------------------------------------------------------
 
 func _populate(card: CardDef, db: ContentDB, tags: Array[String],
-		effects: Array[EffectDef], effective_cost: int, show_badge: bool) -> void:
+		demands: Dictionary, effects: Array[EffectDef], effective_cost: int,
+		show_badge: bool) -> void:
 	card_id = card.id
 	_tooltip_lines.clear()
 	_name_label.text = card.display_name
@@ -203,6 +219,22 @@ func _populate(card: CardDef, db: ContentDB, tags: Array[String],
 		_chips_row.add_child(_make_chip("action"))
 
 	_clear_children(_body_box)
+	# Printed demand values first: they are the card's real price, and the
+	# cross-demand cost has to be visible before the card is played (GDD 4.0).
+	var demand_ids: Array = demands.keys()
+	demand_ids.sort()
+	for demand_id: String in demand_ids:
+		var amount: int = int(demands[demand_id])
+		if amount == 0:
+			continue
+		var demand_label := Label.new()
+		demand_label.text = EffectText.describe_printed_demand(demand_id, amount, db)
+		demand_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		demand_label.add_theme_font_size_override("font_size", 12)
+		demand_label.add_theme_color_override("font_color",
+			DEMAND_MITIGATE if amount < 0 else DEMAND_AGGRAVATE)
+		demand_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		_body_box.add_child(demand_label)
 	for line: String in EffectText.describe_all(effects, db):
 		var effect_label := Label.new()
 		effect_label.text = line
@@ -210,6 +242,23 @@ func _populate(card: CardDef, db: ContentDB, tags: Array[String],
 		effect_label.add_theme_font_size_override("font_size", 11)
 		effect_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		_body_box.add_child(effect_label)
+	# Printed protection (GDD 4.4): a hazard type the player can plan around
+	# without knowing which specific events exist.
+	if not card.cancels.is_empty():
+		var protects := Label.new()
+		protects.text = "⛨ Prevents %s damage" % ", ".join(card.cancels)
+		protects.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		protects.add_theme_font_size_override("font_size", 11)
+		protects.add_theme_color_override("font_color", Color(0.6, 0.82, 0.66))
+		protects.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		_body_box.add_child(protects)
+	if card.hand_limit_bonus != 0:
+		var capacity := Label.new()
+		capacity.text = "Hand limit %+d" % card.hand_limit_bonus
+		capacity.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		capacity.add_theme_font_size_override("font_size", 11)
+		capacity.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		_body_box.add_child(capacity)
 	if card.opens_paths():
 		var paths_label := Label.new()
 		paths_label.text = "✦ Opens new paths"
@@ -275,8 +324,8 @@ func _on_mouse_entered() -> void:
 
 func _on_mouse_exited() -> void:
 	z_index = 0
-	_style.border_color = BORDER_NORMAL
-	_style.set_border_width_all(1)
+	_style.border_color = BORDER_MARKED if _marked else BORDER_NORMAL
+	_style.set_border_width_all(2 if _marked else 1)
 	_start_scale_tween(Vector2.ONE)
 
 

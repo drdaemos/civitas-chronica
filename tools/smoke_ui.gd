@@ -2,12 +2,13 @@ extends SceneTree
 
 ## Headless smoke test for the game glue layer (game/ autoloads + save +
 ## profile). Exercises GameController end to end: new_game, playing cards,
-## ending turns, resolving events, age transitions (exercising all three of
-## preserve/adapt/demolish), and verifying the save snapshot and the
-## account-level profile on disk.
+## ending turns, resolving events, hand-limit discards, automatic age
+## transitions, and verifying the save snapshot and the account-level profile
+## on disk.
 ## Run: godot --headless --path . --script res://tools/smoke_ui.gd
 
 var _failures: int = 0
+var _transitions_applied: int = 0
 
 
 func _initialize() -> void:
@@ -22,7 +23,10 @@ func _initialize() -> void:
 	gc.new_game(12345)
 	_check(gc.state != null, "new_game produced a state")
 	_check(gc.state.turn_number == 1, "first turn started")
-	_check(not gc.state.hand.is_empty(), "opening hand drawn")
+	# Events resolve before the player draws (GDD 3), so turn 1 may open on an
+	# event screen instead of a hand.
+	_check(not gc.state.hand.is_empty() or gc.state.pending_event != "",
+			"turn 1 opens on a hand or an event")
 	_check(FileAccess.file_exists(SaveManager.SAVE_PATH), "save snapshot written at TURN_START")
 
 	var loaded: GameState = gc.saves.load_game()
@@ -30,34 +34,36 @@ func _initialize() -> void:
 
 	var first_event: String = ""
 	var interaction_seen: String = ""
-	var transitions_applied: int = 0
 	var save_existed_mid_run: bool = false
 	var safety: int = 0
-	while gc.state != null and not gc.state.game_over and safety < 120:
+	gc.transition_completed.connect(_on_transition_completed)
+	while gc.state != null and not gc.state.game_over and safety < 200:
 		safety += 1
-		if gc.state.transition_pending:
-			save_existed_mid_run = save_existed_mid_run \
-					or FileAccess.file_exists(SaveManager.SAVE_PATH)
-			_apply_transition(gc)
-			transitions_applied += 1
-			continue
-		_play_affordable(gc)
-		gc.end_turn()
+		if not save_existed_mid_run:
+			save_existed_mid_run = FileAccess.file_exists(SaveManager.SAVE_PATH)
+		# Events now arrive during upkeep, before the player acts (GDD 3), so a
+		# pending event is answered at the top of the turn rather than the end.
 		if gc.state.pending_event != "":
 			if first_event == "":
 				first_event = gc.state.pending_event
 				_check(gc.profile.knows_event(first_event),
 						"profile recorded fired event immediately (%s)" % first_event)
-			gc.resolve_event(0)
+			gc.resolve_event(_first_available_option(gc))
+			continue
+		_play_affordable(gc)
+		_discard_to_limit(gc)
+		gc.end_turn()
 		if interaction_seen == "" and not gc.state.active_interactions.is_empty():
 			interaction_seen = gc.state.active_interactions[0]
-		if not save_existed_mid_run:
-			save_existed_mid_run = FileAccess.file_exists(SaveManager.SAVE_PATH)
 
 	_check(gc.state.game_over, "run reached an outcome (outcome=%s, age=%s, turn %d, transitions=%d)" % [
-		gc.state.outcome, gc.state.age_id, gc.state.turn_number, transitions_applied,
+		gc.state.outcome, gc.state.age_id, gc.state.turn_number, _transitions_applied,
 	])
-	var lost_early: bool = gc.state.outcome == GameState.OUTCOME_LOST_APPROVAL \
+	_check(_transitions_applied == gc.state.completed_ages.size(),
+			"every completed age emitted a transition report (%d reports, %d completed)" % [
+				_transitions_applied, gc.state.completed_ages.size(),
+			])
+	var lost_early: bool = gc.state.outcome == GameState.OUTCOME_LOST_CATASTROPHE \
 			or gc.state.outcome == GameState.OUTCOME_LOST_DEBT
 	_check(not gc.state.completed_ages.is_empty() or lost_early,
 			"completed an age transition or lost beforehand (completed_ages=%s, outcome=%s)" % [
@@ -85,26 +91,37 @@ func _initialize() -> void:
 		quit(1)
 
 
-## Drives the pending age transition the way the transition screen would:
-## builds choices from transition_decisions() exercising all three options —
-## the LAST development is demolished, even-indexed developments adapt where
-## a variant allows it, everything else is preserved.
-func _apply_transition(gc: GameController) -> void:
-	var decisions: Array[Dictionary] = gc.transition_decisions()
-	var choices: Dictionary = {}
-	for i: int in decisions.size():
-		var decision: Dictionary = decisions[i]
-		var card_id: String = String(decision.get("card_id", ""))
-		if i == decisions.size() - 1:
-			choices[card_id] = AgeTransition.CHOICE_DEMOLISH
-		elif i % 2 == 0 and decision.get("adapt") is Dictionary:
-			choices[card_id] = AgeTransition.CHOICE_ADAPT
-		else:
-			choices[card_id] = AgeTransition.CHOICE_PRESERVE
-	var from_age: String = gc.state.age_id
-	gc.apply_transition(choices)
-	_check(not gc.state.transition_pending, "transition applied (from %s)" % from_age)
-	_check(from_age in gc.state.completed_ages, "completed_ages records %s" % from_age)
+## The transition asks the player for nothing (GDD 4.8) — the controller runs
+## it itself and the UI only receives the report.
+func _on_transition_completed(report: TransitionReport) -> void:
+	_transitions_applied += 1
+	_check(report.to_age != "", "transition report names the new age (%s)" % report.to_age)
+
+
+## The first option this city may actually pick — options gated on a
+## development it does not have are hidden (GDD 4.4).
+func _first_available_option(gc: GameController) -> int:
+	var event: EventDef = gc.db.get_event(gc.state.pending_event)
+	if event == null:
+		return 0
+	for i: int in event.options.size():
+		if event.options[i].is_available(gc.state):
+			return i
+	return 0
+
+
+## Mirrors the discard step the hand strip drives: dump the tail of the hand
+## when it is over capacity, so the turn can actually end.
+func _discard_to_limit(gc: GameController) -> void:
+	var overflow: int = gc.hand_overflow()
+	if overflow <= 0:
+		return
+	var doomed: Array[String] = gc.state.hand.slice(gc.state.hand.size() - overflow)
+	var result: Dictionary = gc.discard_cards(doomed)
+	if not bool(result.get("ok", false)):
+		_check(false, "discard of %d over the hand limit refused: %s" % [
+			overflow, String(result.get("reason", "")),
+		])
 
 
 ## Greedily plays every card the current budget can afford (skipping cards

@@ -17,17 +17,21 @@ content/
 
 **Canonical tags:** `trade`, `military`, `religious`, `industrial`, `cultural`, `science`, `infrastructure`.
 
+**Canonical hazard types:** `flood`, `fire`, `disease`, `famine`, `riot`, `raid`, `pollution`, `collapse`. One per event; cancelled by developments listing them in `cancels` (GDD §4.4).
+
+**Hand limit:** base 5, raised only by developments carrying `hand_limit_bonus`. Draw size is not the growth lever (GDD §4.1).
+
 **Resources:** `population_level` (small int), `population_count` (people — display/score only, no rule reads it), `budget`.
 
 **Canonical demands** (GDD §4.0), in activation order — one per age, never deactivating:
 
-| id | Activates | Meaning |
-|---|---|---|
-| `provision` | age 1 | food, water, fuel |
-| `security` | age 2 | defence, order, fire |
-| `fairness` | age 3 | legitimacy, who governs and who pays |
-| `health` | age 4 | sanitation, disease, density |
-| `appeal` | age 5 | why anyone would stay or come |
+| id | Player-facing name | Activates | Meaning |
+|---|---|---|---|
+| `provision` | Provision | age 1 | reliable food, water, and fuel |
+| `security` | Security | age 2 | defence, order, fire protection, and continuity |
+| `fairness` | Legitimacy | age 3 | the gap between claimed authority and the authority inhabitants believe government deserves |
+| `health` | Health | age 4 | sanitation, safe housing and work, disease and pollution control, medical access, and minimum welfare provision |
+| `appeal` | Appeal | age 5 | how strongly people choose to come, live, and stay relative to other places |
 
 Each demand is a non-negative integer starting at 0. `approval` and `migration_appeal` were removed 2026-07 — do not reintroduce them.
 
@@ -112,19 +116,15 @@ Used for event triggers, interaction thresholds, and policy unlocks. Composable:
   "tags": ["trade", "infrastructure"],  // developments only
   "demands": {"provision": -1, "security": 1},  // developments only; see below
   "prerequisites": ["river_docks"],     // card IDs, optional
+  "superseded_by": {"age4": "harbor_ruins"},  // optional; developments only
+  "cancels": ["flood"],                 // optional; hazard types this development negates
   "effects": [
     {"type": "income", "amount": 2}
   ],
   "inject_main": ["merchant_fleet"],    // optional; shown as "opens paths"
   "inject_events": ["plague_ship", "trade_dispute"],
   "flavor": "The city turns its face to the sea.",
-  "age_variants": {                     // optional; developments only — era reinterpretation (GDD 4.6)
-    "age2": {
-      "preserved": {"tags": ["cultural"], "demands": {"appeal": -1}, "effects": []},
-      "adapted": {"cost": 3, "tags": ["cultural", "trade"], "demands": {"appeal": -2}, "effects": [{"type": "income", "amount": 2}]},
-      "demolish_demands": {"fairness": 2}
-    }
-  }
+  "hand_limit_bonus": 0                 // optional; rare developments raise the hand limit
 }
 ```
 
@@ -141,11 +141,13 @@ Negative values mitigate, positive values aggravate. A development may carry val
 
 Demolishing a development removes **both** halves of the standing value — tearing down a granary gives back its `provision: -2` growth reduction.
 
-**`age_variants` semantics** (used at age transition, GDD 4.8): for each development in play the player chooses Preserve / Adapt / Demolish.
-- **Preserve** — the development's tags/effects are replaced by `preserved` if defined for the new age; otherwise it keeps its current tags/effects unchanged. Free.
-- **Adapt** — available only if `adapted` is defined for the new age. Its `cost` is **billed to the first turn of the new age** (event-billing mechanism). Tags/effects replaced by the adapted set.
-- **Demolish** — development removed, taking **both halves** of its `demands` values with it (a demolished granary stops mitigating). `demolish_demands` applies an additional one-time penalty, typically to `fairness`.
-A development's live tags/effects are stored on its DevelopmentState — after a transition they may no longer match the printed CardDef.
+### `superseded_by` (developments only)
+
+Maps an age ID to the card ID that **replaces** this development when that age begins (GDD §4.6). Automatic — the player is not asked. The old development leaves the city (taking both halves of its `demands` values with it) and the successor is placed in its stead with its own tags, demands, effects and injections. Successors may themselves define `superseded_by`, so a structure can pass through several forms across a save.
+
+The successor is a normal card definition and lives in the `cards/<age>/` folder of the age it appears in. It is exempt from the reachability check — it is reached by supersession, not by draw — but it must not appear in any `base_deck`, since it is never drawn or played. The validator rejects supersession cycles.
+
+*Removed 2026-07-26:* `age_variants` and the Preserve/Adapt/Demolish parameters. Age transitions no longer take player input on inherited developments; supersession replaces that system entirely. Demolition remains available mid-age through action cards.
 
 ## Event (`events/<age>/<id>.json`)
 
@@ -154,12 +156,16 @@ A development's live tags/effects are stored on its DevelopmentState — after a
   "id": "trade_dispute",
   "title": "Trade Dispute",
   "text": "Foreign merchants accuse local traders of unfair tariffs.",
-  "trigger": {"type": "interaction_active", "id": "trade_hub"},
+  "trigger": {"type": "has_development", "id": "river_docks"},
+  "hazard": "famine",                   // optional; cancelled by a development listing it in `cancels`
   "options": [
     {"text": "Side with local traders", "cost": 0,
      "effects": [{"type": "demand_delta", "demand": "provision", "amount": 2}]},
     {"text": "Mediate", "cost": 3,
-     "effects": [{"type": "unlock_policy", "id": "trade_council"}]}
+     "effects": [{"type": "unlock_policy", "id": "trade_council"}]},
+    {"text": "Call in the merchant guild", "cost": 0,
+     "requires_development": "merchant_guild",   // optional; extra option, only if standing
+     "effects": [{"type": "income", "amount": 1}]}
   ]
 }
 ```
@@ -167,6 +173,18 @@ A development's live tags/effects are stored on its DevelopmentState — after a
 Option `cost` is **billed at the start of the next turn** (event billing, GDD §3). Forced events omit `trigger` from matching; they are scheduled in the age file.
 
 Events move demands **one-time only** — an event option may use `demand_delta` but never `demand_modifier`.
+
+**Triggers should be permissive** (GDD §4.4). A trigger exists to stop narratively impossible situations, not to gate content — a flood needs a river, a plague needs nothing. Most events should be able to fire in most cities. There is **no draw limit** on event matching: the engine draws until something matches or the deck is exhausted.
+
+Historical framing, eligibility guidance, and examples are maintained in [content-authoring.md](content-authoring.md). The guide uses the existing trigger, required-development, injection, and age-scheduling fields; it does not introduce additional schema.
+
+### Hazard types and cancellation
+
+An event may declare one `hazard`. If any standing development lists that hazard in its `cancels` array, the event's negative effects do not apply.
+
+Keep `cancels` rare, and usually a single type per development. Full coverage of all eight types must never be affordable.
+
+An option with `requires_development` is hidden unless that card is standing in the city. It is **additional** — the unconditional options remain available — and may be either an opportunity or a softer exit.
 
 ### Emergency and catastrophe events
 
@@ -230,8 +248,8 @@ Policies with `"unlock": {"type": "always"}` are available from age start.
 ```json
 {
   "id": "age1",
-  "name": "Age of Foundations",
-  "year_start": 1400,
+  "name": "Charter and Consolidation",
+  "year_start": 1500,
   "year_end": 1600,
   "years_per_turn": 10,
   "base_draw": 3,
@@ -249,7 +267,7 @@ Policies with `"unlock": {"type": "always"}` are available from age start.
 
 `activates_demand` names the demand that becomes active when this age begins (GDD §4.0); its starting meter value is calculated from the printed `demands` values of all standing developments. `population_growth_base` is the per-turn population count delta before the demand-balance multiplier and random variance are applied.
 
-Age boundaries per GDD §3: age1 –1600, age2 1600–1750, age3 1750–1850, age4 1850–1950, age5 1950–present.
+Age boundaries and framing per GDD §3: age1 1500–1600 (**Charter and Consolidation**), age2 1600–1750 (**Confession, State, and Exchange**), age3 1750–1850 (**Agrarian and Commercial Transformation**), age4 1850–1950 (**Urbanization and Civic Provision**), age5 1950–present (**Mobility, Services, and Competition**).
 
 `base_deck` is a **flat array of unique card IDs** (no copies — uniqueness rule above; the validator rejects duplicates). `next_age` names the following age's ID; omit or `""` on the final age — completing it wins the save. `start` resource values apply only to the save's first age; later ages inherit the running city and only `base_budget`, `policy_slots`, and deck pools take effect.
 
@@ -260,3 +278,6 @@ Additional demand-related validator checks:
 - every age names an `activates_demand`, and no demand is activated twice
 - every demand has at least one `emergency` and one `catastrophe` event available in every age from its activation onward
 - `population_levels` is strictly increasing
+- `superseded_by` targets exist, contain no cycles, and never appear in a `base_deck`
+- every `cancels` entry and every event `hazard` names a canonical hazard type
+- `requires_development` references an existing card ID

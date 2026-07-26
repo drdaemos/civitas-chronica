@@ -4,15 +4,8 @@
 	"category": "development",
 	"cost": 3,
 	"tags": ["science"],
-	"effects": [
-		{"type": "resource_delta", "resource": "migration_appeal", "amount": 1}
-	],
+	"demands": {"fairness": -1},
+	"effects": [],
 	"inject_main": ["printing_press"],
-	"flavor": "A schoolmaster, a slate, and a room by the church; families settle where their sons can learn letters.",
-	"age_variants": {
-		"age2": {
-			"adapted": {"cost": 3, "tags": ["science", "cultural"], "effects": [{"type": "migration_per_turn", "amount": 1}]},
-			"demolish_approval": -3
-		}
-	}
+	"flavor": "A schoolmaster, a slate, and a room by the church; families settle where their sons can learn letters."
 }

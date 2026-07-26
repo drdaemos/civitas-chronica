@@ -4,15 +4,9 @@
 	"category": "development",
 	"cost": 4,
 	"tags": ["military"],
-	"effects": [
-		{"type": "resource_delta", "resource": "approval", "amount": 4}
-	],
-	"flavor": "Ramparts of quarried stone close the circuit at last; the citizens sleep differently behind them.",
-	"age_variants": {
-		"age2": {
-			"preserved": {"tags": ["cultural"], "effects": [{"type": "approval_per_turn", "amount": 1}]},
-			"adapted": {"cost": 3, "tags": ["cultural", "trade"], "effects": [{"type": "income", "amount": 1}, {"type": "approval_per_turn", "amount": 1}]},
-			"demolish_approval": -2
-		}
-	}
+	"demands": {"security": -3},
+	"cancels": ["raid"],
+	"superseded_by": {"age2": "wall_ruins"},
+	"effects": [],
+	"flavor": "Ramparts of quarried stone close the circuit at last; the citizens sleep differently behind them."
 }

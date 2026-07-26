@@ -15,7 +15,7 @@ static func check(state: GameState, db: ContentDB) -> Array[Dictionary]:
 			if interaction_id in state.active_interactions:
 				continue
 			var interaction: InteractionDef = db.interactions[interaction_id]
-			if interaction.threshold == null or not interaction.threshold.evaluate(state):
+			if interaction.threshold == null or not interaction.threshold.evaluate(state, db):
 				continue
 			state.active_interactions.append(interaction_id)
 			var first_discovery: bool = interaction_id not in state.seen_interactions

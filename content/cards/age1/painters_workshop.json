@@ -5,14 +5,7 @@
 	"cost": 3,
 	"tags": ["cultural"],
 	"effects": [
-		{"type": "resource_delta", "resource": "approval", "amount": 2},
-		{"type": "resource_delta", "resource": "migration_appeal", "amount": 1}
+		{"type": "income", "amount": 1}
 	],
-	"flavor": "A master painter takes apprentices above the cloth hall; altarpieces and portraits leave the city bearing its name.",
-	"age_variants": {
-		"age2": {
-			"adapted": {"cost": 2, "tags": ["cultural"], "effects": [{"type": "approval_per_turn", "amount": 1}]},
-			"demolish_approval": -3
-		}
-	}
+	"flavor": "A master painter takes apprentices above the cloth hall; altarpieces and portraits leave the city bearing its name."
 }

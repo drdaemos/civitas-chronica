@@ -1,12 +1,13 @@
 {
 	"id": "mercantile_charter",
 	"name": "Mercantile Charter",
-	"description": "The export houses write the tariff schedule and the council signs it; the treasury has never been fuller, nor the workshops angrier.",
+	"description": "Chartered companies with the council's blessing. +3 budget per turn, at the cost of Health and Fairness each growing 1 faster.",
 	"unlock": {"type": "interaction_active", "id": "export_economy"},
 	"swap_cost_budget": 3,
-	"swap_cost_approval": 5,
+	"swap_cost_demands": {"fairness": 3},
 	"effects": [
 		{"type": "income", "amount": 3},
-		{"type": "approval_per_turn", "amount": -2}
+		{"type": "demand_modifier", "demand": "health", "amount": 1},
+		{"type": "demand_modifier", "demand": "fairness", "amount": 1}
 	]
 }

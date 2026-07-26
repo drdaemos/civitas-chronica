@@ -4,10 +4,10 @@
 	"category": "development",
 	"cost": 6,
 	"tags": ["science"],
+	"demands": {"appeal": -1},
 	"prerequisites": ["academy_of_sciences"],
 	"effects": [
-		{"type": "income", "amount": 1},
-		{"type": "migration_per_turn", "amount": 1}
+		{"type": "income", "amount": 1}
 	],
 	"flavor": "A dome on the hill and a clock correct to seconds; the city sells its time to every navigator, and its nights to astronomers from abroad."
 }

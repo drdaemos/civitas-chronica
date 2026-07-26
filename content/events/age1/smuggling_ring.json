@@ -6,16 +6,16 @@
 	"options": [
 		{"text": "Break the ring and make examples", "cost": 4,
 			"effects": [
-				{"type": "resource_delta", "resource": "approval", "amount": 3},
-				{"type": "remove_events", "events": ["smuggling_ring"]}
+				{"type": "remove_events", "events": ["smuggling_ring"]},
+				{"type": "demand_delta", "demand": "provision", "amount": 1}
 			]},
 		{"text": "Fine the merchants and move on", "cost": 0,
 			"effects": [
-				{"type": "resource_delta", "resource": "approval", "amount": -3}
+				{"type": "resource_delta", "resource": "budget", "amount": 2}
 			]},
 		{"text": "Look the other way", "cost": 0,
 			"effects": [
-				{"type": "resource_delta", "resource": "approval", "amount": -2},
+				{"type": "demand_delta", "demand": "provision", "amount": -1},
 				{"type": "inject_events", "events": ["smuggling_ring"]}
 			]}
 	]

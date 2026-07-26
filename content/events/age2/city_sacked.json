@@ -1,0 +1,26 @@
+{
+	"id": "city_sacked",
+	"title": "The Gates Give Way",
+	"text": "A foraging army arrives with artillery and a list of demands, and the city has neither walls worth the name nor men under arms to hold them. The negotiation is short.",
+	"trigger": {"type": "demand", "demand": "security", "op": ">=", "value": 8},
+	"hazard": "raid",
+	"demand": "security",
+	"severity": "catastrophe",
+	"options": [
+		{"text": "Pay the contribution demanded, to the last coin", "cost": 9,
+			"effects": [
+				{"type": "demand_delta", "demand": "security", "amount": -3},
+				{"type": "resource_delta", "resource": "population_count", "amount": -200}
+			]},
+		{"text": "Barricade the market square and fight in the streets", "cost": 4,
+			"effects": [
+				{"type": "demand_delta", "demand": "security", "amount": -1},
+				{"type": "resource_delta", "resource": "population_count", "amount": -600}
+			]},
+		{"text": "Open the gates and hope for mercy", "cost": 0,
+			"effects": [
+				{"type": "demand_delta", "demand": "security", "amount": 2},
+				{"type": "resource_delta", "resource": "population_count", "amount": -1000}
+			]}
+	]
+}

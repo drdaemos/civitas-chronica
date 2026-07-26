@@ -6,9 +6,10 @@
 	"years_per_turn": 5,
 	"base_draw": 3,
 	"base_budget": 11,
+	"activates_demand": "security",
+	"population_growth_base": 420,
 	"policy_slots": 2,
 	"next_age": "",
-	"start": {"population": 500, "approval": 70, "migration_appeal": 4},
 	"base_deck": [
 		"coffee_house",
 		"weaving_manufactory",
@@ -38,7 +39,8 @@
 		"smallpox_outbreak",
 		"gin_craze",
 		"grand_tour_visitors",
-		"bread_riots"
+		"canal_mania",
+		"press_gang"
 	],
 	"forced_events": [
 		{"event": "industrial_revolution", "turn": 4},

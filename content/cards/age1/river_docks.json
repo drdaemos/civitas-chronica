@@ -4,15 +4,10 @@
 	"category": "development",
 	"cost": 3,
 	"tags": ["trade", "infrastructure"],
+	"demands": {"provision": -1},
 	"effects": [
 		{"type": "income", "amount": 1}
 	],
 	"inject_main": ["harbor_expansion"],
-	"flavor": "Timber piers reach into the current; barges tie up where fishermen once dragged their boats ashore.",
-	"age_variants": {
-		"age2": {
-			"adapted": {"cost": 3, "tags": ["trade", "infrastructure"], "effects": [{"type": "income", "amount": 2}]},
-			"demolish_approval": -3
-		}
-	}
+	"flavor": "Timber piers reach into the current; barges tie up where fishermen once dragged their boats ashore."
 }

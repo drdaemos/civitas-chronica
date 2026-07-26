@@ -4,6 +4,7 @@
 	"category": "development",
 	"cost": 5,
 	"tags": ["infrastructure"],
+	"demands": {"security": -1, "fairness": 1},
 	"effects": [
 		{"type": "income", "amount": 1}
 	],

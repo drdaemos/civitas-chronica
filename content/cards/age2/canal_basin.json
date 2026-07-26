@@ -4,6 +4,7 @@
 	"category": "development",
 	"cost": 7,
 	"tags": ["trade", "infrastructure"],
+	"demands": {"provision": -2},
 	"prerequisites": ["canal_company"],
 	"effects": [
 		{"type": "income", "amount": 2}

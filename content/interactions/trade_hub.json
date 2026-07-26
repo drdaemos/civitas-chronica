@@ -1,10 +1,11 @@
 {
 	"id": "trade_hub",
 	"name": "Trade Hub",
-	"description": "+2 budget per turn. Industrial developments cost +1. Smuggling finds the busy quays.",
+	"description": "+2 budget per turn, and grain arrives with everything else: Provision grows 1 slower per turn. Industrial developments cost 1 more, and smuggling finds the busy quays.",
 	"threshold": {"type": "tag_count", "tag": "trade", "op": ">=", "value": 9},
 	"effects": [
 		{"type": "income", "amount": 2},
+		{"type": "demand_modifier", "demand": "provision", "amount": -1},
 		{"type": "cost_modifier", "tag": "industrial", "amount": 1},
 		{"type": "inject_events", "events": ["smuggling_ring"]}
 	]

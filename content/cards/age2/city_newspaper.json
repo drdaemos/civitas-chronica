@@ -4,8 +4,9 @@
 	"category": "development",
 	"cost": 4,
 	"tags": ["cultural"],
+	"demands": {"fairness": -2, "security": 1},
 	"effects": [
-		{"type": "approval_per_turn", "amount": 1}
+		{"type": "income", "amount": 1}
 	],
 	"flavor": "Twice weekly, on poor paper: shipping lists, council notices, and letters signed with Roman pseudonyms. The city reads about itself at breakfast."
 }

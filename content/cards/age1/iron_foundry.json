@@ -4,17 +4,10 @@
 	"category": "development",
 	"cost": 6,
 	"tags": ["industrial"],
+	"demands": {"health": 2, "security": 1},
 	"prerequisites": ["arsenal"],
 	"effects": [
-		{"type": "income", "amount": 2},
-		{"type": "approval_per_turn", "amount": -1}
+		{"type": "income", "amount": 2}
 	],
-	"flavor": "Furnaces roar day and night casting cannon and bell alike; the smoke settles on washing lines across the east quarter.",
-	"age_variants": {
-		"age2": {
-			"preserved": {"tags": ["industrial"], "effects": [{"type": "income", "amount": 2}, {"type": "approval_per_turn", "amount": -2}]},
-			"adapted": {"cost": 4, "tags": ["industrial", "science"], "effects": [{"type": "income", "amount": 2}]},
-			"demolish_approval": -1
-		}
-	}
+	"flavor": "Furnaces roar day and night casting cannon and bell alike; the smoke settles on washing lines across the east quarter."
 }

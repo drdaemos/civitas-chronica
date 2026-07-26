@@ -4,16 +4,10 @@
 	"category": "development",
 	"cost": 6,
 	"tags": ["trade"],
+	"demands": {"provision": -1, "security": 1},
 	"prerequisites": ["merchant_guild"],
 	"effects": [
-		{"type": "income", "amount": 2},
-		{"type": "resource_delta", "resource": "migration_appeal", "amount": 1}
+		{"type": "income", "amount": 2}
 	],
-	"flavor": "A chartered company pools the guild capital; its ledgers now reach ports the town has never seen.",
-	"age_variants": {
-		"age2": {
-			"adapted": {"cost": 4, "tags": ["trade"], "effects": [{"type": "income", "amount": 2}, {"type": "migration_per_turn", "amount": 1}]},
-			"demolish_approval": -3
-		}
-	}
+	"flavor": "A chartered company pools the guild capital; its ledgers now reach ports the town has never seen."
 }

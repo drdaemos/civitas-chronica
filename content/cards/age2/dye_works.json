@@ -4,6 +4,7 @@
 	"category": "development",
 	"cost": 5,
 	"tags": ["industrial"],
+	"demands": {"health": 2},
 	"prerequisites": ["weaving_manufactory"],
 	"effects": [
 		{"type": "income", "amount": 1}

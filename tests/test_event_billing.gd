@@ -1,7 +1,8 @@
 extends RefCounted
 
 ## Event billing (GDD 3): event option costs land on NEXT turn's budget and
-## drive the debt-spiral lose condition.
+## drive the debt-spiral lose condition. Demands are silenced throughout — this
+## suite is about the budget, and pressure cards would keep interrupting it.
 
 
 func run(t: TestContext) -> void:
@@ -10,11 +11,11 @@ func run(t: TestContext) -> void:
 	t.label("event cost bills next turn, not this turn")
 	var state: GameState = GameSetup.new_game(db, "test_age", 7)
 	var engine := TurnEngine.new(db, state)
+	Fixtures.quiet_demands(state)
 	state.event_deck.assign(["always_event"])
 	engine.start_turn()
 	t.eq(state.current_budget, 10, "budget before event")
-	engine.end_turn()
-	t.eq(state.pending_event, "always_event", "always_event fires")
+	t.eq(state.pending_event, "always_event", "always_event fires in the event phase")
 	engine.resolve_event(1)  # option 1 costs 3
 	t.eq(state.pending_bill, 3, "bill recorded for next turn")
 	t.eq(state.current_budget, 10, "this turn's budget untouched by event cost")
@@ -22,7 +23,7 @@ func run(t: TestContext) -> void:
 	t.eq(state.current_budget, 7, "next turn's spendable reduced by the bill")
 	t.eq(state.pending_bill, 0, "bill cleared after charging")
 	t.eq(state.debt_turns, 0, "no debt from an affordable bill")
-	engine.end_turn()
+	Fixtures.settle_turn(engine)
 
 	t.label("oversized bill pushes budget negative")
 	state.pending_bill = 50
@@ -32,14 +33,14 @@ func run(t: TestContext) -> void:
 	t.is_true(not state.game_over, "one debt turn does not lose")
 	var refused: Dictionary = engine.play_card(state.hand[0])
 	t.eq(refused.get("ok"), false, "nothing playable on negative budget")
-	engine.end_turn()
+	Fixtures.settle_turn(engine)
 
 	t.label("three consecutive debt turns lose the game")
 	state.pending_bill = 50
 	engine.start_turn()
 	t.eq(state.debt_turns, 2, "second consecutive debt turn")
 	t.is_true(not state.game_over, "two debt turns do not lose")
-	engine.end_turn()
+	Fixtures.settle_turn(engine)
 	state.pending_bill = 50
 	var events: Array[Dictionary] = engine.start_turn()
 	t.eq(state.debt_turns, 3, "third consecutive debt turn")
@@ -54,10 +55,11 @@ func run(t: TestContext) -> void:
 	t.label("a recovery turn resets the debt counter")
 	var state2: GameState = GameSetup.new_game(db, "test_age", 7)
 	var engine2 := TurnEngine.new(db, state2)
+	Fixtures.quiet_demands(state2)
 	state2.pending_bill = 50
 	engine2.start_turn()
 	t.eq(state2.debt_turns, 1, "debt turn recorded")
-	engine2.end_turn()
+	Fixtures.settle_turn(engine2)
 	engine2.start_turn()
 	t.eq(state2.current_budget, 10, "budget recovers with no bill")
 	t.eq(state2.debt_turns, 0, "recovery resets the debt counter")

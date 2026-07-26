@@ -6,17 +6,16 @@
 	"options": [
 		{"text": "Sponsor the moderate printers", "cost": 3,
 			"effects": [
-				{"type": "resource_delta", "resource": "approval", "amount": 3}
+				{"type": "demand_delta", "demand": "security", "amount": -1}
 			]},
 		{"text": "Prosecute the printers for libel", "cost": 2,
 			"effects": [
-				{"type": "resource_delta", "resource": "approval", "amount": -5},
+				{"type": "demand_delta", "demand": "security", "amount": 1},
 				{"type": "remove_events", "events": ["pamphlet_war"]}
 			]},
 		{"text": "Read them with amusement", "cost": 0,
 			"effects": [
-				{"type": "resource_delta", "resource": "approval", "amount": -3},
-				{"type": "resource_delta", "resource": "migration_appeal", "amount": 1}
+				{"type": "demand_delta", "demand": "security", "amount": 1}
 			]}
 	]
 }

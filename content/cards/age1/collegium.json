@@ -4,15 +4,9 @@
 	"category": "development",
 	"cost": 7,
 	"tags": ["science"],
+	"demands": {"health": -1, "appeal": -1},
 	"effects": [
-		{"type": "income", "amount": 1},
-		{"type": "migration_per_turn", "amount": 1}
+		{"type": "income", "amount": 1}
 	],
-	"flavor": "A chartered college of scholars, endowed by the council; students and their fees follow the lectures.",
-	"age_variants": {
-		"age2": {
-			"adapted": {"cost": 4, "tags": ["science", "cultural"], "effects": [{"type": "income", "amount": 1}, {"type": "migration_per_turn", "amount": 1}, {"type": "approval_per_turn", "amount": 1}]},
-			"demolish_approval": -8
-		}
-	}
+	"flavor": "A chartered college of scholars, endowed by the council; students and their fees follow the lectures."
 }

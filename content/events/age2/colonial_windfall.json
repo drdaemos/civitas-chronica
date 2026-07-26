@@ -5,17 +5,15 @@
 	"trigger": {"type": "has_development", "id": "colonial_wharf"},
 	"options": [
 		{"text": "Refuse the tainted cargoes", "cost": 3,
-			"effects": [
-				{"type": "resource_delta", "resource": "approval", "amount": 3}
-			]},
+			"effects": []},
 		{"text": "Fund public works with the proceeds", "cost": 0,
 			"effects": [
-				{"type": "resource_delta", "resource": "approval", "amount": 4}
+				{"type": "demand_delta", "demand": "provision", "amount": -1}
 			]},
 		{"text": "Let the merchants keep their profits", "cost": 0,
 			"effects": [
-				{"type": "resource_delta", "resource": "approval", "amount": -2},
-				{"type": "resource_delta", "resource": "migration_appeal", "amount": 2}
+				{"type": "resource_delta", "resource": "budget", "amount": 3},
+				{"type": "demand_delta", "demand": "provision", "amount": 1}
 			]}
 	]
 }

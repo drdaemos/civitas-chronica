@@ -4,6 +4,7 @@
 	"category": "development",
 	"cost": 5,
 	"tags": ["trade", "infrastructure"],
+	"demands": {"provision": -1},
 	"effects": [
 		{"type": "income", "amount": 1}
 	],

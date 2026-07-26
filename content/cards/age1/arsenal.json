@@ -4,16 +4,11 @@
 	"category": "development",
 	"cost": 4,
 	"tags": ["military"],
+	"demands": {"security": -2},
 	"prerequisites": ["town_watch"],
 	"effects": [
 		{"type": "income", "amount": 1}
 	],
 	"inject_main": ["iron_foundry"],
-	"flavor": "Pikes, powder, and shot under lock and key; neighboring lords pay well to have their armories filled here.",
-	"age_variants": {
-		"age2": {
-			"adapted": {"cost": 3, "tags": ["military", "industrial"], "effects": [{"type": "income", "amount": 2}]},
-			"demolish_approval": -2
-		}
-	}
+	"flavor": "Pikes, powder, and shot under lock and key; neighboring lords pay well to have their armories filled here."
 }

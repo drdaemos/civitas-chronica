@@ -80,7 +80,7 @@ All classes here extend `RefCounted` (or are plain `Resource` data holders) — 
 
 One plain data object holding the entire save-relevant state: resources (population level, population count, budget capacity), **demand meters** (one non-negative int per active demand, GDD §4.0), the set of active demands, developments in play (with their *current-age* tags and demand values — reinterpretation mutates both), active policies, active interaction effects, pending event bill (GDD §3 event billing), main deck, event deck, hand, turn/age counters, lose-condition counters (consecutive debt turns), per-save discovery flags, and the RNG stream states.
 
-*Amended 2026-07-26:* `approval` and `migration_appeal` are removed. Approval's role is taken by the `fairness` demand from age 3; migration appeal's role is taken by demand-balance-driven population growth. Population is stored as both level and count; **only the level is read by any rule** — the count is display and score data. No logic beyond invariant checks. Serializes to/from a `Dictionary` (§6).
+*Amended 2026-07-26:* `approval` and `migration_appeal` are removed. Approval's role is taken by the `fairness` demand from age 3 (**Legitimacy** in the player-facing design); the old migration-growth dial is replaced by the `appeal` demand plus demand-balance-driven population growth. Population is stored as both level and count; **only the level is read by any rule** — the count is display and score data. No logic beyond invariant checks. Serializes to/from a `Dictionary` (§6).
 
 ### 4.2 TurnEngine — the phase state machine
 
@@ -104,7 +104,9 @@ The GDD rule *"the whole state before the start of the turn is persistent"* beco
 
 ### 4.3 DeckManager
 
-Ordered card-ID arrays with seeded shuffling. Supports the GDD's dynamic **injection**: `inject(cards, deck, placement)` where placement is a weighting policy (uniform, or top-N-biased if the design later wants opened paths to surface sooner — the mechanism costs nothing to have). Hand is a plain unordered set (retention until age end, GDD §4.1). No discard-pile cycling exists, matching the GDD.
+Ordered card-ID arrays with seeded shuffling. Supports the GDD's dynamic **injection**: `inject(cards, deck, placement)` where placement is a weighting policy (uniform, or top-N-biased if the design later wants opened paths to surface sooner — the mechanism costs nothing to have). No discard-pile cycling exists, matching the GDD.
+
+Hand is a plain unordered set with a **capacity** (base 5, raised by rare developments). The turn cannot be ended over capacity: `end_turn()` returns a `DiscardRequired` result listing the overflow count rather than advancing the phase, and the UI blocks on it exactly as it blocks on `EVENT_CHOICE`. Discarded cards go to the uniqueness ledger and never return.
 
 ### 4.4 Conditions & Effects — structured data, not a string DSL
 
@@ -126,10 +128,10 @@ Interactions and policies both modify rules ("[Industrial] costs +1", "all devel
 ### 4.6 InteractionEngine, EventMatcher, AgeTransition, Scoring
 
 - **InteractionEngine** — after each play, evaluates all `InteractionDef` conditions against GameState (a few dozen boolean checks; trivial). Emits `threshold_crossed` with first-discovery flag (checks ProfileManager). Handles per-age threshold overrides (GDD §4.8 step 4).
-- **EventMatcher** — implements the 5-draw matching rule (GDD §4.4) verbatim; unmatched cards return to deck bottom. Forced events are `EventDef`s with an `AgeTime` condition and a `forced` flag that bypasses the draw.
+- **EventMatcher** — draws until a trigger matches, with **no draw limit** (amended 2026-07-26); unmatched cards return to deck bottom, and a full pass with no match means no event this turn. Because triggers are deliberately permissive (GDD §4.4), the common case is a match within a few draws; the unbounded loop is still bounded by deck size and is trivially cheap at this scale. Also resolves **hazard cancellation** and **conditional options**. Cancellation is type-based: an event declares one `hazard` from a fixed vocabulary (`flood`, `fire`, `disease`, `famine`, `riot`, `raid`, `pollution`, `collapse`), developments carry a `cancels` list, and if any standing development cancels that hazard the event's negative effects are dropped before application. Conditional options are card-ID references checked against standing developments at resolution time. Forced events are `EventDef`s with an `AgeTime` condition and a `forced` flag that bypasses the draw.
 - **DemandEngine** — owns the demand meters. During UPKEEP it applies each active demand's growth step, then shuffles one emergency event per demand at or above threshold and one catastrophe event per demand at or above the catastrophe value. At age transition it activates the age's new demand by summing the printed `demands` values of every standing development. Thresholds and catastrophe values come from `content/rules.json`.
 - **PopulationEngine** — grows the population *count* each turn by `age.population_growth_base × growth_multiplier(demands over threshold) × (1 ± variance)` from the named `population` RNG stream, then recomputes the population *level* from the boundary table with a hysteresis margin so the level does not oscillate. Level changes are the only population output any other system reads.
-- **AgeTransition** — a pure transformation implementing GDD §4.8's seven steps: discard hand → generate transition choices from each development's `AgeVariant` table → apply Preserve/Adapt/Demolish results → recalc interactions under new-age tables → regenerate both decks from city state → adjust resources. Runs in one frame.
+- **AgeTransition** — a pure transformation implementing GDD §4.8. **Amended 2026-07-26:** Preserve/Adapt/Demolish is removed. The transition takes no player input except policy evolution, so it is a single function `(GameState, age) → (GameState, TransitionReport)`: discard hand → apply **supersession** (each development whose `CardDef.superseded_by` names a successor for this age is swapped for it) → recalc interactions under new-age tables → activate the new demand by summing standing `demands` values → regenerate both decks → adjust resources. The `TransitionReport` is the data the UI renders: supersessions applied, interactions gained/lost, new demand and its starting value, resulting growth steps. Runs in one frame.
 - **Scoring** — pure function `GameState → ScoreBreakdown` over the GDD §4.7 axes. Computable at any time (useful for a live "trajectory" display later, and for the balance simulator's fitness function).
 
 ### 4.7 Determinism
@@ -140,14 +142,14 @@ Interactions and policies both modify rules ("[Industrial] costs +1", "all devel
 
 ## 5. Content Pipeline (`res://content/`)
 
-**Format: one JSON file per definition** (amended from the original `.tres` plan, 2026-07): balancing is expected to happen by hand-editing and diffing content files, and plain JSON with string-ID references is far friendlier for that (and for agent-driven editing) than `.tres` sub-resource syntax. The cost — no inspector dropdowns, references checked by the validator instead of the loader — is covered by `tools/validate_content.gd` running in CI and before every headless test run. Full schema: [content-schema.md](content-schema.md).
+**Format: one JSON file per definition** (amended from the original `.tres` plan, 2026-07): balancing is expected to happen by hand-editing and diffing content files, and plain JSON with string-ID references is far friendlier for that (and for agent-driven editing) than `.tres` sub-resource syntax. The cost — no inspector dropdowns, references checked by the validator instead of the loader — is covered by `tools/validate_content.gd` running in CI and before every headless test run. Full schema: [content-schema.md](content-schema.md). Historical framing and writing guidance: [content-authoring.md](content-authoring.md).
 
 Definition types (all data-only Resources):
 
 | Type | Key fields (per GDD) |
 |---|---|
-| `CardDef` | id, name, category (Development/Action), budget_cost, ages_available, tags[], **demands{}** (Development only), prerequisites[] (CardDef refs), effects[], injections {main_deck: CardDef[], event_deck: EventDef[]}, opens_paths flag, `AgeVariant[]` (per-age tag/demand/effect reinterpretation + Preserve/Adapt/Demolish parameters, GDD §4.6) |
-| `EventDef` | id, trigger: Condition, forced flag, weight, **demand + severity** (emergency/catastrophe events only), options[] {text, budget_cost (billed next turn), effects[], injections} |
+| `CardDef` | id, name, category (Development/Action), budget_cost, ages_available, tags[], **demands{}** (Development only), **cancels[] (hazard types)**, **hand_limit_bonus**, prerequisites[] (CardDef refs), effects[], injections {main_deck: CardDef[], event_deck: EventDef[]}, opens_paths flag, **superseded_by{age → CardDef ref}** (optional, GDD §4.6) |
+| `EventDef` | id, trigger: Condition, forced flag, weight, **hazard**, **demand + severity** (emergency/catastrophe events only), options[] {text, budget_cost (billed next turn), **requires_development (optional CardDef ref)**, effects[], injections} |
 | `InteractionDef` | id, name, threshold: Condition, consequences: Effect[], per_age_overrides{} |
 | `PolicyDef` | id, ages, unlock: Condition, rule_modifiers: Effect[], swap_cost (budget + demand penalty), evolution_branches: PolicyDef[] |
 | `AgeDef` | id, year range, turn_count, **activates_demand**, **population_growth_base**, base card pool, base event pool, forced-event schedule, interaction table overrides, deck-generation rules |
@@ -245,7 +247,7 @@ A walking skeleton, sim-first — each step is playable/testable before the next
 6. **Desk UI** — skeuomorphic scene over the same signals; card-framework integration; event screen; lose/score screens.
 7. **MVP content** per GDD §10 (Age 1 card/event/interaction/policy lists), tuned via the simulator.
 
-Age transitions and meta-progression UI come after MVP, but nothing above needs rework for them: AgeTransition is a pure function slot (§4.6), and the profile already records discoveries.
+Age transitions and meta-progression UI come after MVP, but nothing above needs rework for them: AgeTransition is a pure function slot (§4.6), and the profile already records discoveries. The transition needing no player input beyond policy evolution makes it cheaper still — it is one function call plus a report screen, not an interactive editor over the whole city.
 
 ---
 

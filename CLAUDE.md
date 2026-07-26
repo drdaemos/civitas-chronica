@@ -24,21 +24,35 @@ These rules are binding for all work on this repo (human or agent):
 - Run tests: `& "<godot_console>" --headless --path . --script res://tools/run_tests.gd`
 - Validate content: `& "<godot_console>" --headless --path . --script res://tools/validate_content.gd`
 - Balance simulation: `& "<godot_console>" --headless --path . --script res://tools/simulate.gd`
+- Compile check: `& "<godot_console>" --headless --path . --script res://tools/check_compile.gd`
+- Glue-layer smoke test: `& "<godot_console>" --headless --path . --script res://tools/smoke_ui.gd`
+
+After adding a script with a new `class_name`, run the editor once so the global
+class cache picks it up, or headless runs fail to parse it:
+`& "<godot_console>" --headless --path . --editor --quit-after 200`
 
 ## Architecture map
 
 ```
 core/state/    GameState, DevelopmentState, RngService   (pure data + RNG)
-core/defs/     CardDef, EventDef, InteractionDef,
-               PolicyDef, AgeDef, ConditionDef, EffectDef (typed views over JSON)
-core/          ContentDB (loads/validates res://content)
-core/engine/   TurnEngine, DeckManager, ModifierPipeline,
-               InteractionEngine, EventMatcher, Scoring, GameSetup
-content/       ages/ cards/ events/ interactions/ policies/  (JSON, one file per def)
-game/          autoloads: GameController, SaveManager, ProfileManager, SignalBus
+core/defs/     CardDef, EventDef, EventOptionDef, InteractionDef, PolicyDef,
+               AgeDef, ConditionDef, EffectDef,
+               RulesDef + DemandDef (content/rules.json)  (typed views over JSON)
+core/          ContentDB (loads/validates res://content, incl. rules.json)
+core/engine/   TurnEngine, DemandEngine, PopulationEngine, DeckManager,
+               ModifierPipeline, InteractionEngine, EventMatcher,
+               AgeTransition + TransitionReport, Scoring, GameSetup
+content/       rules.json (demand vocabulary + global tuning),
+               ages/ cards/ events/ interactions/ policies/  (JSON, one file per def)
+game/          autoloads: GameController, SaveManager, ProfileManager
 ui/            data_view (MVP UI), later: desk, city_view
-tools/         run_tests.gd, validate_content.gd, simulate.gd (headless)
+tools/         run_tests.gd, validate_content.gd, simulate.gd,
+               check_compile.gd, smoke_ui.gd (headless)
 tests/         test scripts run by tools/run_tests.gd
 ```
+
+The demand set itself is content (`content/rules.json`), not code: no engine file
+names a specific demand, and thresholds, population boundaries and growth
+multipliers are all tunable there (GDD §4.0).
 
 GDScript style: tabs for indentation, `class_name` on every core class, snake_case files.

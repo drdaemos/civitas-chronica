@@ -3,14 +3,13 @@
 	"title": "Border Raid",
 	"text": "Riders strike the outlying farms at dusk, driving off cattle and burning a barn; the villages look to the city that claims to protect them.",
 	"trigger": {"type": "tag_count", "tag": "military", "op": ">=", "value": 1},
+	"hazard": "raid",
 	"options": [
 		{"text": "Ride out and run them down", "cost": 3,
-			"effects": [
-				{"type": "resource_delta", "resource": "approval", "amount": 4}
-			]},
+			"effects": []},
 		{"text": "Pay them to raid elsewhere", "cost": 5,
 			"effects": [
-				{"type": "resource_delta", "resource": "approval", "amount": -3}
+				{"type": "demand_delta", "demand": "provision", "amount": 2}
 			]},
 		{"text": "Fortify the watch posts on the roads", "cost": 2,
 			"effects": [

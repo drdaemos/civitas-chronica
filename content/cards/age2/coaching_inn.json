@@ -4,9 +4,9 @@
 	"category": "development",
 	"cost": 4,
 	"tags": ["infrastructure"],
+	"demands": {"provision": -1, "appeal": -1},
 	"effects": [
-		{"type": "income", "amount": 1},
-		{"type": "resource_delta", "resource": "migration_appeal", "amount": 1}
+		{"type": "income", "amount": 1}
 	],
 	"flavor": "Fresh horses in eight minutes, a fair dinner in twenty; everyone bound anywhere passes through the yard of the Golden Fleece."
 }

@@ -6,9 +6,11 @@
 	"years_per_turn": 10,
 	"base_draw": 3,
 	"base_budget": 8,
+	"activates_demand": "provision",
+	"population_growth_base": 260,
 	"policy_slots": 1,
 	"next_age": "age2",
-	"start": {"population": 500, "approval": 70, "migration_appeal": 4},
+	"start": {"population_count": 4000},
 	"base_deck": [
 		"town_market",
 		"river_docks",

@@ -6,21 +6,20 @@
 	"options": [
 		{"text": "Charter the new manufactories", "cost": 4,
 			"effects": [
-				{"type": "resource_delta", "resource": "approval", "amount": -3},
-				{"type": "resource_delta", "resource": "migration_appeal", "amount": 1},
-				{"type": "inject_main", "cards": ["steam_engine"]}
+				{"type": "inject_main", "cards": ["steam_engine"]},
+				{"type": "demand_delta", "demand": "health", "amount": 2},
+				{"type": "demand_delta", "demand": "provision", "amount": -1}
 			]},
 		{"text": "Restrain the mills by ordinance", "cost": 2,
 			"effects": [
-				{"type": "resource_delta", "resource": "approval", "amount": 4},
-				{"type": "resource_delta", "resource": "migration_appeal", "amount": -1},
-				{"type": "remove_events", "events": ["labor_unrest"]}
+				{"type": "remove_events", "events": ["labor_unrest"]},
+				{"type": "demand_delta", "demand": "provision", "amount": 1}
 			]},
 		{"text": "Let it run unchecked", "cost": 0,
 			"effects": [
-				{"type": "resource_delta", "resource": "approval", "amount": -6},
-				{"type": "resource_delta", "resource": "migration_appeal", "amount": 1},
-				{"type": "inject_events", "events": ["labor_unrest", "soot_and_smoke"]}
+				{"type": "inject_events", "events": ["labor_unrest", "soot_and_smoke"]},
+				{"type": "demand_delta", "demand": "security", "amount": 1},
+				{"type": "resource_delta", "resource": "population_count", "amount": 150}
 			]}
 	]
 }

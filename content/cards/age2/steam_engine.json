@@ -4,6 +4,7 @@
 	"category": "development",
 	"cost": 6,
 	"tags": ["industrial"],
+	"demands": {"health": 2},
 	"effects": [
 		{"type": "income", "amount": 2}
 	],

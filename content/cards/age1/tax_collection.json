@@ -5,7 +5,8 @@
 	"cost": 1,
 	"effects": [
 		{"type": "resource_delta", "resource": "budget", "amount": 4},
-		{"type": "resource_delta", "resource": "approval", "amount": -5}
+		{"type": "demand_delta", "demand": "provision", "amount": 1},
+		{"type": "demand_delta", "demand": "fairness", "amount": 2}
 	],
 	"flavor": "Collectors go door to door with the council seal; the treasury swells, and every doorstep remembers it."
 }

@@ -4,16 +4,10 @@
 	"category": "development",
 	"cost": 5,
 	"tags": ["military", "industrial"],
+	"demands": {"security": -2, "health": 1},
 	"effects": [
 		{"type": "income", "amount": 1}
 	],
 	"inject_events": ["powder_explosion"],
-	"flavor": "Saltpeter, charcoal, and a mill set prudently outside the gates; princes pay in silver and ask few questions.",
-	"age_variants": {
-		"age2": {
-			"preserved": {"tags": ["military", "industrial"], "effects": [{"type": "income", "amount": 1}, {"type": "approval_per_turn", "amount": -1}]},
-			"adapted": {"cost": 4, "tags": ["industrial"], "effects": [{"type": "income", "amount": 2}]},
-			"demolish_approval": -1
-		}
-	}
+	"flavor": "Saltpeter, charcoal, and a mill set prudently outside the gates; princes pay in silver and ask few questions."
 }

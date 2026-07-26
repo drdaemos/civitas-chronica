@@ -4,14 +4,9 @@
 	"category": "development",
 	"cost": 3,
 	"tags": ["science"],
+	"demands": {"health": -1},
 	"effects": [
 		{"type": "pop_growth_mult", "amount": 0.05}
 	],
-	"flavor": "Dried herbs, glass vessels, and a ledger of what worked; the sick of three parishes come to the shop with the painted serpent.",
-	"age_variants": {
-		"age2": {
-			"adapted": {"cost": 3, "tags": ["science"], "effects": [{"type": "income", "amount": 1}, {"type": "pop_growth_mult", "amount": 0.05}]},
-			"demolish_approval": -2
-		}
-	}
+	"flavor": "Dried herbs, glass vessels, and a ledger of what worked; the sick of three parishes come to the shop with the painted serpent."
 }

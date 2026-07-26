@@ -6,18 +6,16 @@
 	"options": [
 		{"text": "Embrace the reform", "cost": 1,
 			"effects": [
-				{"type": "resource_delta", "resource": "approval", "amount": 8},
-				{"type": "inject_events", "events": ["religious_unrest"]}
+				{"type": "inject_events", "events": ["religious_unrest"]},
+				{"type": "demand_delta", "demand": "fairness", "amount": -2}
 			]},
 		{"text": "Suppress the new confession", "cost": 5,
 			"effects": [
-				{"type": "resource_delta", "resource": "approval", "amount": -6},
 				{"type": "remove_events", "events": ["religious_unrest", "heresy_trial", "wandering_preacher"]}
 			]},
 		{"text": "Tolerate both confessions", "cost": 0,
 			"effects": [
-				{"type": "resource_delta", "resource": "approval", "amount": 2},
-				{"type": "resource_delta", "resource": "migration_appeal", "amount": 1}
+				{"type": "resource_delta", "resource": "population_count", "amount": 80}
 			]}
 	]
 }

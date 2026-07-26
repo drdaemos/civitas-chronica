@@ -7,9 +7,8 @@ extends RefCounted
 ## referenced content ids are looked up in the ContentDB (null-safe).
 
 const RESOURCE_NAMES: Dictionary = {
-	"population": "Population",
-	"approval": "Approval",
-	"migration_appeal": "Migration appeal",
+	"population_count": "Population",
+	"population_level": "Population level",
 	"budget": "Budget",
 }
 
@@ -20,10 +19,16 @@ static func describe(effect: EffectDef, db: ContentDB) -> String:
 			return "%s %+d" % [_resource_name(effect.resource), effect.amount_int()]
 		"income":
 			return "%+d budget per turn" % effect.amount_int()
-		"approval_per_turn":
-			return "Approval %+d per turn" % effect.amount_int()
-		"migration_per_turn":
-			return "Migration appeal %+d per turn" % effect.amount_int()
+		"demand_delta":
+			# One-time, and clamped at 0 — spending a reduction on a demand that
+			# is already satisfied wastes it (GDD 4.0).
+			return "%s %+d now" % [_demand_name(effect.demand, db), effect.amount_int()]
+		"demand_modifier":
+			return "%s grows %+d per turn" % [_demand_name(effect.demand, db), effect.amount_int()]
+		"demand_modifier_per_tag":
+			return "%s grows %+d per turn for every %s development" % [
+				_demand_name(effect.demand, db), effect.amount_int(), effect.tag,
+			]
 		"cost_modifier":
 			var scope: String = "All cards" if effect.tag == "" \
 					else _capitalize(effect.tag) + " developments"
@@ -31,9 +36,6 @@ static func describe(effect: EffectDef, db: ContentDB) -> String:
 			if effect.min_cost >= 0:
 				text += " (min %d)" % effect.min_cost
 			return text
-		"draw_bonus":
-			var n: int = effect.amount_int()
-			return "%+d card%s drawn per turn" % [n, "" if absi(n) == 1 else "s"]
 		"pop_growth_mult":
 			return "Population growth %+d%%" % int(round(effect.amount * 100.0))
 		"unlock_policy":
@@ -69,6 +71,32 @@ static func _capitalize(word: String) -> String:
 	if word.is_empty():
 		return word
 	return word[0].to_upper() + word.substr(1)
+
+
+static func _demand_name(demand_id: String, db: ContentDB) -> String:
+	if db != null:
+		var demand: DemandDef = db.rules.get_demand(demand_id)
+		if demand != null:
+			return demand.display_name
+	return demand_id
+
+
+## One printed demand value of a development: the number that both moves the
+## meter now and feeds that demand's growth step for as long as it stands.
+static func describe_printed_demand(demand_id: String, amount: int, db: ContentDB) -> String:
+	return "%s %+d" % [_demand_name(demand_id, db), amount]
+
+
+## Every printed value on a development, in stable order.
+static func describe_printed_demands(demands: Dictionary, db: ContentDB) -> Array[String]:
+	var lines: Array[String] = []
+	var ids: Array = demands.keys()
+	ids.sort()
+	for demand_id: String in ids:
+		var amount: int = int(demands[demand_id])
+		if amount != 0:
+			lines.append(describe_printed_demand(demand_id, amount, db))
+	return lines
 
 
 static func _policy_name(policy_id: String, db: ContentDB) -> String:

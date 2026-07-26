@@ -4,15 +4,9 @@
 	"category": "development",
 	"cost": 3,
 	"tags": ["military"],
-	"effects": [
-		{"type": "resource_delta", "resource": "approval", "amount": 2}
-	],
+	"demands": {"security": -2},
+	"cancels": ["riot"],
+	"effects": [],
 	"inject_main": ["arsenal"],
-	"flavor": "Watchmen with lanterns and halberds walk the streets after curfew; petty crime learns to keep its head down.",
-	"age_variants": {
-		"age2": {
-			"adapted": {"cost": 3, "tags": ["military"], "effects": [{"type": "approval_per_turn", "amount": 1}]},
-			"demolish_approval": -2
-		}
-	}
+	"flavor": "Watchmen with lanterns and halberds walk the streets after curfew; petty crime learns to keep its head down."
 }
