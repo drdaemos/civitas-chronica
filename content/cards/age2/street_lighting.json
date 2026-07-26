@@ -4,7 +4,12 @@
 	"category": "action",
 	"cost": 2,
 	"effects": [
-		{"type": "demand_delta", "demand": "security", "amount": -2}
+		{
+			"type": "demand_delta",
+			"demand": "security",
+			"amount": -3
+		}
 	],
-	"flavor": "Oil lamps on posts from the exchange to the bridge; the evening streets fill with people who have nothing to hide."
+	"flavor": "Oil lamps on posts from the exchange to the bridge; the evening streets fill with people who have nothing to hide.",
+	"tags": []
 }

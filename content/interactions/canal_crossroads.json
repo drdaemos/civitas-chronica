@@ -1,0 +1,31 @@
+{
+	"id": "canal_crossroads",
+	"name": "Canal Crossroads",
+	"description": "Canal Crossroads changes both the town's advantages and the pressures created by its specialization.",
+	"threshold": {
+		"type": "all_of",
+		"conditions": [
+			{
+				"type": "has_development",
+				"id": "canal_depot"
+			},
+			{
+				"type": "tag_count",
+				"tag": "infrastructure",
+				"op": ">=",
+				"value": 12
+			}
+		]
+	},
+	"effects": [
+		{
+			"type": "income",
+			"amount": 2
+		},
+		{
+			"type": "demand_modifier",
+			"demand": "security",
+			"amount": 1
+		}
+	]
+}

@@ -1,0 +1,25 @@
+{
+	"id": "green_procurement",
+	"name": "Green Procurement",
+	"description": "Green Procurement solves one municipal problem by accepting a visible constraint elsewhere.",
+	"unlock": {
+		"type": "interaction_active",
+		"id": "green_transition"
+	},
+	"swap_cost_budget": 3,
+	"swap_cost_demands": {
+		"fairness": 1
+	},
+	"effects": [
+		{
+			"type": "demand_modifier",
+			"demand": "health",
+			"amount": -1
+		},
+		{
+			"type": "cost_modifier",
+			"tag": "industrial",
+			"amount": 1
+		}
+	]
+}

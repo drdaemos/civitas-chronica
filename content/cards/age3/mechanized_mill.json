@@ -1,0 +1,20 @@
+{
+	"id": "mechanized_mill",
+	"name": "Mechanized Mill",
+	"category": "development",
+	"cost": 0,
+	"tags": [
+		"industrial"
+	],
+	"demands": {
+		"health": 2,
+		"fairness": 1
+	},
+	"effects": [
+		{
+			"type": "income",
+			"amount": 2
+		}
+	],
+	"flavor": "Smoke, wages, and useful production follow Mechanized Mill."
+}

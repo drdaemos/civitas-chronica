@@ -1,0 +1,17 @@
+{
+	"id": "normal_school",
+	"name": "Normal School",
+	"category": "development",
+	"cost": 5,
+	"tags": [
+		"science",
+		"cultural"
+	],
+	"demands": {
+		"fairness": -1
+	},
+	"prerequisites": [
+		"mechanics_institute"
+	],
+	"flavor": "Practical knowledge is made municipal through Normal School."
+}

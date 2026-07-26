@@ -3,11 +3,24 @@
 	"name": "Town Market",
 	"category": "development",
 	"cost": 3,
-	"tags": ["trade"],
-	"demands": {"provision": -1},
-	"effects": [
-		{"type": "income", "amount": 1}
+	"tags": [
+		"trade"
 	],
-	"inject_main": ["merchant_guild"],
-	"flavor": "Stalls rise in the square each market day, and the town learns the rhythm of buying and selling."
+	"demands": {
+		"provision": -1
+	},
+	"effects": [
+		{
+			"type": "income",
+			"amount": 1
+		}
+	],
+	"inject_main": [
+		"orchard_lease",
+		"merchant_guild"
+	],
+	"flavor": "Stalls rise in the square each market day, and the town learns the rhythm of buying and selling.",
+	"superseded_by": {
+		"age2": "covered_market_hall"
+	}
 }

@@ -1,0 +1,18 @@
+{
+	"id": "technical_university",
+	"name": "Technical University",
+	"category": "development",
+	"cost": 8,
+	"tags": [
+		"science",
+		"industrial"
+	],
+	"demands": {
+		"health": -1,
+		"fairness": 1
+	},
+	"prerequisites": [
+		"comprehensive_school"
+	],
+	"flavor": "Practical knowledge is made municipal through Technical University."
+}

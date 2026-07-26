@@ -1,0 +1,32 @@
+{
+	"id": "inclusive_city",
+	"name": "Inclusive City",
+	"description": "Inclusive City changes both the town's advantages and the pressures created by its specialization.",
+	"threshold": {
+		"type": "all_of",
+		"conditions": [
+			{
+				"type": "has_development",
+				"id": "migrant_welcome_center"
+			},
+			{
+				"type": "tag_count",
+				"tag": "cultural",
+				"op": ">=",
+				"value": 22
+			}
+		]
+	},
+	"effects": [
+		{
+			"type": "demand_modifier",
+			"demand": "fairness",
+			"amount": -1
+		},
+		{
+			"type": "demand_modifier",
+			"demand": "appeal",
+			"amount": -1
+		}
+	]
+}

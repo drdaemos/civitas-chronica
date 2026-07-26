@@ -2,21 +2,49 @@
 	"id": "soot_and_smoke",
 	"title": "Soot and Smoke",
 	"text": "The washing on the lines is grey by noon and the physicians report a cough that does not leave; the works that pay the city wages are the same works darkening its sky.",
-	"trigger": {"type": "tag_count", "tag": "industrial", "op": ">=", "value": 3},
-	"hazard": "pollution",
+	"trigger": {
+		"type": "has_development",
+		"id": "steam_engine"
+	},
 	"options": [
-		{"text": "Tall chimneys and smoke inspectors", "cost": 5,
+		{
+			"text": "Fund a thorough municipal response",
+			"cost": 4,
 			"effects": [
-				{"type": "demand_delta", "demand": "health", "amount": -1},
-				{"type": "remove_events", "events": ["soot_and_smoke"]}
-			]},
-		{"text": "Move the works downwind of the fine streets", "cost": 3,
-			"effects": []},
-		{"text": "It is the smell of money", "cost": 0,
+				{
+					"type": "demand_delta",
+					"demand": "security",
+					"amount": -2
+				}
+			]
+		},
+		{
+			"text": "Use a limited and temporary measure",
+			"cost": 1,
 			"effects": [
-				{"type": "demand_delta", "demand": "health", "amount": 2},
-				{"type": "resource_delta", "resource": "population_count", "amount": -60},
-				{"type": "inject_events", "events": ["soot_and_smoke"]}
-			]}
-	]
+				{
+					"type": "demand_delta",
+					"demand": "security",
+					"amount": 1
+				}
+			]
+		},
+		{
+			"text": "Leave households and local institutions to cope",
+			"cost": 0,
+			"effects": [
+				{
+					"type": "demand_delta",
+					"demand": "security",
+					"amount": 2
+				},
+				{
+					"type": "resource_delta",
+					"resource": "population_count",
+					"amount": -40
+				}
+			]
+		}
+	],
+	"hazard": "pollution"
 }

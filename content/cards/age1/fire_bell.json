@@ -1,0 +1,17 @@
+{
+	"id": "fire_bell",
+	"name": "Fire Bell",
+	"category": "development",
+	"cost": 2,
+	"tags": [
+		"military",
+		"cultural"
+	],
+	"demands": {
+		"security": -1
+	},
+	"flavor": "The town commits labor and authority to Fire Bell.",
+	"cancels": [
+		"fire"
+	]
+}

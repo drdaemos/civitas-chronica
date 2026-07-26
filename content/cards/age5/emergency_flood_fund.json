@@ -1,0 +1,17 @@
+{
+	"id": "emergency_flood_fund",
+	"name": "Emergency Flood Fund",
+	"category": "action",
+	"cost": 4,
+	"effects": [
+		{
+			"type": "demand_delta",
+			"demand": "health",
+			"amount": -3
+		}
+	],
+	"prerequisites": [
+		"flood_resilience_scheme"
+	],
+	"flavor": "Emergency Flood Fund buys the council time, but no temporary measure is free of consequence."
+}

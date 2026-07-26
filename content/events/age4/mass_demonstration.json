@@ -1,0 +1,59 @@
+{
+	"id": "mass_demonstration",
+	"title": "Mass Demonstration",
+	"text": "Mass Demonstration exposes how long the town has allowed this municipal responsibility to exceed its capacity.",
+	"trigger": {
+		"type": "demand",
+		"demand": "fairness",
+		"op": ">=",
+		"value": 5
+	},
+	"hazard": "riot",
+	"demand": "fairness",
+	"severity": "emergency",
+	"options": [
+		{
+			"text": "Commit extraordinary funds",
+			"cost": 7,
+			"effects": [
+				{
+					"type": "demand_delta",
+					"demand": "fairness",
+					"amount": -2
+				}
+			]
+		},
+		{
+			"text": "Contain the worst effects",
+			"cost": 1,
+			"effects": [
+				{
+					"type": "demand_delta",
+					"demand": "fairness",
+					"amount": 0
+				},
+				{
+					"type": "resource_delta",
+					"resource": "population_count",
+					"amount": -120
+				}
+			]
+		},
+		{
+			"text": "Accept the losses",
+			"cost": 0,
+			"effects": [
+				{
+					"type": "demand_delta",
+					"demand": "fairness",
+					"amount": 1
+				},
+				{
+					"type": "resource_delta",
+					"resource": "population_count",
+					"amount": -240
+				}
+			]
+		}
+	]
+}

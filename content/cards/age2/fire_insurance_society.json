@@ -1,0 +1,17 @@
+{
+	"id": "fire_insurance_society",
+	"name": "Fire Insurance Society",
+	"category": "development",
+	"cost": 4,
+	"tags": [
+		"trade",
+		"military"
+	],
+	"demands": {
+		"security": -1
+	},
+	"flavor": "Contracts, carts, and arguments gather around Fire Insurance Society.",
+	"inject_main": [
+		"engine_house"
+	]
+}

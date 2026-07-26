@@ -1,0 +1,67 @@
+{
+	"id": "age4",
+	"name": "Urbanization and Civic Provision",
+	"year_start": 1850,
+	"year_end": 1950,
+	"years_per_turn": 5,
+	"base_draw": 3,
+	"base_budget": 18,
+	"activates_demand": "health",
+	"population_growth_base": 900,
+	"policy_slots": 3,
+	"next_age": "age5",
+	"base_deck": [
+		"coal_gas_works",
+		"dairy_plant",
+		"electric_power_station",
+		"factory_inspectorate",
+		"fire_brigade",
+		"housing_inspectorate",
+		"labor_exchange",
+		"maternity_clinic",
+		"municipal_council_chamber",
+		"music_hall",
+		"police_station",
+		"public_accounts_department",
+		"public_baths",
+		"public_library_annex",
+		"public_park_system",
+		"railway_station",
+		"railway_workshops",
+		"refuse_department",
+		"river_port",
+		"slaughterhouse",
+		"technical_college",
+		"telephone_exchange",
+		"tenement_blocks",
+		"textile_factory",
+		"trades_council",
+		"tramway",
+		"war_memorial",
+		"water_treatment_works"
+	],
+	"base_events": [
+		"cholera_warning",
+		"tenement_fire",
+		"factory_accident",
+		"railway_strike",
+		"rent_protest",
+		"sewer_debt",
+		"smog_week",
+		"electrical_fire",
+		"refugee_train",
+		"school_crowding",
+		"market_bypass",
+		"wartime_rationing"
+	],
+	"forced_events": [
+		{
+			"event": "municipal_reform_code",
+			"turn": 8
+		},
+		{
+			"event": "wartime_requisition_order",
+			"turn": 16
+		}
+	]
+}

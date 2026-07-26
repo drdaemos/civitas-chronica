@@ -3,11 +3,22 @@
 	"name": "Iron Foundry",
 	"category": "development",
 	"cost": 6,
-	"tags": ["industrial"],
-	"demands": {"health": 2, "security": 1},
-	"prerequisites": ["arsenal"],
+	"tags": [
+		"industrial"
+	],
+	"demands": {
+		"health": 2,
+		"fairness": 1,
+		"provision": 1
+	},
+	"prerequisites": [
+		"arsenal"
+	],
 	"effects": [
-		{"type": "income", "amount": 2}
+		{
+			"type": "income",
+			"amount": 2
+		}
 	],
 	"flavor": "Furnaces roar day and night casting cannon and bell alike; the smoke settles on washing lines across the east quarter."
 }

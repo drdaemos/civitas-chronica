@@ -1,0 +1,17 @@
+{
+	"id": "bookshop",
+	"name": "Town Bookshop",
+	"category": "development",
+	"cost": 3,
+	"tags": [
+		"trade",
+		"cultural"
+	],
+	"prerequisites": [
+		"coffee_house"
+	],
+	"flavor": "Contracts, carts, and arguments gather around Town Bookshop.",
+	"inject_main": [
+		"circulating_library"
+	]
+}

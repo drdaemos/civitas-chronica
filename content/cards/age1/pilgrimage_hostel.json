@@ -1,0 +1,23 @@
+{
+	"id": "pilgrimage_hostel",
+	"name": "Pilgrimage Hostel",
+	"category": "development",
+	"cost": 3,
+	"tags": [
+		"religious",
+		"trade"
+	],
+	"demands": {
+		"provision": -1
+	},
+	"effects": [
+		{
+			"type": "income",
+			"amount": 1
+		}
+	],
+	"prerequisites": [
+		"stone_church"
+	],
+	"flavor": "Ritual, charity, and local obligation meet at Pilgrimage Hostel."
+}

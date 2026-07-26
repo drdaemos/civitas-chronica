@@ -1,0 +1,17 @@
+{
+	"id": "granary_cooperative",
+	"name": "Granary Cooperative",
+	"category": "development",
+	"cost": 5,
+	"tags": [
+		"trade",
+		"infrastructure"
+	],
+	"demands": {
+		"provision": -2
+	},
+	"prerequisites": [
+		"corn_exchange"
+	],
+	"flavor": "Contracts, carts, and arguments gather around Granary Cooperative."
+}

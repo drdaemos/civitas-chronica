@@ -1,0 +1,16 @@
+{
+	"id": "public_park",
+	"name": "Public Park",
+	"category": "development",
+	"cost": 5,
+	"tags": [
+		"cultural"
+	],
+	"demands": {
+		"appeal": -2
+	},
+	"prerequisites": [
+		"assembly_hall"
+	],
+	"flavor": "Public life acquires a new center in Public Park."
+}

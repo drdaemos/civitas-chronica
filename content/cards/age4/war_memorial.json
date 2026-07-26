@@ -1,0 +1,17 @@
+{
+	"id": "war_memorial",
+	"name": "War Memorial",
+	"category": "development",
+	"cost": 4,
+	"tags": [
+		"cultural",
+		"military"
+	],
+	"demands": {
+		"fairness": -1
+	},
+	"flavor": "Public life acquires a new center in War Memorial.",
+	"inject_main": [
+		"civil_defence_shelters"
+	]
+}

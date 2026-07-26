@@ -1,0 +1,17 @@
+{
+	"id": "wastewater_upgrade",
+	"name": "Wastewater Upgrade",
+	"category": "development",
+	"cost": 7,
+	"tags": [
+		"infrastructure",
+		"science"
+	],
+	"demands": {
+		"health": -2
+	},
+	"prerequisites": [
+		"riverside_park"
+	],
+	"flavor": "Stone, timber, taxes, and maintenance make possible Wastewater Upgrade."
+}

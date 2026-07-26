@@ -1,0 +1,17 @@
+{
+	"id": "renewable_energy_cooperative",
+	"name": "Renewable Energy Co-operative",
+	"category": "development",
+	"cost": 7,
+	"tags": [
+		"industrial",
+		"cultural"
+	],
+	"demands": {
+		"health": -1
+	},
+	"flavor": "Smoke, wages, and useful production follow Renewable Energy Co-operative.",
+	"inject_main": [
+		"solar_farm"
+	]
+}

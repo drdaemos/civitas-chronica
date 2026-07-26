@@ -1,0 +1,18 @@
+{
+	"id": "conscription_office",
+	"name": "Conscription Office",
+	"category": "development",
+	"cost": 4,
+	"tags": [
+		"military",
+		"infrastructure"
+	],
+	"demands": {
+		"security": -2,
+		"fairness": 1
+	},
+	"flavor": "The town commits labor and authority to Conscription Office.",
+	"inject_main": [
+		"civic_guard"
+	]
+}

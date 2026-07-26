@@ -1,0 +1,31 @@
+{
+	"id": "commuter_town",
+	"name": "Commuter Town",
+	"description": "Commuter Town changes both the town's advantages and the pressures created by its specialization.",
+	"threshold": {
+		"type": "all_of",
+		"conditions": [
+			{
+				"type": "has_development",
+				"id": "commuter_station"
+			},
+			{
+				"type": "tag_count",
+				"tag": "infrastructure",
+				"op": ">=",
+				"value": 25
+			}
+		]
+	},
+	"effects": [
+		{
+			"type": "demand_modifier",
+			"demand": "appeal",
+			"amount": -2
+		},
+		{
+			"type": "income",
+			"amount": 1
+		}
+	]
+}

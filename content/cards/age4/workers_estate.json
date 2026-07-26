@@ -1,0 +1,17 @@
+{
+	"id": "workers_estate",
+	"name": "Workers' Estate",
+	"category": "development",
+	"cost": 6,
+	"tags": [
+		"infrastructure",
+		"cultural"
+	],
+	"demands": {
+		"health": -1
+	},
+	"prerequisites": [
+		"tenement_blocks"
+	],
+	"flavor": "Stone, timber, taxes, and maintenance make possible Workers' Estate."
+}

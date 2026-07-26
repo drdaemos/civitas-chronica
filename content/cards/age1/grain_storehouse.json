@@ -3,11 +3,17 @@
 	"name": "Grain Storehouse",
 	"category": "development",
 	"cost": 3,
-	"tags": ["infrastructure"],
-	"demands": {"provision": -2},
-	"cancels": ["famine"],
-	"effects": [
-		{"type": "pop_growth_mult", "amount": 0.05}
+	"tags": [
+		"infrastructure"
 	],
-	"flavor": "A stone granary against the lean years; a city that can feed itself in winter grows bolder in spring."
+	"demands": {
+		"provision": -2
+	},
+	"flavor": "A stone granary against the lean years; a city that can feed itself in winter grows bolder in spring.",
+	"inject_main": [
+		"emergency_grain_purchase"
+	],
+	"cancels": [
+		"famine"
+	]
 }

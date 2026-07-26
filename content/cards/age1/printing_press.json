@@ -3,10 +3,16 @@
 	"name": "Printing Press",
 	"category": "development",
 	"cost": 5,
-	"tags": ["science", "cultural"],
-	"demands": {"fairness": -1},
-	"prerequisites": ["parish_school"],
-	"hand_limit_bonus": 1,
-	"effects": [],
+	"tags": [
+		"science",
+		"cultural"
+	],
+	"demands": {
+		"health": -1,
+		"fairness": 1
+	},
+	"prerequisites": [
+		"parish_school"
+	],
 	"flavor": "A printer sets up shop with a secondhand press; ideas now arrive in the city faster than travelers do."
 }

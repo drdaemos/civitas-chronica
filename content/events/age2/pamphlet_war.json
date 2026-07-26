@@ -2,20 +2,49 @@
 	"id": "pamphlet_war",
 	"title": "Pamphlet War",
 	"text": "Two anonymous pamphleteers have divided the city into readers of one and burners of the other; the printers, at least, are paid by both sides.",
-	"trigger": {"type": "tag_count", "tag": "cultural", "op": ">=", "value": 3},
+	"trigger": {
+		"type": "has_development",
+		"id": "printing_press"
+	},
 	"options": [
-		{"text": "Sponsor the moderate printers", "cost": 3,
+		{
+			"text": "Fund a thorough municipal response",
+			"cost": 4,
 			"effects": [
-				{"type": "demand_delta", "demand": "security", "amount": -1}
-			]},
-		{"text": "Prosecute the printers for libel", "cost": 2,
+				{
+					"type": "demand_delta",
+					"demand": "security",
+					"amount": -2
+				}
+			]
+		},
+		{
+			"text": "Use a limited and temporary measure",
+			"cost": 1,
 			"effects": [
-				{"type": "demand_delta", "demand": "security", "amount": 1},
-				{"type": "remove_events", "events": ["pamphlet_war"]}
-			]},
-		{"text": "Read them with amusement", "cost": 0,
+				{
+					"type": "demand_delta",
+					"demand": "security",
+					"amount": 1
+				}
+			]
+		},
+		{
+			"text": "Leave households and local institutions to cope",
+			"cost": 0,
 			"effects": [
-				{"type": "demand_delta", "demand": "security", "amount": 1}
-			]}
-	]
+				{
+					"type": "demand_delta",
+					"demand": "security",
+					"amount": 2
+				},
+				{
+					"type": "resource_delta",
+					"resource": "population_count",
+					"amount": -40
+				}
+			]
+		}
+	],
+	"hazard": "riot"
 }

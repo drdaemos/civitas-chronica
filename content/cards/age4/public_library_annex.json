@@ -1,0 +1,18 @@
+{
+	"id": "public_library_annex",
+	"name": "Public Library Annex",
+	"category": "development",
+	"cost": 4,
+	"tags": [
+		"science",
+		"cultural"
+	],
+	"demands": {
+		"fairness": -1
+	},
+	"flavor": "Practical knowledge is made municipal through Public Library Annex.",
+	"hand_limit_bonus": 1,
+	"inject_main": [
+		"municipal_museum"
+	]
+}

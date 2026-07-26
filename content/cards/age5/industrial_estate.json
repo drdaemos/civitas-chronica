@@ -1,0 +1,27 @@
+{
+	"id": "industrial_estate",
+	"name": "Industrial Estate",
+	"category": "development",
+	"cost": 7,
+	"tags": [
+		"industrial",
+		"infrastructure"
+	],
+	"demands": {
+		"health": 2,
+		"fairness": 1
+	},
+	"effects": [
+		{
+			"type": "income",
+			"amount": 2
+		}
+	],
+	"prerequisites": [
+		"business_park"
+	],
+	"flavor": "Smoke, wages, and useful production follow Industrial Estate.",
+	"inject_main": [
+		"factory_rescue_package"
+	]
+}

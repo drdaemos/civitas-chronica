@@ -6,7 +6,7 @@ extends RefCounted
 ## only at the final age, heritage scoring, and a mid-transition save roundtrip.
 
 
-func run(t: TestContext) -> void:
+func run(t: TestContext) -> bool:
 	var db: ContentDB = Fixtures.build_db()
 
 	t.label("end of a non-final age suspends into transition, not game_over")
@@ -174,6 +174,8 @@ func run(t: TestContext) -> void:
 	var idle_report: TransitionReport = AgeTransition.apply(idle, db)
 	t.eq(idle_report.from_age, "", "empty report")
 	t.eq(idle_report.events.size(), 0, "no events emitted")
+	return true
+
 
 
 # --- helpers -----------------------------------------------------------------

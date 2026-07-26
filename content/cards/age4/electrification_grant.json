@@ -1,0 +1,22 @@
+{
+	"id": "electrification_grant",
+	"name": "Electrification Grant",
+	"category": "action",
+	"cost": 5,
+	"effects": [
+		{
+			"type": "resource_delta",
+			"resource": "budget",
+			"amount": 4
+		},
+		{
+			"type": "demand_delta",
+			"demand": "health",
+			"amount": 2
+		}
+	],
+	"prerequisites": [
+		"electric_power_station"
+	],
+	"flavor": "Electrification Grant buys the council time, but no temporary measure is free of consequence."
+}

@@ -1,0 +1,16 @@
+{
+	"id": "street_gas_lighting",
+	"name": "Street Gas Lighting",
+	"category": "development",
+	"cost": 5,
+	"tags": [
+		"infrastructure"
+	],
+	"demands": {
+		"security": -1
+	},
+	"prerequisites": [
+		"gasworks"
+	],
+	"flavor": "Stone, timber, taxes, and maintenance make possible Street Gas Lighting."
+}

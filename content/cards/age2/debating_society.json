@@ -3,10 +3,18 @@
 	"name": "Debating Society",
 	"category": "development",
 	"cost": 4,
-	"tags": ["science"],
-	"demands": {"fairness": -2, "security": 1},
-	"prerequisites": ["coffee_house"],
-	"effects": [],
-	"inject_events": ["pamphlet_war"],
+	"tags": [
+		"science"
+	],
+	"demands": {
+		"health": -1,
+		"fairness": 1
+	},
+	"prerequisites": [
+		"coffee_house"
+	],
+	"inject_events": [
+		"pamphlet_war"
+	],
 	"flavor": "Rules of order, a question posted weekly, and any man with sixpence may speak; the city practices arguments it does not yet know it will need."
 }

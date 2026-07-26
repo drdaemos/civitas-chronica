@@ -25,6 +25,7 @@ These rules are binding for all work on this repo (human or agent):
 - Run tests: `& "<godot_console>" --headless --path . --script res://tools/run_tests.gd`
 - Validate content: `& "<godot_console>" --headless --path . --script res://tools/validate_content.gd`
 - Balance simulation: `& "<godot_console>" --headless --path . --script res://tools/simulate.gd`
+- Full verification: `& .\tools\verify.ps1` (validator + tests + deterministic five-bot balance matrix)
 - Compile check: `& "<godot_console>" --headless --path . --script res://tools/check_compile.gd`
 - Glue-layer smoke test: `& "<godot_console>" --headless --path . --script res://tools/smoke_ui.gd`
 

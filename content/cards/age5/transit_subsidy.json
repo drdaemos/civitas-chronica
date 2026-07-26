@@ -1,0 +1,17 @@
+{
+	"id": "transit_subsidy",
+	"name": "Transit Subsidy",
+	"category": "action",
+	"cost": 4,
+	"effects": [
+		{
+			"type": "demand_delta",
+			"demand": "appeal",
+			"amount": -3
+		}
+	],
+	"prerequisites": [
+		"bus_network"
+	],
+	"flavor": "Transit Subsidy buys the council time, but no temporary measure is free of consequence."
+}

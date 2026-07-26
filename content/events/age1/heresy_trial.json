@@ -2,17 +2,49 @@
 	"id": "heresy_trial",
 	"title": "Heresy Trial",
 	"text": "A bookbinder stands accused of printing forbidden tracts; the church demands a trial, and the whole city has an opinion about the verdict.",
-	"trigger": {"type": "tag_count", "tag": "religious", "op": ">=", "value": 1},
+	"trigger": {
+		"type": "has_development",
+		"id": "stone_church"
+	},
 	"options": [
-		{"text": "Let the trial proceed", "cost": 0,
+		{
+			"text": "Fund a thorough municipal response",
+			"cost": 3,
 			"effects": [
-				{"type": "resource_delta", "resource": "population_count", "amount": -60}
-			]},
-		{"text": "Grant clemency", "cost": 0,
+				{
+					"type": "demand_delta",
+					"demand": "provision",
+					"amount": -2
+				}
+			]
+		},
+		{
+			"text": "Use a limited and temporary measure",
+			"cost": 1,
 			"effects": [
-				{"type": "inject_events", "events": ["wandering_preacher"]}
-			]},
-		{"text": "Refer the matter to the bishop", "cost": 3,
-			"effects": []}
-	]
+				{
+					"type": "demand_delta",
+					"demand": "provision",
+					"amount": 1
+				}
+			]
+		},
+		{
+			"text": "Leave households and local institutions to cope",
+			"cost": 0,
+			"effects": [
+				{
+					"type": "demand_delta",
+					"demand": "provision",
+					"amount": 2
+				},
+				{
+					"type": "resource_delta",
+					"resource": "population_count",
+					"amount": -20
+				}
+			]
+		}
+	],
+	"hazard": "riot"
 }

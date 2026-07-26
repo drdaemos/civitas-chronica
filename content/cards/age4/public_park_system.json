@@ -1,0 +1,17 @@
+{
+	"id": "public_park_system",
+	"name": "Public Park System",
+	"category": "development",
+	"cost": 6,
+	"tags": [
+		"cultural",
+		"infrastructure"
+	],
+	"demands": {
+		"appeal": -2
+	},
+	"flavor": "Public life acquires a new center in Public Park System.",
+	"inject_main": [
+		"football_ground"
+	]
+}

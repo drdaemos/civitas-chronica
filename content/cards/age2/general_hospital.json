@@ -3,10 +3,11 @@
 	"name": "General Hospital",
 	"category": "development",
 	"cost": 6,
-	"tags": ["science"],
-	"demands": {"health": -3},
-	"effects": [
-		{"type": "pop_growth_mult", "amount": 0.05}
+	"tags": [
+		"science"
 	],
+	"demands": {
+		"health": -2
+	},
 	"flavor": "Founded by subscription, staffed by surgeons who publish; the poor are treated, observed, and counted, in roughly that order."
 }

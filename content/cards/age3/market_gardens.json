@@ -1,0 +1,16 @@
+{
+	"id": "market_gardens",
+	"name": "Market Gardens",
+	"category": "development",
+	"cost": 4,
+	"tags": [
+		"trade"
+	],
+	"demands": {
+		"provision": -1
+	},
+	"flavor": "Contracts, carts, and arguments gather around Market Gardens.",
+	"inject_main": [
+		"wholesale_market"
+	]
+}

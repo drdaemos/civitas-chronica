@@ -1,13 +1,30 @@
 {
 	"id": "mercantile_charter",
 	"name": "Mercantile Charter",
-	"description": "Chartered companies with the council's blessing. +3 budget per turn, at the cost of Health and Fairness each growing 1 faster.",
-	"unlock": {"type": "interaction_active", "id": "export_economy"},
+	"description": "Mercantile Charter solves one municipal problem by accepting a visible constraint elsewhere.",
+	"unlock": {
+		"type": "interaction_active",
+		"id": "trade_hub"
+	},
 	"swap_cost_budget": 3,
-	"swap_cost_demands": {"fairness": 3},
+	"swap_cost_demands": {
+		"fairness": 1
+	},
 	"effects": [
-		{"type": "income", "amount": 3},
-		{"type": "demand_modifier", "demand": "health", "amount": 1},
-		{"type": "demand_modifier", "demand": "fairness", "amount": 1}
+		{
+			"type": "income",
+			"amount": 1
+		},
+		{
+			"type": "cost_modifier",
+			"tag": "trade",
+			"amount": -1,
+			"min_cost": 1
+		},
+		{
+			"type": "demand_modifier",
+			"demand": "fairness",
+			"amount": 1
+		}
 	]
 }

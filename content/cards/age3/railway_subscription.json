@@ -1,0 +1,22 @@
+{
+	"id": "railway_subscription",
+	"name": "Railway Subscription",
+	"category": "action",
+	"cost": 5,
+	"effects": [
+		{
+			"type": "resource_delta",
+			"resource": "budget",
+			"amount": 4
+		},
+		{
+			"type": "demand_delta",
+			"demand": "fairness",
+			"amount": 2
+		}
+	],
+	"prerequisites": [
+		"railway_survey_office"
+	],
+	"flavor": "Railway Subscription buys the council time, but no temporary measure is free of consequence."
+}

@@ -1,0 +1,17 @@
+{
+	"id": "tourism_board",
+	"name": "Tourism Board",
+	"category": "development",
+	"cost": 5,
+	"tags": [
+		"trade",
+		"cultural"
+	],
+	"demands": {
+		"appeal": -2
+	},
+	"flavor": "Contracts, carts, and arguments gather around Tourism Board.",
+	"inject_main": [
+		"conference_center"
+	]
+}

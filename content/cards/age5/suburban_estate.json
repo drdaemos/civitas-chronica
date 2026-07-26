@@ -1,0 +1,22 @@
+{
+	"id": "suburban_estate",
+	"name": "Suburban Estate",
+	"category": "development",
+	"cost": 6,
+	"tags": [
+		"infrastructure"
+	],
+	"demands": {
+		"provision": 1
+	},
+	"effects": [
+		{
+			"type": "pop_growth_mult",
+			"amount": 0.05
+		}
+	],
+	"prerequisites": [
+		"public_housing_estate"
+	],
+	"flavor": "Stone, timber, taxes, and maintenance make possible Suburban Estate."
+}

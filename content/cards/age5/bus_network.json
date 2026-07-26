@@ -1,0 +1,16 @@
+{
+	"id": "bus_network",
+	"name": "Town Bus Network",
+	"category": "development",
+	"cost": 6,
+	"tags": [
+		"infrastructure"
+	],
+	"demands": {
+		"appeal": -1
+	},
+	"flavor": "Stone, timber, taxes, and maintenance make possible Town Bus Network.",
+	"inject_main": [
+		"transit_subsidy"
+	]
+}

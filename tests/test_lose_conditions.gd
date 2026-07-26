@@ -5,7 +5,7 @@ extends RefCounted
 ## every path to loss telegraphs and leaves turns to react.
 
 
-func run(t: TestContext) -> void:
+func run(t: TestContext) -> bool:
 	var db: ContentDB = Fixtures.build_db()
 
 	t.label("debt loses only after 3 consecutive turns in the red")
@@ -89,6 +89,8 @@ func run(t: TestContext) -> void:
 	state6.pending_event = "supply_shortage_test_age"
 	engine6.resolve_event(1)
 	t.is_true(not state6.game_over, "emergencies are pressure, not death")
+	return true
+
 
 
 # --- helpers -----------------------------------------------------------------

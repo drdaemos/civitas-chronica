@@ -1,0 +1,16 @@
+{
+	"id": "neighborhood_forum",
+	"name": "Neighbourhood Forum",
+	"category": "development",
+	"cost": 4,
+	"tags": [
+		"cultural"
+	],
+	"demands": {
+		"fairness": -1
+	},
+	"prerequisites": [
+		"participatory_budgeting"
+	],
+	"flavor": "Public life acquires a new center in Neighbourhood Forum."
+}

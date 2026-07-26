@@ -1,0 +1,17 @@
+{
+	"id": "pedestrianized_center",
+	"name": "Pedestrianized Centre",
+	"category": "development",
+	"cost": 6,
+	"tags": [
+		"cultural",
+		"infrastructure"
+	],
+	"demands": {
+		"appeal": -2
+	},
+	"flavor": "Public life acquires a new center in Pedestrianized Centre.",
+	"inject_main": [
+		"multistorey_car_park"
+	]
+}

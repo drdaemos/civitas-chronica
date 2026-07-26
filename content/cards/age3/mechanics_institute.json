@@ -1,0 +1,18 @@
+{
+	"id": "mechanics_institute",
+	"name": "Mechanics' Institute",
+	"category": "development",
+	"cost": 5,
+	"tags": [
+		"science",
+		"industrial"
+	],
+	"demands": {
+		"health": -1,
+		"fairness": 1
+	},
+	"flavor": "Practical knowledge is made municipal through Mechanics' Institute.",
+	"inject_main": [
+		"normal_school"
+	]
+}

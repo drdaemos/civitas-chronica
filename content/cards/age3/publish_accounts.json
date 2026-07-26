@@ -1,0 +1,17 @@
+{
+	"id": "publish_accounts",
+	"name": "Publish the Accounts",
+	"category": "action",
+	"cost": 2,
+	"effects": [
+		{
+			"type": "demand_delta",
+			"demand": "fairness",
+			"amount": -3
+		}
+	],
+	"prerequisites": [
+		"elected_council"
+	],
+	"flavor": "Publish the Accounts buys the council time, but no temporary measure is free of consequence."
+}

@@ -1,0 +1,17 @@
+{
+	"id": "quarantine_house",
+	"name": "Quarantine House",
+	"category": "development",
+	"cost": 4,
+	"tags": [
+		"science",
+		"military"
+	],
+	"demands": {
+		"health": -2
+	},
+	"flavor": "Practical knowledge is made municipal through Quarantine House.",
+	"cancels": [
+		"disease"
+	]
+}

@@ -1,0 +1,17 @@
+{
+	"id": "comprehensive_school",
+	"name": "Comprehensive School",
+	"category": "development",
+	"cost": 6,
+	"tags": [
+		"science",
+		"cultural"
+	],
+	"demands": {
+		"appeal": -1
+	},
+	"flavor": "Practical knowledge is made municipal through Comprehensive School.",
+	"inject_main": [
+		"technical_university"
+	]
+}

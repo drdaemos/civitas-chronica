@@ -3,10 +3,13 @@
 	"name": "The Collegium",
 	"category": "development",
 	"cost": 7,
-	"tags": ["science"],
-	"demands": {"health": -1, "appeal": -1},
-	"effects": [
-		{"type": "income", "amount": 1}
+	"tags": [
+		"science"
 	],
-	"flavor": "A chartered college of scholars, endowed by the council; students and their fees follow the lectures."
+	"demands": {
+		"health": -1,
+		"fairness": 1
+	},
+	"flavor": "A chartered college of scholars, endowed by the council; students and their fees follow the lectures.",
+	"hand_limit_bonus": 1
 }

@@ -2,24 +2,58 @@
 	"id": "bread_queues",
 	"title": "Queues at the Bakers",
 	"text": "By first light the line outside every oven runs the length of the street, and the price chalked on the board has been rubbed out and raised twice since Sunday.",
-	"trigger": {"type": "demand", "demand": "provision", "op": ">=", "value": 3},
+	"trigger": {
+		"type": "demand",
+		"demand": "provision",
+		"op": ">=",
+		"value": 5
+	},
 	"hazard": "famine",
 	"demand": "provision",
 	"severity": "emergency",
 	"options": [
-		{"text": "Buy in rye from the river towns", "cost": 3,
+		{
+			"text": "Commit extraordinary funds",
+			"cost": 4,
 			"effects": [
-				{"type": "demand_delta", "demand": "provision", "amount": -2}
-			]},
-		{"text": "Fix the price of the loaf by ordinance", "cost": 1,
+				{
+					"type": "demand_delta",
+					"demand": "provision",
+					"amount": -2
+				}
+			]
+		},
+		{
+			"text": "Contain the worst effects",
+			"cost": 1,
 			"effects": [
-				{"type": "demand_delta", "demand": "provision", "amount": -1},
-				{"type": "demand_delta", "demand": "fairness", "amount": 1}
-			]},
-		{"text": "Let the market find its level", "cost": 0,
+				{
+					"type": "demand_delta",
+					"demand": "provision",
+					"amount": 0
+				},
+				{
+					"type": "resource_delta",
+					"resource": "population_count",
+					"amount": -30
+				}
+			]
+		},
+		{
+			"text": "Accept the losses",
+			"cost": 0,
 			"effects": [
-				{"type": "demand_delta", "demand": "provision", "amount": 1},
-				{"type": "resource_delta", "resource": "population_count", "amount": -40}
-			]}
+				{
+					"type": "demand_delta",
+					"demand": "provision",
+					"amount": 1
+				},
+				{
+					"type": "resource_delta",
+					"resource": "population_count",
+					"amount": -60
+				}
+			]
+		}
 	]
 }

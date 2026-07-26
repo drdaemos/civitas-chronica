@@ -2,24 +2,58 @@
 	"id": "hunger_exodus",
 	"title": "The Roads Out",
 	"text": "Weavers and carters are loading what they own onto handcarts and walking to the manufacturing towns, where at least the bread is cheap. The parish cannot feed those who stay.",
-	"trigger": {"type": "demand", "demand": "provision", "op": ">=", "value": 8},
-	"hazard": "famine",
+	"trigger": {
+		"type": "demand",
+		"demand": "provision",
+		"op": ">=",
+		"value": 20
+	},
+	"hazard": "collapse",
 	"demand": "provision",
 	"severity": "catastrophe",
 	"options": [
-		{"text": "Contract with the corn factors at any price", "cost": 9,
+		{
+			"text": "Commit extraordinary funds",
+			"cost": 9,
 			"effects": [
-				{"type": "demand_delta", "demand": "provision", "amount": -4}
-			]},
-		{"text": "Public works and soup at the parish expense", "cost": 4,
+				{
+					"type": "demand_delta",
+					"demand": "provision",
+					"amount": -4
+				}
+			]
+		},
+		{
+			"text": "Contain the worst effects",
+			"cost": 3,
 			"effects": [
-				{"type": "demand_delta", "demand": "provision", "amount": -2},
-				{"type": "resource_delta", "resource": "population_count", "amount": -300}
-			]},
-		{"text": "Let those who can leave, leave", "cost": 0,
+				{
+					"type": "demand_delta",
+					"demand": "provision",
+					"amount": -1
+				},
+				{
+					"type": "resource_delta",
+					"resource": "population_count",
+					"amount": -240
+				}
+			]
+		},
+		{
+			"text": "Accept the losses",
+			"cost": 0,
 			"effects": [
-				{"type": "demand_delta", "demand": "provision", "amount": 1},
-				{"type": "resource_delta", "resource": "population_count", "amount": -900}
-			]}
+				{
+					"type": "demand_delta",
+					"demand": "provision",
+					"amount": 2
+				},
+				{
+					"type": "resource_delta",
+					"resource": "population_count",
+					"amount": -500
+				}
+			]
+		}
 	]
 }

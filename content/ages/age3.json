@@ -1,0 +1,66 @@
+{
+	"id": "age3",
+	"name": "Agrarian and Commercial Transformation",
+	"year_start": 1750,
+	"year_end": 1850,
+	"years_per_turn": 5,
+	"base_draw": 3,
+	"base_budget": 14,
+	"activates_demand": "fairness",
+	"population_growth_base": 600,
+	"policy_slots": 2,
+	"next_age": "age4",
+	"base_deck": [
+		"assembly_hall",
+		"bourgeois_terrace",
+		"cadastral_office",
+		"canal_depot",
+		"cattle_fair",
+		"cemetery",
+		"commercial_bank",
+		"conscription_office",
+		"corn_exchange",
+		"county_gaol",
+		"drainage_board",
+		"early_factory_quarter",
+		"elected_council",
+		"gasworks",
+		"ironworks",
+		"journeymens_society",
+		"lodging_house",
+		"market_gardens",
+		"mechanics_institute",
+		"model_farm",
+		"mutual_aid_society",
+		"newspaper_office",
+		"radical_club",
+		"railway_survey_office",
+		"textile_putting_out",
+		"vaccination_board",
+		"workhouse_union"
+	],
+	"base_events": [
+		"grain_liberalization",
+		"commons_dispute",
+		"canal_toll_dispute",
+		"machine_breaking",
+		"radical_pamphlets",
+		"conscription_lottery",
+		"workhouse_scandal",
+		"inoculation_resistance",
+		"coal_smoke",
+		"bank_failure",
+		"food_protest",
+		"canal_flood"
+	],
+	"forced_events": [
+		{
+			"event": "provincial_revolution",
+			"turn": 8
+		},
+		{
+			"event": "railway_survey",
+			"turn": 16
+		}
+	]
+}

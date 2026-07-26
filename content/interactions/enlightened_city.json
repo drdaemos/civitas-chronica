@@ -1,11 +1,34 @@
 {
 	"id": "enlightened_city",
 	"name": "Enlightened City",
-	"description": "Lectures, journals and clean thinking: Appeal and Health each grow 1 slower per turn, and science developments cost 1 less.",
-	"threshold": {"type": "all_of", "conditions": [{"type": "tag_count", "tag": "science", "op": ">=", "value": 7}, {"type": "tag_count", "tag": "cultural", "op": ">=", "value": 3}]},
+	"description": "Enlightened City changes both the town's advantages and the pressures created by its specialization.",
+	"threshold": {
+		"type": "all_of",
+		"conditions": [
+			{
+				"type": "tag_count",
+				"tag": "science",
+				"op": ">=",
+				"value": 18
+			},
+			{
+				"type": "tag_count",
+				"tag": "cultural",
+				"op": ">=",
+				"value": 14
+			}
+		]
+	},
 	"effects": [
-		{"type": "demand_modifier", "demand": "appeal", "amount": -1},
-		{"type": "demand_modifier", "demand": "health", "amount": -1},
-		{"type": "cost_modifier", "tag": "science", "amount": -1, "min_cost": 1}
+		{
+			"type": "demand_modifier",
+			"demand": "fairness",
+			"amount": -2
+		},
+		{
+			"type": "demand_modifier",
+			"demand": "security",
+			"amount": 1
+		}
 	]
 }

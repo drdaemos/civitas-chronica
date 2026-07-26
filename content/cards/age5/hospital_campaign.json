@@ -1,0 +1,17 @@
+{
+	"id": "hospital_campaign",
+	"name": "Hospital Campaign",
+	"category": "action",
+	"cost": 4,
+	"effects": [
+		{
+			"type": "demand_delta",
+			"demand": "health",
+			"amount": -3
+		}
+	],
+	"prerequisites": [
+		"regional_hospital"
+	],
+	"flavor": "Hospital Campaign buys the council time, but no temporary measure is free of consequence."
+}

@@ -1,0 +1,59 @@
+{
+	"id": "emergency_response_gap",
+	"title": "Emergency Response Gap",
+	"text": "Emergency Response Gap exposes how long the town has allowed this municipal responsibility to exceed its capacity.",
+	"trigger": {
+		"type": "demand",
+		"demand": "security",
+		"op": ">=",
+		"value": 5
+	},
+	"hazard": "riot",
+	"demand": "security",
+	"severity": "emergency",
+	"options": [
+		{
+			"text": "Commit extraordinary funds",
+			"cost": 8,
+			"effects": [
+				{
+					"type": "demand_delta",
+					"demand": "security",
+					"amount": -2
+				}
+			]
+		},
+		{
+			"text": "Contain the worst effects",
+			"cost": 1,
+			"effects": [
+				{
+					"type": "demand_delta",
+					"demand": "security",
+					"amount": 0
+				},
+				{
+					"type": "resource_delta",
+					"resource": "population_count",
+					"amount": -150
+				}
+			]
+		},
+		{
+			"text": "Accept the losses",
+			"cost": 0,
+			"effects": [
+				{
+					"type": "demand_delta",
+					"demand": "security",
+					"amount": 1
+				},
+				{
+					"type": "resource_delta",
+					"resource": "population_count",
+					"amount": -300
+				}
+			]
+		}
+	]
+}

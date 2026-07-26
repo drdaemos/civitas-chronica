@@ -1,0 +1,16 @@
+{
+	"id": "heritage_quarter",
+	"name": "Heritage Quarter",
+	"category": "development",
+	"cost": 7,
+	"tags": [
+		"cultural"
+	],
+	"demands": {
+		"appeal": -2
+	},
+	"flavor": "Public life acquires a new center in Heritage Quarter.",
+	"inject_main": [
+		"heritage_grant"
+	]
+}

@@ -1,0 +1,20 @@
+{
+	"id": "artisan_cooperative",
+	"name": "Artisan Cooperative",
+	"category": "development",
+	"cost": 5,
+	"tags": [
+		"industrial",
+		"trade"
+	],
+	"effects": [
+		{
+			"type": "income",
+			"amount": 1
+		}
+	],
+	"prerequisites": [
+		"journeymens_society"
+	],
+	"flavor": "Smoke, wages, and useful production follow Artisan Cooperative."
+}

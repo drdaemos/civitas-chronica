@@ -1,0 +1,17 @@
+{
+	"id": "magistrates_court",
+	"name": "Magistrates' Court",
+	"category": "development",
+	"cost": 5,
+	"tags": [
+		"cultural",
+		"military"
+	],
+	"demands": {
+		"fairness": -1
+	},
+	"prerequisites": [
+		"county_gaol"
+	],
+	"flavor": "Public life acquires a new center in Magistrates' Court."
+}

@@ -1,0 +1,23 @@
+{
+	"id": "ring_road",
+	"name": "Ring Road",
+	"category": "development",
+	"cost": 7,
+	"tags": [
+		"infrastructure"
+	],
+	"demands": {
+		"provision": -1,
+		"health": -1
+	},
+	"effects": [
+		{
+			"type": "income",
+			"amount": 1
+		}
+	],
+	"flavor": "Stone, timber, taxes, and maintenance make possible Ring Road.",
+	"inject_main": [
+		"highway_bypass"
+	]
+}

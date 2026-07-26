@@ -1,0 +1,14 @@
+{
+	"id": "dissenting_meeting_house",
+	"name": "Dissenting Meeting House",
+	"category": "development",
+	"cost": 3,
+	"tags": [
+		"religious",
+		"cultural"
+	],
+	"demands": {
+		"fairness": -1
+	},
+	"flavor": "Ritual, charity, and local obligation meet at Dissenting Meeting House."
+}

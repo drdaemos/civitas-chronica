@@ -1,0 +1,13 @@
+{
+	"id": "workhouse",
+	"name": "Workhouse",
+	"category": "development",
+	"cost": 4,
+	"tags": [
+		"infrastructure"
+	],
+	"demands": {
+		"provision": -1
+	},
+	"flavor": "Stone, timber, taxes, and maintenance make possible Workhouse."
+}

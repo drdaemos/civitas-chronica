@@ -4,7 +4,7 @@ extends RefCounted
 ## cards become drawable in later turns.
 
 
-func run(t: TestContext) -> void:
+func run(t: TestContext) -> bool:
 	var db: ContentDB = Fixtures.build_db()
 	var state: GameState = GameSetup.new_game(db, "test_age", 9)
 	var engine := TurnEngine.new(db, state)
@@ -46,3 +46,4 @@ func run(t: TestContext) -> void:
 		found = "harbor_expansion" in state.hand
 		safety += 1
 	t.is_true(found, "harbor_expansion eventually drawn into hand")
+	return true

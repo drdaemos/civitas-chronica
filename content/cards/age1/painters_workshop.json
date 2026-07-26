@@ -3,9 +3,8 @@
 	"name": "Painters Workshop",
 	"category": "development",
 	"cost": 3,
-	"tags": ["cultural"],
-	"effects": [
-		{"type": "income", "amount": 1}
+	"tags": [
+		"cultural"
 	],
 	"flavor": "A master painter takes apprentices above the cloth hall; altarpieces and portraits leave the city bearing its name."
 }

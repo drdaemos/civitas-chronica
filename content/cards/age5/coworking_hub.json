@@ -1,0 +1,17 @@
+{
+	"id": "coworking_hub",
+	"name": "Co-working Hub",
+	"category": "development",
+	"cost": 5,
+	"tags": [
+		"science",
+		"trade"
+	],
+	"demands": {
+		"appeal": -1
+	},
+	"prerequisites": [
+		"broadband_network"
+	],
+	"flavor": "Practical knowledge is made municipal through Co-working Hub."
+}

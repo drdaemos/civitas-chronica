@@ -3,11 +3,21 @@
 	"name": "Merchants Exchange",
 	"category": "development",
 	"cost": 5,
-	"tags": ["trade"],
-	"demands": {"provision": -1},
-	"effects": [
-		{"type": "income", "amount": 1}
+	"tags": [
+		"trade"
 	],
-	"inject_main": ["stock_exchange"],
+	"demands": {
+		"provision": -1
+	},
+	"effects": [
+		{
+			"type": "income",
+			"amount": 1
+		}
+	],
+	"inject_main": [
+		"grain_import_contract",
+		"stock_exchange"
+	],
 	"flavor": "Under the colonnade, cargoes change hands that no one present has seen; paper begins to stand for ships, and the ships for paper."
 }

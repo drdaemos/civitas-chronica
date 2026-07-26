@@ -1,0 +1,17 @@
+{
+	"id": "pump_house",
+	"name": "Pump House",
+	"category": "development",
+	"cost": 4,
+	"tags": [
+		"infrastructure",
+		"science"
+	],
+	"demands": {
+		"health": -1
+	},
+	"prerequisites": [
+		"water_works"
+	],
+	"flavor": "Stone, timber, taxes, and maintenance make possible Pump House."
+}

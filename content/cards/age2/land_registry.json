@@ -1,0 +1,18 @@
+{
+	"id": "land_registry",
+	"name": "Land Registry",
+	"category": "development",
+	"cost": 4,
+	"tags": [
+		"science",
+		"infrastructure"
+	],
+	"demands": {
+		"fairness": -1,
+		"security": -1
+	},
+	"prerequisites": [
+		"surveyors_office"
+	],
+	"flavor": "Practical knowledge is made municipal through Land Registry."
+}

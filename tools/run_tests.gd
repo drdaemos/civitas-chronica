@@ -8,6 +8,7 @@ extends SceneTree
 func _initialize() -> void:
 	var ctx := TestContext.new()
 	var files: Array[String] = _scan_suites("res://tests")
+	var suites_completed: int = 0
 	if files.is_empty():
 		printerr("run_tests: no test suites found under res://tests")
 		quit(1)
@@ -23,8 +24,15 @@ func _initialize() -> void:
 			continue  # e.g. test_context.gd itself
 		ctx.suite_name = file_name
 		ctx.test_name = ""
-		suite.call("run", ctx)
-	print("tests: %d assertions, %d failures" % [ctx.assertions, ctx.failures])
+		var completed: Variant = suite.call("run", ctx)
+		if completed != true:
+			printerr("%s: suite did not return true (runtime error or incomplete run)" % file_name)
+			ctx.failures += 1
+		else:
+			suites_completed += 1
+	print("tests: %d suites, %d assertions, %d failures" % [
+		suites_completed, ctx.assertions, ctx.failures,
+	])
 	quit(1 if ctx.failures > 0 else 0)
 
 

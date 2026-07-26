@@ -1,0 +1,22 @@
+{
+	"id": "factory_rescue_package",
+	"name": "Factory Rescue Package",
+	"category": "action",
+	"cost": 5,
+	"effects": [
+		{
+			"type": "resource_delta",
+			"resource": "budget",
+			"amount": 4
+		},
+		{
+			"type": "demand_delta",
+			"demand": "appeal",
+			"amount": 2
+		}
+	],
+	"prerequisites": [
+		"industrial_estate"
+	],
+	"flavor": "Factory Rescue Package buys the council time, but no temporary measure is free of consequence."
+}

@@ -3,12 +3,24 @@
 	"name": "Merchant Guild",
 	"category": "development",
 	"cost": 4,
-	"tags": ["trade", "cultural"],
-	"demands": {"provision": -1},
-	"prerequisites": ["town_market"],
-	"effects": [
-		{"type": "income", "amount": 1}
+	"tags": [
+		"trade",
+		"cultural"
 	],
-	"inject_main": ["trade_company"],
+	"demands": {
+		"provision": -1
+	},
+	"prerequisites": [
+		"town_market"
+	],
+	"effects": [
+		{
+			"type": "income",
+			"amount": 1
+		}
+	],
+	"inject_main": [
+		"trade_company"
+	],
 	"flavor": "The wealthier traders draw up articles, elect a warden, and begin to speak with one voice."
 }

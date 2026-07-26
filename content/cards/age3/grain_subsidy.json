@@ -1,0 +1,17 @@
+{
+	"id": "grain_subsidy",
+	"name": "Grain Subsidy",
+	"category": "action",
+	"cost": 3,
+	"effects": [
+		{
+			"type": "demand_delta",
+			"demand": "provision",
+			"amount": -3
+		}
+	],
+	"prerequisites": [
+		"model_farm"
+	],
+	"flavor": "Grain Subsidy buys the council time, but no temporary measure is free of consequence."
+}

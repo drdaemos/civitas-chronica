@@ -1,0 +1,17 @@
+{
+	"id": "workers_compensation_board",
+	"name": "Workers' Compensation Board",
+	"category": "development",
+	"cost": 5,
+	"tags": [
+		"cultural",
+		"industrial"
+	],
+	"demands": {
+		"fairness": -1
+	},
+	"prerequisites": [
+		"factory_inspectorate"
+	],
+	"flavor": "Public life acquires a new center in Workers' Compensation Board."
+}

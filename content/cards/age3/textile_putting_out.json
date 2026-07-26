@@ -1,0 +1,20 @@
+{
+	"id": "textile_putting_out",
+	"name": "Putting-Out Network",
+	"category": "development",
+	"cost": 4,
+	"tags": [
+		"industrial",
+		"trade"
+	],
+	"demands": {
+		"health": 1
+	},
+	"effects": [
+		{
+			"type": "income",
+			"amount": 1
+		}
+	],
+	"flavor": "Smoke, wages, and useful production follow Putting-Out Network."
+}

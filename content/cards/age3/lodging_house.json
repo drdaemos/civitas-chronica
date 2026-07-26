@@ -1,0 +1,16 @@
+{
+	"id": "lodging_house",
+	"name": "Registered Lodging House",
+	"category": "development",
+	"cost": 4,
+	"tags": [
+		"infrastructure"
+	],
+	"demands": {
+		"health": -1
+	},
+	"flavor": "Stone, timber, taxes, and maintenance make possible Registered Lodging House.",
+	"inject_main": [
+		"workers_cottages"
+	]
+}

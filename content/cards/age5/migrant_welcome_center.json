@@ -1,0 +1,16 @@
+{
+	"id": "migrant_welcome_center",
+	"name": "Migrant Welcome Centre",
+	"category": "development",
+	"cost": 5,
+	"tags": [
+		"cultural"
+	],
+	"demands": {
+		"fairness": -1
+	},
+	"flavor": "Public life acquires a new center in Migrant Welcome Centre.",
+	"inject_main": [
+		"youth_center"
+	]
+}

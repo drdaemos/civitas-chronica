@@ -2,18 +2,48 @@
 	"id": "grand_tour_visitors",
 	"title": "Grand Tour Visitors",
 	"text": "A party of young noblemen and their tutors arrive with letters of introduction, sketchbooks, and more money than sense; where they winter, fashion follows.",
-	"trigger": {"type": "tag_count", "tag": "cultural", "op": ">=", "value": 3},
+	"trigger": {
+		"type": "has_development",
+		"id": "grand_theatre"
+	},
 	"options": [
-		{"text": "Fete the distinguished guests", "cost": 2,
+		{
+			"text": "Fund a thorough municipal response",
+			"cost": 4,
 			"effects": [
-				{"type": "resource_delta", "resource": "population_count", "amount": 80},
-				{"type": "resource_delta", "resource": "budget", "amount": 2}
-			]},
-		{"text": "Receive them politely", "cost": 0,
+				{
+					"type": "demand_delta",
+					"demand": "security",
+					"amount": -2
+				}
+			]
+		},
+		{
+			"text": "Use a limited and temporary measure",
+			"cost": 1,
 			"effects": [
-				{"type": "resource_delta", "resource": "budget", "amount": 2}
-			]},
-		{"text": "The city has no time for idlers", "cost": 0,
-			"effects": []}
+				{
+					"type": "demand_delta",
+					"demand": "security",
+					"amount": 1
+				}
+			]
+		},
+		{
+			"text": "Leave households and local institutions to cope",
+			"cost": 0,
+			"effects": [
+				{
+					"type": "demand_delta",
+					"demand": "security",
+					"amount": 2
+				},
+				{
+					"type": "resource_delta",
+					"resource": "population_count",
+					"amount": -40
+				}
+			]
+		}
 	]
 }

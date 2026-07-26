@@ -1,0 +1,17 @@
+{
+	"id": "municipal_landfill",
+	"name": "Municipal Landfill",
+	"category": "development",
+	"cost": 5,
+	"tags": [
+		"infrastructure",
+		"industrial"
+	],
+	"demands": {
+		"health": -1
+	},
+	"prerequisites": [
+		"refuse_department"
+	],
+	"flavor": "Stone, timber, taxes, and maintenance make possible Municipal Landfill."
+}

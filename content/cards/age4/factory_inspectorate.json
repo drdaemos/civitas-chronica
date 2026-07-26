@@ -1,0 +1,17 @@
+{
+	"id": "factory_inspectorate",
+	"name": "Factory Inspectorate",
+	"category": "development",
+	"cost": 5,
+	"tags": [
+		"science",
+		"industrial"
+	],
+	"demands": {
+		"health": -1
+	},
+	"flavor": "Practical knowledge is made municipal through Factory Inspectorate.",
+	"inject_main": [
+		"workers_compensation_board"
+	]
+}

@@ -1,0 +1,22 @@
+{
+	"id": "sewer_network",
+	"name": "Sewer Network",
+	"category": "development",
+	"cost": 8,
+	"tags": [
+		"infrastructure"
+	],
+	"demands": {
+		"health": -2
+	},
+	"prerequisites": [
+		"water_treatment_works"
+	],
+	"flavor": "Stone, timber, taxes, and maintenance make possible Sewer Network.",
+	"cancels": [
+		"disease"
+	],
+	"inject_main": [
+		"emergency_sanitation"
+	]
+}

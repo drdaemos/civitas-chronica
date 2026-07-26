@@ -1,0 +1,17 @@
+{
+	"id": "cemetery",
+	"name": "Municipal Cemetery",
+	"category": "development",
+	"cost": 4,
+	"tags": [
+		"cultural",
+		"infrastructure"
+	],
+	"demands": {
+		"health": -1
+	},
+	"flavor": "Public life acquires a new center in Municipal Cemetery.",
+	"inject_main": [
+		"burial_board"
+	]
+}

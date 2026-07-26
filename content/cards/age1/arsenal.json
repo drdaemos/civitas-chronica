@@ -3,12 +3,19 @@
 	"name": "Arsenal",
 	"category": "development",
 	"cost": 4,
-	"tags": ["military"],
-	"demands": {"security": -2},
-	"prerequisites": ["town_watch"],
-	"effects": [
-		{"type": "income", "amount": 1}
+	"tags": [
+		"military"
 	],
-	"inject_main": ["iron_foundry"],
+	"demands": {
+		"security": -2,
+		"fairness": 1
+	},
+	"prerequisites": [
+		"town_watch"
+	],
+	"inject_main": [
+		"powder_magazine",
+		"iron_foundry"
+	],
 	"flavor": "Pikes, powder, and shot under lock and key; neighboring lords pay well to have their armories filled here."
 }

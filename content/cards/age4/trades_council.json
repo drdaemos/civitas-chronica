@@ -1,0 +1,18 @@
+{
+	"id": "trades_council",
+	"name": "Trades Council",
+	"category": "development",
+	"cost": 6,
+	"tags": [
+		"industrial",
+		"cultural"
+	],
+	"demands": {
+		"fairness": -2
+	},
+	"flavor": "Smoke, wages, and useful production follow Trades Council.",
+	"inject_main": [
+		"cooperative_store",
+		"strike_mediation"
+	]
+}

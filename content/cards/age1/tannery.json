@@ -3,10 +3,18 @@
 	"name": "Tannery",
 	"category": "development",
 	"cost": 3,
-	"tags": ["industrial"],
-	"demands": {"provision": -1, "health": 1},
+	"tags": [
+		"industrial"
+	],
+	"demands": {
+		"health": 1,
+		"provision": 1
+	},
 	"effects": [
-		{"type": "income", "amount": 1}
+		{
+			"type": "income",
+			"amount": 1
+		}
 	],
 	"flavor": "Hides, oak bark, and lime pits downstream of the bridge; the trade pays steadily, and the whole quarter smells of it."
 }

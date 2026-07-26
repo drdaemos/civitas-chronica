@@ -4,7 +4,7 @@ extends RefCounted
 ## income, first_discovery semantics, Appendix B double activation.
 
 
-func run(t: TestContext) -> void:
+func run(t: TestContext) -> bool:
 	var db: ContentDB = Fixtures.build_db()
 
 	t.label("third trade development activates trade_hub exactly once")
@@ -64,6 +64,8 @@ func run(t: TestContext) -> void:
 		t.eq(activation.get("first_discovery"), true, "both are first discoveries")
 	t.eq(_of_type(InteractionEngine.check(state2, db), "interaction_activated").size(), 0,
 		"no further activations on re-check")
+	return true
+
 
 
 func _of_type(events: Array[Dictionary], type_name: String) -> Array[Dictionary]:

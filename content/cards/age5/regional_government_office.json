@@ -1,0 +1,18 @@
+{
+	"id": "regional_government_office",
+	"name": "Regional Government Office",
+	"category": "development",
+	"cost": 7,
+	"tags": [
+		"cultural",
+		"infrastructure"
+	],
+	"demands": {
+		"fairness": -1,
+		"appeal": -1
+	},
+	"flavor": "Public life acquires a new center in Regional Government Office.",
+	"inject_main": [
+		"public_service_hub"
+	]
+}

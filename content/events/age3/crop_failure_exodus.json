@@ -1,0 +1,59 @@
+{
+	"id": "crop_failure_exodus",
+	"title": "Crop-Failure Exodus",
+	"text": "Crop-Failure Exodus exposes how long the town has allowed this municipal responsibility to exceed its capacity.",
+	"trigger": {
+		"type": "demand",
+		"demand": "provision",
+		"op": ">=",
+		"value": 20
+	},
+	"hazard": "collapse",
+	"demand": "provision",
+	"severity": "catastrophe",
+	"options": [
+		{
+			"text": "Commit extraordinary funds",
+			"cost": 10,
+			"effects": [
+				{
+					"type": "demand_delta",
+					"demand": "provision",
+					"amount": -4
+				}
+			]
+		},
+		{
+			"text": "Contain the worst effects",
+			"cost": 3,
+			"effects": [
+				{
+					"type": "demand_delta",
+					"demand": "provision",
+					"amount": -1
+				},
+				{
+					"type": "resource_delta",
+					"resource": "population_count",
+					"amount": -360
+				}
+			]
+		},
+		{
+			"text": "Accept the losses",
+			"cost": 0,
+			"effects": [
+				{
+					"type": "demand_delta",
+					"demand": "provision",
+					"amount": 2
+				},
+				{
+					"type": "resource_delta",
+					"resource": "population_count",
+					"amount": -750
+				}
+			]
+		}
+	]
+}

@@ -4,8 +4,17 @@
 	"category": "action",
 	"cost": 1,
 	"effects": [
-		{"type": "resource_delta", "resource": "budget", "amount": 2},
-		{"type": "demand_delta", "demand": "provision", "amount": 1}
+		{
+			"type": "resource_delta",
+			"resource": "population_count",
+			"amount": 250
+		},
+		{
+			"type": "demand_delta",
+			"demand": "provision",
+			"amount": 1
+		}
 	],
-	"flavor": "Processions, bells, and a day free of work; for one bright day the city is pleased with itself."
+	"flavor": "Processions, bells, and a day free of work; for one bright day the city is pleased with itself.",
+	"tags": []
 }

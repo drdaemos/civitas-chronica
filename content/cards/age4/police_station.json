@@ -1,0 +1,17 @@
+{
+	"id": "police_station",
+	"name": "Municipal Police Station",
+	"category": "development",
+	"cost": 5,
+	"tags": [
+		"military",
+		"cultural"
+	],
+	"demands": {
+		"security": -2
+	},
+	"flavor": "The town commits labor and authority to Municipal Police Station.",
+	"inject_main": [
+		"detective_office"
+	]
+}

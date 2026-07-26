@@ -1,0 +1,16 @@
+{
+	"id": "water_cistern",
+	"name": "Covered Cistern",
+	"category": "development",
+	"cost": 4,
+	"tags": [
+		"infrastructure"
+	],
+	"demands": {
+		"provision": -2
+	},
+	"flavor": "Stone, timber, taxes, and maintenance make possible Covered Cistern.",
+	"inject_main": [
+		"town_well"
+	]
+}

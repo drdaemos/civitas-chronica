@@ -1,0 +1,19 @@
+{
+	"id": "drainage_board",
+	"name": "Drainage Board",
+	"category": "development",
+	"cost": 4,
+	"tags": [
+		"infrastructure"
+	],
+	"demands": {
+		"provision": -1
+	},
+	"flavor": "Stone, timber, taxes, and maintenance make possible Drainage Board.",
+	"cancels": [
+		"flood"
+	],
+	"inject_main": [
+		"reclaimed_meadows"
+	]
+}

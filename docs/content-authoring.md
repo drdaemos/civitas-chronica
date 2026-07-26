@@ -137,7 +137,7 @@ Suitable content includes:
 
 Heavy industry remains a specialization. Every town is nevertheless integrated into industrial society through manufactured goods, transport, migration, public standards, and expanding municipal responsibilities.
 
-### Age 5 — Mobility, Services, and Competition, 1950–present
+### Age 5 — Mobility, Services, and Competition, 1950–2030 (present day)
 
 Greater mobility and communication make comparisons between places continuous.
 
@@ -287,3 +287,20 @@ Before accepting a card or event, verify:
 - Does Appeal include comfort, belonging, services, and comparative desirability rather than employment alone?
 - If the content implies exceptional industrial, scientific, military, or cultural importance, have prior choices earned that path?
 - Can the event's local choices be understood without the town becoming the center of continental history?
+
+## 7. Pool and Balance Targets
+
+Each Age currently targets approximately 60 card definitions. Only 20–45 belong in the base deck; the rest should be path injections, actions reached through events, or automatic supersession successors. A single run must not see every authored card.
+
+Each Age must contain:
+
+- at least 5 action cards;
+- at least 10 ordinary events;
+- at least 2 forced historical pressures;
+- emergency and catastrophe events for every demand active by that Age;
+- at least 6 developments that mitigate the newly activated demand;
+- at least 3 developments that aggravate it.
+
+Costs normally fall between 1 and 12. Cost 0 is reserved for automatic supersession successors, which are not drawn or played.
+
+Balance is verified with `tools/verify.ps1`. Its deterministic matrix compares random, greedy, demand-aware, reckless, and passive play across the entire five-Age chain. The gate is intentionally broad: informed demand-aware play should usually win, but careless or nonresponsive play should not. Automated results are balance warnings, not substitutes for human playtests.

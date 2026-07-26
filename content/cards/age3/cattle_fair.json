@@ -1,0 +1,19 @@
+{
+	"id": "cattle_fair",
+	"name": "Regional Cattle Fair",
+	"category": "development",
+	"cost": 4,
+	"tags": [
+		"trade"
+	],
+	"effects": [
+		{
+			"type": "income",
+			"amount": 1
+		}
+	],
+	"flavor": "Contracts, carts, and arguments gather around Regional Cattle Fair.",
+	"inject_main": [
+		"veterinary_school"
+	]
+}

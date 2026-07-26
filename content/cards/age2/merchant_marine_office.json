@@ -1,0 +1,23 @@
+{
+	"id": "merchant_marine_office",
+	"name": "Merchant Marine Office",
+	"category": "development",
+	"cost": 5,
+	"tags": [
+		"trade",
+		"military"
+	],
+	"demands": {
+		"provision": -1
+	},
+	"effects": [
+		{
+			"type": "income",
+			"amount": 1
+		}
+	],
+	"prerequisites": [
+		"naval_dockyard"
+	],
+	"flavor": "Contracts, carts, and arguments gather around Merchant Marine Office."
+}

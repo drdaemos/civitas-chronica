@@ -1,0 +1,17 @@
+{
+	"id": "labor_exchange",
+	"name": "Labour Exchange",
+	"category": "development",
+	"cost": 5,
+	"tags": [
+		"cultural",
+		"industrial"
+	],
+	"demands": {
+		"appeal": -1
+	},
+	"flavor": "Public life acquires a new center in Labour Exchange.",
+	"inject_main": [
+		"craft_union"
+	]
+}

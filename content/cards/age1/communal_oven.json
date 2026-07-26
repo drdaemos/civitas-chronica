@@ -1,0 +1,17 @@
+{
+	"id": "communal_oven",
+	"name": "Communal Oven",
+	"category": "development",
+	"cost": 2,
+	"tags": [
+		"infrastructure",
+		"cultural"
+	],
+	"demands": {
+		"provision": -1
+	},
+	"prerequisites": [
+		"bakehouse"
+	],
+	"flavor": "Stone, timber, taxes, and maintenance make possible Communal Oven."
+}

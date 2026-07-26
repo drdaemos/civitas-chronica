@@ -1,23 +1,49 @@
 {
 	"id": "revolution_fervor",
-	"title": "Revolutionary Fervor",
-	"text": "News from abroad: a king humbled, a constitution proclaimed. The clubs toast liberty by name, the propertied bar their shutters, and both look to the council to declare what this city is.",
-	"trigger": {"type": "always"},
+	"title": "Pamphlets from the Capital",
+	"text": "Pamphlets from the Capital reaches the council as a local problem with no cost-free answer.",
+	"trigger": {
+		"type": "always"
+	},
 	"options": [
-		{"text": "Mobilize the militia against the clubs", "cost": 5,
+		{
+			"text": "Fund a thorough municipal response",
+			"cost": 4,
 			"effects": [
-				{"type": "demand_delta", "demand": "security", "amount": -2},
-				{"type": "remove_events", "events": ["coffee_house_sedition", "pamphlet_war"]}
-			]},
-		{"text": "Grant a citizens charter", "cost": 4,
+				{
+					"type": "demand_delta",
+					"demand": "security",
+					"amount": -2
+				}
+			]
+		},
+		{
+			"text": "Use a limited and temporary measure",
+			"cost": 1,
 			"effects": [
-				{"type": "demand_delta", "demand": "security", "amount": -1},
-				{"type": "demand_delta", "demand": "provision", "amount": -1}
-			]},
-		{"text": "Ignore the clubs and hope", "cost": 0,
+				{
+					"type": "demand_delta",
+					"demand": "security",
+					"amount": 1
+				}
+			]
+		},
+		{
+			"text": "Leave households and local institutions to cope",
+			"cost": 0,
 			"effects": [
-				{"type": "demand_delta", "demand": "security", "amount": 3},
-				{"type": "inject_events", "events": ["pamphlet_war"]}
-			]}
-	]
+				{
+					"type": "demand_delta",
+					"demand": "security",
+					"amount": 2
+				},
+				{
+					"type": "resource_delta",
+					"resource": "population_count",
+					"amount": -40
+				}
+			]
+		}
+	],
+	"hazard": "riot"
 }

@@ -1,0 +1,14 @@
+{
+	"id": "local_media_station",
+	"name": "Local Media Station",
+	"category": "development",
+	"cost": 5,
+	"tags": [
+		"cultural",
+		"science"
+	],
+	"demands": {
+		"appeal": -1
+	},
+	"flavor": "Public life acquires a new center in Local Media Station."
+}

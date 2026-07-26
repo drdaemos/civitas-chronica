@@ -1,0 +1,17 @@
+{
+	"id": "grain_import_contract",
+	"name": "Grain Import Contract",
+	"category": "action",
+	"cost": 3,
+	"effects": [
+		{
+			"type": "demand_delta",
+			"demand": "provision",
+			"amount": -3
+		}
+	],
+	"prerequisites": [
+		"merchants_exchange"
+	],
+	"flavor": "Grain Import Contract buys the council time, but no temporary measure is free of consequence."
+}

@@ -1,0 +1,17 @@
+{
+	"id": "detective_office",
+	"name": "Detective Office",
+	"category": "development",
+	"cost": 4,
+	"tags": [
+		"military",
+		"science"
+	],
+	"demands": {
+		"security": -1
+	},
+	"prerequisites": [
+		"police_station"
+	],
+	"flavor": "The town commits labor and authority to Detective Office."
+}

@@ -1,0 +1,31 @@
+{
+	"id": "service_center",
+	"name": "Regional Service Centre",
+	"description": "Regional Service Centre changes both the town's advantages and the pressures created by its specialization.",
+	"threshold": {
+		"type": "all_of",
+		"conditions": [
+			{
+				"type": "has_development",
+				"id": "regional_hospital"
+			},
+			{
+				"type": "tag_count",
+				"tag": "science",
+				"op": ">=",
+				"value": 18
+			}
+		]
+	},
+	"effects": [
+		{
+			"type": "income",
+			"amount": 2
+		},
+		{
+			"type": "demand_modifier",
+			"demand": "appeal",
+			"amount": -1
+		}
+	]
+}

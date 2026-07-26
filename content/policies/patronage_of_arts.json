@@ -1,12 +1,23 @@
 {
 	"id": "patronage_of_arts",
 	"name": "Patronage of the Arts",
-	"description": "The council pays for beauty. Appeal grows 2 slower per turn and cultural developments cost 1 less.",
-	"unlock": {"type": "always"},
-	"swap_cost_budget": 2,
-	"swap_cost_demands": {"provision": 2},
+	"description": "Patronage of the Arts solves one municipal problem by accepting a visible constraint elsewhere.",
+	"unlock": {
+		"type": "always"
+	},
+	"swap_cost_budget": 3,
+	"swap_cost_demands": {
+		"fairness": 1
+	},
 	"effects": [
-		{"type": "demand_modifier", "demand": "appeal", "amount": -2},
-		{"type": "cost_modifier", "tag": "cultural", "amount": -1, "min_cost": 1}
+		{
+			"type": "demand_modifier",
+			"demand": "appeal",
+			"amount": -1
+		},
+		{
+			"type": "income",
+			"amount": -1
+		}
 	]
 }

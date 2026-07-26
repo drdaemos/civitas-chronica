@@ -3,10 +3,17 @@
 	"name": "Water Works",
 	"category": "development",
 	"cost": 6,
-	"tags": ["infrastructure"],
-	"demands": {"health": -3, "provision": -1},
-	"effects": [
-		{"type": "pop_growth_mult", "amount": 0.05}
+	"tags": [
+		"infrastructure"
 	],
-	"flavor": "Elm pipes under the streets and a wheel that lifts the river to a cistern; water arrives at the better houses without a bucket."
+	"demands": {
+		"health": -2
+	},
+	"flavor": "Elm pipes under the streets and a wheel that lifts the river to a cistern; water arrives at the better houses without a bucket.",
+	"inject_main": [
+		"pump_house"
+	],
+	"superseded_by": {
+		"age3": "municipal_water_board"
+	}
 }

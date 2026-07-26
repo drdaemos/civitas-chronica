@@ -1,0 +1,20 @@
+{
+	"id": "fulling_mill",
+	"name": "Fulling Mill",
+	"category": "development",
+	"cost": 4,
+	"tags": [
+		"industrial"
+	],
+	"demands": {
+		"health": 1,
+		"provision": 1
+	},
+	"effects": [
+		{
+			"type": "income",
+			"amount": 1
+		}
+	],
+	"flavor": "Smoke, wages, and useful production follow Fulling Mill."
+}

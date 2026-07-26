@@ -1,0 +1,32 @@
+{
+	"id": "green_transition",
+	"name": "Green Transition",
+	"description": "Green Transition changes both the town's advantages and the pressures created by its specialization.",
+	"threshold": {
+		"type": "all_of",
+		"conditions": [
+			{
+				"type": "has_development",
+				"id": "renewable_energy_cooperative"
+			},
+			{
+				"type": "tag_count",
+				"tag": "infrastructure",
+				"op": ">=",
+				"value": 25
+			}
+		]
+	},
+	"effects": [
+		{
+			"type": "demand_modifier",
+			"demand": "health",
+			"amount": -2
+		},
+		{
+			"type": "demand_modifier",
+			"demand": "appeal",
+			"amount": -1
+		}
+	]
+}

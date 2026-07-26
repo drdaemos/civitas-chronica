@@ -1,0 +1,14 @@
+{
+	"id": "agricultural_society",
+	"name": "Agricultural Society",
+	"category": "development",
+	"cost": 4,
+	"tags": [
+		"science",
+		"trade"
+	],
+	"demands": {
+		"provision": -1
+	},
+	"flavor": "Practical knowledge is made municipal through Agricultural Society."
+}

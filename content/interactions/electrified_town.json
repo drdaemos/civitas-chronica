@@ -1,0 +1,31 @@
+{
+	"id": "electrified_town",
+	"name": "Electrified Town",
+	"description": "Electrified Town changes both the town's advantages and the pressures created by its specialization.",
+	"threshold": {
+		"type": "all_of",
+		"conditions": [
+			{
+				"type": "has_development",
+				"id": "electric_grid"
+			},
+			{
+				"type": "tag_count",
+				"tag": "industrial",
+				"op": ">=",
+				"value": 14
+			}
+		]
+	},
+	"effects": [
+		{
+			"type": "income",
+			"amount": 2
+		},
+		{
+			"type": "demand_modifier",
+			"demand": "health",
+			"amount": 1
+		}
+	]
+}

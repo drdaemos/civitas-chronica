@@ -3,11 +3,19 @@
 	"name": "Naval Dockyard",
 	"category": "development",
 	"cost": 7,
-	"tags": ["military", "industrial"],
-	"demands": {"security": -2, "health": 1},
-	"effects": [
-		{"type": "income", "amount": 2}
+	"tags": [
+		"military",
+		"industrial"
 	],
-	"inject_events": ["press_gang"],
-	"flavor": "Slipways, rope walks, and Admiralty contracts; a first-rate on the stocks feeds two thousand families and empties the taverns of able men."
+	"demands": {
+		"security": -2,
+		"fairness": 1
+	},
+	"inject_events": [
+		"press_gang"
+	],
+	"flavor": "Slipways, rope walks, and Admiralty contracts; a first-rate on the stocks feeds two thousand families and empties the taverns of able men.",
+	"inject_main": [
+		"merchant_marine_office"
+	]
 }

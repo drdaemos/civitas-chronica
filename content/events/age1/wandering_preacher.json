@@ -2,15 +2,48 @@
 	"id": "wandering_preacher",
 	"title": "Wandering Preacher",
 	"text": "An itinerant preacher draws crowds in the market square, praising the poor and naming the comfortable; the parish clergy demand the council act.",
-	"trigger": {"type": "always"},
+	"trigger": {
+		"type": "always"
+	},
 	"options": [
-		{"text": "Give him the pulpit for a season", "cost": 0,
+		{
+			"text": "Fund a thorough municipal response",
+			"cost": 3,
 			"effects": [
-				{"type": "inject_events", "events": ["heresy_trial"]}
-			]},
-		{"text": "Escort him to the gates", "cost": 0,
-			"effects": []},
-		{"text": "Neither sanction nor silence him", "cost": 0,
-			"effects": []}
-	]
+				{
+					"type": "demand_delta",
+					"demand": "provision",
+					"amount": -2
+				}
+			]
+		},
+		{
+			"text": "Use a limited and temporary measure",
+			"cost": 1,
+			"effects": [
+				{
+					"type": "demand_delta",
+					"demand": "provision",
+					"amount": 1
+				}
+			]
+		},
+		{
+			"text": "Leave households and local institutions to cope",
+			"cost": 0,
+			"effects": [
+				{
+					"type": "demand_delta",
+					"demand": "provision",
+					"amount": 2
+				},
+				{
+					"type": "resource_delta",
+					"resource": "population_count",
+					"amount": -20
+				}
+			]
+		}
+	],
+	"hazard": "riot"
 }

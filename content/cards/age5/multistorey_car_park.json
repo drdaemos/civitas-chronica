@@ -1,0 +1,22 @@
+{
+	"id": "multistorey_car_park",
+	"name": "Multi-storey Car Park",
+	"category": "development",
+	"cost": 5,
+	"tags": [
+		"infrastructure"
+	],
+	"demands": {
+		"appeal": 1
+	},
+	"effects": [
+		{
+			"type": "income",
+			"amount": 1
+		}
+	],
+	"prerequisites": [
+		"pedestrianized_center"
+	],
+	"flavor": "Stone, timber, taxes, and maintenance make possible Multi-storey Car Park."
+}

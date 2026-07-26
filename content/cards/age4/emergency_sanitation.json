@@ -1,0 +1,17 @@
+{
+	"id": "emergency_sanitation",
+	"name": "Emergency Sanitation Order",
+	"category": "action",
+	"cost": 3,
+	"effects": [
+		{
+			"type": "demand_delta",
+			"demand": "health",
+			"amount": -3
+		}
+	],
+	"prerequisites": [
+		"sewer_network"
+	],
+	"flavor": "Emergency Sanitation Order buys the council time, but no temporary measure is free of consequence."
+}

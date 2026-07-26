@@ -4,9 +4,17 @@
 	"category": "action",
 	"cost": 1,
 	"effects": [
-		{"type": "resource_delta", "resource": "budget", "amount": 4},
-		{"type": "demand_delta", "demand": "provision", "amount": 1},
-		{"type": "demand_delta", "demand": "fairness", "amount": 2}
+		{
+			"type": "resource_delta",
+			"resource": "budget",
+			"amount": 4
+		},
+		{
+			"type": "demand_delta",
+			"demand": "security",
+			"amount": 2
+		}
 	],
-	"flavor": "Tickets sold in shares and quarters against a prize the council will mostly keep; arithmetic in the service of the treasury."
+	"flavor": "Tickets sold in shares and quarters against a prize the council will mostly keep; arithmetic in the service of the treasury.",
+	"tags": []
 }

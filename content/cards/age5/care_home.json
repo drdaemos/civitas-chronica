@@ -1,0 +1,13 @@
+{
+	"id": "care_home",
+	"name": "Municipal Care Home",
+	"category": "development",
+	"cost": 5,
+	"tags": [
+		"cultural"
+	],
+	"demands": {
+		"health": -1
+	},
+	"flavor": "Public life acquires a new center in Municipal Care Home."
+}

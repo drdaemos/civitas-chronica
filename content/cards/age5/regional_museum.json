@@ -1,0 +1,17 @@
+{
+	"id": "regional_museum",
+	"name": "Regional Museum",
+	"category": "development",
+	"cost": 6,
+	"tags": [
+		"cultural",
+		"science"
+	],
+	"demands": {
+		"appeal": -1
+	},
+	"prerequisites": [
+		"cultural_center"
+	],
+	"flavor": "Public life acquires a new center in Regional Museum."
+}

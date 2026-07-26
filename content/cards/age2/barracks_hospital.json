@@ -1,0 +1,17 @@
+{
+	"id": "barracks_hospital",
+	"name": "Barracks Hospital",
+	"category": "development",
+	"cost": 4,
+	"tags": [
+		"military",
+		"science"
+	],
+	"demands": {
+		"health": -1
+	},
+	"prerequisites": [
+		"militia_barracks"
+	],
+	"flavor": "The town commits labor and authority to Barracks Hospital."
+}

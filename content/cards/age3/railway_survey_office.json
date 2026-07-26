@@ -1,0 +1,24 @@
+{
+	"id": "railway_survey_office",
+	"name": "Railway Survey Office",
+	"category": "development",
+	"cost": 5,
+	"tags": [
+		"science",
+		"infrastructure"
+	],
+	"demands": {
+		"provision": -1
+	},
+	"effects": [
+		{
+			"type": "income",
+			"amount": 1
+		}
+	],
+	"flavor": "Practical knowledge is made municipal through Railway Survey Office.",
+	"inject_main": [
+		"railway_subscription",
+		"compulsory_purchase"
+	]
+}

@@ -1,0 +1,36 @@
+{
+	"id": "heritage_destination",
+	"name": "Heritage Destination",
+	"description": "Heritage Destination changes both the town's advantages and the pressures created by its specialization.",
+	"threshold": {
+		"type": "all_of",
+		"conditions": [
+			{
+				"type": "has_development",
+				"id": "heritage_quarter"
+			},
+			{
+				"type": "tag_count",
+				"tag": "cultural",
+				"op": ">=",
+				"value": 22
+			}
+		]
+	},
+	"effects": [
+		{
+			"type": "income",
+			"amount": 2
+		},
+		{
+			"type": "demand_modifier",
+			"demand": "appeal",
+			"amount": -2
+		},
+		{
+			"type": "demand_modifier",
+			"demand": "fairness",
+			"amount": 1
+		}
+	]
+}

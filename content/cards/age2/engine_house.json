@@ -1,0 +1,20 @@
+{
+	"id": "engine_house",
+	"name": "Fire Engine House",
+	"category": "development",
+	"cost": 5,
+	"tags": [
+		"military",
+		"infrastructure"
+	],
+	"demands": {
+		"security": -2
+	},
+	"prerequisites": [
+		"fire_insurance_society"
+	],
+	"flavor": "The town commits labor and authority to Fire Engine House.",
+	"cancels": [
+		"fire"
+	]
+}

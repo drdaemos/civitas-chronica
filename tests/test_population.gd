@@ -5,7 +5,7 @@ extends RefCounted
 ## levels that can be lost, and hysteresis on the boundary.
 
 
-func run(t: TestContext) -> void:
+func run(t: TestContext) -> bool:
 	var db: ContentDB = Fixtures.build_db()
 	# Fixture boundaries: level 1 from 0, level 2 from 1000, level 3 from 3000.
 
@@ -103,6 +103,8 @@ func run(t: TestContext) -> void:
 	PopulationEngine.recompute_level(state3, db, [])
 	t.eq(state3.population_level, 3, "3500 is level 3")
 	t.is_true(level_condition.evaluate(state3, db), "and now passes")
+	return true
+
 
 
 # --- helpers -----------------------------------------------------------------

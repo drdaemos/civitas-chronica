@@ -1,0 +1,17 @@
+{
+	"id": "militia_drill",
+	"name": "Militia Drill",
+	"category": "action",
+	"cost": 3,
+	"effects": [
+		{
+			"type": "demand_delta",
+			"demand": "security",
+			"amount": -3
+		}
+	],
+	"prerequisites": [
+		"militia_barracks"
+	],
+	"flavor": "Militia Drill buys the council time, but no temporary measure is free of consequence."
+}

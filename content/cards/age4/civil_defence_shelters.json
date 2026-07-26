@@ -1,0 +1,23 @@
+{
+	"id": "civil_defence_shelters",
+	"name": "Civil Defence Shelters",
+	"category": "development",
+	"cost": 6,
+	"tags": [
+		"military",
+		"infrastructure"
+	],
+	"demands": {
+		"security": -2
+	},
+	"prerequisites": [
+		"war_memorial"
+	],
+	"flavor": "The town commits labor and authority to Civil Defence Shelters.",
+	"cancels": [
+		"raid"
+	],
+	"inject_main": [
+		"war_requisition"
+	]
+}

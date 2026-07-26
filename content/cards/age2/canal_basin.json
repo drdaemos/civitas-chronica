@@ -3,11 +3,21 @@
 	"name": "Canal Basin",
 	"category": "development",
 	"cost": 7,
-	"tags": ["trade", "infrastructure"],
-	"demands": {"provision": -2},
-	"prerequisites": ["canal_company"],
+	"tags": [
+		"trade",
+		"infrastructure"
+	],
+	"demands": {
+		"provision": -1
+	},
+	"prerequisites": [
+		"canal_company"
+	],
 	"effects": [
-		{"type": "income", "amount": 2}
+		{
+			"type": "income",
+			"amount": 1
+		}
 	],
 	"flavor": "Wharves, cranes, and warehouses around a sheet of still water; the coal yard sells at half last winter and the city barely remembers the drovers."
 }

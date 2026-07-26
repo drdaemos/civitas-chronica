@@ -1,0 +1,15 @@
+{
+	"id": "excise_office",
+	"name": "Excise Office",
+	"category": "development",
+	"cost": 4,
+	"tags": [
+		"cultural",
+		"infrastructure"
+	],
+	"demands": {
+		"fairness": -1,
+		"security": -1
+	},
+	"flavor": "Public life acquires a new center in Excise Office."
+}

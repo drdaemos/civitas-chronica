@@ -3,11 +3,21 @@
 	"name": "Colonial Wharf",
 	"category": "development",
 	"cost": 6,
-	"tags": ["trade"],
-	"demands": {"provision": -2, "security": 1},
-	"effects": [
-		{"type": "income", "amount": 2}
+	"tags": [
+		"trade"
 	],
-	"inject_events": ["colonial_windfall"],
+	"demands": {
+		"provision": -1,
+		"security": 1
+	},
+	"effects": [
+		{
+			"type": "income",
+			"amount": 2
+		}
+	],
+	"inject_events": [
+		"colonial_windfall"
+	],
 	"flavor": "Sugar, tobacco, and indigo stacked to the warehouse rafters; the fortunes landed here were made somewhere the city prefers not to picture."
 }

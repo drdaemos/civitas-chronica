@@ -1,0 +1,24 @@
+{
+	"id": "bell_foundry",
+	"name": "Bell Foundry",
+	"category": "development",
+	"cost": 4,
+	"tags": [
+		"industrial",
+		"cultural"
+	],
+	"demands": {
+		"health": 1,
+		"provision": 1
+	},
+	"effects": [
+		{
+			"type": "income",
+			"amount": 1
+		}
+	],
+	"prerequisites": [
+		"artisan_guild"
+	],
+	"flavor": "Smoke, wages, and useful production follow Bell Foundry."
+}

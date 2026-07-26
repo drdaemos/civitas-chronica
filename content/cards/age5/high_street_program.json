@@ -1,0 +1,14 @@
+{
+	"id": "high_street_program",
+	"name": "High Street Programme",
+	"category": "development",
+	"cost": 5,
+	"tags": [
+		"trade",
+		"cultural"
+	],
+	"demands": {
+		"appeal": -2
+	},
+	"flavor": "Contracts, carts, and arguments gather around High Street Programme."
+}

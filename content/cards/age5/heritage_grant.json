@@ -1,0 +1,17 @@
+{
+	"id": "heritage_grant",
+	"name": "Heritage Grant",
+	"category": "action",
+	"cost": 4,
+	"effects": [
+		{
+			"type": "demand_delta",
+			"demand": "appeal",
+			"amount": -3
+		}
+	],
+	"prerequisites": [
+		"heritage_quarter"
+	],
+	"flavor": "Heritage Grant buys the council time, but no temporary measure is free of consequence."
+}

@@ -1,0 +1,14 @@
+{
+	"id": "municipal_water_board",
+	"name": "Municipal Water Board",
+	"category": "development",
+	"cost": 0,
+	"tags": [
+		"infrastructure",
+		"science"
+	],
+	"demands": {
+		"health": -1
+	},
+	"flavor": "Stone, timber, taxes, and maintenance make possible Municipal Water Board."
+}

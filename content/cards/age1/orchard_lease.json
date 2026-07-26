@@ -1,0 +1,16 @@
+{
+	"id": "orchard_lease",
+	"name": "Orchard Leases",
+	"category": "development",
+	"cost": 2,
+	"tags": [
+		"trade"
+	],
+	"demands": {
+		"provision": -1
+	},
+	"prerequisites": [
+		"town_market"
+	],
+	"flavor": "Contracts, carts, and arguments gather around Orchard Leases."
+}

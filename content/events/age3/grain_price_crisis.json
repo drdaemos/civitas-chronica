@@ -1,0 +1,59 @@
+{
+	"id": "grain_price_crisis",
+	"title": "Grain-Price Crisis",
+	"text": "Grain-Price Crisis exposes how long the town has allowed this municipal responsibility to exceed its capacity.",
+	"trigger": {
+		"type": "demand",
+		"demand": "provision",
+		"op": ">=",
+		"value": 5
+	},
+	"hazard": "famine",
+	"demand": "provision",
+	"severity": "emergency",
+	"options": [
+		{
+			"text": "Commit extraordinary funds",
+			"cost": 6,
+			"effects": [
+				{
+					"type": "demand_delta",
+					"demand": "provision",
+					"amount": -2
+				}
+			]
+		},
+		{
+			"text": "Contain the worst effects",
+			"cost": 1,
+			"effects": [
+				{
+					"type": "demand_delta",
+					"demand": "provision",
+					"amount": 0
+				},
+				{
+					"type": "resource_delta",
+					"resource": "population_count",
+					"amount": -90
+				}
+			]
+		},
+		{
+			"text": "Accept the losses",
+			"cost": 0,
+			"effects": [
+				{
+					"type": "demand_delta",
+					"demand": "provision",
+					"amount": 1
+				},
+				{
+					"type": "resource_delta",
+					"resource": "population_count",
+					"amount": -180
+				}
+			]
+		}
+	]
+}

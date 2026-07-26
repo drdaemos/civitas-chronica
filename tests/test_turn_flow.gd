@@ -3,7 +3,7 @@ extends RefCounted
 ## Basic turn cycle: draw, budget, play, hand retention, budget refresh, win.
 
 
-func run(t: TestContext) -> void:
+func run(t: TestContext) -> bool:
 	var db: ContentDB = Fixtures.build_db()
 	var state: GameState = GameSetup.new_game(db, "test_age", 42)
 	var engine := TurnEngine.new(db, state)
@@ -61,6 +61,8 @@ func run(t: TestContext) -> void:
 	var full: Dictionary = engine.adopt_policy("public_works")
 	t.eq(full.get("ok"), false, "second policy with 1 slot rejected")
 	t.eq(full.get("reason"), "no free policy slot", "slot-full reason text")
+	return true
+
 
 
 func _first_of(events: Array[Dictionary], type_name: String) -> Dictionary:

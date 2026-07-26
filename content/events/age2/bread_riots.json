@@ -2,24 +2,58 @@
 	"id": "bread_riots",
 	"title": "Bread Riots",
 	"text": "The quartern loaf is past a day of wages and the market crowd has stopped haggling and started shouting; a baker has been carried through the streets, not in triumph.",
-	"trigger": {"type": "demand", "demand": "provision", "op": ">=", "value": 3},
-	"hazard": "riot",
+	"trigger": {
+		"type": "demand",
+		"demand": "provision",
+		"op": ">=",
+		"value": 5
+	},
+	"hazard": "famine",
 	"demand": "provision",
 	"severity": "emergency",
 	"options": [
-		{"text": "Deploy the militia", "cost": 5,
+		{
+			"text": "Commit extraordinary funds",
+			"cost": 5,
 			"effects": [
-				{"type": "demand_delta", "demand": "security", "amount": 1}
-			]},
-		{"text": "Subsidize the bakers", "cost": 4,
+				{
+					"type": "demand_delta",
+					"demand": "provision",
+					"amount": -2
+				}
+			]
+		},
+		{
+			"text": "Contain the worst effects",
+			"cost": 1,
 			"effects": [
-				{"type": "demand_delta", "demand": "provision", "amount": -2}
-			]},
-		{"text": "Wait for tempers to cool", "cost": 0,
+				{
+					"type": "demand_delta",
+					"demand": "provision",
+					"amount": 0
+				},
+				{
+					"type": "resource_delta",
+					"resource": "population_count",
+					"amount": -60
+				}
+			]
+		},
+		{
+			"text": "Accept the losses",
+			"cost": 0,
 			"effects": [
-				{"type": "demand_delta", "demand": "provision", "amount": 2},
-				{"type": "resource_delta", "resource": "population_count", "amount": -80},
-				{"type": "inject_events", "events": ["bread_riots"]}
-			]}
+				{
+					"type": "demand_delta",
+					"demand": "provision",
+					"amount": 1
+				},
+				{
+					"type": "resource_delta",
+					"resource": "population_count",
+					"amount": -120
+				}
+			]
+		}
 	]
 }

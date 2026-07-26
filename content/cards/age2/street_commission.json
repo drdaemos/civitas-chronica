@@ -1,0 +1,19 @@
+{
+	"id": "street_commission",
+	"name": "Street Commission",
+	"category": "development",
+	"cost": 4,
+	"tags": [
+		"infrastructure"
+	],
+	"demands": {
+		"provision": -1
+	},
+	"effects": [
+		{
+			"type": "income",
+			"amount": 1
+		}
+	],
+	"flavor": "Stone, timber, taxes, and maintenance make possible Street Commission."
+}

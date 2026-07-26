@@ -3,10 +3,15 @@
 	"name": "City Newspaper",
 	"category": "development",
 	"cost": 4,
-	"tags": ["cultural"],
-	"demands": {"fairness": -2, "security": 1},
-	"effects": [
-		{"type": "income", "amount": 1}
+	"tags": [
+		"cultural"
 	],
-	"flavor": "Twice weekly, on poor paper: shipping lists, council notices, and letters signed with Roman pseudonyms. The city reads about itself at breakfast."
+	"demands": {
+		"health": -1,
+		"fairness": 1
+	},
+	"flavor": "Twice weekly, on poor paper: shipping lists, council notices, and letters signed with Roman pseudonyms. The city reads about itself at breakfast.",
+	"inject_main": [
+		"pamphlet_suppression"
+	]
 }

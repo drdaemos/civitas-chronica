@@ -3,10 +3,11 @@
 	"name": "Apothecary",
 	"category": "development",
 	"cost": 3,
-	"tags": ["science"],
-	"demands": {"health": -1},
-	"effects": [
-		{"type": "pop_growth_mult", "amount": 0.05}
+	"tags": [
+		"science"
 	],
+	"demands": {
+		"health": -1
+	},
 	"flavor": "Dried herbs, glass vessels, and a ledger of what worked; the sick of three parishes come to the shop with the painted serpent."
 }

@@ -1,0 +1,14 @@
+{
+	"id": "converted_lofts",
+	"name": "Converted Lofts",
+	"category": "development",
+	"cost": 0,
+	"tags": [
+		"cultural",
+		"infrastructure"
+	],
+	"demands": {
+		"appeal": -2
+	},
+	"flavor": "Public life acquires a new center in Converted Lofts."
+}

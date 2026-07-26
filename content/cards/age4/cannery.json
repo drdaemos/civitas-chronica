@@ -1,0 +1,24 @@
+{
+	"id": "cannery",
+	"name": "Canning Works",
+	"category": "development",
+	"cost": 6,
+	"tags": [
+		"industrial",
+		"trade"
+	],
+	"demands": {
+		"health": 2,
+		"fairness": 1
+	},
+	"effects": [
+		{
+			"type": "income",
+			"amount": 2
+		}
+	],
+	"prerequisites": [
+		"textile_factory"
+	],
+	"flavor": "Smoke, wages, and useful production follow Canning Works."
+}

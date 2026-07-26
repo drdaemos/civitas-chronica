@@ -1,0 +1,16 @@
+{
+	"id": "municipal_council_chamber",
+	"name": "Municipal Council Chamber",
+	"category": "development",
+	"cost": 6,
+	"tags": [
+		"cultural"
+	],
+	"demands": {
+		"fairness": -2
+	},
+	"flavor": "Public life acquires a new center in Municipal Council Chamber.",
+	"inject_main": [
+		"electoral_register"
+	]
+}

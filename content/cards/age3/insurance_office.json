@@ -1,0 +1,20 @@
+{
+	"id": "insurance_office",
+	"name": "Insurance Office",
+	"category": "development",
+	"cost": 4,
+	"tags": [
+		"trade",
+		"cultural"
+	],
+	"effects": [
+		{
+			"type": "income",
+			"amount": 1
+		}
+	],
+	"prerequisites": [
+		"commercial_bank"
+	],
+	"flavor": "Contracts, carts, and arguments gather around Insurance Office."
+}

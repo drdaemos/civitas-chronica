@@ -3,12 +3,23 @@
 	"name": "Dye Works",
 	"category": "development",
 	"cost": 5,
-	"tags": ["industrial"],
-	"demands": {"health": 2},
-	"prerequisites": ["weaving_manufactory"],
-	"effects": [
-		{"type": "income", "amount": 1}
+	"tags": [
+		"industrial"
 	],
-	"inject_main": ["power_loom_works"],
+	"demands": {
+		"health": 1
+	},
+	"prerequisites": [
+		"weaving_manufactory"
+	],
+	"effects": [
+		{
+			"type": "income",
+			"amount": 1
+		}
+	],
+	"inject_main": [
+		"power_loom_works"
+	],
 	"flavor": "Indigo vats and madder boilers beside the manufactory; the cloth leaves finished now, and the river below the works runs in fashionable colors."
 }

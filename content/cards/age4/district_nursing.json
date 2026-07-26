@@ -1,0 +1,17 @@
+{
+	"id": "district_nursing",
+	"name": "District Nursing",
+	"category": "development",
+	"cost": 4,
+	"tags": [
+		"science",
+		"cultural"
+	],
+	"demands": {
+		"health": -1
+	},
+	"prerequisites": [
+		"maternity_clinic"
+	],
+	"flavor": "Practical knowledge is made municipal through District Nursing."
+}

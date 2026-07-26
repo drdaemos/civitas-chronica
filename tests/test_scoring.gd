@@ -4,12 +4,12 @@ extends RefCounted
 ## (5 per age survived by a development, +10 per supersession it came through).
 
 
-func run(t: TestContext) -> void:
+func run(t: TestContext) -> bool:
 	var db: ContentDB = Fixtures.build_db()
 
 	t.label("score formula")
 	var state: GameState = GameSetup.new_game(db, "test_age", 1)
-	state.population = 630
+	state.population_count = 630
 	state.active_interactions.assign(["trade_hub", "well_connected_city"])
 	var result: Dictionary = Scoring.score(state, db)
 	t.eq(result.get("population"), 63, "population axis is population / 10")
@@ -18,7 +18,7 @@ func run(t: TestContext) -> void:
 	t.eq(result.get("total"), 63 + 50, "total is the sum of the axes")
 
 	t.label("integer division and empty interactions")
-	state.population = 999
+	state.population_count = 999
 	state.active_interactions.clear()
 	var result2: Dictionary = Scoring.score(state, db)
 	t.eq(result2.get("population"), 99, "population score uses integer division")
@@ -42,3 +42,4 @@ func run(t: TestContext) -> void:
 	var result3: Dictionary = Scoring.score(state, db)
 	t.eq(result3.get("heritage"), 5 * 3 + 10 * 1, "5 per age survived + 10 per supersession")
 	t.eq(result3.get("total"), 99 + 25 + 25, "total includes heritage")
+	return true

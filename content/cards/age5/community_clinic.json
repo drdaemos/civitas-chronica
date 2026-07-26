@@ -1,0 +1,17 @@
+{
+	"id": "community_clinic",
+	"name": "Community Clinic",
+	"category": "development",
+	"cost": 5,
+	"tags": [
+		"science",
+		"cultural"
+	],
+	"demands": {
+		"health": -1
+	},
+	"prerequisites": [
+		"regional_hospital"
+	],
+	"flavor": "Practical knowledge is made municipal through Community Clinic."
+}

@@ -1,0 +1,18 @@
+{
+	"id": "model_farm",
+	"name": "Model Farm",
+	"category": "development",
+	"cost": 5,
+	"tags": [
+		"science",
+		"trade"
+	],
+	"demands": {
+		"provision": -2
+	},
+	"flavor": "Practical knowledge is made municipal through Model Farm.",
+	"inject_main": [
+		"seed_exchange",
+		"grain_subsidy"
+	]
+}

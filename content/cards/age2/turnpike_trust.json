@@ -3,10 +3,20 @@
 	"name": "Turnpike Trust",
 	"category": "development",
 	"cost": 4,
-	"tags": ["infrastructure"],
-	"demands": {"provision": -1},
-	"effects": [
-		{"type": "income", "amount": 1}
+	"tags": [
+		"infrastructure"
 	],
-	"flavor": "Gates, tolls, and a graded road maintained by subscription; the mail coach now keeps a schedule the whole city sets its clocks by."
+	"demands": {
+		"provision": -1
+	},
+	"effects": [
+		{
+			"type": "income",
+			"amount": 1
+		}
+	],
+	"flavor": "Gates, tolls, and a graded road maintained by subscription; the mail coach now keeps a schedule the whole city sets its clocks by.",
+	"inject_main": [
+		"turnpike_inn"
+	]
 }

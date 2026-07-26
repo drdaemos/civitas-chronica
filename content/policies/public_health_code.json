@@ -1,0 +1,24 @@
+{
+	"id": "public_health_code",
+	"name": "Public Health Code",
+	"description": "Public Health Code solves one municipal problem by accepting a visible constraint elsewhere.",
+	"unlock": {
+		"type": "interaction_active",
+		"id": "sanitary_city"
+	},
+	"swap_cost_budget": 3,
+	"swap_cost_demands": {
+		"fairness": 1
+	},
+	"effects": [
+		{
+			"type": "demand_modifier",
+			"demand": "health",
+			"amount": -2
+		},
+		{
+			"type": "income",
+			"amount": -1
+		}
+	]
+}

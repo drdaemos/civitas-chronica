@@ -1,0 +1,22 @@
+{
+	"id": "corn_exchange",
+	"name": "Corn Exchange",
+	"category": "development",
+	"cost": 5,
+	"tags": [
+		"trade"
+	],
+	"effects": [
+		{
+			"type": "income",
+			"amount": 1
+		}
+	],
+	"flavor": "Contracts, carts, and arguments gather around Corn Exchange.",
+	"superseded_by": {
+		"age4": "municipal_market_hall"
+	},
+	"inject_main": [
+		"granary_cooperative"
+	]
+}

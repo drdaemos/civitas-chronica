@@ -1,0 +1,23 @@
+{
+	"id": "textile_factory",
+	"name": "Textile Factory",
+	"category": "development",
+	"cost": 7,
+	"tags": [
+		"industrial"
+	],
+	"demands": {
+		"health": 2,
+		"fairness": 1
+	},
+	"effects": [
+		{
+			"type": "income",
+			"amount": 2
+		}
+	],
+	"flavor": "Smoke, wages, and useful production follow Textile Factory.",
+	"inject_main": [
+		"cannery"
+	]
+}

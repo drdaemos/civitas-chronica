@@ -1,0 +1,17 @@
+{
+	"id": "regional_food_hub",
+	"name": "Regional Food Hub",
+	"category": "development",
+	"cost": 6,
+	"tags": [
+		"trade",
+		"infrastructure"
+	],
+	"demands": {
+		"provision": -2
+	},
+	"prerequisites": [
+		"logistics_hub"
+	],
+	"flavor": "Contracts, carts, and arguments gather around Regional Food Hub."
+}

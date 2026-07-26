@@ -1,0 +1,13 @@
+{
+	"id": "cycle_network",
+	"name": "Cycle Network",
+	"category": "development",
+	"cost": 5,
+	"tags": [
+		"infrastructure"
+	],
+	"demands": {
+		"health": -1
+	},
+	"flavor": "Stone, timber, taxes, and maintenance make possible Cycle Network."
+}

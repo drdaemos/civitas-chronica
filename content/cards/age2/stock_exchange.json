@@ -3,11 +3,21 @@
 	"name": "Stock Exchange",
 	"category": "development",
 	"cost": 8,
-	"tags": ["trade"],
-	"demands": {"fairness": 2},
-	"prerequisites": ["merchants_exchange"],
+	"tags": [
+		"trade"
+	],
+	"demands": {
+		"provision": -1,
+		"security": 1
+	},
+	"prerequisites": [
+		"merchants_exchange"
+	],
 	"effects": [
-		{"type": "income", "amount": 2}
+		{
+			"type": "income",
+			"amount": 2
+		}
 	],
 	"flavor": "Jobbers and brokers barred from the old Exchange take rooms of their own; fortunes now rise and fall between dinner and supper."
 }

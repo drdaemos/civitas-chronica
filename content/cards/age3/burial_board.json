@@ -1,0 +1,16 @@
+{
+	"id": "burial_board",
+	"name": "Burial Board",
+	"category": "development",
+	"cost": 3,
+	"tags": [
+		"cultural"
+	],
+	"demands": {
+		"health": -1
+	},
+	"prerequisites": [
+		"cemetery"
+	],
+	"flavor": "Public life acquires a new center in Burial Board."
+}

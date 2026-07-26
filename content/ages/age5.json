@@ -1,0 +1,70 @@
+{
+	"id": "age5",
+	"name": "Mobility, Services, and Competition",
+	"year_start": 1950,
+	"year_end": 2030,
+	"years_per_turn": 5,
+	"base_draw": 3,
+	"base_budget": 22,
+	"activates_demand": "appeal",
+	"population_growth_base": 1200,
+	"policy_slots": 3,
+	"next_age": "",
+	"base_deck": [
+		"apartment_towers",
+		"broadband_network",
+		"bus_network",
+		"business_park",
+		"care_home",
+		"childcare_network",
+		"community_land_trust",
+		"community_safety_partnership",
+		"commuter_belt",
+		"comprehensive_school",
+		"cultural_center",
+		"cycle_network",
+		"data_center",
+		"festival_office",
+		"flood_resilience_scheme",
+		"heritage_quarter",
+		"high_street_program",
+		"local_media_station",
+		"logistics_hub",
+		"migrant_welcome_center",
+		"participatory_budgeting",
+		"pedestrianized_center",
+		"public_housing_estate",
+		"recycling_center",
+		"regional_government_office",
+		"regional_hospital",
+		"renewable_energy_cooperative",
+		"ring_road",
+		"riverside_park",
+		"shopping_center",
+		"tourism_board"
+	],
+	"base_events": [
+		"factory_closure",
+		"housing_shortage",
+		"hospital_consolidation",
+		"high_street_vacancies",
+		"traffic_congestion",
+		"river_pollution",
+		"youth_outmigration",
+		"tourism_pressure",
+		"rent_spike",
+		"data_center_demand",
+		"flash_flood",
+		"service_withdrawal"
+	],
+	"forced_events": [
+		{
+			"event": "deindustrialization_wave",
+			"turn": 6
+		},
+		{
+			"event": "regional_service_review",
+			"turn": 12
+		}
+	]
+}

@@ -1,0 +1,16 @@
+{
+	"id": "washhouse_network",
+	"name": "Washhouse Network",
+	"category": "development",
+	"cost": 4,
+	"tags": [
+		"infrastructure"
+	],
+	"demands": {
+		"health": -1
+	},
+	"prerequisites": [
+		"public_baths"
+	],
+	"flavor": "Stone, timber, taxes, and maintenance make possible Washhouse Network."
+}

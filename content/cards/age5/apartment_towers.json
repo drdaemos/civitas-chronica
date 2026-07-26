@@ -1,0 +1,22 @@
+{
+	"id": "apartment_towers",
+	"name": "Apartment Towers",
+	"category": "development",
+	"cost": 6,
+	"tags": [
+		"infrastructure"
+	],
+	"demands": {
+		"provision": 1
+	},
+	"effects": [
+		{
+			"type": "pop_growth_mult",
+			"amount": 0.05
+		}
+	],
+	"flavor": "Stone, timber, taxes, and maintenance make possible Apartment Towers.",
+	"inject_main": [
+		"affordable_housing_office"
+	]
+}

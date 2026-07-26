@@ -3,10 +3,8 @@
 	"name": "Grand Theatre",
 	"category": "development",
 	"cost": 7,
-	"tags": ["cultural"],
-	"demands": {"appeal": -3},
-	"effects": [
-		{"type": "income", "amount": 1}
+	"tags": [
+		"cultural"
 	],
 	"flavor": "Gilt boxes, a painted ceiling, and a pit that hisses what it does not like; the city now judges kings nightly, at least on stage."
 }

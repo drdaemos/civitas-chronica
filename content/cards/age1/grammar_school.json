@@ -1,0 +1,14 @@
+{
+	"id": "grammar_school",
+	"name": "Grammar School",
+	"category": "development",
+	"cost": 4,
+	"tags": [
+		"science"
+	],
+	"demands": {
+		"health": -1,
+		"fairness": 1
+	},
+	"flavor": "Practical knowledge is made municipal through Grammar School."
+}

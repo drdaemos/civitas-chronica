@@ -1,0 +1,20 @@
+{
+	"id": "data_center",
+	"name": "Data Centre",
+	"category": "development",
+	"cost": 8,
+	"tags": [
+		"science",
+		"industrial"
+	],
+	"demands": {
+		"appeal": 1
+	},
+	"effects": [
+		{
+			"type": "income",
+			"amount": 1
+		}
+	],
+	"flavor": "Practical knowledge is made municipal through Data Centre."
+}

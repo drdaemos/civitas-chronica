@@ -1,0 +1,18 @@
+{
+	"id": "radical_club",
+	"name": "Radical Club",
+	"category": "development",
+	"cost": 3,
+	"tags": [
+		"cultural",
+		"science"
+	],
+	"demands": {
+		"health": -1,
+		"fairness": 1
+	},
+	"flavor": "Public life acquires a new center in Radical Club.",
+	"inject_main": [
+		"petition_hall"
+	]
+}

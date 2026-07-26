@@ -1,0 +1,31 @@
+{
+	"id": "agrarian_exchange",
+	"name": "Agrarian Exchange",
+	"description": "Agrarian Exchange changes both the town's advantages and the pressures created by its specialization.",
+	"threshold": {
+		"type": "all_of",
+		"conditions": [
+			{
+				"type": "has_development",
+				"id": "corn_exchange"
+			},
+			{
+				"type": "tag_count",
+				"tag": "trade",
+				"op": ">=",
+				"value": 12
+			}
+		]
+	},
+	"effects": [
+		{
+			"type": "income",
+			"amount": 2
+		},
+		{
+			"type": "demand_modifier",
+			"demand": "provision",
+			"amount": -1
+		}
+	]
+}

@@ -1,0 +1,26 @@
+{
+	"id": "industrial_subsidy",
+	"name": "Industrial Subsidy",
+	"description": "Industrial Subsidy solves one municipal problem by accepting a visible constraint elsewhere.",
+	"unlock": {
+		"type": "interaction_active",
+		"id": "early_industrial_town"
+	},
+	"swap_cost_budget": 3,
+	"swap_cost_demands": {
+		"fairness": 1
+	},
+	"effects": [
+		{
+			"type": "cost_modifier",
+			"tag": "industrial",
+			"amount": -1,
+			"min_cost": 1
+		},
+		{
+			"type": "demand_modifier",
+			"demand": "health",
+			"amount": 1
+		}
+	]
+}

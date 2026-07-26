@@ -1,0 +1,17 @@
+{
+	"id": "published_accounts",
+	"name": "Published Municipal Accounts",
+	"category": "development",
+	"cost": 3,
+	"tags": [
+		"science",
+		"cultural"
+	],
+	"demands": {
+		"fairness": -1
+	},
+	"prerequisites": [
+		"elected_council"
+	],
+	"flavor": "Practical knowledge is made municipal through Published Municipal Accounts."
+}

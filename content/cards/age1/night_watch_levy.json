@@ -1,0 +1,17 @@
+{
+	"id": "night_watch_levy",
+	"name": "Night Watch Levy",
+	"category": "action",
+	"cost": 2,
+	"effects": [
+		{
+			"type": "demand_delta",
+			"demand": "security",
+			"amount": -3
+		}
+	],
+	"prerequisites": [
+		"town_watch"
+	],
+	"flavor": "Night Watch Levy buys the council time, but no temporary measure is free of consequence."
+}

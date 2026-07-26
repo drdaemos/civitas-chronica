@@ -110,7 +110,7 @@ Hand is a plain unordered set with a **capacity** (base 5, raised by rare develo
 
 ### 4.4 Conditions & Effects — structured data, not a string DSL
 
-Event triggers ("Population > 800 AND no [Infrastructure] interaction active"), interaction thresholds ("3+ [Industrial] + 1+ [Trade]"), and card/policy effects are all expressed as **composable Resource types**, not parsed strings:
+Event triggers ("Population > 800 AND no [Infrastructure] interaction active"), interaction thresholds ("14+ [Industrial] + 10+ [Trade]"), and card/policy effects are all expressed as **composable Resource types**, not parsed strings:
 
 - `Condition` (abstract) → `ResourceCompare`, `TagCount`, `DemandCompare`, `DemandGrowthCompare`, `InteractionActive`, `PolicyActive`, `AgeIs`, `AllOf`, `AnyOf`, `Not`
 - `Effect` (abstract) → `ResourceDelta`, `DemandDelta` (one-time), `DemandModifier` / `DemandModifierPerTag` (passive, feeds the growth step), `CostModifier`, `Income`, `InjectCards`, `InjectEvents`, `UnlockPolicy`, `AddTag` / `RemoveTag`, `SetFlag`
@@ -127,7 +127,7 @@ Interactions and policies both modify rules ("[Industrial] costs +1", "all devel
 
 ### 4.6 InteractionEngine, EventMatcher, AgeTransition, Scoring
 
-- **InteractionEngine** — after each play, evaluates all `InteractionDef` conditions against GameState (a few dozen boolean checks; trivial). Emits `threshold_crossed` with first-discovery flag (checks ProfileManager). Handles per-age threshold overrides (GDD §4.8 step 4).
+- **InteractionEngine** — after each play and age transition, evaluates all `InteractionDef` conditions against GameState (a few dozen boolean checks; trivial). Emits `threshold_crossed` with first-discovery flag (checks ProfileManager).
 - **EventMatcher** — draws until a trigger matches, with **no draw limit** (amended 2026-07-26); unmatched cards return to deck bottom, and a full pass with no match means no event this turn. Because triggers are deliberately permissive (GDD §4.4), the common case is a match within a few draws; the unbounded loop is still bounded by deck size and is trivially cheap at this scale. Also resolves **hazard cancellation** and **conditional options**. Cancellation is type-based: an event declares one `hazard` from a fixed vocabulary (`flood`, `fire`, `disease`, `famine`, `riot`, `raid`, `pollution`, `collapse`), developments carry a `cancels` list, and if any standing development cancels that hazard the event's negative effects are dropped before application. Conditional options are card-ID references checked against standing developments at resolution time. Forced events are `EventDef`s with an `AgeTime` condition and a `forced` flag that bypasses the draw.
 - **DemandEngine** — owns the demand meters. During UPKEEP it applies each active demand's growth step, then shuffles one emergency event per demand at or above threshold and one catastrophe event per demand at or above the catastrophe value. At age transition it activates the age's new demand by summing the printed `demands` values of every standing development. Thresholds and catastrophe values come from `content/rules.json`.
 - **PopulationEngine** — grows the population *count* each turn by `age.population_growth_base × growth_multiplier(demands over threshold) × (1 ± variance)` from the named `population` RNG stream, then recomputes the population *level* from the boundary table with a hysteresis margin so the level does not oscillate. Level changes are the only population output any other system reads.
@@ -150,7 +150,7 @@ Definition types (all data-only Resources):
 |---|---|
 | `CardDef` | id, name, category (Development/Action), budget_cost, ages_available, tags[], **demands{}** (Development only), **cancels[] (hazard types)**, **hand_limit_bonus**, prerequisites[] (CardDef refs), effects[], injections {main_deck: CardDef[], event_deck: EventDef[]}, opens_paths flag, **superseded_by{age → CardDef ref}** (optional, GDD §4.6) |
 | `EventDef` | id, trigger: Condition, forced flag, weight, **hazard**, **demand + severity** (emergency/catastrophe events only), options[] {text, budget_cost (billed next turn), **requires_development (optional CardDef ref)**, effects[], injections} |
-| `InteractionDef` | id, name, threshold: Condition, consequences: Effect[], per_age_overrides{} |
+| `InteractionDef` | id, name, description, threshold: Condition, consequences: Effect[] |
 | `PolicyDef` | id, ages, unlock: Condition, rule_modifiers: Effect[], swap_cost (budget + demand penalty), evolution_branches: PolicyDef[] |
 | `AgeDef` | id, year range, turn_count, **activates_demand**, **population_growth_base**, base card pool, base event pool, forced-event schedule, interaction table overrides, deck-generation rules |
 | `RulesDef` | single `content/rules.json`: demand threshold and catastrophe values, population level boundaries, hysteresis, variance, growth multiplier table |
@@ -158,6 +158,8 @@ Definition types (all data-only Resources):
 Content IDs are stable strings (`card_town_market`), never array indices — saves and the account profile reference content by ID and must survive content reordering between game versions.
 
 **Authoring aids (build when data entry begins, not before):** a `tools/validate_content.gd` headless script that checks every definition — dangling refs, unreachable cards (nothing injects them and they're not in a base pool), prerequisite cycles, events whose triggers can never fire in their age. Runs locally and in CI. This validator is cheap and will catch the majority of content bugs before anyone plays a turn.
+
+The validator also enforces authored-pool budgets: at least 50 cards per Age, 5 action cards, 10 ordinary events, 2 forced historical pressures, bounded base-deck size, and both mitigating and aggravating developments for the Age's newly activated demand. `tools/verify.ps1` is the canonical full loop: content validation, all headless tests, then a deterministic multi-bot balance matrix over the complete five-Age chain. The matrix checks that demand-aware play usually survives while random, reckless, and passive play do not.
 
 ---
 
@@ -192,7 +194,7 @@ This game's risk is systemic balance, not code volume — the tooling reflects t
 - **Unit tests: [gdUnit4](https://github.com/godot-gdunit-labs/gdUnit4)** (v5, actively maintained, GDScript + C#, CI-friendly; preferred over GUT for cleaner headless/CI integration). Because `core/` is Node-free, tests construct GameStates directly and assert on turn resolution — no scene loading.
   *MVP amendment (2026-07):* the MVP ships with a ~60-line custom runner (`tools/run_tests.gd` + `tests/test_context.gd`) instead — zero addon dependency, same headless CLI workflow. Migrate to gdUnit4 when the suite outgrows it (parameterized tests, mocking, per-test isolation); re-verify the latest gdUnit4 release at that point per constitution rule 1.
 - **Property tests for the GDD's hard rules.** The design intent statements are executable: *no lose condition may resolve in a single turn* (assert every lose path requires ≥2 turns from healthy state), *event bills can push budget negative but nothing else can end the game that turn*, *age transition preserves population exactly*, *demand meters never go below 0*, *a demand growth step of 0 leaves the meter unchanged indefinitely*, *demolishing a development exactly reverses its standing demand contribution*, and *no rule reads the population count* (only the level). These run over thousands of randomized states.
-- **The balance simulator** — a headless script (`godot --headless --script tools/simulate.gd`) that plays full saves with pluggable bot policies (random-legal, greedy-budget, turtle, single-tag-specialist) over thousands of seeded runs, outputting CSV: win rate, score distributions per axis, threshold-hit frequencies, event-fire rates, turns-to-loss histograms. This is how Appendix C's balancing questions actually get answered — e.g., "does the turtle bot survive comfortably?" directly measures the anti-turtling design. Determinism (§4.7) makes every anomalous run reproducible by seed. **Build this immediately after the turn engine works; it is not optional tooling.**
+- **The balance simulator** — `tools/simulate.gd` plays complete five-age saves with deterministic random, greedy, steward, reckless, and turtle strategies. Its `--suite` mode reports win rate, final-age reach, transitions, turns, score, and interactions, then enforces a difficulty envelope: competent stewardship should usually win, random play should rarely win, and reckless or inactive play should fail. Use multiple seed bands during tuning; every anomalous run remains reproducible.
 - **CI** — GitHub Actions using the standard godot-ci Docker images: content validation (§5) + gdUnit4 suite on every push; export builds on tags.
 
 ---
@@ -235,7 +237,7 @@ res://
 
 ---
 
-## 11. Build Order (maps to GDD §10 MVP)
+## 11. Build Order (maps to GDD §10)
 
 A walking skeleton, sim-first — each step is playable/testable before the next:
 
@@ -245,9 +247,9 @@ A walking skeleton, sim-first — each step is playable/testable before the next
 4. **Data-view UI** — the plain-stats skin as the first playable human interface (doubles as debug UI forever).
 5. **Save/profile persistence** — snapshot-at-turn-start, discovery recording, schema v1.
 6. **Desk UI** — skeuomorphic scene over the same signals; card-framework integration; event screen; lose/score screens.
-7. **MVP content** per GDD §10 (Age 1 card/event/interaction/policy lists), tuned via the simulator.
+7. **Full authored content chain** per GDD §10, tuned through deterministic multi-strategy balance suites and human playtesting.
 
-Age transitions and meta-progression UI come after MVP, but nothing above needs rework for them: AgeTransition is a pure function slot (§4.6), and the profile already records discoveries. The transition needing no player input beyond policy evolution makes it cheaper still — it is one function call plus a report screen, not an interactive editor over the whole city.
+The five-age transition chain is covered headlessly. The remaining transition work is presentation: policy-evolution choices and a clear report screen showing supersessions, interaction changes, demand activation, and the rebuilt pools.
 
 ---
 

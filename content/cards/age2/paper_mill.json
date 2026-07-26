@@ -1,0 +1,20 @@
+{
+	"id": "paper_mill",
+	"name": "Paper Mill",
+	"category": "development",
+	"cost": 5,
+	"tags": [
+		"industrial",
+		"science"
+	],
+	"demands": {
+		"health": 1
+	},
+	"effects": [
+		{
+			"type": "income",
+			"amount": 1
+		}
+	],
+	"flavor": "Smoke, wages, and useful production follow Paper Mill."
+}

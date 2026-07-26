@@ -3,8 +3,16 @@
 	"name": "Militia Barracks",
 	"category": "development",
 	"cost": 4,
-	"tags": ["military"],
-	"demands": {"security": -3},
-	"effects": [],
-	"flavor": "Drill on Sundays, muskets in the armory, and billeting money paid promptly; respectable men in uniform, mostly pointed away from the city."
+	"tags": [
+		"military"
+	],
+	"demands": {
+		"security": -2,
+		"fairness": 1
+	},
+	"flavor": "Drill on Sundays, muskets in the armory, and billeting money paid promptly; respectable men in uniform, mostly pointed away from the city.",
+	"inject_main": [
+		"barracks_hospital",
+		"militia_drill"
+	]
 }

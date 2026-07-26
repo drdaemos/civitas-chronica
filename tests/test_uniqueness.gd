@@ -5,7 +5,7 @@ extends RefCounted
 ## consumed ledger. Events are NOT unique.
 
 
-func run(t: TestContext) -> void:
+func run(t: TestContext) -> bool:
 	var db: ContentDB = Fixtures.build_db()
 
 	t.label("a development cannot be played twice")
@@ -88,3 +88,4 @@ func run(t: TestContext) -> void:
 		if error.contains("duplicate base_deck card \"town_market\""):
 			found_dupe = true
 	t.is_true(found_dupe, "duplicate base_deck id reported by validate()")
+	return true

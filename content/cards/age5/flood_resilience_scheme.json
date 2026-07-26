@@ -1,0 +1,20 @@
+{
+	"id": "flood_resilience_scheme",
+	"name": "Flood Resilience Scheme",
+	"category": "development",
+	"cost": 7,
+	"tags": [
+		"infrastructure",
+		"science"
+	],
+	"demands": {
+		"health": -1
+	},
+	"flavor": "Stone, timber, taxes, and maintenance make possible Flood Resilience Scheme.",
+	"cancels": [
+		"flood"
+	],
+	"inject_main": [
+		"emergency_flood_fund"
+	]
+}

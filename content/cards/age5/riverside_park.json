@@ -1,0 +1,17 @@
+{
+	"id": "riverside_park",
+	"name": "Riverside Park",
+	"category": "development",
+	"cost": 6,
+	"tags": [
+		"cultural",
+		"infrastructure"
+	],
+	"demands": {
+		"appeal": -2
+	},
+	"flavor": "Public life acquires a new center in Riverside Park.",
+	"inject_main": [
+		"wastewater_upgrade"
+	]
+}

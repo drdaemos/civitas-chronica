@@ -1,0 +1,13 @@
+{
+	"id": "watchtower",
+	"name": "Watchtower",
+	"category": "development",
+	"cost": 3,
+	"tags": [
+		"military"
+	],
+	"demands": {
+		"security": -2
+	},
+	"flavor": "The town commits labor and authority to Watchtower."
+}

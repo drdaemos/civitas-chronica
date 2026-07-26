@@ -3,12 +3,19 @@
 	"name": "Coffee House",
 	"category": "development",
 	"cost": 4,
-	"tags": ["cultural"],
-	"demands": {"fairness": -1, "security": 1},
-	"effects": [
-		{"type": "income", "amount": 1}
+	"tags": [
+		"cultural"
 	],
-	"inject_main": ["debating_society"],
-	"inject_events": ["coffee_house_sedition"],
+	"demands": {
+		"health": -1,
+		"fairness": 1
+	},
+	"inject_main": [
+		"bookshop",
+		"debating_society"
+	],
+	"inject_events": [
+		"coffee_house_sedition"
+	],
 	"flavor": "A penny for the coffee, the news thrown in; merchants, scribblers, and idlers argue at the long tables until the candles are spent."
 }

@@ -1,0 +1,17 @@
+{
+	"id": "maternity_clinic",
+	"name": "Maternity Clinic",
+	"category": "development",
+	"cost": 5,
+	"tags": [
+		"science",
+		"cultural"
+	],
+	"demands": {
+		"health": -1
+	},
+	"flavor": "Practical knowledge is made municipal through Maternity Clinic.",
+	"inject_main": [
+		"district_nursing"
+	]
+}

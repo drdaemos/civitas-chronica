@@ -1,0 +1,23 @@
+{
+	"id": "ferry_crossing",
+	"name": "Ferry Crossing",
+	"category": "development",
+	"cost": 3,
+	"tags": [
+		"trade",
+		"infrastructure"
+	],
+	"demands": {
+		"provision": -1
+	},
+	"effects": [
+		{
+			"type": "income",
+			"amount": 1
+		}
+	],
+	"prerequisites": [
+		"river_docks"
+	],
+	"flavor": "Contracts, carts, and arguments gather around Ferry Crossing."
+}

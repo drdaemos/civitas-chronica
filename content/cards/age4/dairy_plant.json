@@ -1,0 +1,23 @@
+{
+	"id": "dairy_plant",
+	"name": "Dairy Plant",
+	"category": "development",
+	"cost": 5,
+	"tags": [
+		"industrial",
+		"trade"
+	],
+	"demands": {
+		"health": 1
+	},
+	"effects": [
+		{
+			"type": "income",
+			"amount": 1
+		}
+	],
+	"flavor": "Smoke, wages, and useful production follow Dairy Plant.",
+	"inject_main": [
+		"brewery_complex"
+	]
+}

@@ -1,0 +1,20 @@
+{
+	"id": "conference_center",
+	"name": "Conference Centre",
+	"category": "development",
+	"cost": 7,
+	"tags": [
+		"trade",
+		"cultural"
+	],
+	"effects": [
+		{
+			"type": "income",
+			"amount": 1
+		}
+	],
+	"prerequisites": [
+		"tourism_board"
+	],
+	"flavor": "Contracts, carts, and arguments gather around Conference Centre."
+}

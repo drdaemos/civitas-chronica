@@ -1,0 +1,17 @@
+{
+	"id": "public_housing_estate",
+	"name": "Public Housing Estate",
+	"category": "development",
+	"cost": 7,
+	"tags": [
+		"infrastructure",
+		"cultural"
+	],
+	"demands": {
+		"health": -1
+	},
+	"flavor": "Stone, timber, taxes, and maintenance make possible Public Housing Estate.",
+	"inject_main": [
+		"suburban_estate"
+	]
+}

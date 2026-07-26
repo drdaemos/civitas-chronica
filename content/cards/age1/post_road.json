@@ -1,0 +1,22 @@
+{
+	"id": "post_road",
+	"name": "Post Road",
+	"category": "development",
+	"cost": 4,
+	"tags": [
+		"infrastructure"
+	],
+	"demands": {
+		"provision": -1
+	},
+	"effects": [
+		{
+			"type": "income",
+			"amount": 1
+		}
+	],
+	"prerequisites": [
+		"cobblestone_roads"
+	],
+	"flavor": "Stone, timber, taxes, and maintenance make possible Post Road."
+}

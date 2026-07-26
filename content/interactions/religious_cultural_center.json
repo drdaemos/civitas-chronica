@@ -1,10 +1,34 @@
 {
 	"id": "religious_cultural_center",
-	"name": "Religious Cultural Center",
-	"description": "Parish charity and processions hold the city together: Fairness and Provision each grow 1 slower per turn.",
-	"threshold": {"type": "all_of", "conditions": [{"type": "tag_count", "tag": "religious", "op": ">=", "value": 2}, {"type": "tag_count", "tag": "cultural", "op": ">=", "value": 2}]},
+	"name": "Religious Cultural Centre",
+	"description": "Religious Cultural Centre changes both the town's advantages and the pressures created by its specialization.",
+	"threshold": {
+		"type": "all_of",
+		"conditions": [
+			{
+				"type": "tag_count",
+				"tag": "religious",
+				"op": ">=",
+				"value": 5
+			},
+			{
+				"type": "tag_count",
+				"tag": "cultural",
+				"op": ">=",
+				"value": 10
+			}
+		]
+	},
 	"effects": [
-		{"type": "demand_modifier", "demand": "fairness", "amount": -1},
-		{"type": "demand_modifier", "demand": "provision", "amount": -1}
+		{
+			"type": "demand_modifier",
+			"demand": "fairness",
+			"amount": -1
+		},
+		{
+			"type": "demand_modifier",
+			"demand": "appeal",
+			"amount": -1
+		}
 	]
 }

@@ -1,0 +1,23 @@
+{
+	"id": "electric_grid",
+	"name": "Municipal Electric Grid",
+	"category": "development",
+	"cost": 7,
+	"tags": [
+		"infrastructure"
+	],
+	"demands": {
+		"provision": -1,
+		"health": -1
+	},
+	"effects": [
+		{
+			"type": "income",
+			"amount": 1
+		}
+	],
+	"prerequisites": [
+		"electric_power_station"
+	],
+	"flavor": "Stone, timber, taxes, and maintenance make possible Municipal Electric Grid."
+}

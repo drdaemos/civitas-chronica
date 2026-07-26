@@ -5,7 +5,7 @@ extends RefCounted
 ## standing city, and the rule that demands never damage the city directly.
 
 
-func run(t: TestContext) -> void:
+func run(t: TestContext) -> bool:
 	var db: ContentDB = Fixtures.build_db()
 
 	t.label("only the age's demand is active, and it starts at 0")
@@ -182,6 +182,8 @@ func run(t: TestContext) -> void:
 	Fixtures.force_play(engine11, "river_docks")
 	t.eq(ModifierPipeline.collect(state11, db).demand_modifier_total("supply"), -2,
 		"one per trade development")
+	return true
+
 
 
 # --- helpers -----------------------------------------------------------------

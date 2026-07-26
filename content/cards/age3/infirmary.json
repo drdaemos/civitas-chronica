@@ -1,0 +1,20 @@
+{
+	"id": "infirmary",
+	"name": "Town Infirmary",
+	"category": "development",
+	"cost": 6,
+	"tags": [
+		"science",
+		"cultural"
+	],
+	"demands": {
+		"health": -2
+	},
+	"prerequisites": [
+		"vaccination_board"
+	],
+	"flavor": "Practical knowledge is made municipal through Town Infirmary.",
+	"superseded_by": {
+		"age4": "municipal_hospital"
+	}
+}

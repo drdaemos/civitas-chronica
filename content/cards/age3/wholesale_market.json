@@ -1,0 +1,24 @@
+{
+	"id": "wholesale_market",
+	"name": "Wholesale Market",
+	"category": "development",
+	"cost": 6,
+	"tags": [
+		"trade",
+		"infrastructure"
+	],
+	"demands": {
+		"appeal": -1,
+		"health": 1
+	},
+	"effects": [
+		{
+			"type": "income",
+			"amount": 2
+		}
+	],
+	"prerequisites": [
+		"market_gardens"
+	],
+	"flavor": "Contracts, carts, and arguments gather around Wholesale Market."
+}

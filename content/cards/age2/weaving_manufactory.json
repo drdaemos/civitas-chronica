@@ -3,12 +3,26 @@
 	"name": "Weaving Manufactory",
 	"category": "development",
 	"cost": 4,
-	"tags": ["industrial"],
-	"demands": {"health": 1, "fairness": 1},
-	"effects": [
-		{"type": "income", "amount": 1}
+	"tags": [
+		"industrial"
 	],
-	"inject_main": ["dye_works"],
-	"inject_events": ["labor_unrest"],
-	"flavor": "Forty looms under one roof and a bell that starts the day; the weavers no longer own their work, only their hours."
+	"demands": {
+		"health": 1
+	},
+	"effects": [
+		{
+			"type": "income",
+			"amount": 1
+		}
+	],
+	"inject_events": [
+		"labor_unrest"
+	],
+	"flavor": "Forty looms under one roof and a bell that starts the day; the weavers no longer own their work, only their hours.",
+	"inject_main": [
+		"dye_works"
+	],
+	"superseded_by": {
+		"age3": "mechanized_mill"
+	}
 }

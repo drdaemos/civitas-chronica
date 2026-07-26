@@ -1,0 +1,49 @@
+{
+	"id": "royal_levy",
+	"title": "The Crown Demands a New Levy",
+	"text": "The Crown Demands a New Levy reaches the council as a local problem with no cost-free answer.",
+	"trigger": {
+		"type": "always"
+	},
+	"options": [
+		{
+			"text": "Fund a thorough municipal response",
+			"cost": 3,
+			"effects": [
+				{
+					"type": "demand_delta",
+					"demand": "provision",
+					"amount": -2
+				}
+			]
+		},
+		{
+			"text": "Use a limited and temporary measure",
+			"cost": 1,
+			"effects": [
+				{
+					"type": "demand_delta",
+					"demand": "provision",
+					"amount": 1
+				}
+			]
+		},
+		{
+			"text": "Leave households and local institutions to cope",
+			"cost": 0,
+			"effects": [
+				{
+					"type": "demand_delta",
+					"demand": "provision",
+					"amount": 2
+				},
+				{
+					"type": "resource_delta",
+					"resource": "population_count",
+					"amount": -20
+				}
+			]
+		}
+	],
+	"hazard": "raid"
+}

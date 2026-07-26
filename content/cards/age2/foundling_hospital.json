@@ -1,0 +1,14 @@
+{
+	"id": "foundling_hospital",
+	"name": "Foundling Hospital",
+	"category": "development",
+	"cost": 4,
+	"tags": [
+		"religious",
+		"science"
+	],
+	"demands": {
+		"health": -1
+	},
+	"flavor": "Ritual, charity, and local obligation meet at Foundling Hospital."
+}

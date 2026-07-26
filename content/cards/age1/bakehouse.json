@@ -1,0 +1,16 @@
+{
+	"id": "bakehouse",
+	"name": "Common Bakehouse",
+	"category": "development",
+	"cost": 3,
+	"tags": [
+		"infrastructure"
+	],
+	"demands": {
+		"provision": -2
+	},
+	"flavor": "Stone, timber, taxes, and maintenance make possible Common Bakehouse.",
+	"inject_main": [
+		"communal_oven"
+	]
+}

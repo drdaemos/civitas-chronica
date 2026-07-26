@@ -1,0 +1,23 @@
+{
+	"id": "workers_cottages",
+	"name": "Workers' Cottages",
+	"category": "development",
+	"cost": 5,
+	"tags": [
+		"infrastructure",
+		"industrial"
+	],
+	"demands": {
+		"provision": 1
+	},
+	"effects": [
+		{
+			"type": "pop_growth_mult",
+			"amount": 0.05
+		}
+	],
+	"prerequisites": [
+		"lodging_house"
+	],
+	"flavor": "Stone, timber, taxes, and maintenance make possible Workers' Cottages."
+}

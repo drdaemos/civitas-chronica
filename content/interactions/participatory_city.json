@@ -1,0 +1,31 @@
+{
+	"id": "participatory_city",
+	"name": "Participatory City",
+	"description": "Participatory City changes both the town's advantages and the pressures created by its specialization.",
+	"threshold": {
+		"type": "all_of",
+		"conditions": [
+			{
+				"type": "has_development",
+				"id": "participatory_budgeting"
+			},
+			{
+				"type": "tag_count",
+				"tag": "cultural",
+				"op": ">=",
+				"value": 25
+			}
+		]
+	},
+	"effects": [
+		{
+			"type": "demand_modifier",
+			"demand": "fairness",
+			"amount": -2
+		},
+		{
+			"type": "income",
+			"amount": -1
+		}
+	]
+}

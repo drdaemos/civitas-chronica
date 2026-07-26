@@ -1,0 +1,22 @@
+{
+	"id": "compulsory_purchase",
+	"name": "Compulsory Purchase",
+	"category": "action",
+	"cost": 3,
+	"effects": [
+		{
+			"type": "resource_delta",
+			"resource": "budget",
+			"amount": 4
+		},
+		{
+			"type": "demand_delta",
+			"demand": "fairness",
+			"amount": 2
+		}
+	],
+	"prerequisites": [
+		"railway_survey_office"
+	],
+	"flavor": "Compulsory Purchase buys the council time, but no temporary measure is free of consequence."
+}

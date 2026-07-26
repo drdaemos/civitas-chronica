@@ -3,8 +3,16 @@
 	"name": "Stone Church",
 	"category": "development",
 	"cost": 4,
-	"tags": ["religious", "cultural"],
-	"demands": {"fairness": -2, "appeal": -1},
-	"effects": [],
-	"flavor": "The wooden chapel gives way to vaulted stone; the bells can now be heard two villages away."
+	"tags": [
+		"religious",
+		"cultural"
+	],
+	"demands": {
+		"provision": -1,
+		"fairness": -1
+	},
+	"flavor": "The wooden chapel gives way to vaulted stone; the bells can now be heard two villages away.",
+	"inject_main": [
+		"pilgrimage_hostel"
+	]
 }

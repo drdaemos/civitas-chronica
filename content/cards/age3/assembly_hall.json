@@ -1,0 +1,16 @@
+{
+	"id": "assembly_hall",
+	"name": "Assembly Hall",
+	"category": "development",
+	"cost": 5,
+	"tags": [
+		"cultural"
+	],
+	"demands": {
+		"fairness": -1
+	},
+	"flavor": "Public life acquires a new center in Assembly Hall.",
+	"inject_main": [
+		"public_park"
+	]
+}

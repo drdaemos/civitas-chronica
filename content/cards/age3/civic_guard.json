@@ -1,0 +1,20 @@
+{
+	"id": "civic_guard",
+	"name": "Civic Guard",
+	"category": "development",
+	"cost": 5,
+	"tags": [
+		"military",
+		"cultural"
+	],
+	"demands": {
+		"security": -2
+	},
+	"prerequisites": [
+		"conscription_office"
+	],
+	"flavor": "The town commits labor and authority to Civic Guard.",
+	"cancels": [
+		"riot"
+	]
+}

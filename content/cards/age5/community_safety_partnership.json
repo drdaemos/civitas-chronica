@@ -1,0 +1,17 @@
+{
+	"id": "community_safety_partnership",
+	"name": "Community Safety Partnership",
+	"category": "development",
+	"cost": 5,
+	"tags": [
+		"military",
+		"cultural"
+	],
+	"demands": {
+		"security": -2
+	},
+	"flavor": "The town commits labor and authority to Community Safety Partnership.",
+	"cancels": [
+		"riot"
+	]
+}

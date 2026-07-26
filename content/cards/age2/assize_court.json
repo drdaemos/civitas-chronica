@@ -1,0 +1,14 @@
+{
+	"id": "assize_court",
+	"name": "Assize Court",
+	"category": "development",
+	"cost": 5,
+	"tags": [
+		"cultural",
+		"military"
+	],
+	"demands": {
+		"fairness": -2
+	},
+	"flavor": "Public life acquires a new center in Assize Court."
+}

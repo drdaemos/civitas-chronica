@@ -1,0 +1,59 @@
+{
+	"id": "hospital_overload",
+	"title": "Hospital Overload",
+	"text": "Hospital Overload exposes how long the town has allowed this municipal responsibility to exceed its capacity.",
+	"trigger": {
+		"type": "demand",
+		"demand": "health",
+		"op": ">=",
+		"value": 5
+	},
+	"hazard": "disease",
+	"demand": "health",
+	"severity": "emergency",
+	"options": [
+		{
+			"text": "Commit extraordinary funds",
+			"cost": 8,
+			"effects": [
+				{
+					"type": "demand_delta",
+					"demand": "health",
+					"amount": -2
+				}
+			]
+		},
+		{
+			"text": "Contain the worst effects",
+			"cost": 1,
+			"effects": [
+				{
+					"type": "demand_delta",
+					"demand": "health",
+					"amount": 0
+				},
+				{
+					"type": "resource_delta",
+					"resource": "population_count",
+					"amount": -150
+				}
+			]
+		},
+		{
+			"text": "Accept the losses",
+			"cost": 0,
+			"effects": [
+				{
+					"type": "demand_delta",
+					"demand": "health",
+					"amount": 1
+				},
+				{
+					"type": "resource_delta",
+					"resource": "population_count",
+					"amount": -300
+				}
+			]
+		}
+	]
+}

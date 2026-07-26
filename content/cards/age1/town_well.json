@@ -1,0 +1,16 @@
+{
+	"id": "town_well",
+	"name": "Public Well",
+	"category": "development",
+	"cost": 2,
+	"tags": [
+		"infrastructure"
+	],
+	"demands": {
+		"provision": -1
+	},
+	"prerequisites": [
+		"water_cistern"
+	],
+	"flavor": "Stone, timber, taxes, and maintenance make possible Public Well."
+}

@@ -1,0 +1,17 @@
+{
+	"id": "civic_center",
+	"name": "Civic Centre",
+	"category": "development",
+	"cost": 7,
+	"tags": [
+		"cultural",
+		"infrastructure"
+	],
+	"demands": {
+		"fairness": -1
+	},
+	"prerequisites": [
+		"public_accounts_department"
+	],
+	"flavor": "Public life acquires a new center in Civic Centre."
+}

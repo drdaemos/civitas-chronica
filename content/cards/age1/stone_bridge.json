@@ -3,10 +3,20 @@
 	"name": "Stone Bridge",
 	"category": "development",
 	"cost": 3,
-	"tags": ["infrastructure"],
-	"demands": {"provision": -1},
-	"effects": [
-		{"type": "income", "amount": 1}
+	"tags": [
+		"infrastructure"
 	],
-	"flavor": "The ford becomes a crossing, the crossing becomes a road, and the road brings the world past the toll house."
+	"demands": {
+		"provision": -1
+	},
+	"effects": [
+		{
+			"type": "income",
+			"amount": 1
+		}
+	],
+	"flavor": "The ford becomes a crossing, the crossing becomes a road, and the road brings the world past the toll house.",
+	"inject_main": [
+		"mason_lodge"
+	]
 }

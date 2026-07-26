@@ -3,10 +3,18 @@
 	"name": "Town Watch",
 	"category": "development",
 	"cost": 3,
-	"tags": ["military"],
-	"demands": {"security": -2},
-	"cancels": ["riot"],
-	"effects": [],
-	"inject_main": ["arsenal"],
-	"flavor": "Watchmen with lanterns and halberds walk the streets after curfew; petty crime learns to keep its head down."
+	"tags": [
+		"military"
+	],
+	"demands": {
+		"security": -2
+	},
+	"inject_main": [
+		"night_watch_levy",
+		"arsenal"
+	],
+	"flavor": "Watchmen with lanterns and halberds walk the streets after curfew; petty crime learns to keep its head down.",
+	"cancels": [
+		"riot"
+	]
 }

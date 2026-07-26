@@ -1,0 +1,16 @@
+{
+	"id": "refuse_department",
+	"name": "Refuse Department",
+	"category": "development",
+	"cost": 5,
+	"tags": [
+		"infrastructure"
+	],
+	"demands": {
+		"health": -2
+	},
+	"flavor": "Stone, timber, taxes, and maintenance make possible Refuse Department.",
+	"inject_main": [
+		"municipal_landfill"
+	]
+}

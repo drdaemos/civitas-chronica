@@ -1,10 +1,24 @@
 {
 	"id": "learned_city",
 	"name": "Learned City",
-	"description": "Science developments cost 1 less, and the schools open a path of their own.",
-	"threshold": {"type": "tag_count", "tag": "science", "op": ">=", "value": 6},
+	"description": "Learned City changes both the town's advantages and the pressures created by its specialization.",
+	"threshold": {
+		"type": "tag_count",
+		"tag": "science",
+		"op": ">=",
+		"value": 15
+	},
 	"effects": [
-		{"type": "cost_modifier", "tag": "science", "amount": -1, "min_cost": 1},
-		{"type": "inject_main", "cards": ["collegium"]}
+		{
+			"type": "cost_modifier",
+			"tag": "science",
+			"amount": -1,
+			"min_cost": 1
+		},
+		{
+			"type": "demand_modifier",
+			"demand": "fairness",
+			"amount": 1
+		}
 	]
 }

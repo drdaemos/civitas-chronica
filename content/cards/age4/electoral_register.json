@@ -1,0 +1,17 @@
+{
+	"id": "electoral_register",
+	"name": "Electoral Register",
+	"category": "development",
+	"cost": 4,
+	"tags": [
+		"science",
+		"cultural"
+	],
+	"demands": {
+		"fairness": -1
+	},
+	"prerequisites": [
+		"municipal_council_chamber"
+	],
+	"flavor": "Practical knowledge is made municipal through Electoral Register."
+}

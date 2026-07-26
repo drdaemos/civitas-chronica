@@ -1,0 +1,24 @@
+{
+	"id": "business_park",
+	"name": "Business Park",
+	"category": "development",
+	"cost": 7,
+	"tags": [
+		"trade",
+		"industrial"
+	],
+	"demands": {
+		"appeal": -1,
+		"health": 1
+	},
+	"effects": [
+		{
+			"type": "income",
+			"amount": 2
+		}
+	],
+	"flavor": "Contracts, carts, and arguments gather around Business Park.",
+	"inject_main": [
+		"industrial_estate"
+	]
+}

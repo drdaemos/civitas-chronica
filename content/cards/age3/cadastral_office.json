@@ -1,0 +1,17 @@
+{
+	"id": "cadastral_office",
+	"name": "Cadastral Office",
+	"category": "development",
+	"cost": 5,
+	"tags": [
+		"science",
+		"infrastructure"
+	],
+	"demands": {
+		"fairness": -1
+	},
+	"flavor": "Practical knowledge is made municipal through Cadastral Office.",
+	"inject_main": [
+		"land_tax_register"
+	]
+}

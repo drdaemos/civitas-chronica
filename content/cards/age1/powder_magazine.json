@@ -1,0 +1,18 @@
+{
+	"id": "powder_magazine",
+	"name": "Powder Magazine",
+	"category": "development",
+	"cost": 4,
+	"tags": [
+		"military",
+		"industrial"
+	],
+	"demands": {
+		"security": -2,
+		"fairness": 1
+	},
+	"prerequisites": [
+		"arsenal"
+	],
+	"flavor": "The town commits labor and authority to Powder Magazine."
+}

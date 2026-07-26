@@ -1,0 +1,20 @@
+{
+	"id": "canal_warehouse",
+	"name": "Canal Warehouse",
+	"category": "development",
+	"cost": 5,
+	"tags": [
+		"trade",
+		"industrial"
+	],
+	"effects": [
+		{
+			"type": "income",
+			"amount": 1
+		}
+	],
+	"prerequisites": [
+		"canal_depot"
+	],
+	"flavor": "Contracts, carts, and arguments gather around Canal Warehouse."
+}

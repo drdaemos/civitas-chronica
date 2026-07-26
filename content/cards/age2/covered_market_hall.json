@@ -1,0 +1,20 @@
+{
+	"id": "covered_market_hall",
+	"name": "Covered Market Hall",
+	"category": "development",
+	"cost": 0,
+	"tags": [
+		"trade",
+		"infrastructure"
+	],
+	"demands": {
+		"provision": -1
+	},
+	"effects": [
+		{
+			"type": "income",
+			"amount": 1
+		}
+	],
+	"flavor": "Contracts, carts, and arguments gather around Covered Market Hall."
+}

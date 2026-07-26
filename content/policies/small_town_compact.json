@@ -1,0 +1,23 @@
+{
+	"id": "small_town_compact",
+	"name": "Small-Town Compact",
+	"description": "Small-Town Compact solves one municipal problem by accepting a visible constraint elsewhere.",
+	"unlock": {
+		"type": "always"
+	},
+	"swap_cost_budget": 3,
+	"swap_cost_demands": {
+		"fairness": 1
+	},
+	"effects": [
+		{
+			"type": "demand_modifier",
+			"demand": "appeal",
+			"amount": -1
+		},
+		{
+			"type": "pop_growth_mult",
+			"amount": -0.1
+		}
+	]
+}

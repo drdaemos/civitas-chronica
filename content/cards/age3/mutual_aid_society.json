@@ -1,0 +1,16 @@
+{
+	"id": "mutual_aid_society",
+	"name": "Mutual-Aid Society",
+	"category": "development",
+	"cost": 4,
+	"tags": [
+		"cultural"
+	],
+	"demands": {
+		"fairness": -2
+	},
+	"flavor": "Public life acquires a new center in Mutual-Aid Society.",
+	"inject_main": [
+		"friendly_society"
+	]
+}

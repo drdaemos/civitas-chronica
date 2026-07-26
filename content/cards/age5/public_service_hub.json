@@ -1,0 +1,18 @@
+{
+	"id": "public_service_hub",
+	"name": "Public Service Hub",
+	"category": "development",
+	"cost": 6,
+	"tags": [
+		"cultural",
+		"science"
+	],
+	"demands": {
+		"fairness": -1,
+		"appeal": -1
+	},
+	"prerequisites": [
+		"regional_government_office"
+	],
+	"flavor": "Public life acquires a new center in Public Service Hub."
+}

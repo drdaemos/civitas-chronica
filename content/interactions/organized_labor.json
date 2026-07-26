@@ -1,0 +1,32 @@
+{
+	"id": "organized_labor",
+	"name": "Organized Labour",
+	"description": "Organized Labour changes both the town's advantages and the pressures created by its specialization.",
+	"threshold": {
+		"type": "all_of",
+		"conditions": [
+			{
+				"type": "has_development",
+				"id": "trades_council"
+			},
+			{
+				"type": "tag_count",
+				"tag": "industrial",
+				"op": ">=",
+				"value": 14
+			}
+		]
+	},
+	"effects": [
+		{
+			"type": "demand_modifier",
+			"demand": "fairness",
+			"amount": -2
+		},
+		{
+			"type": "cost_modifier",
+			"tag": "industrial",
+			"amount": 1
+		}
+	]
+}

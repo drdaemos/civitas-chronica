@@ -1,0 +1,14 @@
+{
+	"id": "brownfield_reclamation",
+	"name": "Brownfield Reclamation",
+	"category": "development",
+	"cost": 0,
+	"tags": [
+		"infrastructure",
+		"cultural"
+	],
+	"demands": {
+		"appeal": -2
+	},
+	"flavor": "Stone, timber, taxes, and maintenance make possible Brownfield Reclamation."
+}

@@ -4,7 +4,12 @@
 	"category": "action",
 	"cost": 3,
 	"effects": [
-		{"type": "demand_delta", "demand": "health", "amount": -3}
+		{
+			"type": "demand_delta",
+			"demand": "health",
+			"amount": -3
+		}
 	],
-	"flavor": "Physicians go parish by parish with lancets and ledgers; the practice is foreign, the arithmetic is not, and the sextons notice the difference."
+	"flavor": "Physicians go parish by parish with lancets and ledgers; the practice is foreign, the arithmetic is not, and the sextons notice the difference.",
+	"tags": []
 }

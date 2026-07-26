@@ -1,0 +1,32 @@
+{
+	"id": "reform_municipality",
+	"name": "Reform Municipality",
+	"description": "Reform Municipality changes both the town's advantages and the pressures created by its specialization.",
+	"threshold": {
+		"type": "all_of",
+		"conditions": [
+			{
+				"type": "has_development",
+				"id": "elected_council"
+			},
+			{
+				"type": "tag_count",
+				"tag": "cultural",
+				"op": ">=",
+				"value": 12
+			}
+		]
+	},
+	"effects": [
+		{
+			"type": "demand_modifier",
+			"demand": "fairness",
+			"amount": -2
+		},
+		{
+			"type": "cost_modifier",
+			"tag": "",
+			"amount": 1
+		}
+	]
+}

@@ -1,0 +1,27 @@
+{
+	"id": "early_factory_quarter",
+	"name": "Early Factory Quarter",
+	"category": "development",
+	"cost": 7,
+	"tags": [
+		"industrial",
+		"infrastructure"
+	],
+	"demands": {
+		"health": 2,
+		"fairness": 1
+	},
+	"effects": [
+		{
+			"type": "income",
+			"amount": 2
+		}
+	],
+	"flavor": "Smoke, wages, and useful production follow Early Factory Quarter.",
+	"superseded_by": {
+		"age4": "engineering_works"
+	},
+	"inject_main": [
+		"machine_shop"
+	]
+}

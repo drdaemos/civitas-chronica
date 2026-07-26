@@ -1,0 +1,17 @@
+{
+	"id": "central_fire_station",
+	"name": "Central Fire Station",
+	"category": "development",
+	"cost": 6,
+	"tags": [
+		"military",
+		"infrastructure"
+	],
+	"demands": {
+		"security": -2
+	},
+	"prerequisites": [
+		"fire_brigade"
+	],
+	"flavor": "The town commits labor and authority to Central Fire Station."
+}

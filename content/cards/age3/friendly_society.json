@@ -1,0 +1,17 @@
+{
+	"id": "friendly_society",
+	"name": "Friendly Society",
+	"category": "development",
+	"cost": 3,
+	"tags": [
+		"cultural",
+		"trade"
+	],
+	"demands": {
+		"fairness": -1
+	},
+	"prerequisites": [
+		"mutual_aid_society"
+	],
+	"flavor": "Public life acquires a new center in Friendly Society."
+}

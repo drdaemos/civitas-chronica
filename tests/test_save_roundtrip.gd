@@ -4,7 +4,7 @@ extends RefCounted
 ## playing identically to the same final state.
 
 
-func run(t: TestContext) -> void:
+func run(t: TestContext) -> bool:
 	var db: ContentDB = Fixtures.build_db()
 
 	t.label("roundtrip preserves state exactly")
@@ -26,4 +26,5 @@ func run(t: TestContext) -> void:
 	t.eq(JSON.stringify(copy.to_dict()), JSON.stringify(state.to_dict()),
 		"4 further identical turns keep the states identical")
 	t.eq(copy.turn_number, state.turn_number, "turn counters agree")
-	t.eq(copy.population, state.population, "population agrees")
+	t.eq(copy.population_count, state.population_count, "population agrees")
+	return true

@@ -1,0 +1,16 @@
+{
+	"id": "guild_court",
+	"name": "Guild Court",
+	"category": "development",
+	"cost": 3,
+	"tags": [
+		"cultural"
+	],
+	"demands": {
+		"fairness": -1
+	},
+	"prerequisites": [
+		"artisan_guild"
+	],
+	"flavor": "Public life acquires a new center in Guild Court."
+}

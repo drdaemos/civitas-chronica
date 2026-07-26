@@ -1,0 +1,19 @@
+{
+	"id": "commuter_belt",
+	"name": "Commuter Belt",
+	"category": "development",
+	"cost": 6,
+	"tags": [
+		"infrastructure"
+	],
+	"demands": {
+		"appeal": 1
+	},
+	"effects": [
+		{
+			"type": "income",
+			"amount": 1
+		}
+	],
+	"flavor": "Stone, timber, taxes, and maintenance make possible Commuter Belt."
+}

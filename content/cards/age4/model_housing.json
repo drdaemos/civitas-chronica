@@ -1,0 +1,17 @@
+{
+	"id": "model_housing",
+	"name": "Model Housing",
+	"category": "development",
+	"cost": 7,
+	"tags": [
+		"infrastructure",
+		"cultural"
+	],
+	"demands": {
+		"health": -2
+	},
+	"prerequisites": [
+		"housing_inspectorate"
+	],
+	"flavor": "Stone, timber, taxes, and maintenance make possible Model Housing."
+}

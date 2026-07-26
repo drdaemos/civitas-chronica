@@ -3,10 +3,20 @@
 	"name": "Cobblestone Roads",
 	"category": "development",
 	"cost": 3,
-	"tags": ["infrastructure"],
-	"demands": {"provision": -1},
-	"effects": [
-		{"type": "income", "amount": 1}
+	"tags": [
+		"infrastructure"
 	],
-	"flavor": "Paved streets carry carts in every weather; goods and tolls move whether or not it rains."
+	"demands": {
+		"provision": -1
+	},
+	"effects": [
+		{
+			"type": "income",
+			"amount": 1
+		}
+	],
+	"flavor": "Paved streets carry carts in every weather; goods and tolls move whether or not it rains.",
+	"inject_main": [
+		"post_road"
+	]
 }

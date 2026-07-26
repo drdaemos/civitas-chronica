@@ -1,0 +1,20 @@
+{
+	"id": "postal_office",
+	"name": "Postal Office",
+	"category": "development",
+	"cost": 4,
+	"tags": [
+		"infrastructure",
+		"science"
+	],
+	"demands": {
+		"provision": -1
+	},
+	"effects": [
+		{
+			"type": "income",
+			"amount": 1
+		}
+	],
+	"flavor": "Stone, timber, taxes, and maintenance make possible Postal Office."
+}

@@ -1,0 +1,17 @@
+{
+	"id": "strike_mediation",
+	"name": "Strike Mediation",
+	"category": "action",
+	"cost": 3,
+	"effects": [
+		{
+			"type": "demand_delta",
+			"demand": "fairness",
+			"amount": -3
+		}
+	],
+	"prerequisites": [
+		"trades_council"
+	],
+	"flavor": "Strike Mediation buys the council time, but no temporary measure is free of consequence."
+}

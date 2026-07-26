@@ -1,0 +1,17 @@
+{
+	"id": "affordable_housing_office",
+	"name": "Affordable Housing Office",
+	"category": "development",
+	"cost": 6,
+	"tags": [
+		"cultural",
+		"infrastructure"
+	],
+	"demands": {
+		"appeal": -2
+	},
+	"prerequisites": [
+		"apartment_towers"
+	],
+	"flavor": "Public life acquires a new center in Affordable Housing Office."
+}

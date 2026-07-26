@@ -1,0 +1,17 @@
+{
+	"id": "elected_council",
+	"name": "Elected Council",
+	"category": "development",
+	"cost": 6,
+	"tags": [
+		"cultural"
+	],
+	"demands": {
+		"fairness": -2
+	},
+	"flavor": "Public life acquires a new center in Elected Council.",
+	"inject_main": [
+		"published_accounts",
+		"publish_accounts"
+	]
+}

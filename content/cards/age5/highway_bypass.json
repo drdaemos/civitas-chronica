@@ -1,0 +1,22 @@
+{
+	"id": "highway_bypass",
+	"name": "Highway Bypass",
+	"category": "development",
+	"cost": 8,
+	"tags": [
+		"infrastructure"
+	],
+	"demands": {
+		"appeal": 1
+	},
+	"effects": [
+		{
+			"type": "income",
+			"amount": 1
+		}
+	],
+	"prerequisites": [
+		"ring_road"
+	],
+	"flavor": "Stone, timber, taxes, and maintenance make possible Highway Bypass."
+}

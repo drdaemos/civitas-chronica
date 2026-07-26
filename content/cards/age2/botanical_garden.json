@@ -3,8 +3,8 @@
 	"name": "Botanical Garden",
 	"category": "development",
 	"cost": 4,
-	"tags": ["cultural"],
-	"demands": {"appeal": -2, "health": -1},
-	"effects": [],
+	"tags": [
+		"cultural"
+	],
 	"flavor": "Specimens from three continents behind glass and gravel walks; the city strolls among plants that have crossed oceans to be catalogued."
 }

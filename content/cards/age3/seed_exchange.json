@@ -1,0 +1,20 @@
+{
+	"id": "seed_exchange",
+	"name": "Seed Exchange",
+	"category": "development",
+	"cost": 4,
+	"tags": [
+		"trade",
+		"science"
+	],
+	"effects": [
+		{
+			"type": "income",
+			"amount": 1
+		}
+	],
+	"prerequisites": [
+		"model_farm"
+	],
+	"flavor": "Contracts, carts, and arguments gather around Seed Exchange."
+}

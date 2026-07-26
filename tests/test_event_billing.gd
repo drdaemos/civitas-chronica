@@ -5,7 +5,7 @@ extends RefCounted
 ## suite is about the budget, and pressure cards would keep interrupting it.
 
 
-func run(t: TestContext) -> void:
+func run(t: TestContext) -> bool:
 	var db: ContentDB = Fixtures.build_db()
 
 	t.label("event cost bills next turn, not this turn")
@@ -64,3 +64,4 @@ func run(t: TestContext) -> void:
 	t.eq(state2.current_budget, 10, "budget recovers with no bill")
 	t.eq(state2.debt_turns, 0, "recovery resets the debt counter")
 	t.is_true(not state2.game_over, "game continues after recovery")
+	return true

@@ -18,7 +18,7 @@ The setting is a **composite European provincial town**, not a specific historic
 
 **Platform:** PC
 
-**Save length:** ~3–5 hours per full save (~30–60 min per age × 3–5 ages). Saves are persistent and played across multiple sittings.
+**Save length:** ~3–5 hours per full five-age save (~30–60 min per age). Saves are persistent and played across multiple sittings.
 
 ### Unique Selling Points
 
@@ -100,7 +100,7 @@ A save spans 5 ages, each activating one new demand (§4.0):
 | 2 | 1600–1750 | Confession, State, and Exchange | **Security** | learning | war and sickness |
 | 3 | 1750–1850 | Agrarian and Commercial Transformation | **Legitimacy** | improvement | upheaval |
 | 4 | 1850–1950 | Urbanization and Civic Provision | **Health** | invention | overcrowding |
-| 5 | 1950–present | Mobility, Services, and Competition | **Appeal** | connection | decline and competition |
+| 5 | 1950–2030 (present day) | Mobility, Services, and Competition | **Appeal** | connection | decline and competition |
 
 The positive and negative characters set the tone and content of each age — which cards, events, and situations belong to it. They are authoring guidance, not separate mechanics.
 
@@ -137,7 +137,7 @@ Retained from the earlier draft:
 
 Achievements and milestones across saves unlock new cards (and possibly advisors, starting bonuses, etc.) for future saves. Purely account-wide; does not affect any active save.
 
-Critically, interaction thresholds discovered during play are remembered at the account level. On a first save, the player discovers that 3 Trade developments trigger Trade Hub status. On subsequent saves, the player can see and plan toward this threshold from the start.
+Critically, interaction thresholds discovered during play are remembered at the account level. On a first save, the player may discover that a sufficiently deep Trade tableau triggers Trade Hub status. On subsequent saves, the player can see and plan toward its exact threshold from the start.
 
 ---
 
@@ -231,11 +231,11 @@ Because aggravators enter the growth step rather than costing a flat amount once
 
 #### Consequences
 
-A single tolerance threshold, the same for every demand and every age (starting value: **3**).
+A single tolerance threshold, the same for every demand and every age (current tuned value: **5**).
 
 - **Below the threshold** — nothing happens at all. No penalty, no bleed, no cost.
 - **At or above the threshold** — one **emergency event card** for that demand is shuffled into the event deck each turn. Duplicates are allowed and expected.
-- **Far above the threshold** (starting value: **8**) — a **catastrophe card** for that demand also enters the deck each turn.
+- **Far above the threshold** (current tuned value: **20**) — a **catastrophe card** for that demand also enters the deck each turn.
 
 Two severity levels total. No third tier.
 
@@ -333,7 +333,7 @@ The interaction system is the core mechanism for indirect city control. It sits 
 
 **How it works:**
 
-Each interaction effect has a tag threshold (e.g., "3+ `[Trade]` developments") and a set of consequences that activate when the threshold is reached. Consequences may include:
+Each interaction effect has one or more substantial state thresholds (for example, a deep concentration of `[Trade]` developments) and a set of consequences that activate when the threshold is reached. Consequences may include:
 
 - Passive resource changes (budget bonuses, demand growth-step modifiers)
 - Cost modifications for future card plays (cards of certain tags become cheaper or more expensive)
@@ -342,16 +342,16 @@ Each interaction effect has a tag threshold (e.g., "3+ `[Trade]` developments") 
 - Event deck changes (new event types enter the event pool; others are removed)
 - City view changes (visual transformation of the city to reflect its character)
 
-**Example interaction effects (illustrative, not balanced):**
+**Current interaction examples:**
 
 | Threshold | Effect Name | Consequences |
 |-----------|-------------|--------------|
-| 3+ `[Trade]` | Trade Hub | +2 Budget/turn passive. `[Industrial]` developments cost +1. Maritime events enter event deck. |
-| 3+ `[Industrial]` + 1+ `[Trade]` | Export Economy | +3 Budget/turn. Health growth +1. Pollution events enter event deck. |
-| 2+ `[Religious]` + 2+ `[Cultural]` | Religious Cultural Center | Legitimacy growth −1. `[Science]` card paths restricted (conservatism). |
-| 3+ `[Military]` + Legitimacy ≥ 5 | Martial Law Possible | Unlocks Martial Law policy. Large budget boost, Appeal growth +2. |
-| 4+ `[Science]` | Research Hub | Science-related developments cost −1. Unlocks Age 2 enlightenment paths. |
-| 3+ `[Infrastructure]` | Well-Connected City | All development costs −1 (min 1). Population growth +10% per turn. |
+| 12+ `[Trade]` | Trade Hub | +2 Budget/turn. Security growth +1 as traffic and valuable goods increase exposure. |
+| 14+ `[Industrial]` + 10+ `[Trade]` | Export Economy | +3 Budget/turn. Health growth +2 from intensive production. |
+| 5+ `[Religious]` + 10+ `[Cultural]` | Religious Cultural Centre | Legitimacy growth −1 and Appeal growth −1 through shared institutions and identity. |
+| 12+ `[Military]` | Garrison Town | Security growth −2, but Legitimacy growth +1 from permanent military influence. |
+| 15+ `[Science]` | Learned City | Science developments cost −1; Legitimacy growth +1 as civic expectations rise. |
+| 15+ `[Infrastructure]` | Well-Connected City | Development costs −1 (minimum 1); Provision growth +1 as dependence on networks grows. |
 
 **Multi-tag interactions** create the most interesting emergent situations: the player may not have intended to create an Export Economy, but by pursuing both trade and industrial paths for their individual benefits, they crossed the threshold and now face the consequences.
 
@@ -364,7 +364,7 @@ At the **account level**, discovered interactions are remembered. On subsequent 
 **Visibility:**
 
 - Active interaction effects are displayed in the city view dashboard: "Trade Hub (active): +2 budget, +1 industrial costs."
-- On repeat saves, upcoming thresholds for known interactions are shown: "Trade Hub: 2/3 [Trade] developments."
+- On repeat saves, upcoming thresholds for known interactions are shown: "Trade Hub: 10/12 [Trade] developments."
 - Unknown interactions are never hinted at.
 
 ### 4.3 Policies
@@ -509,7 +509,7 @@ When in-game time reaches an age boundary, the following sequence occurs:
 1. **Hand discard** — all remaining cards in hand are discarded (unless preserved via a Legacy Archive or similar mechanic).
 2. **Supersession** — every development whose card names a successor for this age is replaced by that successor (§4.6). Automatic; no player input.
 3. **Policy evolution** — active policies present evolution choices. Each policy branches into 2–3 age-appropriate variants (§4.3). This is the only decision in the transition.
-4. **Interaction recalculation** — development tags are recalculated after supersession. Interaction effects are re-evaluated under the new age's interaction table. Some thresholds may change between ages (e.g., Trade Hub might require 4 `[Trade]` developments in Age 2 instead of 3). An interaction can be lost here if supersession took the city below its threshold.
+4. **Interaction recalculation** — development tags are recalculated after supersession and all interaction effects are re-evaluated. An interaction can be lost if supersession changes the city's tags or removes a required development.
 5. **Deck generation** — the new age's main deck and event deck are generated based on current city state, including superseded developments and new policy selections.
 6. **Demand activation** — the age's new demand becomes active, and its starting value is calculated from the printed values of all standing developments *after* supersession (§4.0). Existing demands carry their current values forward; their growth steps are recalculated.
 7. **Resource adjustment** — budget capacity may shift based on age transition rules. Population carries forward directly.
@@ -601,18 +601,17 @@ Key technical considerations flagged by the design:
 
 ## 10. Scope & Milestones
 
-**TODO** — MVP definition. Candidate minimum vertical slice:
+**Current authored-systems milestone:**
 
-- 1 age fully playable (Age 1: 1500–1600)
-- ~30–40 development cards + ~10 action cards
-- 3–4 interaction tags with 5–6 interaction effects
-- The Provision demand fully wired: meter, growth step, threshold, emergency + catastrophe cards
-- 3 policy options (1 slot active)
-- ~10–15 events with dilemma choices
-- Basic city view (character shifts visible when interaction effects activate)
-- Lose condition(s) wired up (bankruptcy; Provision catastrophe)
-- Basic scoring (population + specialization depth)
-- No meta-progression, no age transitions in MVP
+- All five ages are playable as one continuous save, including automatic supersession and demand activation at every transition.
+- 302 cards, including at least 50 cards, 5 actions, 6 demand mitigators, and 3 demand aggravators per age.
+- 100 events, including ordinary dilemmas, historical pressures received locally, emergencies, and catastrophes.
+- 25 interaction effects and 20 policies spanning economic, political, infrastructural, cultural, welfare, and environmental identities.
+- Every demand is supported from its activation through the final age.
+- Content validation enforces pool size, reachability, authoring budgets, references, historical windows, and transition integrity.
+- The automated verification loop covers the complete five-age chain and compares multiple deterministic player strategies.
+
+**Next milestone:** human playtesting and UI integration. Validate comprehension, decision time, city-history recall, transition reports, scoring identities, and whether the automated difficulty envelope feels fair to real players.
 
 ---
 
@@ -667,7 +666,7 @@ Turn order is canonical in §3: the city acts, then the crisis lands, then the p
 
 ## Appendix B: Example Turn Sequence (Age 1)
 
-**City state entering turn:** Population level 1 (4,180 people) | Budget 10/turn | **Provision 2** (threshold 3) | Hand: 2 cards (limit 5)
+**City state entering turn:** Population level 1 (4,180 people) | Budget 10/turn | **Provision 2** (threshold 5) | Hand: 2 cards (limit 5)
 
 **Active developments:** Town Market `[Trade]` (Provision −1), River Docks `[Trade]`, Cobblestone Roads `[Infrastructure]`, Stone Church `[Religious]` `[Cultural]`, Grain Storehouse `[Infrastructure]` (Provision −1)
 
@@ -735,7 +734,7 @@ Both are first discoveries — the player did not see them coming.
 - Balancing: the growth-rate function — exact multipliers per count of demands over threshold (§4.0).
 - Balancing: population level boundaries, how many levels exist across a full save, and the hysteresis margin for losing a level.
 - Balancing: end-score function — not designed yet (§4.7).
-- Balancing: demand threshold value (currently 3) and catastrophe value (currently 8).
+- Balancing: revisit the current demand threshold (5) and catastrophe value (20) after human playtests.
 - Balancing: typical printed demand values on cards — is the useful range −1..−3 / +1..+3?
 - Balancing: budget growth curve across an age — diminishing returns or hard cap needed?
 - Balancing: card draw scaling — should draw bonuses be capped?

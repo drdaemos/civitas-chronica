@@ -41,12 +41,12 @@ Tuning constants that are not per-age. Single file.
 
 ```json
 {
-  "demand_threshold": 3,
-  "demand_catastrophe": 8,
-  "population_levels": [0, 5000, 14000, 32000],
+  "demand_threshold": 5,
+  "demand_catastrophe": 20,
+  "population_levels": [0, 5000, 12000, 25000, 45000, 70000, 105000],
   "population_level_hysteresis": 0.05,
-  "population_variance": 0.15,
-  "growth_by_demands_over_threshold": [1.0, 0.5, 0.0, -0.5]
+  "population_variance": 0.12,
+  "growth_by_demands_over_threshold": [1.0, 0.65, 0.25, -0.15, -0.4, -0.65]
 }
 ```
 
@@ -267,7 +267,7 @@ Policies with `"unlock": {"type": "always"}` are available from age start.
 
 `activates_demand` names the demand that becomes active when this age begins (GDD §4.0); its starting meter value is calculated from the printed `demands` values of all standing developments. `population_growth_base` is the per-turn population count delta before the demand-balance multiplier and random variance are applied.
 
-Age boundaries and framing per GDD §3: age1 1500–1600 (**Charter and Consolidation**), age2 1600–1750 (**Confession, State, and Exchange**), age3 1750–1850 (**Agrarian and Commercial Transformation**), age4 1850–1950 (**Urbanization and Civic Provision**), age5 1950–present (**Mobility, Services, and Competition**).
+Age boundaries and framing per GDD §3: age1 1500–1600 (**Charter and Consolidation**), age2 1600–1750 (**Confession, State, and Exchange**), age3 1750–1850 (**Agrarian and Commercial Transformation**), age4 1850–1950 (**Urbanization and Civic Provision**), age5 1950–2030/present (**Mobility, Services, and Competition**).
 
 `base_deck` is a **flat array of unique card IDs** (no copies — uniqueness rule above; the validator rejects duplicates). `next_age` names the following age's ID; omit or `""` on the final age — completing it wins the save. `start` resource values apply only to the save's first age; later ages inherit the running city and only `base_budget`, `policy_slots`, and deck pools take effect.
 

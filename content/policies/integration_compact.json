@@ -1,0 +1,29 @@
+{
+	"id": "integration_compact",
+	"name": "Integration Compact",
+	"description": "Integration Compact solves one municipal problem by accepting a visible constraint elsewhere.",
+	"unlock": {
+		"type": "interaction_active",
+		"id": "inclusive_city"
+	},
+	"swap_cost_budget": 3,
+	"swap_cost_demands": {
+		"fairness": 1
+	},
+	"effects": [
+		{
+			"type": "demand_modifier",
+			"demand": "fairness",
+			"amount": -1
+		},
+		{
+			"type": "demand_modifier",
+			"demand": "appeal",
+			"amount": -1
+		},
+		{
+			"type": "income",
+			"amount": -1
+		}
+	]
+}

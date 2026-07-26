@@ -1,0 +1,19 @@
+{
+	"id": "fish_market",
+	"name": "Fish Market",
+	"category": "development",
+	"cost": 3,
+	"tags": [
+		"trade"
+	],
+	"demands": {
+		"provision": -1
+	},
+	"effects": [
+		{
+			"type": "income",
+			"amount": 1
+		}
+	],
+	"flavor": "Contracts, carts, and arguments gather around Fish Market."
+}

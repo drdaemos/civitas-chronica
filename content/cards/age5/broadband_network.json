@@ -1,0 +1,19 @@
+{
+	"id": "broadband_network",
+	"name": "Broadband Network",
+	"category": "development",
+	"cost": 7,
+	"tags": [
+		"science",
+		"infrastructure"
+	],
+	"demands": {
+		"appeal": -2
+	},
+	"flavor": "Practical knowledge is made municipal through Broadband Network.",
+	"hand_limit_bonus": 1,
+	"inject_main": [
+		"coworking_hub",
+		"remote_work_incentive"
+	]
+}

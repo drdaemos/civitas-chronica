@@ -1,0 +1,32 @@
+{
+	"id": "municipal_welfare",
+	"name": "Municipal Welfare",
+	"description": "Municipal Welfare changes both the town's advantages and the pressures created by its specialization.",
+	"threshold": {
+		"type": "all_of",
+		"conditions": [
+			{
+				"type": "has_development",
+				"id": "municipal_hospital"
+			},
+			{
+				"type": "tag_count",
+				"tag": "science",
+				"op": ">=",
+				"value": 18
+			}
+		]
+	},
+	"effects": [
+		{
+			"type": "demand_modifier",
+			"demand": "health",
+			"amount": -1
+		},
+		{
+			"type": "demand_modifier",
+			"demand": "fairness",
+			"amount": -1
+		}
+	]
+}

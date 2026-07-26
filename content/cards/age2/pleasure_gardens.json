@@ -3,10 +3,8 @@
 	"name": "Pleasure Gardens",
 	"category": "development",
 	"cost": 3,
-	"tags": ["cultural"],
-	"demands": {"appeal": -2},
-	"effects": [
-		{"type": "income", "amount": 1}
+	"tags": [
+		"cultural"
 	],
 	"flavor": "Lanterns in the elms, an orchestra pavilion, and supper boxes; for a shilling at the gate, every clerk is a gentleman until midnight."
 }

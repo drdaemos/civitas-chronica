@@ -3,9 +3,19 @@
 	"name": "Parish School",
 	"category": "development",
 	"cost": 3,
-	"tags": ["science"],
-	"demands": {"fairness": -1},
-	"effects": [],
-	"inject_main": ["printing_press"],
-	"flavor": "A schoolmaster, a slate, and a room by the church; families settle where their sons can learn letters."
+	"tags": [
+		"science"
+	],
+	"demands": {
+		"health": -1,
+		"fairness": 1
+	},
+	"inject_main": [
+		"scriptorium",
+		"printing_press"
+	],
+	"flavor": "A schoolmaster, a slate, and a room by the church; families settle where their sons can learn letters.",
+	"superseded_by": {
+		"age2": "grammar_academy"
+	}
 }

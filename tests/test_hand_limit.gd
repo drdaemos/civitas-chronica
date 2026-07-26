@@ -5,7 +5,7 @@ extends RefCounted
 ## Card capacity grows through the limit, never through the draw.
 
 
-func run(t: TestContext) -> void:
+func run(t: TestContext) -> bool:
 	var db: ContentDB = Fixtures.build_db()
 
 	t.label("base limit is 5 and no development raises the draw")
@@ -80,6 +80,8 @@ func run(t: TestContext) -> void:
 	t.eq(DeckManager.hand_limit(state4, db), 7, "bonus applied")
 	state4.developments.clear()
 	t.eq(DeckManager.hand_limit(state4, db), 5, "back to the base limit without it")
+	return true
+
 
 
 func _first_of(events: Array[Dictionary], type_name: String) -> Dictionary:

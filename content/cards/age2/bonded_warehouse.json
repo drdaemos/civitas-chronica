@@ -1,0 +1,23 @@
+{
+	"id": "bonded_warehouse",
+	"name": "Bonded Warehouse",
+	"category": "development",
+	"cost": 5,
+	"tags": [
+		"trade"
+	],
+	"demands": {
+		"provision": -1,
+		"security": 1
+	},
+	"effects": [
+		{
+			"type": "income",
+			"amount": 2
+		}
+	],
+	"prerequisites": [
+		"customs_house"
+	],
+	"flavor": "Contracts, carts, and arguments gather around Bonded Warehouse."
+}

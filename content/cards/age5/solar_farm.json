@@ -1,0 +1,23 @@
+{
+	"id": "solar_farm",
+	"name": "Solar Farm",
+	"category": "development",
+	"cost": 7,
+	"tags": [
+		"industrial",
+		"infrastructure"
+	],
+	"demands": {
+		"health": 1
+	},
+	"effects": [
+		{
+			"type": "income",
+			"amount": 1
+		}
+	],
+	"prerequisites": [
+		"renewable_energy_cooperative"
+	],
+	"flavor": "Smoke, wages, and useful production follow Solar Farm."
+}

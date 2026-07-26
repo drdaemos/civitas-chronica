@@ -1,0 +1,17 @@
+{
+	"id": "sports_complex",
+	"name": "Sports Complex",
+	"category": "development",
+	"cost": 6,
+	"tags": [
+		"cultural",
+		"infrastructure"
+	],
+	"demands": {
+		"appeal": -1
+	},
+	"prerequisites": [
+		"festival_office"
+	],
+	"flavor": "Public life acquires a new center in Sports Complex."
+}

@@ -1,0 +1,23 @@
+{
+	"id": "coal_yard",
+	"name": "Coal Yard",
+	"category": "development",
+	"cost": 4,
+	"tags": [
+		"industrial",
+		"trade"
+	],
+	"demands": {
+		"health": 1
+	},
+	"effects": [
+		{
+			"type": "income",
+			"amount": 1
+		}
+	],
+	"prerequisites": [
+		"ironworks"
+	],
+	"flavor": "Smoke, wages, and useful production follow Coal Yard."
+}

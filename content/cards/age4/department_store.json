@@ -1,0 +1,20 @@
+{
+	"id": "department_store",
+	"name": "Department Store",
+	"category": "development",
+	"cost": 6,
+	"tags": [
+		"trade",
+		"cultural"
+	],
+	"effects": [
+		{
+			"type": "income",
+			"amount": 1
+		}
+	],
+	"prerequisites": [
+		"music_hall"
+	],
+	"flavor": "Contracts, carts, and arguments gather around Department Store."
+}

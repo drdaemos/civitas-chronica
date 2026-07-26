@@ -2,17 +2,49 @@
 	"id": "canal_mania",
 	"title": "Canal Mania",
 	"text": "Every valley within forty miles now has a canal scheme, a prospectus, and a subscription book; the shares double before a single spade turns, which the older merchants say is not a good sign.",
-	"trigger": {"type": "tag_count", "tag": "trade", "op": ">=", "value": 3},
+	"trigger": {
+		"type": "has_development",
+		"id": "canal_company"
+	},
 	"options": [
-		{"text": "Invest the city funds in every scheme", "cost": 6,
+		{
+			"text": "Fund a thorough municipal response",
+			"cost": 4,
 			"effects": [
-				{"type": "demand_delta", "demand": "provision", "amount": -2}
-			]},
-		{"text": "Charter only the sound companies", "cost": 3,
+				{
+					"type": "demand_delta",
+					"demand": "security",
+					"amount": -2
+				}
+			]
+		},
+		{
+			"text": "Use a limited and temporary measure",
+			"cost": 1,
 			"effects": [
-				{"type": "demand_delta", "demand": "provision", "amount": -1}
-			]},
-		{"text": "Stand aside from the speculation", "cost": 0,
-			"effects": []}
-	]
+				{
+					"type": "demand_delta",
+					"demand": "security",
+					"amount": 1
+				}
+			]
+		},
+		{
+			"text": "Leave households and local institutions to cope",
+			"cost": 0,
+			"effects": [
+				{
+					"type": "demand_delta",
+					"demand": "security",
+					"amount": 2
+				},
+				{
+					"type": "resource_delta",
+					"resource": "population_count",
+					"amount": -40
+				}
+			]
+		}
+	],
+	"hazard": "collapse"
 }

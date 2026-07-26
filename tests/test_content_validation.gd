@@ -5,7 +5,7 @@ extends RefCounted
 ## decks, the canonical hazard vocabulary, and conditional-option references.
 
 
-func run(t: TestContext) -> void:
+func run(t: TestContext) -> bool:
 	# The fixture DB deliberately holds cards and events that no deck can reach
 	# (test helpers played through force_play), so only the rules under test are
 	# asserted clean here.
@@ -161,6 +161,8 @@ func run(t: TestContext) -> void:
 		"dangling requires_development rejected")
 	t.is_true(_has_error(bad_option, "every option is gated on a development"),
 		"fully-gated event rejected")
+	return true
+
 
 
 # --- helpers -----------------------------------------------------------------

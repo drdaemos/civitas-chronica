@@ -1,0 +1,20 @@
+{
+	"id": "fire_brigade",
+	"name": "Professional Fire Brigade",
+	"category": "development",
+	"cost": 5,
+	"tags": [
+		"military",
+		"infrastructure"
+	],
+	"demands": {
+		"security": -2
+	},
+	"flavor": "The town commits labor and authority to Professional Fire Brigade.",
+	"cancels": [
+		"fire"
+	],
+	"inject_main": [
+		"central_fire_station"
+	]
+}

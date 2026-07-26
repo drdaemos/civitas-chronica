@@ -3,11 +3,22 @@
 	"name": "Gunpowder Mill",
 	"category": "development",
 	"cost": 5,
-	"tags": ["military", "industrial"],
-	"demands": {"security": -2, "health": 1},
-	"effects": [
-		{"type": "income", "amount": 1}
+	"tags": [
+		"military",
+		"industrial"
 	],
-	"inject_events": ["powder_explosion"],
+	"demands": {
+		"health": 1,
+		"provision": 1
+	},
+	"effects": [
+		{
+			"type": "income",
+			"amount": 1
+		}
+	],
+	"inject_events": [
+		"powder_explosion"
+	],
 	"flavor": "Saltpeter, charcoal, and a mill set prudently outside the gates; princes pay in silver and ask few questions."
 }

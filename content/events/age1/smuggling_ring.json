@@ -2,21 +2,48 @@
 	"id": "smuggling_ring",
 	"title": "Smuggling Ring",
 	"text": "Customs officers uncover a well-run trade in untaxed cloth and spirits moving through the quays, with names on the manifest the council knows.",
-	"trigger": {"type": "interaction_active", "id": "trade_hub"},
+	"trigger": {
+		"type": "has_development",
+		"id": "customs_gate"
+	},
 	"options": [
-		{"text": "Break the ring and make examples", "cost": 4,
+		{
+			"text": "Fund a thorough municipal response",
+			"cost": 3,
 			"effects": [
-				{"type": "remove_events", "events": ["smuggling_ring"]},
-				{"type": "demand_delta", "demand": "provision", "amount": 1}
-			]},
-		{"text": "Fine the merchants and move on", "cost": 0,
+				{
+					"type": "demand_delta",
+					"demand": "provision",
+					"amount": -2
+				}
+			]
+		},
+		{
+			"text": "Use a limited and temporary measure",
+			"cost": 1,
 			"effects": [
-				{"type": "resource_delta", "resource": "budget", "amount": 2}
-			]},
-		{"text": "Look the other way", "cost": 0,
+				{
+					"type": "demand_delta",
+					"demand": "provision",
+					"amount": 1
+				}
+			]
+		},
+		{
+			"text": "Leave households and local institutions to cope",
+			"cost": 0,
 			"effects": [
-				{"type": "demand_delta", "demand": "provision", "amount": -1},
-				{"type": "inject_events", "events": ["smuggling_ring"]}
-			]}
+				{
+					"type": "demand_delta",
+					"demand": "provision",
+					"amount": 2
+				},
+				{
+					"type": "resource_delta",
+					"resource": "population_count",
+					"amount": -20
+				}
+			]
+		}
 	]
 }

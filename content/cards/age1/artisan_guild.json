@@ -3,10 +3,22 @@
 	"name": "Artisan Guild",
 	"category": "development",
 	"cost": 3,
-	"tags": ["trade", "cultural"],
-	"demands": {"appeal": -1},
-	"effects": [
-		{"type": "income", "amount": 1}
+	"tags": [
+		"trade",
+		"cultural"
 	],
-	"flavor": "Weavers, coopers, and silversmiths organize under one hall; the mark of the guild begins to mean something in distant markets."
+	"demands": {
+		"provision": -1
+	},
+	"effects": [
+		{
+			"type": "income",
+			"amount": 1
+		}
+	],
+	"flavor": "Weavers, coopers, and silversmiths organize under one hall; the mark of the guild begins to mean something in distant markets.",
+	"inject_main": [
+		"guild_court",
+		"bell_foundry"
+	]
 }

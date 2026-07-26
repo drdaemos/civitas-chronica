@@ -1,0 +1,23 @@
+{
+	"id": "tenement_blocks",
+	"name": "Tenement Blocks",
+	"category": "development",
+	"cost": 4,
+	"tags": [
+		"infrastructure",
+		"industrial"
+	],
+	"demands": {
+		"provision": 1
+	},
+	"effects": [
+		{
+			"type": "pop_growth_mult",
+			"amount": 0.05
+		}
+	],
+	"flavor": "Stone, timber, taxes, and maintenance make possible Tenement Blocks.",
+	"inject_main": [
+		"workers_estate"
+	]
+}

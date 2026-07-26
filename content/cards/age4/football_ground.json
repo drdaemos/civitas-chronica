@@ -1,0 +1,16 @@
+{
+	"id": "football_ground",
+	"name": "Football Ground",
+	"category": "development",
+	"cost": 4,
+	"tags": [
+		"cultural"
+	],
+	"demands": {
+		"appeal": -1
+	},
+	"prerequisites": [
+		"public_park_system"
+	],
+	"flavor": "Public life acquires a new center in Football Ground."
+}

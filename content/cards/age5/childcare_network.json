@@ -1,0 +1,14 @@
+{
+	"id": "childcare_network",
+	"name": "Childcare Network",
+	"category": "development",
+	"cost": 6,
+	"tags": [
+		"cultural",
+		"infrastructure"
+	],
+	"demands": {
+		"appeal": -1
+	},
+	"flavor": "Public life acquires a new center in Childcare Network."
+}

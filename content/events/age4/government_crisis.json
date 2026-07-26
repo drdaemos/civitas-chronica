@@ -1,0 +1,59 @@
+{
+	"id": "government_crisis",
+	"title": "Crisis of Government",
+	"text": "Crisis of Government exposes how long the town has allowed this municipal responsibility to exceed its capacity.",
+	"trigger": {
+		"type": "demand",
+		"demand": "fairness",
+		"op": ">=",
+		"value": 20
+	},
+	"hazard": "collapse",
+	"demand": "fairness",
+	"severity": "catastrophe",
+	"options": [
+		{
+			"text": "Commit extraordinary funds",
+			"cost": 11,
+			"effects": [
+				{
+					"type": "demand_delta",
+					"demand": "fairness",
+					"amount": -4
+				}
+			]
+		},
+		{
+			"text": "Contain the worst effects",
+			"cost": 3,
+			"effects": [
+				{
+					"type": "demand_delta",
+					"demand": "fairness",
+					"amount": -1
+				},
+				{
+					"type": "resource_delta",
+					"resource": "population_count",
+					"amount": -480
+				}
+			]
+		},
+		{
+			"text": "Accept the losses",
+			"cost": 0,
+			"effects": [
+				{
+					"type": "demand_delta",
+					"demand": "fairness",
+					"amount": 2
+				},
+				{
+					"type": "resource_delta",
+					"resource": "population_count",
+					"amount": -1000
+				}
+			]
+		}
+	]
+}

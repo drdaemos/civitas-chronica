@@ -1,0 +1,17 @@
+{
+	"id": "county_gaol",
+	"name": "County Gaol",
+	"category": "development",
+	"cost": 5,
+	"tags": [
+		"military",
+		"infrastructure"
+	],
+	"demands": {
+		"security": -1
+	},
+	"flavor": "The town commits labor and authority to County Gaol.",
+	"inject_main": [
+		"magistrates_court"
+	]
+}

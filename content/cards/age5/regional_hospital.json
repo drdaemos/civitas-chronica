@@ -1,0 +1,18 @@
+{
+	"id": "regional_hospital",
+	"name": "Regional Hospital",
+	"category": "development",
+	"cost": 8,
+	"tags": [
+		"science",
+		"cultural"
+	],
+	"demands": {
+		"health": -2
+	},
+	"flavor": "Practical knowledge is made municipal through Regional Hospital.",
+	"inject_main": [
+		"community_clinic",
+		"hospital_campaign"
+	]
+}

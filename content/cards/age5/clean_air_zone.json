@@ -1,0 +1,20 @@
+{
+	"id": "clean_air_zone",
+	"name": "Clean Air Zone",
+	"category": "development",
+	"cost": 6,
+	"tags": [
+		"infrastructure",
+		"cultural"
+	],
+	"demands": {
+		"health": -2
+	},
+	"prerequisites": [
+		"recycling_center"
+	],
+	"flavor": "Stone, timber, taxes, and maintenance make possible Clean Air Zone.",
+	"cancels": [
+		"pollution"
+	]
+}

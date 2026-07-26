@@ -1,0 +1,23 @@
+{
+	"id": "turnpike_inn",
+	"name": "Turnpike Inn",
+	"category": "development",
+	"cost": 3,
+	"tags": [
+		"trade",
+		"infrastructure"
+	],
+	"demands": {
+		"provision": -1
+	},
+	"effects": [
+		{
+			"type": "income",
+			"amount": 1
+		}
+	],
+	"prerequisites": [
+		"turnpike_trust"
+	],
+	"flavor": "Contracts, carts, and arguments gather around Turnpike Inn."
+}

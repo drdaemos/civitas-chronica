@@ -1,0 +1,19 @@
+{
+	"id": "public_reading_room",
+	"name": "Public Reading Room",
+	"category": "development",
+	"cost": 3,
+	"tags": [
+		"science",
+		"cultural"
+	],
+	"demands": {
+		"health": -1,
+		"fairness": 1
+	},
+	"prerequisites": [
+		"newspaper_office"
+	],
+	"flavor": "Practical knowledge is made municipal through Public Reading Room.",
+	"hand_limit_bonus": 1
+}

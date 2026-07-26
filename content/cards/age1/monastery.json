@@ -3,11 +3,15 @@
 	"name": "Monastery",
 	"category": "development",
 	"cost": 4,
-	"tags": ["religious"],
-	"demands": {"provision": -1, "health": -1},
-	"effects": [
-		{"type": "income", "amount": 1}
+	"tags": [
+		"religious"
 	],
-	"inject_events": ["heresy_trial"],
+	"demands": {
+		"provision": -1,
+		"fairness": -1
+	},
+	"inject_events": [
+		"heresy_trial"
+	],
 	"flavor": "The brothers keep orchards, a brewery, and the strictest accounts in the city; their scrutiny extends beyond ledgers."
 }

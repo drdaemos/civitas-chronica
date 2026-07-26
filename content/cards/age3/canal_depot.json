@@ -1,0 +1,24 @@
+{
+	"id": "canal_depot",
+	"name": "Canal Depot",
+	"category": "development",
+	"cost": 6,
+	"tags": [
+		"trade",
+		"infrastructure"
+	],
+	"demands": {
+		"appeal": -1,
+		"health": 1
+	},
+	"effects": [
+		{
+			"type": "income",
+			"amount": 2
+		}
+	],
+	"flavor": "Contracts, carts, and arguments gather around Canal Depot.",
+	"inject_main": [
+		"canal_warehouse"
+	]
+}

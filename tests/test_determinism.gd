@@ -3,7 +3,7 @@ extends RefCounted
 ## Same seed + same inputs => identical state; different seed => different deck.
 
 
-func run(t: TestContext) -> void:
+func run(t: TestContext) -> bool:
 	var db: ContentDB = Fixtures.build_db()
 
 	t.label("same seed, same script, identical state")
@@ -26,3 +26,4 @@ func run(t: TestContext) -> void:
 		"deck sizes must match regardless of seed")
 	t.is_true(state_c.main_deck != state_d.main_deck,
 		"different seeds must produce a different main_deck order")
+	return true

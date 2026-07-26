@@ -1,0 +1,24 @@
+{
+	"id": "municipal_ownership",
+	"name": "Municipal Ownership",
+	"description": "Municipal Ownership solves one municipal problem by accepting a visible constraint elsewhere.",
+	"unlock": {
+		"type": "interaction_active",
+		"id": "electrified_town"
+	},
+	"swap_cost_budget": 3,
+	"swap_cost_demands": {
+		"fairness": 1
+	},
+	"effects": [
+		{
+			"type": "demand_modifier",
+			"demand": "health",
+			"amount": -1
+		},
+		{
+			"type": "income",
+			"amount": 1
+		}
+	]
+}

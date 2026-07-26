@@ -6,9 +6,11 @@ extends SceneTree
 ## Run: godot --headless --path . --script res://tools/simulate.gd -- --runs=50 --bot=random --seed=1000
 ## Bots: random   (plays random affordable cards; random event options),
 ##       greedy   (most expensive card first; option 0),
+##       steward  (prioritizes the city's worst active demands and efficient
+##                 event responses; adopts policies that support them),
 ##       turtle   (plays nothing; cheapest event options),
-##       reckless (plays like greedy, but always picks the HIGHEST-cost
-##                 available event option — the lose-scenario prober).
+##       reckless (plays expensive cards and picks the most damaging available
+##                 event response — the lose-scenario prober).
 ##
 ## Age transitions take no player input (GDD 4.8), so no bot has a transition
 ## policy any more. Every bot discards its cheapest cards when over the hand
@@ -22,6 +24,7 @@ func _initialize() -> void:
 	var bot: String = "random"
 	var base_seed: int = 1000
 	var age_id: String = "age1"
+	var suite_requested: bool = false
 	for arg: String in OS.get_cmdline_user_args():
 		if arg.begins_with("--runs="):
 			runs = arg.get_slice("=", 1).to_int()
@@ -31,6 +34,8 @@ func _initialize() -> void:
 			base_seed = arg.get_slice("=", 1).to_int()
 		elif arg.begins_with("--age="):
 			age_id = arg.get_slice("=", 1)
+		elif arg == "--suite":
+			suite_requested = true
 
 	var db: ContentDB = ContentDB.load_from_dir("res://content")
 	var errors: Array[String] = db.validate()
@@ -39,6 +44,9 @@ func _initialize() -> void:
 			printerr(error)
 		printerr("simulate: content invalid (%d errors), aborting" % errors.size())
 		quit(1)
+		return
+	if suite_requested:
+		_run_verification_suite(db, runs, base_seed)
 		return
 
 	var outcomes: Dictionary = {}
@@ -114,6 +122,80 @@ func _initialize() -> void:
 	quit(0)
 
 
+## A compact, exit-code-bearing balance gate for local verification and CI.
+## It deliberately tests several bad and good decision policies rather than
+## asserting one exact win rate for a single bot.
+func _run_verification_suite(db: ContentDB, runs: int, base_seed: int) -> void:
+	var bots: Array[String] = ["random", "greedy", "steward", "reckless", "turtle"]
+	var summaries: Dictionary = {}
+	for bot: String in bots:
+		var wins: int = 0
+		var catastrophes: int = 0
+		var debt_losses: int = 0
+		var age5_reached: int = 0
+		var transitions: int = 0
+		var interactions_total: int = 0
+		for i: int in runs:
+			# Widely spaced seeds catch stream-specific clusters while keeping
+			# the whole matrix deterministic and reproducible.
+			var seed_value: int = base_seed + i * 97
+			var result: Dictionary = _play_one(db, "age1", seed_value, bot)
+			var outcome: String = String(result["outcome"])
+			if outcome == GameState.OUTCOME_WON:
+				wins += 1
+			elif outcome == GameState.OUTCOME_LOST_CATASTROPHE:
+				catastrophes += 1
+			elif outcome == GameState.OUTCOME_LOST_DEBT:
+				debt_losses += 1
+			var reached: Array = result["ages_reached"]
+			if "age5" in reached:
+				age5_reached += 1
+			transitions += maxi(0, reached.size() - 1)
+			interactions_total += (result["interactions"] as Array).size()
+		summaries[bot] = {
+			"wins": wins,
+			"catastrophes": catastrophes,
+			"debt_losses": debt_losses,
+			"age5_reached": age5_reached,
+			"avg_transitions": float(transitions) / float(runs),
+			"avg_interactions": float(interactions_total) / float(runs),
+		}
+
+	print("balance suite: runs=%d per bot base_seed=%d" % [runs, base_seed])
+	for bot: String in bots:
+		var summary: Dictionary = summaries[bot]
+		print("  %s: wins=%d/%d age5=%d/%d avg_transitions=%.2f avg_interactions=%.2f" % [
+			bot, int(summary["wins"]), runs, int(summary["age5_reached"]), runs,
+			float(summary["avg_transitions"]), float(summary["avg_interactions"]),
+		])
+
+	var failures: Array[String] = []
+	var steward: Dictionary = summaries["steward"]
+	var steward_rate: float = float(steward["wins"]) / float(runs)
+	if steward_rate < 0.60:
+		failures.append("steward win rate %.2f is below 0.60 (too hard for demand-aware play)" % steward_rate)
+	if steward_rate > 0.98:
+		failures.append("steward win rate %.2f is above 0.98 (no meaningful failure pressure)" % steward_rate)
+	if float(steward["age5_reached"]) / float(runs) < 0.65:
+		failures.append("fewer than 65%% of steward runs reach age5")
+	if int((summaries["turtle"] as Dictionary)["wins"]) != 0:
+		failures.append("turtle bot can win without building")
+	if float((summaries["reckless"] as Dictionary)["wins"]) / float(runs) > 0.20:
+		failures.append("reckless win rate exceeds 0.20")
+	if float((summaries["random"] as Dictionary)["wins"]) / float(runs) > 0.50:
+		failures.append("random win rate exceeds 0.50 (choices are not carrying enough weight)")
+	if float(steward["avg_transitions"]) < 3.0:
+		failures.append("steward averages fewer than three age transitions")
+
+	if failures.is_empty():
+		print("balance suite: PASS")
+		quit(0)
+		return
+	for failure: String in failures:
+		printerr("balance suite: " + failure)
+	quit(1)
+
+
 func _play_one(db: ContentDB, age_id: String, seed_value: int, bot: String) -> Dictionary:
 	var state: GameState = GameSetup.new_game(db, age_id, seed_value)
 	var engine: TurnEngine = TurnEngine.new(db, state)
@@ -152,7 +234,7 @@ func _play_one(db: ContentDB, age_id: String, seed_value: int, bot: String) -> D
 		"demands": state.demands.duplicate(),
 		"turns": turns_played,
 		"events_seen": state.seen_events.size(),
-		"interactions": Array(state.active_interactions),
+		"interactions": Array(state.interactions_fired),
 		"ages_reached": reached,
 	}
 
@@ -160,6 +242,7 @@ func _play_one(db: ContentDB, age_id: String, seed_value: int, bot: String) -> D
 func _bot_play_phase(engine: TurnEngine, state: GameState, bot: String, rng: RandomNumberGenerator) -> void:
 	if bot == "turtle":
 		return
+	_bot_adopt_policy(engine, state, bot, rng)
 	var made_progress: bool = true
 	while made_progress:
 		made_progress = false
@@ -169,6 +252,10 @@ func _bot_play_phase(engine: TurnEngine, state: GameState, bot: String, rng: Ran
 			var db: ContentDB = engine.db
 			candidates.sort_custom(func(a: String, b: String) -> bool:
 				return db.get_card(a).cost > db.get_card(b).cost)
+		elif bot == "steward":
+			candidates.sort_custom(func(a: String, b: String) -> bool:
+				return _card_priority(engine.db.get_card(a), state, engine.db) \
+						> _card_priority(engine.db.get_card(b), state, engine.db))
 		else:
 			# random order via decision rng (not the game's RngService — bots
 			# are not part of the sim's determinism contract)
@@ -178,6 +265,9 @@ func _bot_play_phase(engine: TurnEngine, state: GameState, bot: String, rng: Ran
 				candidates[i] = candidates[j]
 				candidates[j] = tmp
 		for card_id: String in candidates:
+			if bot == "steward" and _card_priority(
+					engine.db.get_card(card_id), state, engine.db) <= 0.0:
+				continue
 			var result: Dictionary = engine.play_card(card_id)
 			if bool(result.get("ok", false)):
 				made_progress = true
@@ -202,15 +292,120 @@ func _bot_resolve_event(engine: TurnEngine, state: GameState, db: ContentDB, bot
 				if event.options[i].cost < event.options[choice].cost:
 					choice = i
 		"reckless":
-			# Highest-cost option, first on ties: the lose-scenario prober.
+			# Lowest-value response: a deliberate stress case.
 			for i: int in available:
-				if event.options[i].cost > event.options[choice].cost:
+				if _option_priority(event.options[i], state) \
+						< _option_priority(event.options[choice], state):
 					choice = i
 		"greedy":
-			pass  # first available option
+			for i: int in available:
+				if _option_priority(event.options[i], state) \
+						> _option_priority(event.options[choice], state):
+					choice = i
+		"steward":
+			for i: int in available:
+				if _option_priority(event.options[i], state) \
+						> _option_priority(event.options[choice], state):
+					choice = i
 		_:
 			choice = available[rng.randi_range(0, available.size() - 1)]
 	engine.resolve_event(choice)
+
+
+func _card_priority(card: CardDef, state: GameState, db: ContentDB) -> float:
+	if card == null:
+		return -1000.0
+	var score: float = -0.35 * float(card.cost)
+	if card.is_development():
+		score += float(card.hand_limit_bonus) * 3.0
+		var pipeline: ModifierPipeline = ModifierPipeline.collect(state, db)
+		for demand_id: String in card.demands:
+			var printed: int = int(card.demands[demand_id])
+			if state.is_demand_active(demand_id):
+				var urgency: float = 2.0
+				var threshold: int = db.rules.threshold_for(demand_id)
+				if state.demand_value(demand_id) >= threshold:
+					urgency = 5.0
+				elif state.demand_value(demand_id) >= threshold - 2:
+					urgency = 3.5
+				urgency += float(pipeline.demand_growth_step(demand_id)) * 0.75
+				score -= float(printed) * urgency
+			else:
+				# Future liabilities matter, but less than a live emergency.
+				score -= float(printed) * (2.0 if printed > 0 else 0.5)
+	for effect: EffectDef in card.effects:
+		match effect.type:
+			"income":
+				score += effect.amount * 2.0
+			"demand_delta":
+				if state.is_demand_active(effect.demand):
+					score -= effect.amount * 3.0
+			"resource_delta":
+				if effect.resource == "budget":
+					score += effect.amount
+				elif effect.resource == "population_count":
+					score += effect.amount / 250.0
+	return score
+
+
+func _option_priority(option: EventOptionDef, state: GameState) -> float:
+	var score: float = -float(option.cost) * 0.8
+	for effect: EffectDef in option.effects:
+		match effect.type:
+			"demand_delta":
+				if state.is_demand_active(effect.demand):
+					score -= effect.amount * 4.0
+			"resource_delta":
+				if effect.resource == "budget":
+					score += effect.amount
+				elif effect.resource == "population_count":
+					score += effect.amount / 100.0
+			"unlock_policy":
+				score += 1.0
+			"inject_main":
+				score += float(effect.cards.size()) * 0.5
+	return score
+
+
+func _bot_adopt_policy(engine: TurnEngine, state: GameState, bot: String,
+		rng: RandomNumberGenerator) -> void:
+	if state.active_policies.size() >= state.policy_slots:
+		return
+	var candidates: Array[String] = []
+	for policy_id: String in state.unlocked_policies:
+		if policy_id not in state.active_policies:
+			candidates.append(policy_id)
+	if candidates.is_empty():
+		return
+	if bot == "random":
+		var pick: String = candidates[rng.randi_range(0, candidates.size() - 1)]
+		engine.adopt_policy(pick)
+		return
+	candidates.sort_custom(func(a: String, b: String) -> bool:
+		return _policy_priority(engine.db.get_policy(a), state) \
+				> _policy_priority(engine.db.get_policy(b), state))
+	if bot == "reckless":
+		engine.adopt_policy(candidates[candidates.size() - 1])
+	else:
+		engine.adopt_policy(candidates[0])
+
+
+func _policy_priority(policy: PolicyDef, state: GameState) -> float:
+	if policy == null:
+		return -1000.0
+	var score: float = 0.0
+	for effect: EffectDef in policy.effects:
+		match effect.type:
+			"income":
+				score += effect.amount * 2.0
+			"demand_modifier", "demand_modifier_per_tag":
+				var urgency: float = 1.0
+				if state.is_demand_active(effect.demand):
+					urgency = 3.0
+				score -= effect.amount * urgency
+			"cost_modifier":
+				score -= effect.amount
+	return score
 
 
 ## Discards the cheapest cards when over the hand limit (GDD 4.1). A cheap

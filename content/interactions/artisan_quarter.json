@@ -1,10 +1,33 @@
 {
 	"id": "artisan_quarter",
 	"name": "Artisan Quarter",
-	"description": "+1 budget per turn from guild fees, and a city people are proud to live in: Appeal grows 1 slower each turn.",
-	"threshold": {"type": "all_of", "conditions": [{"type": "tag_count", "tag": "trade", "op": ">=", "value": 8}, {"type": "tag_count", "tag": "cultural", "op": ">=", "value": 9}]},
+	"description": "Artisan Quarter changes both the town's advantages and the pressures created by its specialization.",
+	"threshold": {
+		"type": "all_of",
+		"conditions": [
+			{
+				"type": "tag_count",
+				"tag": "industrial",
+				"op": ">=",
+				"value": 10
+			},
+			{
+				"type": "tag_count",
+				"tag": "cultural",
+				"op": ">=",
+				"value": 10
+			}
+		]
+	},
 	"effects": [
-		{"type": "income", "amount": 1},
-		{"type": "demand_modifier", "demand": "appeal", "amount": -1}
+		{
+			"type": "income",
+			"amount": 1
+		},
+		{
+			"type": "demand_modifier",
+			"demand": "appeal",
+			"amount": -1
+		}
 	]
 }

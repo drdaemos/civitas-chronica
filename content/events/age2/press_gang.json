@@ -2,16 +2,49 @@
 	"id": "press_gang",
 	"title": "The Press Gang",
 	"text": "A tender lies off the quay and the gang works the waterfront taverns with cudgels and the King's shilling; the dockyard needs crews, and the law is on their side.",
-	"trigger": {"type": "has_development", "id": "naval_dockyard"},
+	"trigger": {
+		"type": "has_development",
+		"id": "naval_dockyard"
+	},
 	"options": [
-		{"text": "Contest the writ before the magistrates", "cost": 4,
-			"effects": []},
-		{"text": "Pay the crimps to look elsewhere", "cost": 2,
-			"effects": []},
-		{"text": "Let the press take its quota", "cost": 0,
+		{
+			"text": "Fund a thorough municipal response",
+			"cost": 4,
 			"effects": [
-				{"type": "resource_delta", "resource": "population_count", "amount": -60},
-				{"type": "demand_delta", "demand": "security", "amount": -1}
-			]}
-	]
+				{
+					"type": "demand_delta",
+					"demand": "security",
+					"amount": -2
+				}
+			]
+		},
+		{
+			"text": "Use a limited and temporary measure",
+			"cost": 1,
+			"effects": [
+				{
+					"type": "demand_delta",
+					"demand": "security",
+					"amount": 1
+				}
+			]
+		},
+		{
+			"text": "Leave households and local institutions to cope",
+			"cost": 0,
+			"effects": [
+				{
+					"type": "demand_delta",
+					"demand": "security",
+					"amount": 2
+				},
+				{
+					"type": "resource_delta",
+					"resource": "population_count",
+					"amount": -40
+				}
+			]
+		}
+	],
+	"hazard": "raid"
 }

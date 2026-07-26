@@ -1,0 +1,17 @@
+{
+	"id": "pamphlet_suppression",
+	"name": "Pamphlet Suppression",
+	"category": "action",
+	"cost": 2,
+	"effects": [
+		{
+			"type": "demand_delta",
+			"demand": "fairness",
+			"amount": -3
+		}
+	],
+	"prerequisites": [
+		"city_newspaper"
+	],
+	"flavor": "Pamphlet Suppression buys the council time, but no temporary measure is free of consequence."
+}

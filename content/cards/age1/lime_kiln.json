@@ -1,0 +1,23 @@
+{
+	"id": "lime_kiln",
+	"name": "Lime Kiln",
+	"category": "development",
+	"cost": 3,
+	"tags": [
+		"industrial"
+	],
+	"demands": {
+		"health": 1,
+		"provision": 1
+	},
+	"effects": [
+		{
+			"type": "income",
+			"amount": 1
+		}
+	],
+	"prerequisites": [
+		"mason_lodge"
+	],
+	"flavor": "Smoke, wages, and useful production follow Lime Kiln."
+}

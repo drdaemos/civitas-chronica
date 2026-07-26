@@ -1,0 +1,20 @@
+{
+	"id": "central_post_office",
+	"name": "Central Post Office",
+	"category": "development",
+	"cost": 5,
+	"tags": [
+		"infrastructure",
+		"cultural"
+	],
+	"effects": [
+		{
+			"type": "income",
+			"amount": 1
+		}
+	],
+	"prerequisites": [
+		"telephone_exchange"
+	],
+	"flavor": "Stone, timber, taxes, and maintenance make possible Central Post Office."
+}

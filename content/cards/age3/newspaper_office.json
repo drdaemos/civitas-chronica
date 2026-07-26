@@ -1,0 +1,18 @@
+{
+	"id": "newspaper_office",
+	"name": "Newspaper Office",
+	"category": "development",
+	"cost": 4,
+	"tags": [
+		"cultural",
+		"science"
+	],
+	"demands": {
+		"health": -1,
+		"fairness": 1
+	},
+	"flavor": "Public life acquires a new center in Newspaper Office.",
+	"inject_main": [
+		"public_reading_room"
+	]
+}

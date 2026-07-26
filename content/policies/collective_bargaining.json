@@ -1,0 +1,24 @@
+{
+	"id": "collective_bargaining",
+	"name": "Collective Bargaining",
+	"description": "Collective Bargaining solves one municipal problem by accepting a visible constraint elsewhere.",
+	"unlock": {
+		"type": "interaction_active",
+		"id": "organized_labor"
+	},
+	"swap_cost_budget": 3,
+	"swap_cost_demands": {
+		"fairness": 1
+	},
+	"effects": [
+		{
+			"type": "demand_modifier",
+			"demand": "fairness",
+			"amount": -1
+		},
+		{
+			"type": "income",
+			"amount": -1
+		}
+	]
+}

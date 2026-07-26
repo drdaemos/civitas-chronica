@@ -3,7 +3,7 @@ extends RefCounted
 ## Prerequisite validation and cost modifiers via ModifierPipeline.cost_of.
 
 
-func run(t: TestContext) -> void:
+func run(t: TestContext) -> bool:
 	var db: ContentDB = Fixtures.build_db()
 
 	t.label("unmet prerequisite rejected")
@@ -65,3 +65,4 @@ func run(t: TestContext) -> void:
 	state5.current_budget = 3
 	t.eq(engine5.play_card("town_market").get("ok"), true, "exact-cost play allowed")
 	t.eq(state5.current_budget, 0, "budget lands on exactly 0")
+	return true

@@ -1,0 +1,18 @@
+{
+	"id": "housing_inspectorate",
+	"name": "Housing Inspectorate",
+	"category": "development",
+	"cost": 5,
+	"tags": [
+		"cultural",
+		"infrastructure"
+	],
+	"demands": {
+		"health": -2
+	},
+	"flavor": "Public life acquires a new center in Housing Inspectorate.",
+	"inject_main": [
+		"model_housing",
+		"rent_relief"
+	]
+}

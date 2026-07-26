@@ -1,0 +1,17 @@
+{
+	"id": "municipal_hospital",
+	"name": "Municipal Hospital",
+	"category": "development",
+	"cost": 0,
+	"tags": [
+		"science",
+		"cultural"
+	],
+	"demands": {
+		"health": -2
+	},
+	"flavor": "Practical knowledge is made municipal through Municipal Hospital.",
+	"inject_main": [
+		"fever_ward"
+	]
+}

@@ -1,0 +1,31 @@
+{
+	"id": "digital_hub",
+	"name": "Digital Hub",
+	"description": "Digital Hub changes both the town's advantages and the pressures created by its specialization.",
+	"threshold": {
+		"type": "all_of",
+		"conditions": [
+			{
+				"type": "has_development",
+				"id": "broadband_network"
+			},
+			{
+				"type": "tag_count",
+				"tag": "science",
+				"op": ">=",
+				"value": 18
+			}
+		]
+	},
+	"effects": [
+		{
+			"type": "income",
+			"amount": 2
+		},
+		{
+			"type": "demand_modifier",
+			"demand": "appeal",
+			"amount": -1
+		}
+	]
+}

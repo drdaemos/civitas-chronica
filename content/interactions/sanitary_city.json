@@ -1,0 +1,31 @@
+{
+	"id": "sanitary_city",
+	"name": "Sanitary City",
+	"description": "Sanitary City changes both the town's advantages and the pressures created by its specialization.",
+	"threshold": {
+		"type": "all_of",
+		"conditions": [
+			{
+				"type": "has_development",
+				"id": "sewer_network"
+			},
+			{
+				"type": "tag_count",
+				"tag": "infrastructure",
+				"op": ">=",
+				"value": 18
+			}
+		]
+	},
+	"effects": [
+		{
+			"type": "demand_modifier",
+			"demand": "health",
+			"amount": -2
+		},
+		{
+			"type": "income",
+			"amount": -1
+		}
+	]
+}

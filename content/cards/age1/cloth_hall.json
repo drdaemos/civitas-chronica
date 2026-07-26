@@ -1,0 +1,20 @@
+{
+	"id": "cloth_hall",
+	"name": "Cloth Hall",
+	"category": "development",
+	"cost": 4,
+	"tags": [
+		"trade",
+		"cultural"
+	],
+	"demands": {
+		"provision": -1
+	},
+	"effects": [
+		{
+			"type": "income",
+			"amount": 1
+		}
+	],
+	"flavor": "Contracts, carts, and arguments gather around Cloth Hall."
+}

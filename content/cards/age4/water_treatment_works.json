@@ -1,0 +1,17 @@
+{
+	"id": "water_treatment_works",
+	"name": "Water Treatment Works",
+	"category": "development",
+	"cost": 7,
+	"tags": [
+		"infrastructure",
+		"science"
+	],
+	"demands": {
+		"health": -2
+	},
+	"flavor": "Stone, timber, taxes, and maintenance make possible Water Treatment Works.",
+	"inject_main": [
+		"sewer_network"
+	]
+}

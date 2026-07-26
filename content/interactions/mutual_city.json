@@ -1,0 +1,32 @@
+{
+	"id": "mutual_city",
+	"name": "Mutual City",
+	"description": "Mutual City changes both the town's advantages and the pressures created by its specialization.",
+	"threshold": {
+		"type": "all_of",
+		"conditions": [
+			{
+				"type": "has_development",
+				"id": "mutual_aid_society"
+			},
+			{
+				"type": "tag_count",
+				"tag": "cultural",
+				"op": ">=",
+				"value": 12
+			}
+		]
+	},
+	"effects": [
+		{
+			"type": "demand_modifier",
+			"demand": "fairness",
+			"amount": -1
+		},
+		{
+			"type": "demand_modifier",
+			"demand": "health",
+			"amount": -1
+		}
+	]
+}

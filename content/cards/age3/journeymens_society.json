@@ -1,0 +1,17 @@
+{
+	"id": "journeymens_society",
+	"name": "Journeymen's Society",
+	"category": "development",
+	"cost": 4,
+	"tags": [
+		"industrial",
+		"cultural"
+	],
+	"demands": {
+		"fairness": -1
+	},
+	"flavor": "Smoke, wages, and useful production follow Journeymen's Society.",
+	"inject_main": [
+		"artisan_cooperative"
+	]
+}

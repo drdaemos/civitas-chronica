@@ -1,0 +1,17 @@
+{
+	"id": "participatory_budgeting",
+	"name": "Participatory Budgeting",
+	"category": "development",
+	"cost": 6,
+	"tags": [
+		"cultural",
+		"science"
+	],
+	"demands": {
+		"fairness": -2
+	},
+	"flavor": "Public life acquires a new center in Participatory Budgeting.",
+	"inject_main": [
+		"neighborhood_forum"
+	]
+}

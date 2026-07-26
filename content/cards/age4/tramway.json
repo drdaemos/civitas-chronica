@@ -1,0 +1,23 @@
+{
+	"id": "tramway",
+	"name": "Electric Tramway",
+	"category": "development",
+	"cost": 7,
+	"tags": [
+		"infrastructure"
+	],
+	"demands": {
+		"provision": -1,
+		"health": -1
+	},
+	"effects": [
+		{
+			"type": "income",
+			"amount": 1
+		}
+	],
+	"flavor": "Stone, timber, taxes, and maintenance make possible Electric Tramway.",
+	"inject_main": [
+		"bus_depot"
+	]
+}

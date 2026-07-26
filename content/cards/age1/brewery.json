@@ -1,0 +1,21 @@
+{
+	"id": "brewery",
+	"name": "Town Brewery",
+	"category": "development",
+	"cost": 4,
+	"tags": [
+		"industrial",
+		"trade"
+	],
+	"demands": {
+		"health": 1,
+		"provision": 1
+	},
+	"effects": [
+		{
+			"type": "income",
+			"amount": 1
+		}
+	],
+	"flavor": "Smoke, wages, and useful production follow Town Brewery."
+}

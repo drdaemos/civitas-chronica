@@ -1,0 +1,19 @@
+{
+	"id": "petition_hall",
+	"name": "Petition Hall",
+	"category": "development",
+	"cost": 4,
+	"tags": [
+		"cultural"
+	],
+	"demands": {
+		"fairness": -2
+	},
+	"prerequisites": [
+		"radical_club"
+	],
+	"flavor": "Public life acquires a new center in Petition Hall.",
+	"inject_main": [
+		"negotiate_petition"
+	]
+}

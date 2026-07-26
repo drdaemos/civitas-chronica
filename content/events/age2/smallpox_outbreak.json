@@ -2,23 +2,48 @@
 	"id": "smallpox_outbreak",
 	"title": "Smallpox Outbreak",
 	"text": "It begins in the lodging houses by the water and climbs the streets week by week; the burial registers say what the council has not yet said aloud.",
-	"trigger": {"type": "resource", "resource": "population_level", "op": ">=", "value": 2},
-	"hazard": "disease",
+	"trigger": {
+		"type": "always"
+	},
 	"options": [
-		{"text": "Fund a general inoculation", "cost": 5,
+		{
+			"text": "Fund a thorough municipal response",
+			"cost": 4,
 			"effects": [
-				{"type": "remove_events", "events": ["smallpox_outbreak"]}
-			]},
-		{"text": "Quarantine the poor quarters", "cost": 2,
+				{
+					"type": "demand_delta",
+					"demand": "security",
+					"amount": -2
+				}
+			]
+		},
+		{
+			"text": "Use a limited and temporary measure",
+			"cost": 1,
 			"effects": [
-				{"type": "demand_delta", "demand": "provision", "amount": 1}
-			]},
-		{"text": "Trust in providence", "cost": 0,
+				{
+					"type": "demand_delta",
+					"demand": "security",
+					"amount": 1
+				}
+			]
+		},
+		{
+			"text": "Leave households and local institutions to cope",
+			"cost": 0,
 			"effects": [
-				{"type": "resource_delta", "resource": "population_count", "amount": -150},
-				{"type": "demand_delta", "demand": "health", "amount": 3},
-				{"type": "demand_delta", "demand": "provision", "amount": 1},
-				{"type": "inject_events", "events": ["smallpox_outbreak"]}
-			]}
-	]
+				{
+					"type": "demand_delta",
+					"demand": "security",
+					"amount": 2
+				},
+				{
+					"type": "resource_delta",
+					"resource": "population_count",
+					"amount": -40
+				}
+			]
+		}
+	],
+	"hazard": "disease"
 }

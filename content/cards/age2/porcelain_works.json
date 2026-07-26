@@ -1,0 +1,21 @@
+{
+	"id": "porcelain_works",
+	"name": "Porcelain Works",
+	"category": "development",
+	"cost": 6,
+	"tags": [
+		"industrial",
+		"cultural"
+	],
+	"demands": {
+		"health": 2,
+		"fairness": 1
+	},
+	"effects": [
+		{
+			"type": "income",
+			"amount": 2
+		}
+	],
+	"flavor": "Smoke, wages, and useful production follow Porcelain Works."
+}

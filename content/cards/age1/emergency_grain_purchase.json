@@ -1,0 +1,17 @@
+{
+	"id": "emergency_grain_purchase",
+	"name": "Emergency Grain Purchase",
+	"category": "action",
+	"cost": 3,
+	"effects": [
+		{
+			"type": "demand_delta",
+			"demand": "provision",
+			"amount": -3
+		}
+	],
+	"prerequisites": [
+		"grain_storehouse"
+	],
+	"flavor": "Emergency Grain Purchase buys the council time, but no temporary measure is free of consequence."
+}

@@ -1,0 +1,17 @@
+{
+	"id": "town_center_housing",
+	"name": "Town-Centre Housing",
+	"category": "development",
+	"cost": 6,
+	"tags": [
+		"infrastructure",
+		"cultural"
+	],
+	"demands": {
+		"appeal": -2
+	},
+	"prerequisites": [
+		"community_land_trust"
+	],
+	"flavor": "Stone, timber, taxes, and maintenance make possible Town-Centre Housing."
+}

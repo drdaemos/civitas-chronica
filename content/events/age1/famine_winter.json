@@ -2,24 +2,58 @@
 	"id": "famine_winter",
 	"title": "The Hungry Winter",
 	"text": "The granaries were empty before Candlemas. Families sell their tools, then their beds; the parish registers fill with burials and the roads out of town are busy in both directions.",
-	"trigger": {"type": "demand", "demand": "provision", "op": ">=", "value": 8},
-	"hazard": "famine",
+	"trigger": {
+		"type": "demand",
+		"demand": "provision",
+		"op": ">=",
+		"value": 20
+	},
+	"hazard": "collapse",
 	"demand": "provision",
 	"severity": "catastrophe",
 	"options": [
-		{"text": "Empty the treasury for grain, whatever the price", "cost": 8,
+		{
+			"text": "Commit extraordinary funds",
+			"cost": 8,
 			"effects": [
-				{"type": "demand_delta", "demand": "provision", "amount": -4}
-			]},
-		{"text": "Open the almshouses and ration what is left", "cost": 3,
+				{
+					"type": "demand_delta",
+					"demand": "provision",
+					"amount": -4
+				}
+			]
+		},
+		{
+			"text": "Contain the worst effects",
+			"cost": 3,
 			"effects": [
-				{"type": "demand_delta", "demand": "provision", "amount": -1},
-				{"type": "resource_delta", "resource": "population_count", "amount": -200}
-			]},
-		{"text": "There is nothing left to give", "cost": 0,
+				{
+					"type": "demand_delta",
+					"demand": "provision",
+					"amount": -1
+				},
+				{
+					"type": "resource_delta",
+					"resource": "population_count",
+					"amount": -120
+				}
+			]
+		},
+		{
+			"text": "Accept the losses",
+			"cost": 0,
 			"effects": [
-				{"type": "demand_delta", "demand": "provision", "amount": 2},
-				{"type": "resource_delta", "resource": "population_count", "amount": -500}
-			]}
+				{
+					"type": "demand_delta",
+					"demand": "provision",
+					"amount": 2
+				},
+				{
+					"type": "resource_delta",
+					"resource": "population_count",
+					"amount": -250
+				}
+			]
+		}
 	]
 }

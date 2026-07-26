@@ -1,0 +1,20 @@
+{
+	"id": "shopping_center",
+	"name": "Shopping Centre",
+	"category": "development",
+	"cost": 7,
+	"tags": [
+		"trade",
+		"cultural"
+	],
+	"effects": [
+		{
+			"type": "income",
+			"amount": 1
+		}
+	],
+	"flavor": "Contracts, carts, and arguments gather around Shopping Centre.",
+	"inject_main": [
+		"supermarket"
+	]
+}

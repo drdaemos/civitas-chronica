@@ -1,0 +1,20 @@
+{
+	"id": "vaccination_board",
+	"name": "Vaccination Board",
+	"category": "development",
+	"cost": 5,
+	"tags": [
+		"science"
+	],
+	"demands": {
+		"health": -2
+	},
+	"flavor": "Practical knowledge is made municipal through Vaccination Board.",
+	"cancels": [
+		"disease"
+	],
+	"inject_main": [
+		"infirmary",
+		"emergency_vaccination"
+	]
+}

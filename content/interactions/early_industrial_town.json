@@ -1,0 +1,31 @@
+{
+	"id": "early_industrial_town",
+	"name": "Early Industrial Town",
+	"description": "Early Industrial Town changes both the town's advantages and the pressures created by its specialization.",
+	"threshold": {
+		"type": "all_of",
+		"conditions": [
+			{
+				"type": "has_development",
+				"id": "early_factory_quarter"
+			},
+			{
+				"type": "tag_count",
+				"tag": "industrial",
+				"op": ">=",
+				"value": 14
+			}
+		]
+	},
+	"effects": [
+		{
+			"type": "income",
+			"amount": 3
+		},
+		{
+			"type": "demand_modifier",
+			"demand": "health",
+			"amount": 2
+		}
+	]
+}

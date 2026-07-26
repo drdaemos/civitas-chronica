@@ -1,0 +1,23 @@
+{
+	"id": "road_paving_department",
+	"name": "Road Paving Department",
+	"category": "development",
+	"cost": 5,
+	"tags": [
+		"infrastructure"
+	],
+	"demands": {
+		"provision": -1,
+		"health": -1
+	},
+	"effects": [
+		{
+			"type": "income",
+			"amount": 1
+		}
+	],
+	"prerequisites": [
+		"river_port"
+	],
+	"flavor": "Stone, timber, taxes, and maintenance make possible Road Paving Department."
+}

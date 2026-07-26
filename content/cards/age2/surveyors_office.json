@@ -1,0 +1,19 @@
+{
+	"id": "surveyors_office",
+	"name": "Surveyors' Office",
+	"category": "development",
+	"cost": 4,
+	"tags": [
+		"science",
+		"infrastructure"
+	],
+	"demands": {
+		"health": -1,
+		"fairness": 1
+	},
+	"flavor": "Practical knowledge is made municipal through Surveyors' Office.",
+	"inject_main": [
+		"map_room",
+		"land_registry"
+	]
+}

@@ -1,0 +1,13 @@
+{
+	"id": "bourgeois_terrace",
+	"name": "Merchant Terraces",
+	"category": "development",
+	"cost": 5,
+	"tags": [
+		"cultural"
+	],
+	"demands": {
+		"appeal": -1
+	},
+	"flavor": "Public life acquires a new center in Merchant Terraces."
+}

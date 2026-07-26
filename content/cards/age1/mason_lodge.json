@@ -1,0 +1,26 @@
+{
+	"id": "mason_lodge",
+	"name": "Masons' Lodge",
+	"category": "development",
+	"cost": 4,
+	"tags": [
+		"industrial",
+		"infrastructure"
+	],
+	"demands": {
+		"provision": -1
+	},
+	"effects": [
+		{
+			"type": "income",
+			"amount": 1
+		}
+	],
+	"prerequisites": [
+		"stone_bridge"
+	],
+	"flavor": "Smoke, wages, and useful production follow Masons' Lodge.",
+	"inject_main": [
+		"lime_kiln"
+	]
+}

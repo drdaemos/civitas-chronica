@@ -4,7 +4,7 @@ extends RefCounted
 ## unlimited draws, removal of the matched event, and forced events.
 
 
-func run(t: TestContext) -> void:
+func run(t: TestContext) -> bool:
 	var db: ContentDB = Fixtures.build_db()
 
 	t.label("non-matching event returns to bottom; match is removed")
@@ -74,3 +74,4 @@ func run(t: TestContext) -> void:
 		if String(event.get("type", "")) == "event_resolved":
 			resolved = true
 	t.is_true(resolved, "event_resolved emitted")
+	return true

@@ -1,0 +1,17 @@
+{
+	"id": "municipal_museum",
+	"name": "Municipal Museum",
+	"category": "development",
+	"cost": 5,
+	"tags": [
+		"cultural",
+		"science"
+	],
+	"demands": {
+		"fairness": -1
+	},
+	"prerequisites": [
+		"public_library_annex"
+	],
+	"flavor": "Public life acquires a new center in Municipal Museum."
+}

@@ -1,0 +1,17 @@
+{
+	"id": "reclaimed_meadows",
+	"name": "Reclaimed Meadows",
+	"category": "development",
+	"cost": 5,
+	"tags": [
+		"infrastructure",
+		"trade"
+	],
+	"demands": {
+		"provision": -2
+	},
+	"prerequisites": [
+		"drainage_board"
+	],
+	"flavor": "Stone, timber, taxes, and maintenance make possible Reclaimed Meadows."
+}

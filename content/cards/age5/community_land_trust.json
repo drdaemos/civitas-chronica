@@ -1,0 +1,17 @@
+{
+	"id": "community_land_trust",
+	"name": "Community Land Trust",
+	"category": "development",
+	"cost": 6,
+	"tags": [
+		"cultural",
+		"infrastructure"
+	],
+	"demands": {
+		"appeal": -2
+	},
+	"flavor": "Public life acquires a new center in Community Land Trust.",
+	"inject_main": [
+		"town_center_housing"
+	]
+}

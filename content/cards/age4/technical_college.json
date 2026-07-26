@@ -1,0 +1,18 @@
+{
+	"id": "technical_college",
+	"name": "Technical College",
+	"category": "development",
+	"cost": 6,
+	"tags": [
+		"science",
+		"industrial"
+	],
+	"demands": {
+		"health": -1,
+		"fairness": 1
+	},
+	"flavor": "Practical knowledge is made municipal through Technical College.",
+	"inject_main": [
+		"board_school"
+	]
+}

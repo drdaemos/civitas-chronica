@@ -1,0 +1,23 @@
+{
+	"id": "river_navigation_board",
+	"name": "River Navigation Board",
+	"category": "development",
+	"cost": 5,
+	"tags": [
+		"trade",
+		"infrastructure"
+	],
+	"demands": {
+		"provision": -1
+	},
+	"effects": [
+		{
+			"type": "income",
+			"amount": 1
+		}
+	],
+	"flavor": "Contracts, carts, and arguments gather around River Navigation Board.",
+	"cancels": [
+		"flood"
+	]
+}

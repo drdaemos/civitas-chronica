@@ -1,0 +1,24 @@
+{
+	"id": "engineering_works",
+	"name": "Engineering Works",
+	"category": "development",
+	"cost": 0,
+	"tags": [
+		"industrial",
+		"science"
+	],
+	"demands": {
+		"health": 2,
+		"fairness": 1
+	},
+	"effects": [
+		{
+			"type": "income",
+			"amount": 2
+		}
+	],
+	"flavor": "Smoke, wages, and useful production follow Engineering Works.",
+	"superseded_by": {
+		"age5": "converted_lofts"
+	}
+}

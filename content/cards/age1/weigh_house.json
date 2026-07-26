@@ -1,0 +1,15 @@
+{
+	"id": "weigh_house",
+	"name": "Weigh House",
+	"category": "development",
+	"cost": 3,
+	"tags": [
+		"trade",
+		"infrastructure"
+	],
+	"demands": {
+		"fairness": -1,
+		"provision": -1
+	},
+	"flavor": "Contracts, carts, and arguments gather around Weigh House."
+}

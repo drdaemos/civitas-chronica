@@ -1,0 +1,17 @@
+{
+	"id": "public_baths",
+	"name": "Public Baths",
+	"category": "development",
+	"cost": 4,
+	"tags": [
+		"infrastructure",
+		"cultural"
+	],
+	"demands": {
+		"health": -1
+	},
+	"flavor": "Stone, timber, taxes, and maintenance make possible Public Baths.",
+	"inject_main": [
+		"washhouse_network"
+	]
+}

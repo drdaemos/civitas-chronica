@@ -1,0 +1,23 @@
+{
+	"id": "commercial_bank",
+	"name": "Commercial Bank",
+	"category": "development",
+	"cost": 6,
+	"tags": [
+		"trade"
+	],
+	"demands": {
+		"appeal": -1,
+		"health": 1
+	},
+	"effects": [
+		{
+			"type": "income",
+			"amount": 2
+		}
+	],
+	"flavor": "Contracts, carts, and arguments gather around Commercial Bank.",
+	"inject_main": [
+		"insurance_office"
+	]
+}

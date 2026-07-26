@@ -3,10 +3,17 @@
 	"name": "City Walls",
 	"category": "development",
 	"cost": 4,
-	"tags": ["military"],
-	"demands": {"security": -3},
-	"cancels": ["raid"],
-	"superseded_by": {"age2": "wall_ruins"},
-	"effects": [],
-	"flavor": "Ramparts of quarried stone close the circuit at last; the citizens sleep differently behind them."
+	"tags": [
+		"military"
+	],
+	"demands": {
+		"security": -2
+	},
+	"flavor": "Ramparts of quarried stone close the circuit at last; the citizens sleep differently behind them.",
+	"superseded_by": {
+		"age2": "wall_ruins"
+	},
+	"cancels": [
+		"raid"
+	]
 }

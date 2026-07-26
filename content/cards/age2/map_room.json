@@ -1,0 +1,18 @@
+{
+	"id": "map_room",
+	"name": "Municipal Map Room",
+	"category": "development",
+	"cost": 3,
+	"tags": [
+		"science",
+		"cultural"
+	],
+	"demands": {
+		"health": -1,
+		"fairness": 1
+	},
+	"prerequisites": [
+		"surveyors_office"
+	],
+	"flavor": "Practical knowledge is made municipal through Municipal Map Room."
+}

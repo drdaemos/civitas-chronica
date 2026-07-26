@@ -1,0 +1,24 @@
+{
+	"id": "grain_regulation",
+	"name": "Grain Regulation",
+	"description": "Grain Regulation solves one municipal problem by accepting a visible constraint elsewhere.",
+	"unlock": {
+		"type": "interaction_active",
+		"id": "agrarian_exchange"
+	},
+	"swap_cost_budget": 3,
+	"swap_cost_demands": {
+		"fairness": 1
+	},
+	"effects": [
+		{
+			"type": "demand_modifier",
+			"demand": "provision",
+			"amount": -2
+		},
+		{
+			"type": "income",
+			"amount": -1
+		}
+	]
+}

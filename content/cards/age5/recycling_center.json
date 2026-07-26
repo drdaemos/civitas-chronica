@@ -1,0 +1,17 @@
+{
+	"id": "recycling_center",
+	"name": "Recycling Centre",
+	"category": "development",
+	"cost": 6,
+	"tags": [
+		"infrastructure",
+		"industrial"
+	],
+	"demands": {
+		"health": -1
+	},
+	"flavor": "Stone, timber, taxes, and maintenance make possible Recycling Centre.",
+	"inject_main": [
+		"clean_air_zone"
+	]
+}

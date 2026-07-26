@@ -1,0 +1,23 @@
+{
+	"id": "bus_depot",
+	"name": "Municipal Bus Depot",
+	"category": "development",
+	"cost": 5,
+	"tags": [
+		"infrastructure"
+	],
+	"demands": {
+		"provision": -1,
+		"health": -1
+	},
+	"effects": [
+		{
+			"type": "income",
+			"amount": 1
+		}
+	],
+	"prerequisites": [
+		"tramway"
+	],
+	"flavor": "Stone, timber, taxes, and maintenance make possible Municipal Bus Depot."
+}

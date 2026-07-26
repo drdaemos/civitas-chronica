@@ -1,0 +1,13 @@
+{
+	"id": "bastion_walk",
+	"name": "Bastion Walk",
+	"category": "development",
+	"cost": 0,
+	"tags": [
+		"cultural"
+	],
+	"demands": {
+		"fairness": -1
+	},
+	"flavor": "Public life acquires a new center in Bastion Walk."
+}

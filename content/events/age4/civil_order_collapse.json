@@ -1,0 +1,59 @@
+{
+	"id": "civil_order_collapse",
+	"title": "Civil Order Collapses",
+	"text": "Civil Order Collapses exposes how long the town has allowed this municipal responsibility to exceed its capacity.",
+	"trigger": {
+		"type": "demand",
+		"demand": "security",
+		"op": ">=",
+		"value": 20
+	},
+	"hazard": "collapse",
+	"demand": "security",
+	"severity": "catastrophe",
+	"options": [
+		{
+			"text": "Commit extraordinary funds",
+			"cost": 11,
+			"effects": [
+				{
+					"type": "demand_delta",
+					"demand": "security",
+					"amount": -4
+				}
+			]
+		},
+		{
+			"text": "Contain the worst effects",
+			"cost": 3,
+			"effects": [
+				{
+					"type": "demand_delta",
+					"demand": "security",
+					"amount": -1
+				},
+				{
+					"type": "resource_delta",
+					"resource": "population_count",
+					"amount": -480
+				}
+			]
+		},
+		{
+			"text": "Accept the losses",
+			"cost": 0,
+			"effects": [
+				{
+					"type": "demand_delta",
+					"demand": "security",
+					"amount": 2
+				},
+				{
+					"type": "resource_delta",
+					"resource": "population_count",
+					"amount": -1000
+				}
+			]
+		}
+	]
+}

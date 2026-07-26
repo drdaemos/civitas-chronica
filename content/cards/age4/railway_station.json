@@ -1,0 +1,27 @@
+{
+	"id": "railway_station",
+	"name": "Railway Station",
+	"category": "development",
+	"cost": 7,
+	"tags": [
+		"trade",
+		"infrastructure"
+	],
+	"demands": {
+		"appeal": -1,
+		"health": 1
+	},
+	"effects": [
+		{
+			"type": "income",
+			"amount": 2
+		}
+	],
+	"flavor": "Contracts, carts, and arguments gather around Railway Station.",
+	"superseded_by": {
+		"age5": "commuter_station"
+	},
+	"inject_main": [
+		"goods_yard"
+	]
+}

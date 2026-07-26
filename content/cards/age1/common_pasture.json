@@ -1,0 +1,16 @@
+{
+	"id": "common_pasture",
+	"name": "Common Pasture",
+	"category": "development",
+	"cost": 2,
+	"tags": [
+		"infrastructure"
+	],
+	"demands": {
+		"provision": -1
+	},
+	"prerequisites": [
+		"cattle_market"
+	],
+	"flavor": "Stone, timber, taxes, and maintenance make possible Common Pasture."
+}

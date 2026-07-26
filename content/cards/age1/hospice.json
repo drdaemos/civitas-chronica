@@ -1,0 +1,13 @@
+{
+	"id": "hospice",
+	"name": "Pilgrims' Hospice",
+	"category": "development",
+	"cost": 3,
+	"tags": [
+		"religious"
+	],
+	"demands": {
+		"health": -1
+	},
+	"flavor": "Ritual, charity, and local obligation meet at Pilgrims' Hospice."
+}

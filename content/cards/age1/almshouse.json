@@ -3,8 +3,13 @@
 	"name": "Almshouse",
 	"category": "development",
 	"cost": 3,
-	"tags": ["religious", "cultural"],
-	"demands": {"provision": -1, "fairness": -1},
-	"effects": [],
+	"tags": [
+		"religious",
+		"cultural"
+	],
+	"demands": {
+		"provision": -1,
+		"fairness": -1
+	},
 	"flavor": "Twelve beds, a warm hearth, and bread on feast days, endowed by a wool merchant for the good of his soul and the city."
 }

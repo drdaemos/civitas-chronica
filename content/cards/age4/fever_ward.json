@@ -1,0 +1,16 @@
+{
+	"id": "fever_ward",
+	"name": "Fever Ward",
+	"category": "development",
+	"cost": 5,
+	"tags": [
+		"science"
+	],
+	"demands": {
+		"health": -2
+	},
+	"prerequisites": [
+		"municipal_hospital"
+	],
+	"flavor": "Practical knowledge is made municipal through Fever Ward."
+}

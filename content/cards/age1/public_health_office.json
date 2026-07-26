@@ -3,11 +3,11 @@
 	"name": "Public Health Office",
 	"category": "development",
 	"cost": 4,
-	"tags": ["science"],
-	"demands": {"health": -2},
-	"cancels": ["disease"],
-	"effects": [
-		{"type": "pop_growth_mult", "amount": 0.05}
+	"tags": [
+		"science"
 	],
+	"demands": {
+		"health": -2
+	},
 	"flavor": "Physicians keep registers of the sick and inspect wells and ships; the city learns to see illness coming."
 }

@@ -1,0 +1,24 @@
+{
+	"id": "river_port",
+	"name": "Modern River Port",
+	"category": "development",
+	"cost": 7,
+	"tags": [
+		"trade",
+		"infrastructure"
+	],
+	"demands": {
+		"appeal": -1,
+		"health": 1
+	},
+	"effects": [
+		{
+			"type": "income",
+			"amount": 2
+		}
+	],
+	"flavor": "Contracts, carts, and arguments gather around Modern River Port.",
+	"inject_main": [
+		"road_paving_department"
+	]
+}

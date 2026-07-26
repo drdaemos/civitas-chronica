@@ -1,0 +1,17 @@
+{
+	"id": "rent_relief",
+	"name": "Rent Relief",
+	"category": "action",
+	"cost": 3,
+	"effects": [
+		{
+			"type": "demand_delta",
+			"demand": "health",
+			"amount": -3
+		}
+	],
+	"prerequisites": [
+		"housing_inspectorate"
+	],
+	"flavor": "Rent Relief buys the council time, but no temporary measure is free of consequence."
+}

@@ -1,0 +1,17 @@
+{
+	"id": "remote_work_incentive",
+	"name": "Remote-Work Incentive",
+	"category": "action",
+	"cost": 3,
+	"effects": [
+		{
+			"type": "demand_delta",
+			"demand": "appeal",
+			"amount": -3
+		}
+	],
+	"prerequisites": [
+		"broadband_network"
+	],
+	"flavor": "Remote-Work Incentive buys the council time, but no temporary measure is free of consequence."
+}

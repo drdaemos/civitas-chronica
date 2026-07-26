@@ -340,15 +340,28 @@ func _check_condition_vocabulary(condition: ConditionDef, ctx: String,
 
 
 func _validate_cards(errors: Array[String]) -> void:
+	var successor_targets: Dictionary = _supersession_targets()
 	for card_id: String in cards:
 		var card: CardDef = cards[card_id]
 		var ctx: String = "card " + card_id
+		if card.display_name.strip_edges() == "":
+			errors.append("%s: missing display name" % ctx)
+		if card.flavor.strip_edges() == "":
+			errors.append("%s: missing flavor text" % ctx)
+		if card.cost < 0:
+			errors.append("%s: negative cost" % ctx)
+		if card.cost == 0 and not successor_targets.has(card_id):
+			errors.append("%s: zero cost is reserved for automatic successor cards" % ctx)
+		if card.cost > 12:
+			errors.append("%s: cost %d exceeds the authored balance range" % [ctx, card.cost])
 		if card.category != CardDef.CATEGORY_DEVELOPMENT and card.category != CardDef.CATEGORY_ACTION:
 			errors.append("%s: invalid category \"%s\"" % [ctx, card.category])
 		for tag: String in card.tags:
 			if tag not in CANONICAL_TAGS:
 				errors.append("%s: non-canonical tag \"%s\"" % [ctx, tag])
 		if card.category == CardDef.CATEGORY_ACTION:
+			if card.effects.is_empty():
+				errors.append("%s: action card has no effects" % ctx)
 			if not card.tags.is_empty():
 				errors.append("%s: action cards must not have tags" % ctx)
 			if not card.cancels.is_empty():
@@ -370,6 +383,8 @@ func _validate_cards(errors: Array[String]) -> void:
 		for demand_id: String in card.demands:
 			if not rules.has_demand(demand_id):
 				errors.append("%s: printed value for unknown demand \"%s\"" % [ctx, demand_id])
+		if card.is_development() and card.tags.is_empty():
+			errors.append("%s: development has no interaction tags" % ctx)
 		var refs: Dictionary = _new_refs()
 		(refs["cards"] as Array).append_array(card.prerequisites)
 		(refs["cards"] as Array).append_array(card.inject_main)
@@ -393,14 +408,23 @@ func _validate_cards(errors: Array[String]) -> void:
 					])
 		_check_refs(refs, ctx, errors)
 		_check_effect_vocabulary(card.effects, ctx, errors)
+		for injected_id: String in card.inject_main:
+			if cards.has(injected_id) and (cards[injected_id] as CardDef).age_id != card.age_id:
+				errors.append("%s: injects cross-age card \"%s\"" % [ctx, injected_id])
 
 
 func _validate_events(errors: Array[String]) -> void:
 	for event_id: String in events:
 		var event: EventDef = events[event_id]
 		var ctx: String = "event " + event_id
+		if event.title.strip_edges() == "":
+			errors.append("%s: missing title" % ctx)
+		if event.text.strip_edges() == "":
+			errors.append("%s: missing situation text" % ctx)
 		if event.options.is_empty():
 			errors.append("%s: has no options" % ctx)
+		elif event.options.size() < 2:
+			errors.append("%s: needs at least two choices" % ctx)
 		if event.hazard != "" and event.hazard not in CANONICAL_HAZARDS:
 			errors.append("%s: non-canonical hazard \"%s\"" % [ctx, event.hazard])
 		_validate_pressure_fields(event, ctx, errors)
@@ -444,6 +468,10 @@ func _validate_interactions(errors: Array[String]) -> void:
 	for interaction_id: String in interactions:
 		var interaction: InteractionDef = interactions[interaction_id]
 		var ctx: String = "interaction " + interaction_id
+		if interaction.display_name.strip_edges() == "":
+			errors.append("%s: missing display name" % ctx)
+		if interaction.description.strip_edges() == "":
+			errors.append("%s: missing description" % ctx)
 		if interaction.threshold == null:
 			errors.append("%s: missing threshold" % ctx)
 		var refs: Dictionary = _new_refs()
@@ -459,6 +487,10 @@ func _validate_policies(errors: Array[String]) -> void:
 	for policy_id: String in policies:
 		var policy: PolicyDef = policies[policy_id]
 		var ctx: String = "policy " + policy_id
+		if policy.display_name.strip_edges() == "":
+			errors.append("%s: missing display name" % ctx)
+		if policy.description.strip_edges() == "":
+			errors.append("%s: missing description" % ctx)
 		var refs: Dictionary = _new_refs()
 		if policy.unlock != null:
 			policy.unlock.collect_refs(refs)
@@ -499,6 +531,45 @@ func _validate_ages(errors: Array[String]) -> void:
 			errors.append("%s: activates unknown demand \"%s\"" % [ctx, age.activates_demand])
 		if age.population_growth_base <= 0:
 			errors.append("%s: non-positive population_growth_base" % ctx)
+		var age_cards: Array[CardDef] = []
+		var action_count: int = 0
+		var mitigating_count: int = 0
+		var aggravating_count: int = 0
+		for card_id: String in cards:
+			var candidate: CardDef = cards[card_id]
+			if candidate.age_id != age_id:
+				continue
+			age_cards.append(candidate)
+			if candidate.category == CardDef.CATEGORY_ACTION:
+				action_count += 1
+			elif age.activates_demand != "":
+				var contribution: int = int(candidate.demands.get(age.activates_demand, 0))
+				if contribution < 0:
+					mitigating_count += 1
+				elif contribution > 0:
+					aggravating_count += 1
+		if age_cards.size() < 50:
+			errors.append("%s: only %d cards; authored target is at least 50" % [
+				ctx, age_cards.size(),
+			])
+		if action_count < 5:
+			errors.append("%s: only %d action cards; needs at least 5" % [ctx, action_count])
+		if mitigating_count < 6:
+			errors.append("%s: only %d developments mitigate its activated demand \"%s\"" % [
+				ctx, mitigating_count, age.activates_demand,
+			])
+		if aggravating_count < 3:
+			errors.append("%s: only %d developments aggravate its activated demand \"%s\"" % [
+				ctx, aggravating_count, age.activates_demand,
+			])
+		if age.base_deck.size() < 20 or age.base_deck.size() > 45:
+			errors.append("%s: base_deck size %d is outside the authored range 20..45" % [
+				ctx, age.base_deck.size(),
+			])
+		if age.base_events.size() < 10:
+			errors.append("%s: needs at least 10 ordinary base events" % ctx)
+		if age.forced_events.size() < 2:
+			errors.append("%s: needs at least 2 forced historical pressures" % ctx)
 		var successors: Dictionary = _supersession_targets()
 		var seen_deck: Dictionary = {}
 		for card_id: String in age.base_deck:

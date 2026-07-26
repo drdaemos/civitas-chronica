@@ -1,0 +1,17 @@
+{
+	"id": "municipal_market_hall",
+	"name": "Municipal Market Hall",
+	"category": "development",
+	"cost": 0,
+	"tags": [
+		"trade",
+		"infrastructure"
+	],
+	"effects": [
+		{
+			"type": "income",
+			"amount": 1
+		}
+	],
+	"flavor": "Contracts, carts, and arguments gather around Municipal Market Hall."
+}

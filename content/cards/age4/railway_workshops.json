@@ -1,0 +1,21 @@
+{
+	"id": "railway_workshops",
+	"name": "Railway Workshops",
+	"category": "development",
+	"cost": 7,
+	"tags": [
+		"industrial",
+		"infrastructure"
+	],
+	"demands": {
+		"health": 2,
+		"fairness": 1
+	},
+	"effects": [
+		{
+			"type": "income",
+			"amount": 2
+		}
+	],
+	"flavor": "Smoke, wages, and useful production follow Railway Workshops."
+}

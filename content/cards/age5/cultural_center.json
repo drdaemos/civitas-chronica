@@ -1,0 +1,16 @@
+{
+	"id": "cultural_center",
+	"name": "Cultural Centre",
+	"category": "development",
+	"cost": 6,
+	"tags": [
+		"cultural"
+	],
+	"demands": {
+		"appeal": -2
+	},
+	"flavor": "Public life acquires a new center in Cultural Centre.",
+	"inject_main": [
+		"regional_museum"
+	]
+}

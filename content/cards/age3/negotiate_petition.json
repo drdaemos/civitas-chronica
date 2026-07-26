@@ -1,0 +1,17 @@
+{
+	"id": "negotiate_petition",
+	"name": "Negotiate the Petition",
+	"category": "action",
+	"cost": 3,
+	"effects": [
+		{
+			"type": "demand_delta",
+			"demand": "fairness",
+			"amount": -3
+		}
+	],
+	"prerequisites": [
+		"petition_hall"
+	],
+	"flavor": "Negotiate the Petition buys the council time, but no temporary measure is free of consequence."
+}

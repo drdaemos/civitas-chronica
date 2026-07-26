@@ -1,0 +1,16 @@
+{
+	"id": "land_tax_register",
+	"name": "Land-Tax Register",
+	"category": "development",
+	"cost": 4,
+	"tags": [
+		"science"
+	],
+	"demands": {
+		"fairness": -1
+	},
+	"prerequisites": [
+		"cadastral_office"
+	],
+	"flavor": "Practical knowledge is made municipal through Land-Tax Register."
+}

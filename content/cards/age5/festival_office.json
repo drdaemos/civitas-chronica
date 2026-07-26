@@ -1,0 +1,16 @@
+{
+	"id": "festival_office",
+	"name": "Festival Office",
+	"category": "development",
+	"cost": 4,
+	"tags": [
+		"cultural"
+	],
+	"demands": {
+		"appeal": -1
+	},
+	"flavor": "Public life acquires a new center in Festival Office.",
+	"inject_main": [
+		"sports_complex"
+	]
+}

@@ -5,7 +5,7 @@ extends RefCounted
 ## Neither affects whether the event fires — triggers stay permissive.
 
 
-func run(t: TestContext) -> void:
+func run(t: TestContext) -> bool:
 	var db: ContentDB = Fixtures.build_db()
 
 	t.label("without protection the hazard lands in full")
@@ -86,6 +86,8 @@ func run(t: TestContext) -> void:
 	engine7.resolve_event(guild_option)
 	t.eq(state7.demand_value("supply"), supply_before7 - 2, "the extra option resolved")
 	t.eq(state7.pending_event, "", "event cleared")
+	return true
+
 
 
 # --- helpers -----------------------------------------------------------------

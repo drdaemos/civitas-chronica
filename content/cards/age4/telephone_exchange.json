@@ -1,0 +1,24 @@
+{
+	"id": "telephone_exchange",
+	"name": "Telephone Exchange",
+	"category": "development",
+	"cost": 5,
+	"tags": [
+		"science",
+		"infrastructure"
+	],
+	"demands": {
+		"provision": -1,
+		"health": -1
+	},
+	"effects": [
+		{
+			"type": "income",
+			"amount": 1
+		}
+	],
+	"flavor": "Practical knowledge is made municipal through Telephone Exchange.",
+	"inject_main": [
+		"central_post_office"
+	]
+}

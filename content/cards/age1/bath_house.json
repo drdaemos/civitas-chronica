@@ -1,0 +1,14 @@
+{
+	"id": "bath_house",
+	"name": "Bath House",
+	"category": "development",
+	"cost": 3,
+	"tags": [
+		"infrastructure",
+		"cultural"
+	],
+	"demands": {
+		"health": -1
+	},
+	"flavor": "Stone, timber, taxes, and maintenance make possible Bath House."
+}

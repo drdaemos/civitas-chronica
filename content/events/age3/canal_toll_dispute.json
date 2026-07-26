@@ -1,0 +1,50 @@
+{
+	"id": "canal_toll_dispute",
+	"title": "Canal Toll Dispute",
+	"text": "Canal Toll Dispute reaches the council as a local problem with no cost-free answer.",
+	"trigger": {
+		"type": "has_development",
+		"id": "canal_depot"
+	},
+	"options": [
+		{
+			"text": "Fund a thorough municipal response",
+			"cost": 5,
+			"effects": [
+				{
+					"type": "demand_delta",
+					"demand": "fairness",
+					"amount": -2
+				}
+			]
+		},
+		{
+			"text": "Use a limited and temporary measure",
+			"cost": 1,
+			"effects": [
+				{
+					"type": "demand_delta",
+					"demand": "fairness",
+					"amount": 1
+				}
+			]
+		},
+		{
+			"text": "Leave households and local institutions to cope",
+			"cost": 0,
+			"effects": [
+				{
+					"type": "demand_delta",
+					"demand": "fairness",
+					"amount": 2
+				},
+				{
+					"type": "resource_delta",
+					"resource": "population_count",
+					"amount": -60
+				}
+			]
+		}
+	],
+	"hazard": "riot"
+}

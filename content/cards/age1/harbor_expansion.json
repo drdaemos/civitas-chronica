@@ -3,12 +3,25 @@
 	"name": "Harbor Expansion",
 	"category": "development",
 	"cost": 6,
-	"tags": ["trade", "infrastructure"],
-	"demands": {"provision": -1, "security": 1},
-	"prerequisites": ["river_docks"],
-	"effects": [
-		{"type": "income", "amount": 2}
+	"tags": [
+		"trade",
+		"infrastructure"
 	],
-	"inject_events": ["plague_ship"],
+	"demands": {
+		"provision": -1,
+		"security": 1
+	},
+	"prerequisites": [
+		"river_docks"
+	],
+	"effects": [
+		{
+			"type": "income",
+			"amount": 2
+		}
+	],
+	"inject_events": [
+		"plague_ship"
+	],
 	"flavor": "Stone quays and a deeper channel; the city turns its face to the water, and the water answers."
 }

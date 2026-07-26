@@ -1,0 +1,17 @@
+{
+	"id": "emergency_vaccination",
+	"name": "Emergency Vaccination",
+	"category": "action",
+	"cost": 3,
+	"effects": [
+		{
+			"type": "demand_delta",
+			"demand": "health",
+			"amount": -3
+		}
+	],
+	"prerequisites": [
+		"vaccination_board"
+	],
+	"flavor": "Emergency Vaccination buys the council time, but no temporary measure is free of consequence."
+}

@@ -2,21 +2,48 @@
 	"id": "harvest_failure",
 	"title": "Harvest Failure",
 	"text": "Cold rains rot the grain in the surrounding fields; the granaries will not carry the city through the winter.",
-	"trigger": {"type": "always"},
-	"hazard": "famine",
+	"trigger": {
+		"type": "always"
+	},
 	"options": [
-		{"text": "Buy grain from distant markets", "cost": 4,
+		{
+			"text": "Fund a thorough municipal response",
+			"cost": 3,
 			"effects": [
-				{"type": "demand_delta", "demand": "provision", "amount": -1}
-			]},
-		{"text": "Ration bread through the winter", "cost": 0,
+				{
+					"type": "demand_delta",
+					"demand": "provision",
+					"amount": -2
+				}
+			]
+		},
+		{
+			"text": "Use a limited and temporary measure",
+			"cost": 1,
 			"effects": [
-				{"type": "demand_delta", "demand": "provision", "amount": 2}
-			]},
-		{"text": "Leave the parishes to cope", "cost": 0,
+				{
+					"type": "demand_delta",
+					"demand": "provision",
+					"amount": 1
+				}
+			]
+		},
+		{
+			"text": "Leave households and local institutions to cope",
+			"cost": 0,
 			"effects": [
-				{"type": "demand_delta", "demand": "provision", "amount": 4},
-				{"type": "resource_delta", "resource": "population_count", "amount": -120}
-			]}
-	]
+				{
+					"type": "demand_delta",
+					"demand": "provision",
+					"amount": 2
+				},
+				{
+					"type": "resource_delta",
+					"resource": "population_count",
+					"amount": -20
+				}
+			]
+		}
+	],
+	"hazard": "famine"
 }

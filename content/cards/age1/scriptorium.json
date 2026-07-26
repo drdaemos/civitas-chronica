@@ -1,0 +1,18 @@
+{
+	"id": "scriptorium",
+	"name": "Scriptorium",
+	"category": "development",
+	"cost": 4,
+	"tags": [
+		"religious",
+		"science"
+	],
+	"demands": {
+		"health": -1,
+		"fairness": 1
+	},
+	"prerequisites": [
+		"parish_school"
+	],
+	"flavor": "Ritual, charity, and local obligation meet at Scriptorium."
+}
