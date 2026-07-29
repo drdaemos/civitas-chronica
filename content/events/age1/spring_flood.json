@@ -8,7 +8,7 @@
 	},
 	"options": [
 		{
-			"text": "Fund a thorough municipal response",
+			"text": "Shore the bank and supply the flooded quarter",
 			"cost": 3,
 			"effects": [
 				{
@@ -19,7 +19,7 @@
 			]
 		},
 		{
-			"text": "Use a limited and temporary measure",
+			"text": "Open temporary shelter on higher ground",
 			"cost": 1,
 			"effects": [
 				{
@@ -30,7 +30,7 @@
 			]
 		},
 		{
-			"text": "Leave households and local institutions to cope",
+			"text": "Leave dockside households to recover alone",
 			"cost": 0,
 			"effects": [
 				{

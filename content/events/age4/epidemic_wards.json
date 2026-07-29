@@ -1,7 +1,7 @@
 {
 	"id": "epidemic_wards",
 	"title": "Epidemic Wards Overflow",
-	"text": "Epidemic Wards Overflow exposes how long the town has allowed this municipal responsibility to exceed its capacity.",
+	"text": "Hospital corridors become wards and wards become morgues. Staff work without rest while new patients wait outside in carts.",
 	"trigger": {
 		"type": "demand",
 		"demand": "health",
@@ -13,7 +13,7 @@
 	"severity": "emergency",
 	"options": [
 		{
-			"text": "Commit extraordinary funds",
+			"text": "Open emergency wards and recruit staff",
 			"cost": 7,
 			"effects": [
 				{
@@ -24,7 +24,7 @@
 			]
 		},
 		{
-			"text": "Contain the worst effects",
+			"text": "Triage care to the gravely ill",
 			"cost": 1,
 			"effects": [
 				{
@@ -40,7 +40,7 @@
 			]
 		},
 		{
-			"text": "Accept the losses",
+			"text": "Turn patients away",
 			"cost": 0,
 			"effects": [
 				{

@@ -1,13 +1,13 @@
 {
 	"id": "service_withdrawal",
 	"title": "A Regional Service Is Withdrawn",
-	"text": "A Regional Service Is Withdrawn reaches the council as a local problem with no cost-free answer.",
+	"text": "The regional provider announces that the local branch will close. The service remains available—if residents can travel far enough to reach it.",
 	"trigger": {
 		"type": "always"
 	},
 	"options": [
 		{
-			"text": "Fund a thorough municipal response",
+			"text": "Replace the service with a municipal alternative",
 			"cost": 7,
 			"effects": [
 				{
@@ -18,7 +18,7 @@
 			]
 		},
 		{
-			"text": "Use a limited and temporary measure",
+			"text": "Fund a reduced local branch",
 			"cost": 1,
 			"effects": [
 				{
@@ -29,7 +29,7 @@
 			]
 		},
 		{
-			"text": "Leave households and local institutions to cope",
+			"text": "Accept the withdrawal",
 			"cost": 0,
 			"effects": [
 				{

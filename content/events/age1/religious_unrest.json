@@ -7,7 +7,7 @@
 	},
 	"options": [
 		{
-			"text": "Fund a thorough municipal response",
+			"text": "Convene clergy and guild elders to negotiate",
 			"cost": 3,
 			"effects": [
 				{
@@ -18,7 +18,7 @@
 			]
 		},
 		{
-			"text": "Use a limited and temporary measure",
+			"text": "Put extra watchmen around the churches",
 			"cost": 1,
 			"effects": [
 				{
@@ -29,7 +29,7 @@
 			]
 		},
 		{
-			"text": "Leave households and local institutions to cope",
+			"text": "Leave the parishes to confront one another",
 			"cost": 0,
 			"effects": [
 				{

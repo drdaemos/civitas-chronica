@@ -1,7 +1,7 @@
 {
 	"id": "municipal_authority_collapse",
 	"title": "Municipal Authority Collapses",
-	"text": "Municipal Authority Collapses exposes how long the town has allowed this municipal responsibility to exceed its capacity.",
+	"text": "Residents no longer expect the council's promises, rules, or accounts to be true. Voluntary compliance disappears and enforcement cannot replace it.",
 	"trigger": {
 		"type": "demand",
 		"demand": "fairness",
@@ -13,7 +13,7 @@
 	"severity": "catastrophe",
 	"options": [
 		{
-			"text": "Commit extraordinary funds",
+			"text": "Reconstitute government with public consent",
 			"cost": 12,
 			"effects": [
 				{
@@ -24,7 +24,7 @@
 			]
 		},
 		{
-			"text": "Contain the worst effects",
+			"text": "Share power with emergency civic committees",
 			"cost": 3,
 			"effects": [
 				{
@@ -40,7 +40,7 @@
 			]
 		},
 		{
-			"text": "Accept the losses",
+			"text": "Preserve the council and lose the streets",
 			"cost": 0,
 			"effects": [
 				{

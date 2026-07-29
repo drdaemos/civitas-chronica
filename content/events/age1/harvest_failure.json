@@ -7,7 +7,19 @@
 	},
 	"options": [
 		{
-			"text": "Fund a thorough municipal response",
+			"text": "Release the storehouse reserve before buying imports",
+			"cost": 1,
+			"requires_development": "grain_storehouse",
+			"effects": [
+				{
+					"type": "demand_delta",
+					"demand": "provision",
+					"amount": -2
+				}
+			]
+		},
+		{
+			"text": "Import grain and open the city reserves",
 			"cost": 3,
 			"effects": [
 				{
@@ -18,7 +30,7 @@
 			]
 		},
 		{
-			"text": "Use a limited and temporary measure",
+			"text": "Ration the grain already stored",
 			"cost": 1,
 			"effects": [
 				{
@@ -29,7 +41,7 @@
 			]
 		},
 		{
-			"text": "Leave households and local institutions to cope",
+			"text": "Let the market decide who can afford bread",
 			"cost": 0,
 			"effects": [
 				{

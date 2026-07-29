@@ -161,6 +161,17 @@ func run(t: TestContext) -> bool:
 		"dangling requires_development rejected")
 	t.is_true(_has_error(bad_option, "every option is gated on a development"),
 		"fully-gated event rejected")
+
+	t.label("events may be announcements with one choice, but never zero choices")
+	var one_choice: ContentDB = Fixtures.build_db()
+	var one_event: EventDef = one_choice.events["always_event"]
+	one_event.options.resize(1)
+	t.is_true(not _has_error(one_choice, "needs at least one choice"),
+		"one-choice announcement accepted")
+	var no_choice: ContentDB = Fixtures.build_db()
+	(no_choice.events["always_event"] as EventDef).options.clear()
+	t.is_true(_has_error(no_choice, "needs at least one choice"),
+		"event with no response rejected")
 	return true
 
 

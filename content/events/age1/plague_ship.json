@@ -8,7 +8,19 @@
 	},
 	"options": [
 		{
-			"text": "Fund a thorough municipal response",
+			"text": "Let the hospice run a guarded shore quarantine",
+			"cost": 1,
+			"requires_development": "hospice",
+			"effects": [
+				{
+					"type": "demand_delta",
+					"demand": "provision",
+					"amount": -2
+				}
+			]
+		},
+		{
+			"text": "Quarantine the ship and provision its crew",
 			"cost": 3,
 			"effects": [
 				{
@@ -19,7 +31,7 @@
 			]
 		},
 		{
-			"text": "Use a limited and temporary measure",
+			"text": "Unload essential cargo under guard",
 			"cost": 1,
 			"effects": [
 				{
@@ -30,7 +42,7 @@
 			]
 		},
 		{
-			"text": "Leave households and local institutions to cope",
+			"text": "Turn the ship away and close the wharf",
 			"cost": 0,
 			"effects": [
 				{

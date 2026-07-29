@@ -1,13 +1,13 @@
 {
 	"id": "royal_levy",
 	"title": "The Crown Demands a New Levy",
-	"text": "The Crown Demands a New Levy reaches the council as a local problem with no cost-free answer.",
+	"text": "A royal commissioner arrives with sealed accounts and a demand for men, grain, and coin. The sum is fixed; only who bears it remains to be decided.",
 	"trigger": {
 		"type": "always"
 	},
 	"options": [
 		{
-			"text": "Fund a thorough municipal response",
+			"text": "Pay the Crown from the city treasury",
 			"cost": 3,
 			"effects": [
 				{
@@ -18,18 +18,7 @@
 			]
 		},
 		{
-			"text": "Use a limited and temporary measure",
-			"cost": 1,
-			"effects": [
-				{
-					"type": "demand_delta",
-					"demand": "provision",
-					"amount": 1
-				}
-			]
-		},
-		{
-			"text": "Leave households and local institutions to cope",
+			"text": "Pass the entire levy to local households",
 			"cost": 0,
 			"effects": [
 				{

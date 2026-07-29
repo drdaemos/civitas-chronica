@@ -422,9 +422,7 @@ func _validate_events(errors: Array[String]) -> void:
 		if event.text.strip_edges() == "":
 			errors.append("%s: missing situation text" % ctx)
 		if event.options.is_empty():
-			errors.append("%s: has no options" % ctx)
-		elif event.options.size() < 2:
-			errors.append("%s: needs at least two choices" % ctx)
+			errors.append("%s: needs at least one choice" % ctx)
 		if event.hazard != "" and event.hazard not in CANONICAL_HAZARDS:
 			errors.append("%s: non-canonical hazard \"%s\"" % [ctx, event.hazard])
 		_validate_pressure_fields(event, ctx, errors)

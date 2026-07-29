@@ -8,7 +8,7 @@
 	},
 	"options": [
 		{
-			"text": "Fund a thorough municipal response",
+			"text": "Pay for substitutes and protect city workers",
 			"cost": 4,
 			"effects": [
 				{
@@ -19,7 +19,7 @@
 			]
 		},
 		{
-			"text": "Use a limited and temporary measure",
+			"text": "Negotiate a smaller quota",
 			"cost": 1,
 			"effects": [
 				{
@@ -30,7 +30,7 @@
 			]
 		},
 		{
-			"text": "Leave households and local institutions to cope",
+			"text": "Let naval officers take whom they find",
 			"cost": 0,
 			"effects": [
 				{

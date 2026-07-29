@@ -1,13 +1,13 @@
 {
 	"id": "commons_dispute",
 	"title": "Dispute over the Commons",
-	"text": "Dispute over the Commons reaches the council as a local problem with no cost-free answer.",
+	"text": "New survey stakes divide pasture used by right and memory for generations. Deeds, grazing claims, and hungry livestock now meet on the same strip of ground.",
 	"trigger": {
 		"type": "always"
 	},
 	"options": [
 		{
-			"text": "Fund a thorough municipal response",
+			"text": "Survey rights and compensate displaced users",
 			"cost": 5,
 			"effects": [
 				{
@@ -18,7 +18,7 @@
 			]
 		},
 		{
-			"text": "Use a limited and temporary measure",
+			"text": "Delay division until after the harvest",
 			"cost": 1,
 			"effects": [
 				{
@@ -29,7 +29,7 @@
 			]
 		},
 		{
-			"text": "Leave households and local institutions to cope",
+			"text": "Enclose the land and enforce the deeds",
 			"cost": 0,
 			"effects": [
 				{

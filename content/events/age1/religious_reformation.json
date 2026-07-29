@@ -1,13 +1,13 @@
 {
 	"id": "religious_reformation",
 	"title": "A New Confessional Settlement",
-	"text": "A New Confessional Settlement reaches the council as a local problem with no cost-free answer.",
+	"text": "A decree from the prince names the confession his territories will keep. The council must translate a distant settlement into worship, property, and peace on these streets.",
 	"trigger": {
 		"type": "always"
 	},
 	"options": [
 		{
-			"text": "Fund a thorough municipal response",
+			"text": "Fund an orderly confessional settlement",
 			"cost": 3,
 			"effects": [
 				{
@@ -18,18 +18,7 @@
 			]
 		},
 		{
-			"text": "Use a limited and temporary measure",
-			"cost": 1,
-			"effects": [
-				{
-					"type": "demand_delta",
-					"demand": "provision",
-					"amount": 1
-				}
-			]
-		},
-		{
-			"text": "Leave households and local institutions to cope",
+			"text": "Let each parish impose its own settlement",
 			"cost": 0,
 			"effects": [
 				{

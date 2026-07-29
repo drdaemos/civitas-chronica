@@ -1,13 +1,13 @@
 {
 	"id": "wartime_requisition_order",
 	"title": "The Army Requisitions Local Production",
-	"text": "The Army Requisitions Local Production reaches the council as a local problem with no cost-free answer.",
+	"text": "Army officers present authority to take vehicles, workshops, fuel, and food. What they remove cannot serve the city, but refusal invites direct occupation.",
 	"trigger": {
 		"type": "always"
 	},
 	"options": [
 		{
-			"text": "Fund a thorough municipal response",
+			"text": "Negotiate quotas and protect essential services",
 			"cost": 6,
 			"effects": [
 				{
@@ -18,18 +18,7 @@
 			]
 		},
 		{
-			"text": "Use a limited and temporary measure",
-			"cost": 1,
-			"effects": [
-				{
-					"type": "demand_delta",
-					"demand": "provision",
-					"amount": 1
-				}
-			]
-		},
-		{
-			"text": "Leave households and local institutions to cope",
+			"text": "Resist requisition and risk direct seizure",
 			"cost": 0,
 			"effects": [
 				{

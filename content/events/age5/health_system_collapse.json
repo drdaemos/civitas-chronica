@@ -1,7 +1,7 @@
 {
 	"id": "health_system_collapse",
 	"title": "Health System Collapse",
-	"text": "Health System Collapse exposes how long the town has allowed this municipal responsibility to exceed its capacity.",
+	"text": "Clinics close their lists, hospital beds remain permanently full, and exhausted staff leave faster than replacements can be trained.",
 	"trigger": {
 		"type": "demand",
 		"demand": "health",
@@ -13,7 +13,7 @@
 	"severity": "catastrophe",
 	"options": [
 		{
-			"text": "Commit extraordinary funds",
+			"text": "Rebuild care capacity at emergency scale",
 			"cost": 12,
 			"effects": [
 				{
@@ -24,7 +24,7 @@
 			]
 		},
 		{
-			"text": "Contain the worst effects",
+			"text": "Triage the system around essential care",
 			"cost": 3,
 			"effects": [
 				{
@@ -40,7 +40,7 @@
 			]
 		},
 		{
-			"text": "Accept the losses",
+			"text": "Let services fail",
 			"cost": 0,
 			"effects": [
 				{

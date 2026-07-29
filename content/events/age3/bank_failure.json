@@ -1,14 +1,26 @@
 {
 	"id": "bank_failure",
 	"title": "A Commercial Bank Suspends Payment",
-	"text": "A Commercial Bank Suspends Payment reaches the council as a local problem with no cost-free answer.",
+	"text": "The Commercial Bank does not open on Monday. A notice promises patience while shopkeepers, depositors, and employers demand money that is no longer behind the counter.",
 	"trigger": {
 		"type": "has_development",
 		"id": "commercial_bank"
 	},
 	"options": [
 		{
-			"text": "Fund a thorough municipal response",
+			"text": "Use the commercial bank network to guarantee deposits",
+			"cost": 3,
+			"requires_development": "commercial_bank",
+			"effects": [
+				{
+					"type": "demand_delta",
+					"demand": "fairness",
+					"amount": -2
+				}
+			]
+		},
+		{
+			"text": "Guarantee small deposits and audit the bank",
 			"cost": 5,
 			"effects": [
 				{
@@ -19,7 +31,7 @@
 			]
 		},
 		{
-			"text": "Use a limited and temporary measure",
+			"text": "Offer emergency credit to key employers",
 			"cost": 1,
 			"effects": [
 				{
@@ -30,7 +42,7 @@
 			]
 		},
 		{
-			"text": "Leave households and local institutions to cope",
+			"text": "Let creditors divide what remains",
 			"cost": 0,
 			"effects": [
 				{

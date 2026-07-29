@@ -1,7 +1,7 @@
 {
 	"id": "civic_breakdown",
 	"title": "Civic Order Breaks Down",
-	"text": "Civic Order Breaks Down exposes how long the town has allowed this municipal responsibility to exceed its capacity.",
+	"text": "Watch patrols no longer enter whole streets after dark. Markets close early, fires go unanswered, and municipal orders carry no farther than the town hall steps.",
 	"trigger": {
 		"type": "demand",
 		"demand": "security",
@@ -13,7 +13,7 @@
 	"severity": "catastrophe",
 	"options": [
 		{
-			"text": "Commit extraordinary funds",
+			"text": "Rebuild the watch and restore basic services",
 			"cost": 10,
 			"effects": [
 				{
@@ -24,7 +24,7 @@
 			]
 		},
 		{
-			"text": "Contain the worst effects",
+			"text": "Hold only the centre and storehouses",
 			"cost": 3,
 			"effects": [
 				{
@@ -40,7 +40,7 @@
 			]
 		},
 		{
-			"text": "Accept the losses",
+			"text": "Yield the streets",
 			"cost": 0,
 			"effects": [
 				{

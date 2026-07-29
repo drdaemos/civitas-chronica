@@ -1,13 +1,13 @@
 {
 	"id": "revolution_fervor",
 	"title": "Pamphlets from the Capital",
-	"text": "Pamphlets from the Capital reaches the council as a local problem with no cost-free answer.",
+	"text": "Pamphlets from the capital pass from workshop to tavern, describing rights declared elsewhere and asking why this city should expect less.",
 	"trigger": {
 		"type": "always"
 	},
 	"options": [
 		{
-			"text": "Fund a thorough municipal response",
+			"text": "Open an assembly and answer the petitions",
 			"cost": 4,
 			"effects": [
 				{
@@ -18,7 +18,7 @@
 			]
 		},
 		{
-			"text": "Use a limited and temporary measure",
+			"text": "Permit meetings under watch",
 			"cost": 1,
 			"effects": [
 				{
@@ -29,7 +29,7 @@
 			]
 		},
 		{
-			"text": "Leave households and local institutions to cope",
+			"text": "Suppress every meeting and pamphlet",
 			"cost": 0,
 			"effects": [
 				{

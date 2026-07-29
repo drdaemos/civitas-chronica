@@ -8,7 +8,7 @@
 	},
 	"options": [
 		{
-			"text": "Fund a thorough municipal response",
+			"text": "Move the trial outside the city and feed the crowds",
 			"cost": 3,
 			"effects": [
 				{
@@ -19,7 +19,7 @@
 			]
 		},
 		{
-			"text": "Use a limited and temporary measure",
+			"text": "Keep a small guard around the court",
 			"cost": 1,
 			"effects": [
 				{
@@ -30,7 +30,7 @@
 			]
 		},
 		{
-			"text": "Leave households and local institutions to cope",
+			"text": "Let parish factions settle the matter",
 			"cost": 0,
 			"effects": [
 				{

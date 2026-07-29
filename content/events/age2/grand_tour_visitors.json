@@ -8,7 +8,7 @@
 	},
 	"options": [
 		{
-			"text": "Fund a thorough municipal response",
+			"text": "Prepare lodgings and police the crowded streets",
 			"cost": 4,
 			"effects": [
 				{
@@ -19,18 +19,7 @@
 			]
 		},
 		{
-			"text": "Use a limited and temporary measure",
-			"cost": 1,
-			"effects": [
-				{
-					"type": "demand_delta",
-					"demand": "security",
-					"amount": 1
-				}
-			]
-		},
-		{
-			"text": "Leave households and local institutions to cope",
+			"text": "Let innkeepers manage the influx",
 			"cost": 0,
 			"effects": [
 				{

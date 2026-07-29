@@ -1,46 +1,19 @@
 {
 	"id": "regional_service_review",
 	"title": "Regional Services Are Reviewed",
-	"text": "Regional Services Are Reviewed reaches the council as a local problem with no cost-free answer.",
+	"text": "A regional review compares cost per resident across hospitals, courts, offices, and transport. Local provision must justify itself in figures written elsewhere.",
 	"trigger": {
 		"type": "always"
 	},
 	"options": [
 		{
-			"text": "Fund a thorough municipal response",
-			"cost": 7,
-			"effects": [
-				{
-					"type": "demand_delta",
-					"demand": "appeal",
-					"amount": -2
-				}
-			]
-		},
-		{
-			"text": "Use a limited and temporary measure",
+			"text": "Accept a shared regional arrangement",
 			"cost": 1,
 			"effects": [
 				{
 					"type": "demand_delta",
 					"demand": "appeal",
 					"amount": 1
-				}
-			]
-		},
-		{
-			"text": "Leave households and local institutions to cope",
-			"cost": 0,
-			"effects": [
-				{
-					"type": "demand_delta",
-					"demand": "appeal",
-					"amount": 2
-				},
-				{
-					"type": "resource_delta",
-					"resource": "population_count",
-					"amount": -100
 				}
 			]
 		}

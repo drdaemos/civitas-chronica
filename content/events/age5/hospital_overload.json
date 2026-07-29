@@ -1,7 +1,7 @@
 {
 	"id": "hospital_overload",
 	"title": "Hospital Overload",
-	"text": "Hospital Overload exposes how long the town has allowed this municipal responsibility to exceed its capacity.",
+	"text": "Ambulances queue outside and routine wards take emergency cases. Every additional admission displaces care that was already waiting.",
 	"trigger": {
 		"type": "demand",
 		"demand": "health",
@@ -13,7 +13,7 @@
 	"severity": "emergency",
 	"options": [
 		{
-			"text": "Commit extraordinary funds",
+			"text": "Fund surge wards and recruit regional staff",
 			"cost": 8,
 			"effects": [
 				{
@@ -24,7 +24,7 @@
 			]
 		},
 		{
-			"text": "Contain the worst effects",
+			"text": "Cancel routine care and triage admissions",
 			"cost": 1,
 			"effects": [
 				{
@@ -40,7 +40,7 @@
 			]
 		},
 		{
-			"text": "Accept the losses",
+			"text": "Turn new patients away",
 			"cost": 0,
 			"effects": [
 				{

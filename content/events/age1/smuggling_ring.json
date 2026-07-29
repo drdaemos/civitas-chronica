@@ -8,7 +8,7 @@
 	},
 	"options": [
 		{
-			"text": "Fund a thorough municipal response",
+			"text": "Expand customs patrols and stabilize supplies",
 			"cost": 3,
 			"effects": [
 				{
@@ -19,7 +19,7 @@
 			]
 		},
 		{
-			"text": "Use a limited and temporary measure",
+			"text": "Inspect the gates only on market days",
 			"cost": 1,
 			"effects": [
 				{
@@ -30,7 +30,7 @@
 			]
 		},
 		{
-			"text": "Leave households and local institutions to cope",
+			"text": "Tolerate the smugglers and their prices",
 			"cost": 0,
 			"effects": [
 				{

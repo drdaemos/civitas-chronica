@@ -1,14 +1,14 @@
 {
 	"id": "traffic_congestion",
 	"title": "Traffic Chokes the Centre",
-	"text": "Traffic Chokes the Centre reaches the council as a local problem with no cost-free answer.",
+	"text": "Buses, deliveries, commuters, and through-traffic compete for the same narrow centre. Every proposed cure promises to attract still more vehicles.",
 	"trigger": {
 		"type": "has_development",
 		"id": "ring_road"
 	},
 	"options": [
 		{
-			"text": "Fund a thorough municipal response",
+			"text": "Fund transit and redesign the centre",
 			"cost": 7,
 			"effects": [
 				{
@@ -19,7 +19,7 @@
 			]
 		},
 		{
-			"text": "Use a limited and temporary measure",
+			"text": "Restrict through-traffic at peak hours",
 			"cost": 1,
 			"effects": [
 				{
@@ -30,7 +30,7 @@
 			]
 		},
 		{
-			"text": "Leave households and local institutions to cope",
+			"text": "Build more parking and accept more cars",
 			"cost": 0,
 			"effects": [
 				{

@@ -1,7 +1,7 @@
 {
 	"id": "abandonment_spiral",
 	"title": "Abandonment Spiral",
-	"text": "Abandonment Spiral exposes how long the town has allowed this municipal responsibility to exceed its capacity.",
+	"text": "Each closure makes the next more likely: fewer residents support fewer shops, buses, schools, and clinics. Empty streets now advertise further departure.",
 	"trigger": {
 		"type": "demand",
 		"demand": "appeal",
@@ -13,7 +13,7 @@
 	"severity": "catastrophe",
 	"options": [
 		{
-			"text": "Commit extraordinary funds",
+			"text": "Rebuild services and guarantee empty homes",
 			"cost": 12,
 			"effects": [
 				{
@@ -24,7 +24,7 @@
 			]
 		},
 		{
-			"text": "Contain the worst effects",
+			"text": "Stabilize the remaining neighborhoods",
 			"cost": 3,
 			"effects": [
 				{
@@ -40,7 +40,7 @@
 			]
 		},
 		{
-			"text": "Accept the losses",
+			"text": "Manage decline and close whole districts",
 			"cost": 0,
 			"effects": [
 				{

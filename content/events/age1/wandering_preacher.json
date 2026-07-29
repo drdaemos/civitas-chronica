@@ -7,7 +7,7 @@
 	},
 	"options": [
 		{
-			"text": "Fund a thorough municipal response",
+			"text": "License the sermons and feed the gathering",
 			"cost": 3,
 			"effects": [
 				{
@@ -18,7 +18,7 @@
 			]
 		},
 		{
-			"text": "Use a limited and temporary measure",
+			"text": "Require a local cleric to supervise",
 			"cost": 1,
 			"effects": [
 				{
@@ -29,7 +29,7 @@
 			]
 		},
 		{
-			"text": "Leave households and local institutions to cope",
+			"text": "Allow the crowds to gather without limits",
 			"cost": 0,
 			"effects": [
 				{

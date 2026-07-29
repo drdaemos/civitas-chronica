@@ -1,13 +1,25 @@
 {
 	"id": "flash_flood",
 	"title": "A Flash Flood Reaches New Streets",
-	"text": "A Flash Flood Reaches New Streets reaches the council as a local problem with no cost-free answer.",
+	"text": "Intense rain overwhelms drains and sends water through streets built beyond the old floodplain. New homes learn in an hour why older maps left the land empty.",
 	"trigger": {
 		"type": "always"
 	},
 	"options": [
 		{
-			"text": "Fund a thorough municipal response",
+			"text": "Activate the flood resilience scheme",
+			"cost": 5,
+			"requires_development": "flood_resilience_scheme",
+			"effects": [
+				{
+					"type": "demand_delta",
+					"demand": "health",
+					"amount": -2
+				}
+			]
+		},
+		{
+			"text": "Build retention works and compensate flooded streets",
 			"cost": 7,
 			"effects": [
 				{
@@ -18,7 +30,7 @@
 			]
 		},
 		{
-			"text": "Use a limited and temporary measure",
+			"text": "Deploy barriers and emergency crews",
 			"cost": 1,
 			"effects": [
 				{
@@ -29,7 +41,7 @@
 			]
 		},
 		{
-			"text": "Leave households and local institutions to cope",
+			"text": "Repair only the main roads",
 			"cost": 0,
 			"effects": [
 				{

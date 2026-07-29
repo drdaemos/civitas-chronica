@@ -1,13 +1,13 @@
 {
 	"id": "youth_outmigration",
 	"title": "The Young Leave for Larger Cities",
-	"text": "The Young Leave for Larger Cities reaches the council as a local problem with no cost-free answer.",
+	"text": "Graduates and apprentices leave for larger cities and do not return. Their parents remain, but the next generation of workers, families, and organizers thins out.",
 	"trigger": {
 		"type": "always"
 	},
 	"options": [
 		{
-			"text": "Fund a thorough municipal response",
+			"text": "Create skilled work and places for young people",
 			"cost": 7,
 			"effects": [
 				{
@@ -18,7 +18,7 @@
 			]
 		},
 		{
-			"text": "Use a limited and temporary measure",
+			"text": "Offer a limited return incentive",
 			"cost": 1,
 			"effects": [
 				{
@@ -29,7 +29,7 @@
 			]
 		},
 		{
-			"text": "Leave households and local institutions to cope",
+			"text": "Accept that opportunity lies elsewhere",
 			"cost": 0,
 			"effects": [
 				{

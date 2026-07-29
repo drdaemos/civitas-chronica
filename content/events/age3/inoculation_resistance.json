@@ -1,14 +1,14 @@
 {
 	"id": "inoculation_resistance",
 	"title": "Resistance to Vaccination",
-	"text": "Resistance to Vaccination reaches the council as a local problem with no cost-free answer.",
+	"text": "Rumors describe inoculation as poison, sacrilege, or a scheme against the poor. Families hide children when the medical carts enter their ward.",
 	"trigger": {
 		"type": "has_development",
 		"id": "vaccination_board"
 	},
 	"options": [
 		{
-			"text": "Fund a thorough municipal response",
+			"text": "Fund trusted doctors and a public campaign",
 			"cost": 5,
 			"effects": [
 				{
@@ -19,7 +19,7 @@
 			]
 		},
 		{
-			"text": "Use a limited and temporary measure",
+			"text": "Require inoculation only in crowded wards",
 			"cost": 1,
 			"effects": [
 				{
@@ -30,7 +30,7 @@
 			]
 		},
 		{
-			"text": "Leave households and local institutions to cope",
+			"text": "Impose the order without explanation",
 			"cost": 0,
 			"effects": [
 				{

@@ -1,9 +1,9 @@
 class_name ModifierPipeline
 extends RefCounted
 
-## Aggregates all PASSIVE effects currently live in a GameState: passive
-## effects on developments in play, on active interactions, and on active
-## policies. Rebuilt on demand (never cached across mutations) — see GDD 4.2.
+## Aggregates all enabled PASSIVE effects currently live in a GameState.
+## Developments and interactions are active; PolicySystem is the single gate
+## for policy passives while that feature is paused. Rebuilt on demand.
 ##
 ## Also the single place that answers "what is this demand's growth step"
 ## (TDD 4.5), so the engine, the validator and the UI all read one calculation.
@@ -24,10 +24,7 @@ static func collect(state: GameState, db: ContentDB) -> ModifierPipeline:
 		var interaction: InteractionDef = db.get_interaction(interaction_id)
 		if interaction != null:
 			pipeline._add_passives(interaction.effects)
-	for policy_id: String in state.active_policies:
-		var policy: PolicyDef = db.get_policy(policy_id)
-		if policy != null:
-			pipeline._add_passives(policy.effects)
+	pipeline._add_passives(PolicySystem.passive_effects(state, db))
 	return pipeline
 
 
@@ -68,8 +65,8 @@ func pop_growth_mult() -> float:
 ##     population level + aggravators − mitigators + modifiers   (minimum 0)
 ##
 ## Aggravators/mitigators are the printed values of standing developments;
-## modifiers come from active interactions and policies. Every term is a count
-## of something the player can see on the table. Inactive demands report 0 —
+## modifiers come from active interactions and enabled policies. Every term is
+## a count of something the player can see on the table. Inactive demands report 0 —
 ## their printed values are inert until the age activates them.
 func demand_growth_step(demand_id: String) -> int:
 	if _state == null or not _state.is_demand_active(demand_id):
@@ -80,7 +77,7 @@ func demand_growth_step(demand_id: String) -> int:
 	return maxi(step, 0)
 
 
-## Growth-step contribution from interactions and policies alone, unfloored —
+## Growth-step contribution from interactions and enabled policies, unfloored —
 ## the part of the step that is not printed on a development.
 func demand_modifier_total(demand_id: String) -> int:
 	var total: int = 0

@@ -1,14 +1,14 @@
 {
 	"id": "coal_smoke",
 	"title": "Coal Smoke Settles over the Town",
-	"text": "Coal Smoke Settles over the Town reaches the council as a local problem with no cost-free answer.",
+	"text": "A cold, windless week pins coal smoke between roof and street. Washing blackens on the line and respectable families begin coughing with the factory wards.",
 	"trigger": {
 		"type": "has_development",
 		"id": "coal_yard"
 	},
 	"options": [
 		{
-			"text": "Fund a thorough municipal response",
+			"text": "Regulate furnaces and clean the poorest streets",
 			"cost": 5,
 			"effects": [
 				{
@@ -19,7 +19,7 @@
 			]
 		},
 		{
-			"text": "Use a limited and temporary measure",
+			"text": "Ban the dirtiest fuel in the centre",
 			"cost": 1,
 			"effects": [
 				{
@@ -30,7 +30,7 @@
 			]
 		},
 		{
-			"text": "Leave households and local institutions to cope",
+			"text": "Let factories burn whatever keeps them open",
 			"cost": 0,
 			"effects": [
 				{

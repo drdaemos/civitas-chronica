@@ -13,7 +13,7 @@
 	"severity": "catastrophe",
 	"options": [
 		{
-			"text": "Commit extraordinary funds",
+			"text": "Fund food imports and bring families home",
 			"cost": 9,
 			"effects": [
 				{
@@ -24,7 +24,7 @@
 			]
 		},
 		{
-			"text": "Contain the worst effects",
+			"text": "Provision those who remain",
 			"cost": 3,
 			"effects": [
 				{
@@ -40,7 +40,7 @@
 			]
 		},
 		{
-			"text": "Accept the losses",
+			"text": "Let the roads carry people away",
 			"cost": 0,
 			"effects": [
 				{

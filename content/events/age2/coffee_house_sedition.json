@@ -8,7 +8,19 @@
 	},
 	"options": [
 		{
-			"text": "Fund a thorough municipal response",
+			"text": "Move the argument into a lawful public debate",
+			"cost": 2,
+			"requires_development": "debating_society",
+			"effects": [
+				{
+					"type": "demand_delta",
+					"demand": "security",
+					"amount": -2
+				}
+			]
+		},
+		{
+			"text": "Hear the grievances and answer them publicly",
 			"cost": 4,
 			"effects": [
 				{
@@ -19,7 +31,7 @@
 			]
 		},
 		{
-			"text": "Use a limited and temporary measure",
+			"text": "Place an informer at the long tables",
 			"cost": 1,
 			"effects": [
 				{
@@ -30,7 +42,7 @@
 			]
 		},
 		{
-			"text": "Leave households and local institutions to cope",
+			"text": "Raid the coffee house and scatter its patrons",
 			"cost": 0,
 			"effects": [
 				{

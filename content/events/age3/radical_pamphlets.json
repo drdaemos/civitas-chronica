@@ -1,14 +1,14 @@
 {
 	"id": "radical_pamphlets",
 	"title": "Radical Pamphlets Circulate",
-	"text": "Radical Pamphlets Circulate reaches the council as a local problem with no cost-free answer.",
+	"text": "Cheap sheets call the council corrupt and government a contract that citizens may revoke. Printers deny authorship while selling out every edition.",
 	"trigger": {
 		"type": "has_development",
 		"id": "newspaper_office"
 	},
 	"options": [
 		{
-			"text": "Fund a thorough municipal response",
+			"text": "Answer the pamphlets with open council meetings",
 			"cost": 5,
 			"effects": [
 				{
@@ -19,7 +19,7 @@
 			]
 		},
 		{
-			"text": "Use a limited and temporary measure",
+			"text": "Permit circulation but prosecute threats",
 			"cost": 1,
 			"effects": [
 				{
@@ -30,7 +30,7 @@
 			]
 		},
 		{
-			"text": "Leave households and local institutions to cope",
+			"text": "Seize presses and arrest distributors",
 			"cost": 0,
 			"effects": [
 				{

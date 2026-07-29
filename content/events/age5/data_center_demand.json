@@ -1,14 +1,14 @@
 {
 	"id": "data_center_demand",
 	"title": "The Data Centre Strains the Grid",
-	"text": "The Data Centre Strains the Grid reaches the council as a local problem with no cost-free answer.",
+	"text": "A proposed data centre promises rates and skilled work, but its power and cooling demands equal those of whole neighborhoods.",
 	"trigger": {
 		"type": "has_development",
 		"id": "data_center"
 	},
 	"options": [
 		{
-			"text": "Fund a thorough municipal response",
+			"text": "Expand clean power and recover waste heat",
 			"cost": 7,
 			"effects": [
 				{
@@ -19,18 +19,7 @@
 			]
 		},
 		{
-			"text": "Use a limited and temporary measure",
-			"cost": 1,
-			"effects": [
-				{
-					"type": "demand_delta",
-					"demand": "health",
-					"amount": 1
-				}
-			]
-		},
-		{
-			"text": "Leave households and local institutions to cope",
+			"text": "Approve unrestricted operation",
 			"cost": 0,
 			"effects": [
 				{

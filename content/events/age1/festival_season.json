@@ -7,7 +7,7 @@
 	},
 	"options": [
 		{
-			"text": "Fund a thorough municipal response",
+			"text": "Sponsor a public feast from the city stores",
 			"cost": 3,
 			"effects": [
 				{
@@ -18,18 +18,7 @@
 			]
 		},
 		{
-			"text": "Use a limited and temporary measure",
-			"cost": 1,
-			"effects": [
-				{
-					"type": "demand_delta",
-					"demand": "provision",
-					"amount": 1
-				}
-			]
-		},
-		{
-			"text": "Leave households and local institutions to cope",
+			"text": "Let the guilds organize the festivities",
 			"cost": 0,
 			"effects": [
 				{

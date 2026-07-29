@@ -1,14 +1,14 @@
 {
 	"id": "guild_price_fixing",
 	"title": "Guild Price-Fixing",
-	"text": "Guild Price-Fixing reaches the council as a local problem with no cost-free answer.",
+	"text": "The bakers' and millers' guilds agree a new price before market day; every loaf now costs the same, and none costs what poorer households can pay.",
 	"trigger": {
 		"type": "has_development",
 		"id": "artisan_guild"
 	},
 	"options": [
 		{
-			"text": "Fund a thorough municipal response",
+			"text": "Buy down prices and prosecute the ringleaders",
 			"cost": 3,
 			"effects": [
 				{
@@ -19,7 +19,7 @@
 			]
 		},
 		{
-			"text": "Use a limited and temporary measure",
+			"text": "Impose a temporary price ceiling",
 			"cost": 1,
 			"effects": [
 				{
@@ -30,7 +30,7 @@
 			]
 		},
 		{
-			"text": "Leave households and local institutions to cope",
+			"text": "Accept the guild's price",
 			"cost": 0,
 			"effects": [
 				{

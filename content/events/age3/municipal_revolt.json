@@ -1,7 +1,7 @@
 {
 	"id": "municipal_revolt",
 	"title": "Municipal Revolt",
-	"text": "Municipal Revolt exposes how long the town has allowed this municipal responsibility to exceed its capacity.",
+	"text": "The council chamber is surrounded and its orders ignored. Delegates from the wards demand a government they recognize before they will restore obedience.",
 	"trigger": {
 		"type": "demand",
 		"demand": "fairness",
@@ -13,7 +13,7 @@
 	"severity": "catastrophe",
 	"options": [
 		{
-			"text": "Commit extraordinary funds",
+			"text": "Concede reforms and form a new council",
 			"cost": 10,
 			"effects": [
 				{
@@ -24,7 +24,7 @@
 			]
 		},
 		{
-			"text": "Contain the worst effects",
+			"text": "Negotiate with recognized delegates",
 			"cost": 3,
 			"effects": [
 				{
@@ -40,7 +40,7 @@
 			]
 		},
 		{
-			"text": "Accept the losses",
+			"text": "Defend the old government",
 			"cost": 0,
 			"effects": [
 				{

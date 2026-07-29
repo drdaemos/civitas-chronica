@@ -172,6 +172,10 @@ The successor is a normal card definition and lives in the `cards/<age>/` folder
 
 Option `cost` is **billed at the start of the next turn** (event billing, GDD §3). Forced events omit `trigger` from matching; they are scheduled in the age file.
 
+Every event needs at least one option. An unavoidable announcement may use one
+option; a clean trade-off may use two; use three or more only when every
+response is meaningfully distinct.
+
 Events move demands **one-time only** — an event option may use `demand_delta` but never `demand_modifier`.
 
 **Triggers should be permissive** (GDD §4.4). A trigger exists to stop narratively impossible situations, not to gate content — a flood needs a river, a plague needs nothing. Most events should be able to fire in most cities. There is **no draw limit** on event matching: the engine draws until something matches or the deck is exhausted.
@@ -184,7 +188,9 @@ An event may declare one `hazard`. If any standing development lists that hazard
 
 Keep `cancels` rare, and usually a single type per development. Full coverage of all eight types must never be affordable.
 
-An option with `requires_development` is hidden unless that card is standing in the city. It is **additional** — the unconditional options remain available — and may be either an opportunity or a softer exit.
+An option with `requires_development` is shown as locked unless that card is
+standing in the city. It is **additional** — the unconditional options remain
+available — and may be either an opportunity or a softer exit.
 
 ### Emergency and catastrophe events
 

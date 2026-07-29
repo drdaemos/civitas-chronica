@@ -8,8 +8,8 @@ extends PanelContainer
 
 signal card_clicked(card_id: String)
 
-const BASE_SIZE: Vector2 = Vector2(180, 260)
-const COMPACT_SIZE: Vector2 = Vector2(150, 200)
+const BASE_SIZE: Vector2 = Vector2(190, 270)
+const COMPACT_SIZE: Vector2 = Vector2(164, 210)
 const HOVER_SCALE: Vector2 = Vector2(1.05, 1.05)
 const HOVER_TIME: float = 0.08
 
@@ -23,9 +23,9 @@ const TAG_TINTS: Dictionary = {
 	"infrastructure": Color(0.42, 0.46, 0.5),
 }
 const ACTION_TINT: Color = Color(0.56, 0.5, 0.38)  # neutral parchment
-const BODY_BG: Color = Color(0.14, 0.13, 0.12)
-const BORDER_NORMAL: Color = Color(0.42, 0.4, 0.36)
-const BORDER_HOVER: Color = Color(0.85, 0.8, 0.65)
+const BODY_BG: Color = Color("#181b1c")
+const BORDER_NORMAL: Color = Color("#475157")
+const BORDER_HOVER: Color = Color("#e0bc70")
 const BORDER_MARKED: Color = Color(0.85, 0.45, 0.4)  # picked for discard
 const BADGE_NEUTRAL: Color = Color(0.24, 0.23, 0.21)
 const BADGE_CHEAPER: Color = Color(0.2, 0.42, 0.24)
@@ -60,10 +60,10 @@ func _init() -> void:
 
 	_style = StyleBoxFlat.new()
 	_style.bg_color = BODY_BG
-	_style.set_corner_radius_all(8)
+	_style.set_corner_radius_all(10)
 	_style.set_border_width_all(1)
 	_style.border_color = BORDER_NORMAL
-	_style.set_content_margin_all(3.0)
+	_style.set_content_margin_all(4.0)
 	add_theme_stylebox_override("panel", _style)
 
 	var column := VBoxContainer.new()
@@ -76,7 +76,7 @@ func _init() -> void:
 	header.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_header_style = StyleBoxFlat.new()
 	_header_style.bg_color = ACTION_TINT
-	_header_style.set_corner_radius_all(6)
+	_header_style.set_corner_radius_all(8)
 	_header_style.content_margin_left = 7.0
 	_header_style.content_margin_right = 5.0
 	_header_style.content_margin_top = 5.0
@@ -90,7 +90,7 @@ func _init() -> void:
 	_name_label = Label.new()
 	_name_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	_name_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	_name_label.add_theme_font_size_override("font_size", 14)
+	_name_label.add_theme_font_size_override("font_size", 15)
 	_name_label.add_theme_color_override("font_color", Color(0.97, 0.95, 0.9))
 	header_row.add_child(_name_label)
 	_badge_panel = PanelContainer.new()
@@ -139,7 +139,7 @@ func _init() -> void:
 	body.add_child(spacer)
 	_flavor_label = Label.new()
 	_flavor_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	_flavor_label.add_theme_font_size_override("font_size", 10)
+	_flavor_label.add_theme_font_size_override("font_size", 11)
 	_flavor_label.add_theme_color_override("font_color", Color(0.75, 0.72, 0.65, 0.7))
 	_flavor_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	body.add_child(_flavor_label)

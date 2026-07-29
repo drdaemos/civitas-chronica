@@ -1,14 +1,14 @@
 {
 	"id": "rent_spike",
 	"title": "Rents Rise Faster than Wages",
-	"text": "Rents Rise Faster than Wages reaches the council as a local problem with no cost-free answer.",
+	"text": "Rents rise faster than wages across every tenure. Families move farther out, crowd together, or leave while landlords call the increases unavoidable.",
 	"trigger": {
 		"type": "has_development",
 		"id": "converted_lofts"
 	},
 	"options": [
 		{
-			"text": "Fund a thorough municipal response",
+			"text": "Expand housing supply and protect tenants",
 			"cost": 7,
 			"effects": [
 				{
@@ -19,7 +19,7 @@
 			]
 		},
 		{
-			"text": "Use a limited and temporary measure",
+			"text": "Fund temporary rent relief",
 			"cost": 1,
 			"effects": [
 				{
@@ -30,7 +30,7 @@
 			]
 		},
 		{
-			"text": "Leave households and local institutions to cope",
+			"text": "Let rents follow the market",
 			"cost": 0,
 			"effects": [
 				{

@@ -1,14 +1,14 @@
 {
 	"id": "high_street_vacancies",
 	"title": "Shops Stand Empty",
-	"text": "Shops Stand Empty reaches the council as a local problem with no cost-free answer.",
+	"text": "Another row of shutters appears on the high street. Empty shops lower footfall, which makes the surviving shops less likely to survive.",
 	"trigger": {
 		"type": "has_development",
 		"id": "shopping_center"
 	},
 	"options": [
 		{
-			"text": "Fund a thorough municipal response",
+			"text": "Acquire empty shops and seed new uses",
 			"cost": 7,
 			"effects": [
 				{
@@ -19,7 +19,7 @@
 			]
 		},
 		{
-			"text": "Use a limited and temporary measure",
+			"text": "Offer a temporary rates holiday",
 			"cost": 1,
 			"effects": [
 				{
@@ -30,7 +30,7 @@
 			]
 		},
 		{
-			"text": "Leave households and local institutions to cope",
+			"text": "Wait for private rents to adjust",
 			"cost": 0,
 			"effects": [
 				{

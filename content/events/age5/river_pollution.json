@@ -1,14 +1,14 @@
 {
 	"id": "river_pollution",
 	"title": "Pollution in the River",
-	"text": "Pollution in the River reaches the council as a local problem with no cost-free answer.",
+	"text": "Dead fish collect below an industrial outfall and the water carries a chemical smell through the riverside wards. Each operator blames another.",
 	"trigger": {
 		"type": "has_development",
 		"id": "industrial_estate"
 	},
 	"options": [
 		{
-			"text": "Fund a thorough municipal response",
+			"text": "Upgrade treatment and prosecute the discharge",
 			"cost": 7,
 			"effects": [
 				{
@@ -19,7 +19,7 @@
 			]
 		},
 		{
-			"text": "Use a limited and temporary measure",
+			"text": "Close the worst outfalls immediately",
 			"cost": 1,
 			"effects": [
 				{
@@ -30,7 +30,7 @@
 			]
 		},
 		{
-			"text": "Leave households and local institutions to cope",
+			"text": "Issue warnings and wait for industry to adapt",
 			"cost": 0,
 			"effects": [
 				{

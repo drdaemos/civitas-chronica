@@ -1,14 +1,14 @@
 {
 	"id": "conscription_lottery",
 	"title": "The Conscription Lists Arrive",
-	"text": "The Conscription Lists Arrive reaches the council as a local problem with no cost-free answer.",
+	"text": "Names are drawn in the assembly room under armed guard. Every household studies the list for favoritism, exemptions, and the sons it may lose.",
 	"trigger": {
 		"type": "has_development",
 		"id": "conscription_office"
 	},
 	"options": [
 		{
-			"text": "Fund a thorough municipal response",
+			"text": "Fund substitutes and make the lottery transparent",
 			"cost": 5,
 			"effects": [
 				{
@@ -19,7 +19,7 @@
 			]
 		},
 		{
-			"text": "Use a limited and temporary measure",
+			"text": "Exempt only essential city workers",
 			"cost": 1,
 			"effects": [
 				{
@@ -30,7 +30,7 @@
 			]
 		},
 		{
-			"text": "Leave households and local institutions to cope",
+			"text": "Let the list fall where it may",
 			"cost": 0,
 			"effects": [
 				{

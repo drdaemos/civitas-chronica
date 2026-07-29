@@ -8,7 +8,7 @@
 	},
 	"options": [
 		{
-			"text": "Fund a thorough municipal response",
+			"text": "Invest the windfall in secure city supplies",
 			"cost": 4,
 			"effects": [
 				{
@@ -19,18 +19,7 @@
 			]
 		},
 		{
-			"text": "Use a limited and temporary measure",
-			"cost": 1,
-			"effects": [
-				{
-					"type": "demand_delta",
-					"demand": "provision",
-					"amount": 1
-				}
-			]
-		},
-		{
-			"text": "Leave households and local institutions to cope",
+			"text": "Let private merchants keep the proceeds",
 			"cost": 0,
 			"effects": [
 				{

@@ -7,7 +7,19 @@
 	},
 	"options": [
 		{
-			"text": "Fund a thorough municipal response",
+			"text": "Order the wall garrison to cover the outer farms",
+			"cost": 1,
+			"requires_development": "city_walls",
+			"effects": [
+				{
+					"type": "demand_delta",
+					"demand": "provision",
+					"amount": -2
+				}
+			]
+		},
+		{
+			"text": "Open the granaries and reinforce the outer farms",
 			"cost": 3,
 			"effects": [
 				{
@@ -18,7 +30,7 @@
 			]
 		},
 		{
-			"text": "Use a limited and temporary measure",
+			"text": "Post riders along the threatened road",
 			"cost": 1,
 			"effects": [
 				{
@@ -29,7 +41,7 @@
 			]
 		},
 		{
-			"text": "Leave households and local institutions to cope",
+			"text": "Shut the gates and abandon the outlying farms",
 			"cost": 0,
 			"effects": [
 				{

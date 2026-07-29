@@ -1,14 +1,14 @@
 {
 	"id": "canal_toll_dispute",
 	"title": "Canal Toll Dispute",
-	"text": "Canal Toll Dispute reaches the council as a local problem with no cost-free answer.",
+	"text": "Carriers accuse the canal company of inventing fees faster than it repairs locks. Traffic stops while both sides appeal to the council.",
 	"trigger": {
 		"type": "has_development",
 		"id": "canal_depot"
 	},
 	"options": [
 		{
-			"text": "Fund a thorough municipal response",
+			"text": "Publish the accounts and revise the toll",
 			"cost": 5,
 			"effects": [
 				{
@@ -19,7 +19,7 @@
 			]
 		},
 		{
-			"text": "Use a limited and temporary measure",
+			"text": "Freeze charges while claims are heard",
 			"cost": 1,
 			"effects": [
 				{
@@ -30,7 +30,7 @@
 			]
 		},
 		{
-			"text": "Leave households and local institutions to cope",
+			"text": "Enforce the existing tariff without appeal",
 			"cost": 0,
 			"effects": [
 				{

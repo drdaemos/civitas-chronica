@@ -8,7 +8,19 @@
 	},
 	"options": [
 		{
-			"text": "Fund a thorough municipal response",
+			"text": "Use the powder magazine's crews to contain the blast site",
+			"cost": 1,
+			"requires_development": "powder_magazine",
+			"effects": [
+				{
+					"type": "demand_delta",
+					"demand": "provision",
+					"amount": -2
+				}
+			]
+		},
+		{
+			"text": "Rebuild safely and compensate the quarter",
 			"cost": 3,
 			"effects": [
 				{
@@ -19,7 +31,7 @@
 			]
 		},
 		{
-			"text": "Use a limited and temporary measure",
+			"text": "Secure the ruins and suspend production",
 			"cost": 1,
 			"effects": [
 				{
@@ -30,7 +42,7 @@
 			]
 		},
 		{
-			"text": "Leave households and local institutions to cope",
+			"text": "Leave the mill owners to answer for it",
 			"cost": 0,
 			"effects": [
 				{

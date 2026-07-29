@@ -539,36 +539,68 @@ Detailed historical writing rules and examples are kept in [content-authoring.md
 
 ## 6. UI / UX
 
-### The Mayor's Desk
+### The Instrumented City
 
-The primary interaction surface is a skeuomorphic rendering of the mayor's desk. Every object on the desk maps to a core loop action — no subsidiary systems or decorative distractions.
+The primary interaction surface is a full-bleed isometric city with a shallow
+2D perimeter HUD. It is not a literal mayor's desk. The city remains the
+largest and most visually active object while civic instruments make the
+simulation legible.
 
-**Desk objects (mapped to core actions):**
+**Persistent perimeter:**
 
-- **City mockup** — a dynamic, animated miniature of the city. Represents city state and active interaction effects in simplified visual form. Clicking opens the full city view with stat overlays and interaction dashboard.
-- **Card hand** — the drawn cards for this turn. The player drags cards to play them, spending budget. Unplayed cards remain visible in hand.
-- **Stamp / seal** — ends the turn. Triggers event draw and resource recalculation. Shows a summary of played cards before confirming.
-- **Bell / telephone / pigeon** — notification mechanism. Lights up when an event fires. Opens the event screen with choices.
-- **Calendar** — shows flow of time, age progress, and turn count. Indicates proximity to age boundary.
+- **Top rail** — year and turn, all active demands, population, budget, signed
+  turn changes, and threshold markers form one predictable scan line.
+- **Card hand** — five overlapping cards along the lower edge. Idle cards show
+  art, title, cost, category, and compact demand/tag glyphs. Hover or controller
+  focus raises one card and reveals complete rules.
+- **City Record tab** — normally closed; opens policies, interactions, demand
+  ledgers, and the historical chronicle in a narrow right-side drawer.
+- **End Turn** — a compact physical control in the lower-right perimeter. It
+  uses depression, stamp-like feedback, and sound rather than a literal machine.
+- **Alert ribbon** — appears only when an event, danger, or unresolved action
+  needs attention.
 
-**Design rule:** if an object on the desk doesn't correspond to a core loop action (draw, play, end turn, view city, respond to event), it should not be on the desk. The desk should feel focused, not cluttered.
+**City feedback:**
 
-**Opened screens (skeuomorphic, contextual):**
+- Developments affect the city globally; playing a card never opens a placement
+  grid or asks for a tile.
+- Hover and selection may outline one representative structure and at most
+  three related structures, routes, or district effects.
+- Persistent building labels are forbidden. Ambient transport, smoke, window
+  light, pedestrians, and boats communicate life and selected simulation state.
+- Card hover previews budget and every affected demand in the persistent top
+  rail, including worsened values.
 
-- **City view** (from mockup) — detailed, explorable, with stat overlays and interaction effect dashboard.
-- **Event screen** (from bell) — presents the event situation, choices, and consequences.
-- **Calendar detail** (from calendar) — age timeline, upcoming forced events (if any are known), historical record of past events and decisions.
+**Design rule:** persistent UI must answer a question the player asks on most
+turns. Secondary information belongs in the City Record, a contextual hover, or
+a focused overlay. Skeuomorphism comes from aged enamel, warm paper, restrained
+brass, physical motion, and sound — not from unrelated props.
 
-**Non-desk screens:**
+**Focused overlays:**
+
+- **Event screen** — brighter paper or telegram surface over a dimmed city,
+  with one illustration and two or three consistent choices.
+- **Age report** — presents supersessions, interaction changes, the new demand,
+  growth changes, and any policy-evolution choice as one civic report.
+- **City Record** — policies, interactions, demand ledgers, discoveries, and
+  decision history.
+
+**Non-gameplay screens:**
 
 - Main menu / save selection
 - Save summary / end-of-save screen (with scoring breakdown)
 - Account-level meta-progression / unlocks screen (deprioritized)
-- Age transition report (supersession results, interaction changes, new demand) with the policy evolution choice
+- Age transition report (supersession results, interaction changes, new demand)
+  with the policy evolution choice
 
-**TODO:** how does the desk evolve across ages? Candidate: the desk itself changes visually each age (quill → typewriter → computer; oil lamp → electric lamp; pigeon → telephone → smartphone). This reinforces the passage of time without adding mechanical complexity.
+The HUD layout remains fixed across ages. Trim motif, paper treatment, accent
+colour, notification metaphor, city architecture, and ambient transport evolve.
+This reinforces time without requiring five different interface kits.
 
 **TODO:** accessibility — the skeuomorphic approach can hurt readability. Plan for a clear "data view" toggle and ensure all information surfaced by the city view is also accessible in text/stat form. Font sizes, contrast, and color-blind considerations need attention.
+
+The detailed screen grammar, production kit, and accessibility targets live in
+[UI art direction](ui-art-direction.md).
 
 ---
 

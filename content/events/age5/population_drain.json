@@ -1,7 +1,7 @@
 {
 	"id": "population_drain",
 	"title": "Population Drain",
-	"text": "Population Drain exposes how long the town has allowed this municipal responsibility to exceed its capacity.",
+	"text": "School rolls, bus passengers, and local payrolls fall together. Those who leave make the city less able to offer reasons for others to stay.",
 	"trigger": {
 		"type": "demand",
 		"demand": "appeal",
@@ -13,7 +13,7 @@
 	"severity": "emergency",
 	"options": [
 		{
-			"text": "Commit extraordinary funds",
+			"text": "Invest at scale in homes, work, and services",
 			"cost": 8,
 			"effects": [
 				{
@@ -24,7 +24,7 @@
 			]
 		},
 		{
-			"text": "Contain the worst effects",
+			"text": "Stabilize the neighborhoods still growing",
 			"cost": 1,
 			"effects": [
 				{
@@ -40,7 +40,7 @@
 			]
 		},
 		{
-			"text": "Accept the losses",
+			"text": "Plan for a smaller city",
 			"cost": 0,
 			"effects": [
 				{

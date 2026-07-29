@@ -1,7 +1,7 @@
 {
 	"id": "crop_failure_exodus",
 	"title": "Crop-Failure Exodus",
-	"text": "Crop-Failure Exodus exposes how long the town has allowed this municipal responsibility to exceed its capacity.",
+	"text": "The surrounding harvest has failed again. Cottages empty by the week as families take the road before the city closes its gates to them.",
 	"trigger": {
 		"type": "demand",
 		"demand": "provision",
@@ -13,7 +13,7 @@
 	"severity": "catastrophe",
 	"options": [
 		{
-			"text": "Commit extraordinary funds",
+			"text": "Buy grain and support rural suppliers",
 			"cost": 10,
 			"effects": [
 				{
@@ -24,7 +24,7 @@
 			]
 		},
 		{
-			"text": "Contain the worst effects",
+			"text": "Feed the city through the worst month",
 			"cost": 3,
 			"effects": [
 				{
@@ -40,7 +40,7 @@
 			]
 		},
 		{
-			"text": "Accept the losses",
+			"text": "Let hungry families leave",
 			"cost": 0,
 			"effects": [
 				{

@@ -1,14 +1,14 @@
 {
 	"id": "turnpike_protest",
 	"title": "Protest at the Turnpike",
-	"text": "Protest at the Turnpike reaches the council as a local problem with no cost-free answer.",
+	"text": "Farm carts block the tollgate before dawn. Traders refuse to pay twice for a road they say is worse than the old track.",
 	"trigger": {
 		"type": "has_development",
 		"id": "turnpike_trust"
 	},
 	"options": [
 		{
-			"text": "Fund a thorough municipal response",
+			"text": "Reduce the toll and compensate the trust",
 			"cost": 4,
 			"effects": [
 				{
@@ -19,7 +19,7 @@
 			]
 		},
 		{
-			"text": "Use a limited and temporary measure",
+			"text": "Suspend collection on market days",
 			"cost": 1,
 			"effects": [
 				{
@@ -30,7 +30,7 @@
 			]
 		},
 		{
-			"text": "Leave households and local institutions to cope",
+			"text": "Send guards to reopen the road",
 			"cost": 0,
 			"effects": [
 				{

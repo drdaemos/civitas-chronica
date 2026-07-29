@@ -1,13 +1,13 @@
 {
 	"id": "industrial_revolution",
 	"title": "Mechanized Cloth Undercuts the Guilds",
-	"text": "Mechanized Cloth Undercuts the Guilds reaches the council as a local problem with no cost-free answer.",
+	"text": "Cheap mechanized cloth arrives by the wagon-load. Guild looms fall silent while merchants ask when the city will permit machines of its own.",
 	"trigger": {
 		"type": "always"
 	},
 	"options": [
 		{
-			"text": "Fund a thorough municipal response",
+			"text": "Retrain guild workers and support new workshops",
 			"cost": 4,
 			"effects": [
 				{
@@ -18,18 +18,7 @@
 			]
 		},
 		{
-			"text": "Use a limited and temporary measure",
-			"cost": 1,
-			"effects": [
-				{
-					"type": "demand_delta",
-					"demand": "security",
-					"amount": 1
-				}
-			]
-		},
-		{
-			"text": "Leave households and local institutions to cope",
+			"text": "Let the old guilds collapse",
 			"cost": 0,
 			"effects": [
 				{

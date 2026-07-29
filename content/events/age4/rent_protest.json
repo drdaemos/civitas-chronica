@@ -1,14 +1,14 @@
 {
 	"id": "rent_protest",
 	"title": "Rent Protest",
-	"text": "Rent Protest reaches the council as a local problem with no cost-free answer.",
+	"text": "Tenants hang banners from whole streets and refuse the latest increase. Bailiffs request police protection; landlords warn that repairs will stop.",
 	"trigger": {
 		"type": "has_development",
 		"id": "workers_estate"
 	},
 	"options": [
 		{
-			"text": "Fund a thorough municipal response",
+			"text": "Fund relief and inspect the worst landlords",
 			"cost": 6,
 			"effects": [
 				{
@@ -19,7 +19,7 @@
 			]
 		},
 		{
-			"text": "Use a limited and temporary measure",
+			"text": "Freeze evictions while claims are heard",
 			"cost": 1,
 			"effects": [
 				{
@@ -30,7 +30,7 @@
 			]
 		},
 		{
-			"text": "Leave households and local institutions to cope",
+			"text": "Let landlords enforce their contracts",
 			"cost": 0,
 			"effects": [
 				{

@@ -7,7 +7,19 @@
 	},
 	"options": [
 		{
-			"text": "Fund a thorough municipal response",
+			"text": "Activate the standing inoculation campaign",
+			"cost": 2,
+			"requires_development": "inoculation_campaign",
+			"effects": [
+				{
+					"type": "demand_delta",
+					"demand": "security",
+					"amount": -2
+				}
+			]
+		},
+		{
+			"text": "Fund inoculation and isolate infected houses",
 			"cost": 4,
 			"effects": [
 				{
@@ -18,7 +30,7 @@
 			]
 		},
 		{
-			"text": "Use a limited and temporary measure",
+			"text": "Open a temporary fever ward",
 			"cost": 1,
 			"effects": [
 				{
@@ -29,7 +41,7 @@
 			]
 		},
 		{
-			"text": "Leave households and local institutions to cope",
+			"text": "Leave treatment to families and parishes",
 			"cost": 0,
 			"effects": [
 				{

@@ -1,13 +1,13 @@
 {
 	"id": "provincial_revolution",
 	"title": "Revolution in the Provincial Capital",
-	"text": "Revolution in the Provincial Capital reaches the council as a local problem with no cost-free answer.",
+	"text": "The provincial capital has changed hands. Couriers from rival authorities arrive hours apart, each demanding recognition, taxes, and the city guard's oath.",
 	"trigger": {
 		"type": "always"
 	},
 	"options": [
 		{
-			"text": "Fund a thorough municipal response",
+			"text": "Recognize a provisional council and keep order",
 			"cost": 5,
 			"effects": [
 				{
@@ -18,18 +18,7 @@
 			]
 		},
 		{
-			"text": "Use a limited and temporary measure",
-			"cost": 1,
-			"effects": [
-				{
-					"type": "demand_delta",
-					"demand": "fairness",
-					"amount": 1
-				}
-			]
-		},
-		{
-			"text": "Leave households and local institutions to cope",
+			"text": "Declare for the old regime and arm the guard",
 			"cost": 0,
 			"effects": [
 				{

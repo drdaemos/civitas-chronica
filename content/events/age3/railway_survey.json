@@ -1,13 +1,13 @@
 {
 	"id": "railway_survey",
 	"title": "The Railway Company Surveys a Route",
-	"text": "The Railway Company Surveys a Route reaches the council as a local problem with no cost-free answer.",
+	"text": "Engineers drive stakes across fields and courtyards, comparing two routes. One would bring the station close; the other would leave the city a branch-line afterthought.",
 	"trigger": {
 		"type": "always"
 	},
 	"options": [
 		{
-			"text": "Fund a thorough municipal response",
+			"text": "Subscribe city funds and secure the best route",
 			"cost": 5,
 			"effects": [
 				{
@@ -18,18 +18,7 @@
 			]
 		},
 		{
-			"text": "Use a limited and temporary measure",
-			"cost": 1,
-			"effects": [
-				{
-					"type": "demand_delta",
-					"demand": "fairness",
-					"amount": 1
-				}
-			]
-		},
-		{
-			"text": "Leave households and local institutions to cope",
+			"text": "Refuse the surveyors access",
 			"cost": 0,
 			"effects": [
 				{

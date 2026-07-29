@@ -1,7 +1,7 @@
 {
 	"id": "supply_disruption",
 	"title": "Supply Disruption",
-	"text": "Supply Disruption exposes how long the town has allowed this municipal responsibility to exceed its capacity.",
+	"text": "Broken transport links and competing buyers leave warehouses empty. Essential goods exist elsewhere, but no dependable chain brings them here.",
 	"trigger": {
 		"type": "demand",
 		"demand": "provision",
@@ -13,7 +13,7 @@
 	"severity": "emergency",
 	"options": [
 		{
-			"text": "Commit extraordinary funds",
+			"text": "Charter emergency transport and buy reserves",
 			"cost": 7,
 			"effects": [
 				{
@@ -24,7 +24,7 @@
 			]
 		},
 		{
-			"text": "Contain the worst effects",
+			"text": "Ration essential goods",
 			"cost": 1,
 			"effects": [
 				{
@@ -40,7 +40,7 @@
 			]
 		},
 		{
-			"text": "Accept the losses",
+			"text": "Wait for normal trade to return",
 			"cost": 0,
 			"effects": [
 				{

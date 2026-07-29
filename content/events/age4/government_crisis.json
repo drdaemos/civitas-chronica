@@ -1,7 +1,7 @@
 {
 	"id": "government_crisis",
 	"title": "Crisis of Government",
-	"text": "Crisis of Government exposes how long the town has allowed this municipal responsibility to exceed its capacity.",
+	"text": "Budgets, appointments, and basic orders fail for want of accepted authority. Rival factions each claim the right to speak for the city and none can govern it alone.",
 	"trigger": {
 		"type": "demand",
 		"demand": "fairness",
@@ -13,7 +13,7 @@
 	"severity": "catastrophe",
 	"options": [
 		{
-			"text": "Commit extraordinary funds",
+			"text": "Form a representative emergency administration",
 			"cost": 11,
 			"effects": [
 				{
@@ -24,7 +24,7 @@
 			]
 		},
 		{
-			"text": "Contain the worst effects",
+			"text": "Share authority with civic leaders",
 			"cost": 3,
 			"effects": [
 				{
@@ -40,7 +40,7 @@
 			]
 		},
 		{
-			"text": "Accept the losses",
+			"text": "Keep the old council in place",
 			"cost": 0,
 			"effects": [
 				{

@@ -13,7 +13,7 @@
 	"severity": "emergency",
 	"options": [
 		{
-			"text": "Commit extraordinary funds",
+			"text": "Open the granaries and subsidize bread",
 			"cost": 4,
 			"effects": [
 				{
@@ -24,7 +24,7 @@
 			]
 		},
 		{
-			"text": "Contain the worst effects",
+			"text": "Ration loaves while supplies last",
 			"cost": 1,
 			"effects": [
 				{
@@ -40,7 +40,7 @@
 			]
 		},
 		{
-			"text": "Accept the losses",
+			"text": "Let prices clear the queues",
 			"cost": 0,
 			"effects": [
 				{

@@ -1,14 +1,14 @@
 {
 	"id": "workhouse_scandal",
 	"title": "Scandal at the Workhouse",
-	"text": "Scandal at the Workhouse reaches the council as a local problem with no cost-free answer.",
+	"text": "A former attendant describes spoiled food, punishment cells, and deaths omitted from the workhouse register. The guardians call every allegation malicious.",
 	"trigger": {
 		"type": "has_development",
 		"id": "workhouse_union"
 	},
 	"options": [
 		{
-			"text": "Fund a thorough municipal response",
+			"text": "Remove the guardians and reform relief",
 			"cost": 5,
 			"effects": [
 				{
@@ -19,7 +19,7 @@
 			]
 		},
 		{
-			"text": "Use a limited and temporary measure",
+			"text": "Order an inquiry and emergency inspection",
 			"cost": 1,
 			"effects": [
 				{
@@ -30,7 +30,7 @@
 			]
 		},
 		{
-			"text": "Leave households and local institutions to cope",
+			"text": "Defend the institution and silence witnesses",
 			"cost": 0,
 			"effects": [
 				{

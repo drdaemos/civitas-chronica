@@ -1,46 +1,19 @@
 {
 	"id": "municipal_reform_code",
 	"title": "A National Municipal Code Replaces the Charter",
-	"text": "A National Municipal Code Replaces the Charter reaches the council as a local problem with no cost-free answer.",
+	"text": "National law abolishes the old charter and prescribes elected offices, audited accounts, and new municipal duties. The code takes effect whether the council welcomes it or not.",
 	"trigger": {
 		"type": "always"
 	},
 	"options": [
 		{
-			"text": "Fund a thorough municipal response",
+			"text": "Implement the code and reorganize the council",
 			"cost": 6,
 			"effects": [
 				{
 					"type": "demand_delta",
 					"demand": "fairness",
 					"amount": -2
-				}
-			]
-		},
-		{
-			"text": "Use a limited and temporary measure",
-			"cost": 1,
-			"effects": [
-				{
-					"type": "demand_delta",
-					"demand": "fairness",
-					"amount": 1
-				}
-			]
-		},
-		{
-			"text": "Leave households and local institutions to cope",
-			"cost": 0,
-			"effects": [
-				{
-					"type": "demand_delta",
-					"demand": "fairness",
-					"amount": 2
-				},
-				{
-					"type": "resource_delta",
-					"resource": "population_count",
-					"amount": -80
 				}
 			]
 		}

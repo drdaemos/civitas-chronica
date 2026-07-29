@@ -1,14 +1,14 @@
 {
 	"id": "grain_liberalization",
 	"title": "The Grain Trade Is Liberalized",
-	"text": "The Grain Trade Is Liberalized reaches the council as a local problem with no cost-free answer.",
+	"text": "National law removes the old restraints on the grain trade. Merchants see wider markets, while bakers warn that local bread will follow distant prices.",
 	"trigger": {
 		"type": "has_development",
 		"id": "corn_exchange"
 	},
 	"options": [
 		{
-			"text": "Fund a thorough municipal response",
+			"text": "Build reserves before removing controls",
 			"cost": 5,
 			"effects": [
 				{
@@ -19,7 +19,7 @@
 			]
 		},
 		{
-			"text": "Use a limited and temporary measure",
+			"text": "Phase out controls over one season",
 			"cost": 1,
 			"effects": [
 				{
@@ -30,7 +30,7 @@
 			]
 		},
 		{
-			"text": "Leave households and local institutions to cope",
+			"text": "Open the trade immediately",
 			"cost": 0,
 			"effects": [
 				{

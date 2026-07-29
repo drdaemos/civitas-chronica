@@ -48,7 +48,7 @@ Three strictly layered parts. Dependencies point downward only.
 ```
 ┌────────────────────────────────────────────────────────────┐
 │  PRESENTATION  res://ui/                                    │
-│  Desk scene, card hand, city view, event screen,            │
+│  Instrumented city, card hand, City Record, event screen,   │
 │  age-transition screen. Listens to sim signals;             │
 │  calls sim API. Contains no game rules.                     │
 ├────────────────────────────────────────────────────────────┤
@@ -177,9 +177,22 @@ Both writes are atomic (write temp file, then rename). Save files are small (ten
 
 ## 7. Presentation Layer (`res://ui/`)
 
-- **Desk scene** (GDD §6) — one main scene; desk objects are child scenes each bound to one sim API call, enforcing the GDD's "every object maps to a core loop action" rule structurally.
+- **Instrumented city scene** (GDD §6) — one full-bleed `SubViewport`
+  containing the 3D city renderer under a Control-based perimeter HUD. The top
+  rail, hand, City Record tab, alert ribbon, and End Turn control bind to sim
+  queries and commands; decorative presentation never becomes simulation state.
 - **Card hand** — reuse **[chun92/card-framework](https://github.com/chun92/card-framework)** (MIT, Godot 4.x, actively maintained through 2026) for drag-and-drop, hand fanning, and pile containers. It's UI-only, which fits perfectly: our rules stay in `core/`, the addon just moves sprites. If its behavior fights the skeuomorphic desk aesthetic, hand-rolling a hand container is a contained ~2-week fallback, and the sim doesn't change either way.
-- **City view** — envisioned as a **3D-ish isometric world under the 2D UI**. Godot's native pattern for this: a `SubViewport` containing the 3D city scene (orthographic or low-FOV camera at a fixed isometric angle) embedded inside the Control-based UI — the same viewport renders the small desk mockup and the full city view at different sizes. Since the city is non-spatial in the sim (GDD pillar: no placement), the 3D scene is *generated presentation*: developments and active interaction effects map to prop sets and district clusters placed by a deterministic layout algorithm seeded per save, so the same city always looks the same. All of this stays behind one interface (`CityViewRenderer.update(state)`); the MVP can ship a flat placeholder and swap in the isometric scene without touching anything else.
+- **City view** — a **3D isometric world under the 2D UI**. A `SubViewport`
+  contains an orthographic 3D city scene and fills the gameplay frame. Since
+  the simulation is non-spatial (GDD pillar: no placement), the city is
+  *generated presentation*: developments and active interactions map to
+  representative structures, district clusters, routes, and ambient state
+  placed by a deterministic layout algorithm seeded per save. The same city
+  can be rendered at lower detail for menus or reports, but there is no separate
+  desk mockup. Everything stays behind
+  `CityViewRenderer.update(state, presentation_context)`; the MVP can ship a
+  simple procedural renderer and replace its assets without changing the sim or
+  HUD.
 - **Demand rows** — the primary always-visible readout: one row per active demand showing current value, growth step, and threshold, plus population level and the count's per-turn delta. Card hover must preview the delta on **every** demand row including worsened ones (GDD §4.0), so `ModifierPipeline` needs a dry-run `preview_play(card) → demand deltas` query.
 - **Data view toggle** (GDD accessibility TODO) — cheap by construction: every UI element binds to sim data, so a plain-Control stats screen is just a second skin over the same signals. Build it *first*, in fact — it doubles as the developer debug UI.
 - **Animations** — built-in `Tween`; sim domain events queue into an animation player that the user can click through (sets the pace, never blocks the sim).

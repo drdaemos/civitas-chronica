@@ -17,6 +17,24 @@ func run(t: TestContext) -> bool:
 	var drawn: Array = _first_of(events, "cards_drawn").get("cards", [])
 	t.eq(drawn.size(), 3, "cards_drawn reports 3 cards")
 
+	t.label("a new run may replace turn 1's event phase with its welcome")
+	var welcome_state: GameState = GameSetup.new_game(db, "test_age", 42)
+	var welcome_engine := TurnEngine.new(db, welcome_state)
+	Fixtures.quiet_demands(welcome_state)
+	welcome_state.event_deck.assign(["always_event"])
+	var welcome_events: Array[Dictionary] = welcome_engine.start_turn(true)
+	t.eq(welcome_state.pending_event, "", "no event is pending during the welcome")
+	t.is_true(_first_of(welcome_events, "event_fired").is_empty(),
+		"the suppressed opening emits no event_fired")
+	t.eq(welcome_state.event_deck, ["always_event"],
+		"the opening does not consume or reorder the event deck")
+	t.eq(welcome_state.hand.size(), 3, "the opening hand is ready behind the welcome")
+	welcome_engine.end_turn()
+	var after_welcome: Array[Dictionary] = welcome_engine.start_turn()
+	t.eq(welcome_state.pending_event, "always_event", "events begin normally on turn 2")
+	t.is_true(not _first_of(after_welcome, "event_fired").is_empty(),
+		"turn 2 emits the deferred event")
+
 	t.label("playing a card deducts its cost")
 	state.hand.append("cobblestone_roads")
 	var result: Dictionary = engine.play_card("cobblestone_roads")
@@ -53,14 +71,15 @@ func run(t: TestContext) -> bool:
 	t.eq(over.get("outcome"), GameState.OUTCOME_WON, "game_over carries the outcome")
 	t.is_true(over.get("score") is Dictionary, "game_over carries a score dict")
 
-	t.label("adopt_policy slots")
+	t.label("policies are temporarily disabled at the simulation boundary")
 	var adopt: Dictionary = engine.adopt_policy("civic_charter")
-	t.eq(adopt.get("ok"), true, "start-unlocked policy adoptable")
-	t.eq(engine.adopt_policy("civic_charter").get("ok"), false, "already active rejected")
-	t.eq(engine.adopt_policy("trade_council").get("ok"), false, "locked policy rejected")
-	var full: Dictionary = engine.adopt_policy("public_works")
-	t.eq(full.get("ok"), false, "second policy with 1 slot rejected")
-	t.eq(full.get("reason"), "no free policy slot", "slot-full reason text")
+	t.eq(adopt.get("ok"), false, "policy adoption is refused")
+	t.eq(adopt.get("reason"), "policies are temporarily disabled",
+		"refusal explains the feature gate")
+	state.active_policies.append("civic_charter")
+	var without_policy: ModifierPipeline = ModifierPipeline.collect(state, db)
+	t.eq(without_policy.income_total(), 0,
+		"even a policy retained by an older save contributes no passive effects")
 	return true
 
 

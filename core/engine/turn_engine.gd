@@ -31,8 +31,9 @@ func _init(content_db: ContentDB, game_state: GameState) -> void:
 
 ## Phase 1 (upkeep) followed by phase 2 (event draw). If an event fires the
 ## turn suspends awaiting resolve_event, which then opens phase 3; otherwise
-## phase 3's draw happens here.
-func start_turn() -> Array[Dictionary]:
+## phase 3's draw happens here. A fresh run may suppress the opening event
+## phase so the player can meet the city and its hand before facing a crisis.
+func start_turn(suppress_event_phase: bool = false) -> Array[Dictionary]:
 	var events: Array[Dictionary] = []
 	if state.game_over or state.pending_event != "" or state.transition_pending:
 		return events
@@ -69,9 +70,11 @@ func start_turn() -> Array[Dictionary]:
 	state.year += age.years_per_turn
 
 	# Phase 2 — events.
-	var event_id: String = age.forced_event_for_turn(state.turn_number)
-	if event_id == "":
-		event_id = EventMatcher.draw_matching(state, db)
+	var event_id: String = ""
+	if not suppress_event_phase:
+		event_id = age.forced_event_for_turn(state.turn_number)
+		if event_id == "":
+			event_id = EventMatcher.draw_matching(state, db)
 	if event_id != "" and not db.events.has(event_id):
 		# Defensive: an unknown pending_event can never be resolved and would
 		# wedge the save. The content validator catches this statically; this
@@ -248,6 +251,8 @@ func end_turn() -> Array[Dictionary]:
 ## Activates an unlocked policy in a free slot. Swapping is not supported
 ## in the MVP.
 func adopt_policy(policy_id: String) -> Dictionary:
+	if not PolicySystem.ENABLED:
+		return {"ok": false, "reason": "policies are temporarily disabled"}
 	if state.transition_pending:
 		return {"ok": false, "reason": "an age transition is pending"}
 	if policy_id not in state.unlocked_policies:

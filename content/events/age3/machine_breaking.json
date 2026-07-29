@@ -1,14 +1,14 @@
 {
 	"id": "machine_breaking",
 	"title": "Machines Broken in the Night",
-	"text": "Machines Broken in the Night reaches the council as a local problem with no cost-free answer.",
+	"text": "Masked workers enter the new mill at night and smash frames that do the work of many hands. By morning the owners demand troops and arrests.",
 	"trigger": {
 		"type": "has_development",
 		"id": "mechanized_mill"
 	},
 	"options": [
 		{
-			"text": "Fund a thorough municipal response",
+			"text": "Compensate workers and guard the machinery",
 			"cost": 5,
 			"effects": [
 				{
@@ -19,7 +19,7 @@
 			]
 		},
 		{
-			"text": "Use a limited and temporary measure",
+			"text": "Offer amnesty if the attacks stop",
 			"cost": 1,
 			"effects": [
 				{
@@ -30,7 +30,7 @@
 			]
 		},
 		{
-			"text": "Leave households and local institutions to cope",
+			"text": "Send troops into the workshop district",
 			"cost": 0,
 			"effects": [
 				{

@@ -1,14 +1,26 @@
 {
 	"id": "factory_accident",
 	"title": "Factory Accident",
-	"text": "Factory Accident reaches the council as a local problem with no cost-free answer.",
+	"text": "A machine floor collapses during the morning shift. Survivors remain trapped while the owners insist production elsewhere can continue.",
 	"trigger": {
 		"type": "has_development",
 		"id": "engineering_works"
 	},
 	"options": [
 		{
-			"text": "Fund a thorough municipal response",
+			"text": "Let the factory inspectorate take control of the site",
+			"cost": 4,
+			"requires_development": "factory_inspectorate",
+			"effects": [
+				{
+					"type": "demand_delta",
+					"demand": "health",
+					"amount": -2
+				}
+			]
+		},
+		{
+			"text": "Compensate workers and enforce safety changes",
 			"cost": 6,
 			"effects": [
 				{
@@ -19,7 +31,7 @@
 			]
 		},
 		{
-			"text": "Use a limited and temporary measure",
+			"text": "Close the damaged floor for inspection",
 			"cost": 1,
 			"effects": [
 				{
@@ -30,7 +42,7 @@
 			]
 		},
 		{
-			"text": "Leave households and local institutions to cope",
+			"text": "Allow production to resume immediately",
 			"cost": 0,
 			"effects": [
 				{

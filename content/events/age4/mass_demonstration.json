@@ -1,7 +1,7 @@
 {
 	"id": "mass_demonstration",
 	"title": "Mass Demonstration",
-	"text": "Mass Demonstration exposes how long the town has allowed this municipal responsibility to exceed its capacity.",
+	"text": "Thousands fill the civic square behind disciplined banners. Their delegates offer demands and a deadline; the police say they cannot clear the crowd without bloodshed.",
 	"trigger": {
 		"type": "demand",
 		"demand": "fairness",
@@ -13,7 +13,7 @@
 	"severity": "emergency",
 	"options": [
 		{
-			"text": "Commit extraordinary funds",
+			"text": "Negotiate publicly and concede concrete reforms",
 			"cost": 7,
 			"effects": [
 				{
@@ -24,7 +24,7 @@
 			]
 		},
 		{
-			"text": "Contain the worst effects",
+			"text": "Create a route and hear delegates",
 			"cost": 1,
 			"effects": [
 				{
@@ -40,7 +40,7 @@
 			]
 		},
 		{
-			"text": "Accept the losses",
+			"text": "Disperse the demonstration",
 			"cost": 0,
 			"effects": [
 				{

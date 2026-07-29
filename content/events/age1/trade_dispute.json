@@ -8,7 +8,19 @@
 	},
 	"options": [
 		{
-			"text": "Fund a thorough municipal response",
+			"text": "Put the dispute before the Merchant Guild",
+			"cost": 1,
+			"requires_development": "merchant_guild",
+			"effects": [
+				{
+					"type": "demand_delta",
+					"demand": "provision",
+					"amount": -2
+				}
+			]
+		},
+		{
+			"text": "Compensate losses and arbitrate the dispute",
 			"cost": 3,
 			"effects": [
 				{
@@ -19,7 +31,7 @@
 			]
 		},
 		{
-			"text": "Use a limited and temporary measure",
+			"text": "Suspend the disputed toll for one season",
 			"cost": 1,
 			"effects": [
 				{
@@ -30,7 +42,7 @@
 			]
 		},
 		{
-			"text": "Leave households and local institutions to cope",
+			"text": "Let the merchant guilds fight it out",
 			"cost": 0,
 			"effects": [
 				{

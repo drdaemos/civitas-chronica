@@ -1,7 +1,7 @@
 {
 	"id": "trust_crisis",
 	"title": "Crisis of Trust",
-	"text": "Crisis of Trust exposes how long the town has allowed this municipal responsibility to exceed its capacity.",
+	"text": "Official assurances are met with laughter, leaked records contradict public accounts, and even necessary measures are interpreted as another deception.",
 	"trigger": {
 		"type": "demand",
 		"demand": "fairness",
@@ -13,7 +13,7 @@
 	"severity": "emergency",
 	"options": [
 		{
-			"text": "Commit extraordinary funds",
+			"text": "Open the books and accept binding oversight",
 			"cost": 8,
 			"effects": [
 				{
@@ -24,7 +24,7 @@
 			]
 		},
 		{
-			"text": "Contain the worst effects",
+			"text": "Concede limited reforms",
 			"cost": 1,
 			"effects": [
 				{
@@ -40,7 +40,7 @@
 			]
 		},
 		{
-			"text": "Accept the losses",
+			"text": "Deny wrongdoing and enforce compliance",
 			"cost": 0,
 			"effects": [
 				{

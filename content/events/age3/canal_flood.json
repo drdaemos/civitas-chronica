@@ -1,14 +1,14 @@
 {
 	"id": "canal_flood",
 	"title": "The Canal Overtops Its Banks",
-	"text": "The Canal Overtops Its Banks reaches the council as a local problem with no cost-free answer.",
+	"text": "Rain and neglected masonry push the canal over its bank. Warehouses stand in brown water and barges strain against their lines.",
 	"trigger": {
 		"type": "has_development",
 		"id": "canal_depot"
 	},
 	"options": [
 		{
-			"text": "Fund a thorough municipal response",
+			"text": "Repair the banks and replace lost provisions",
 			"cost": 5,
 			"effects": [
 				{
@@ -19,7 +19,7 @@
 			]
 		},
 		{
-			"text": "Use a limited and temporary measure",
+			"text": "Close the canal and reinforce weak sections",
 			"cost": 1,
 			"effects": [
 				{
@@ -30,7 +30,7 @@
 			]
 		},
 		{
-			"text": "Leave households and local institutions to cope",
+			"text": "Make canal shareholders pay alone",
 			"cost": 0,
 			"effects": [
 				{

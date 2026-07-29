@@ -1,7 +1,7 @@
 {
 	"id": "public_health_collapse",
 	"title": "Public Health Collapses",
-	"text": "Public Health Collapses exposes how long the town has allowed this municipal responsibility to exceed its capacity.",
+	"text": "Contaminated water, overcrowded housing, and exhausted services converge into a city-wide emergency. No ward is healthy enough to shelter the rest.",
 	"trigger": {
 		"type": "demand",
 		"demand": "health",
@@ -13,7 +13,7 @@
 	"severity": "catastrophe",
 	"options": [
 		{
-			"text": "Commit extraordinary funds",
+			"text": "Build an emergency health system",
 			"cost": 11,
 			"effects": [
 				{
@@ -24,7 +24,7 @@
 			]
 		},
 		{
-			"text": "Contain the worst effects",
+			"text": "Protect water and isolate the worst outbreaks",
 			"cost": 3,
 			"effects": [
 				{
@@ -40,7 +40,7 @@
 			]
 		},
 		{
-			"text": "Accept the losses",
+			"text": "Accept uncontrolled loss",
 			"cost": 0,
 			"effects": [
 				{

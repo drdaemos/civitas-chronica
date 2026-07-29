@@ -1,13 +1,25 @@
 {
 	"id": "food_protest",
 	"title": "Crowds Seize Grain Carts",
-	"text": "Crowds Seize Grain Carts reaches the council as a local problem with no cost-free answer.",
+	"text": "A crowd stops grain carts at the market gate and sells the sacks at what it calls a just price. Merchants call it theft; the hungry call it breakfast.",
 	"trigger": {
 		"type": "always"
 	},
 	"options": [
 		{
-			"text": "Fund a thorough municipal response",
+			"text": "Open the Corn Exchange books and release its reserve",
+			"cost": 3,
+			"requires_development": "corn_exchange",
+			"effects": [
+				{
+					"type": "demand_delta",
+					"demand": "provision",
+					"amount": -2
+				}
+			]
+		},
+		{
+			"text": "Release grain and prosecute hoarding",
 			"cost": 5,
 			"effects": [
 				{
@@ -18,7 +30,7 @@
 			]
 		},
 		{
-			"text": "Use a limited and temporary measure",
+			"text": "Cap prices until the next harvest",
 			"cost": 1,
 			"effects": [
 				{
@@ -29,7 +41,7 @@
 			]
 		},
 		{
-			"text": "Leave households and local institutions to cope",
+			"text": "Send constables to recover the carts",
 			"cost": 0,
 			"effects": [
 				{
